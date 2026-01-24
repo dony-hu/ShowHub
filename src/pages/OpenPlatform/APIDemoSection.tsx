@@ -213,6 +213,13 @@ export const APIDemoSection: React.FC = () => {
                         <span className="label">经度：</span>
                         <span className="value">{geoResult.lng?.toFixed(6)}</span>
                       </div>
+                      <div className="map-iframe-wrapper">
+                        <iframe
+                          src="https://lbs.sfmap.com.cn/demo/bill"
+                          className="map-iframe"
+                          title="丰图地图"
+                        />
+                      </div>
                       <div className="map-link">
                         <a href={`https://maps.google.com/?q=${geoResult.lat},${geoResult.lng}`} target="_blank" rel="noopener noreferrer">
                           📍 在地图上查看
@@ -268,6 +275,13 @@ export const APIDemoSection: React.FC = () => {
                       <div className="result-row">
                         <span className="label">最近POI：</span>
                         <span className="value">{reverseResult.poi}</span>
+                      </div>
+                      <div className="map-iframe-wrapper">
+                        <iframe
+                          src="https://lbs.sfmap.com.cn/demo/bill"
+                          className="map-iframe"
+                          title="丰图地图"
+                        />
                       </div>
                     </>
                   ) : (

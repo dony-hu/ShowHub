@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './BlackboardPage.css'
 
 interface TrendItem {
@@ -6,6 +6,7 @@ interface TrendItem {
   summary: string
   tags: string[]
   cover: string
+  content?: string
 }
 
 interface StoryItem {
@@ -14,12 +15,14 @@ interface StoryItem {
   summary: string
   learning: string
   cover: string
+  content?: string
 }
 
 interface OutlookItem {
   title: string
   summary: string
   cover: string
+  content?: string
 }
 
 interface BulletinItem {
@@ -27,6 +30,7 @@ interface BulletinItem {
   date: string
   detail: string
   cover: string
+  content?: string
 }
 
 const techTrends: TrendItem[] = [
