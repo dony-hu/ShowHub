@@ -8,6 +8,7 @@ import { OpenPlatformAPIs } from './OpenPlatform/APIsSection';
 import { OpenPlatformSolutions } from './OpenPlatform/SolutionsSection';
 import { OpenPlatformIntegration } from './OpenPlatform/IntegrationSection';
 import { OpenPlatformCTA } from './OpenPlatform/CTASection';
+import APIDemoSection from './OpenPlatform/APIDemoSection';
 
 export const OpenPlatformPage: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ export const OpenPlatformPage: React.FC = () => {
       <OpenPlatformDataStats />
       <OpenPlatformFeatures />
       <OpenPlatformAPIs />
+      <APIDemoSection />
       <OpenPlatformSolutions />
       <OpenPlatformIntegration />
       <OpenPlatformCTA />

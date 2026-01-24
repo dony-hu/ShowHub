@@ -107,6 +107,12 @@ const outlooks: OutlookItem[] = [
 
 const bulletins: BulletinItem[] = [
   {
+    title: 'AI+ Engineer：重新定义工程师的生产力边界',
+    date: '2026-01-24',
+    detail: '从代码补全到架构设计，从需求理解到性能优化，AI正在成为每位工程师的超级助手。探讨如何与AI协作，提升10倍研发效率的实践经验。',
+    cover: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80'
+  },
+  {
     title: 'Tech Friday #42：矢量瓦片与 WebGPU',
     date: '2026-01-12',
     detail: '分享端侧着色器优化与瓦片压缩方案，附性能数据与实操 demo。',
