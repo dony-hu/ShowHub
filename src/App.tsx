@@ -7,7 +7,9 @@ import PrivateNetworkPage from './pages/PrivateNetworkPage'
 import { DataFactoryPage } from './pages/DataFactoryPage'
 import MapToGraphPage from './pages/MapToGraphPage'
 import ImprovementPage from './pages/ImprovementPage'
+import PartnersPage from './pages/PartnersPage'
 import BlackboardPage from './pages/BlackboardPage'
+import PartnersPage from './pages/PartnersPage'
 
 function App() {
   return (
@@ -36,6 +38,9 @@ function App() {
                 <Link to="/improvement">反馈与建议</Link>
               </li>
               <li>
+                <Link to="/partners">合作伙伴</Link>
+              </li>
+              <li>
                 <Link to="/blackboard">黑板报</Link>
               </li>
             </ul>
@@ -51,6 +56,7 @@ function App() {
             <Route path="/open-platform" element={<OpenPlatformPage />} />
             <Route path="/private-network" element={<PrivateNetworkPage />} />
             <Route path="/blackboard" element={<BlackboardPage />} />
+            <Route path="/partners" element={<PartnersPage />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </main>
