@@ -160,6 +160,12 @@
   border-color: rgba(239, 68, 68, 0.2);
 }
 
+.demo-result.error p {
+  color: #ff7b7b;
+  margin: 0;
+  line-height: 1.5;
+}
+
 .result-row {
   display: flex;
   gap: 1rem;

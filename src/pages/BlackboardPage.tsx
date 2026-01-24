@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import './BlackboardPage.css'
 
 interface TrendItem {

@@ -44,41 +44,38 @@ export const APIDemoSection: React.FC = () => {
   const handleGeocoding = async () => {
     setLoading(true)
     try {
-      // 演示API调用（实际需要后端代理）
-      const response = await fetch(
-        `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${API_KEY}`,
-        {
-          method: 'GET',
-          headers: { 'Accept': 'application/json' }
-        }
-      )
+      // 真实调用丰图 API
+      const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${API_KEY}`
+      console.log('调用 API:', url)
       
-      if (response.ok) {
-        const data = await response.json()
-        if (data.result && data.result.locations && data.result.locations.length > 0) {
-          const loc = data.result.locations[0]
-          setGeoResult({
-            success: true,
-            address: address,
-            lat: loc.lat,
-            lng: loc.lng
-          })
-        } else {
-          setGeoResult({ success: false, error: '未找到该地址' })
-        }
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      })
+      
+      console.log('响应状态:', response.status)
+      const data = await response.json()
+      console.log('API 返回数据:', data)
+      
+      if (data.result && data.result.locations && data.result.locations.length > 0) {
+        const loc = data.result.locations[0]
+        setGeoResult({
+          success: true,
+          address: address,
+          lat: loc.lat,
+          lng: loc.lng
+        })
       } else {
         setGeoResult({ 
           success: false, 
-          error: `API 调用示例：${address} → 39.90°N, 116.40°E` 
+          error: `API 返回：${data.msg || '未找到该地址'}` 
         })
       }
-    } catch (err) {
-      // 离线演示数据
+    } catch (err: any) {
+      console.error('API 调用错误:', err)
       setGeoResult({
-        success: true,
-        address: address,
-        lat: 39.9042,
-        lng: 116.4074
+        success: false,
+        error: `调用失败: ${err.message || '网络错误或跨域问题。建议使用 CORS 代理或后端接口'}`
       })
     } finally {
       setLoading(false)
@@ -89,30 +86,38 @@ export const APIDemoSection: React.FC = () => {
   const handleReverseGeocoding = async () => {
     setReverseLoading(true)
     try {
-      const response = await fetch(
-        `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${API_KEY}`,
-        { method: 'GET' }
-      )
+      // 真实调用丰图 API
+      const url = `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${API_KEY}`
+      console.log('调用 API:', url)
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      })
+      
+      console.log('响应状态:', response.status)
+      const data = await response.json()
+      console.log('API 返回数据:', data)
 
-      if (response.ok) {
-        const data = await response.json()
+      if (data.result && data.result.address) {
         setReverseResult({
           success: true,
-          address: data.result?.address || '北京市朝阳区',
-          poi: data.result?.poi?.[0]?.name || 'CITIC Tower'
+          address: data.result.address,
+          poi: data.result.poi && data.result.poi[0] 
+            ? data.result.poi[0].name 
+            : '暂无附近POI'
         })
       } else {
         setReverseResult({
-          success: true,
-          address: '北京市朝阳区建国路',
-          poi: 'CITIC Tower（中信大厦）'
+          success: false,
+          error: `API 返回：${data.msg || '解码失败'}`
         })
       }
-    } catch (err) {
+    } catch (err: any) {
+      console.error('API 调用错误:', err)
       setReverseResult({
-        success: true,
-        address: '北京市朝阳区建国路',
-        poi: 'CITIC Tower（中信大厦）'
+        success: false,
+        error: `调用失败: ${err.message || '网络错误或跨域问题'}`
       })
     } finally {
       setReverseLoading(false)
