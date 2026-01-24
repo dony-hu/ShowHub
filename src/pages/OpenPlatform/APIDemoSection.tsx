@@ -44,40 +44,64 @@ export const APIDemoSection: React.FC = () => {
   const handleGeocoding = async () => {
     setLoading(true)
     try {
-      // 真实调用丰图 API
-      const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${API_KEY}`
-      console.log('调用 API:', url)
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
+      // 使用 JSONP 绕过 CORS 限制
+      return new Promise((resolve, reject) => {
+        const callback = `callback_${Date.now()}`
+        const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${API_KEY}&callback=${callback}`
+        console.log('调用 API (JSONP):', url)
+        
+        // 动态创建 script 标签
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        
+        // 定义全局回调函数
+        (window as any)[callback] = (data: any) => {
+          console.log('API 返回数据:', data)
+          
+          // 清理
+          delete (window as any)[callback]
+          document.head.removeChild(script)
+          
+          if (data.result && data.result.locations && data.result.locations.length > 0) {
+            const loc = data.result.locations[0]
+            setGeoResult({
+              success: true,
+              address: address,
+              lat: loc.lat,
+              lng: loc.lng
+            })
+          } else {
+            setGeoResult({ 
+              success: false, 
+              error: `API 返回：${data.msg || '未找到该地址'}` 
+            })
+          }
+          setLoading(false)
+          resolve(null)
+        }
+        
+        // 错误处理
+        script.onerror = () => {
+          console.error('JSONP 加载失败')
+          delete (window as any)[callback]
+          document.head.removeChild(script)
+          setGeoResult({
+            success: false,
+            error: '调用失败：网络错误或 API 服务异常'
+          })
+          setLoading(false)
+          reject(new Error('JSONP 加载失败'))
+        }
+        
+        document.head.appendChild(script)
       })
-      
-      console.log('响应状态:', response.status)
-      const data = await response.json()
-      console.log('API 返回数据:', data)
-      
-      if (data.result && data.result.locations && data.result.locations.length > 0) {
-        const loc = data.result.locations[0]
-        setGeoResult({
-          success: true,
-          address: address,
-          lat: loc.lat,
-          lng: loc.lng
-        })
-      } else {
-        setGeoResult({ 
-          success: false, 
-          error: `API 返回：${data.msg || '未找到该地址'}` 
-        })
-      }
     } catch (err: any) {
       console.error('API 调用错误:', err)
       setGeoResult({
         success: false,
-        error: `调用失败: ${err.message || '网络错误或跨域问题。建议使用 CORS 代理或后端接口'}`
+        error: `调用失败: ${err.message || '未知错误'}`
       })
-    } finally {
       setLoading(false)
     }
   }
@@ -86,40 +110,64 @@ export const APIDemoSection: React.FC = () => {
   const handleReverseGeocoding = async () => {
     setReverseLoading(true)
     try {
-      // 真实调用丰图 API
-      const url = `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${API_KEY}`
-      console.log('调用 API:', url)
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
+      // 使用 JSONP 绕过 CORS 限制
+      return new Promise((resolve, reject) => {
+        const callback = `callback_${Date.now()}_reverse`
+        const url = `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${API_KEY}&callback=${callback}`
+        console.log('调用 API (JSONP):', url)
+        
+        // 动态创建 script 标签
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        
+        // 定义全局回调函数
+        (window as any)[callback] = (data: any) => {
+          console.log('API 返回数据:', data)
+          
+          // 清理
+          delete (window as any)[callback]
+          document.head.removeChild(script)
+          
+          if (data.result && data.result.address) {
+            setReverseResult({
+              success: true,
+              address: data.result.address,
+              poi: data.result.poi && data.result.poi[0] 
+                ? data.result.poi[0].name 
+                : '暂无附近POI'
+            })
+          } else {
+            setReverseResult({
+              success: false,
+              error: `API 返回：${data.msg || '解码失败'}`
+            })
+          }
+          setReverseLoading(false)
+          resolve(null)
+        }
+        
+        // 错误处理
+        script.onerror = () => {
+          console.error('JSONP 加载失败')
+          delete (window as any)[callback]
+          document.head.removeChild(script)
+          setReverseResult({
+            success: false,
+            error: '调用失败：网络错误或 API 服务异常'
+          })
+          setReverseLoading(false)
+          reject(new Error('JSONP 加载失败'))
+        }
+        
+        document.head.appendChild(script)
       })
-      
-      console.log('响应状态:', response.status)
-      const data = await response.json()
-      console.log('API 返回数据:', data)
-
-      if (data.result && data.result.address) {
-        setReverseResult({
-          success: true,
-          address: data.result.address,
-          poi: data.result.poi && data.result.poi[0] 
-            ? data.result.poi[0].name 
-            : '暂无附近POI'
-        })
-      } else {
-        setReverseResult({
-          success: false,
-          error: `API 返回：${data.msg || '解码失败'}`
-        })
-      }
     } catch (err: any) {
       console.error('API 调用错误:', err)
       setReverseResult({
         success: false,
-        error: `调用失败: ${err.message || '网络错误或跨域问题'}`
+        error: `调用失败: ${err.message || '未知错误'}`
       })
-    } finally {
       setReverseLoading(false)
     }
   }
