@@ -375,12 +375,9 @@ const BlackboardPage: React.FC = () => {
               <h2>{selectedArticle.title}</h2>
             </div>
             <div className="modal-body">
-              <div 
-                className="article-content"
-                dangerouslySetInnerHTML={{ 
-                  __html: selectedArticle.content?.replace(/\n/g, '<br/>').replace(/^# (.+)$/gm, '<h1>$1</h1>').replace(/^## (.+)$/gm, '<h2>$1</h2>').replace(/^### (.+)$/gm, '<h3>$1</h3>').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/- (.+)/g, '<li>$1</li>') || ''
-                }}
-              />
+              <div className="article-content">
+                <ReactMarkdown>{selectedArticle.content || ''}</ReactMarkdown>
+              </div>
             </div>
           </div>
         </div>

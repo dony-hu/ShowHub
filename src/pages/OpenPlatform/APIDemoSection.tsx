@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './APIDemoSection.css'
-import MapViewer from './MapViewer'
+import SFMapViewer from './SFMapViewer'
 
 const API_KEY = 'c0cc0e7a7e81403bab17e0f52ffbae40'
 
@@ -220,7 +220,7 @@ export const APIDemoSection: React.FC = () => {
                         <span className="value">{geoResult.lng?.toFixed(6)}</span>
                       </div>
                       <div className="map-iframe-wrapper">
-                        <MapViewer lat={geoResult.lat!} lng={geoResult.lng!} address={geoResult.address} />
+                        <SFMapViewer lat={geoResult.lat!} lng={geoResult.lng!} address={geoResult.address} apiKey={API_KEY} />
                       </div>
                       <div className="map-link">
                         <a href={`https://maps.google.com/?q=${geoResult.lat},${geoResult.lng}`} target="_blank" rel="noopener noreferrer">
@@ -279,7 +279,7 @@ export const APIDemoSection: React.FC = () => {
                         <span className="value">{reverseResult.poi}</span>
                       </div>
                       <div className="map-iframe-wrapper">
-                        <MapViewer lat={parseFloat(lat)} lng={parseFloat(lng)} address={reverseResult.address} />
+                        <SFMapViewer lat={parseFloat(lat)} lng={parseFloat(lng)} address={reverseResult.address} apiKey={API_KEY} />
                       </div>
                     </>
                   ) : (
