@@ -1,0 +1,18 @@
+.open-platform-page {
+  width: 100%;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .open-platform-page {
+    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .open-platform-page {
+    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  }
+}

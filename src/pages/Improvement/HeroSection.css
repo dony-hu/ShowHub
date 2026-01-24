@@ -1,0 +1,110 @@
+.improvement-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-bottom: 60px;
+  opacity: 0.95;
+}
+
+.improvement-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.improvement-button {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.improvement-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.button-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.button-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.button-content p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+.improvement-button.map-corrections:hover .button-icon {
+  animation: bounce 0.6s;
+}
+
+.improvement-button.bug-reports:hover .button-icon {
+  animation: bounce 0.6s;
+}
+
+.improvement-button.feature-requests:hover .button-icon {
+  animation: bounce 0.6s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .improvement-buttons {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .improvement-button {
+    padding: 20px;
+  }
+
+  .button-icon {
+    font-size: 36px;
+  }
+}

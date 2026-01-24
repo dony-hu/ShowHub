@@ -1,0 +1,124 @@
+/* Positioning Section Styles */
+
+.df-positioning {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+  color: white;
+}
+
+.df-positioning-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.df-section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.df-positioning-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.df-positioning-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: justify;
+}
+
+.df-positioning-text strong {
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.df-diagram-wrapper {
+  margin-top: 30px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 245, 255, 0.05) 100%);
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.df-callout-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.df-callout-content {
+  flex: 1;
+}
+
+.df-callout-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 12px;
+}
+
+.df-callout-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.df-callout-text strong {
+  color: #00f5ff;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .df-positioning-container {
+    padding: 0 40px;
+  }
+  
+  .df-section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .df-positioning {
+    padding: 80px 0;
+  }
+  
+  .df-positioning-container {
+    padding: 0 20px;
+  }
+  
+  .df-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
+  .df-positioning-text {
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  .df-callout-card {
+    flex-direction: column;
+    padding: 30px;
+    gap: 16px;
+  }
+  
+  .df-callout-title {
+    font-size: 1.3rem;
+  }
+  
+  .df-callout-text {
+    font-size: 1rem;
+  }
+}

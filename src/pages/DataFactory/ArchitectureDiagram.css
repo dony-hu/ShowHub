@@ -1,0 +1,368 @@
+/* Architecture Flow Diagram Styles */
+
+.architecture-flow-container {
+  width: 100%;
+  height: 1400px;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05);
+}
+
+.architecture-flow {
+  width: 100%;
+  height: 100%;
+}
+
+/* React Flow 覆盖样式 */
+.react-flow__node {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: 12px;
+  padding: 24px 32px;
+  border: 3px solid;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 245, 255, 0.1) 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.2), 0 0 30px rgba(0, 212, 255, 0.1);
+  transition: all 0.3s ease;
+  white-space: pre-line;
+  text-align: center;
+  min-width: 200px;
+}
+
+/* 让emoji图标更大 */
+.react-flow__node div:first-line {
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.react-flow__node:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5), 0 0 50px rgba(0, 212, 255, 0.2);
+  z-index: 10;
+}
+
+/* 数据源节点 */
+.source-node {
+  border-color: #00d4ff !important;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.08) 100%) !important;
+  font-weight: 600;
+}
+
+/* 处理节点 */
+.process-node {
+  border-color: #00f5ff !important;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(0, 245, 255, 0.08) 100%) !important;
+  min-width: 180px;
+}
+
+/* 核心节点强调 */
+.core-node {
+  border-color: #00f5ff !important;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.25) 0%, rgba(0, 245, 255, 0.15) 100%) !important;
+  border-width: 3px !important;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+.ingestion-node {
+  min-width: 200px;
+}
+
+/* 决策节点 */
+.decision-node {
+  border-radius: 50px !important;
+  min-width: 140px;
+  font-weight: 600;
+}
+
+.auto-node {
+  border-color: #06ffa5 !important;
+  background: linear-gradient(135deg, rgba(6, 255, 165, 0.15) 0%, rgba(6, 255, 165, 0.08) 100%) !important;
+}
+
+.manual-node {
+  border-color: #ff006e !important;
+  background: linear-gradient(135deg, rgba(255, 0, 110, 0.15) 0%, rgba(255, 0, 110, 0.08) 100%) !important;
+}
+
+/* 标注平台节点 */
+.labeling-node {
+  border-color: #ff006e !important;
+  background: linear-gradient(135deg, rgba(255, 0, 110, 0.2) 0%, rgba(255, 0, 110, 0.1) 100%) !important;
+  border-width: 3px !important;
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+  min-width: 180px;
+}
+
+/* 资产节点 */
+.asset-node {
+  border-color: #8338ec !important;
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.15) 0%, rgba(131, 56, 236, 0.08) 100%) !important;
+  font-weight: 600;
+}
+
+/* 输出节点 */
+.output-node {
+  border-color: #06ffa5 !important;
+  background: linear-gradient(135deg, rgba(6, 255, 165, 0.15) 0%, rgba(6, 255, 165, 0.08) 100%) !important;
+  font-weight: 600;
+}
+
+/* 监控节点 */
+.monitor-node {
+  border-color: #ffbe0b !important;
+  background: linear-gradient(135deg, rgba(255, 190, 11, 0.15) 0%, rgba(255, 190, 11, 0.08) 100%) !important;
+  border-radius: 50px !important;
+}
+
+/* AI模型节点 */
+.ai-node {
+  border-color: #9d4edd !important;
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(157, 78, 221, 0.1) 100%) !important;
+  border-width: 3px !important;
+  font-weight: 600;
+  min-width: 160px;
+  box-shadow: 0 0 25px rgba(157, 78, 221, 0.3), 0 6px 20px rgba(157, 78, 221, 0.2);
+}
+
+.ai-node:hover {
+  box-shadow: 0 0 35px rgba(157, 78, 221, 0.5), 0 8px 30px rgba(157, 78, 221, 0.3);
+}
+
+/* AI核心节点强调 */
+.ai-core {
+  border-width: 4px !important;
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.3) 0%, rgba(157, 78, 221, 0.15) 100%) !important;
+  box-shadow: 0 0 30px rgba(157, 78, 221, 0.5), 0 6px 25px rgba(157, 78, 221, 0.3);
+}
+
+/* AI迭代节点 */
+.ai-iteration {
+  border-radius: 50px !important;
+  border-color: #c77dff !important;
+  background: linear-gradient(135deg, rgba(199, 125, 255, 0.25) 0%, rgba(199, 125, 255, 0.12) 100%) !important;
+}
+
+/* 边/连线样式 */
+.react-flow__edge-path {
+  stroke: #00d4ff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/* 特殊路径 */
+.auto-path .react-flow__edge-path {
+  stroke: #06ffa5 !important;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px #06ffa5);
+}
+
+.manual-path .react-flow__edge-path {
+  stroke: #ff006e !important;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px #ff006e);
+}
+
+.conflict-path .react-flow__edge-path {
+  stroke: #ff006e !important;
+  stroke-width: 3;
+  stroke-dasharray: 10 5;
+  filter: drop-shadow(0 0 4px #ff006e);
+}
+
+.feedback-path .react-flow__edge-path {
+  stroke: #ffbe0b !important;
+  stroke-width: 3;
+  stroke-dasharray: 8 4;
+  filter: drop-shadow(0 0 6px #ffbe0b);
+}
+
+.audit-path .react-flow__edge-path {
+  stroke: #8338ec !important;
+  stroke-width: 2;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 4px #8338ec);
+}
+
+.data-flow .react-flow__edge-path {
+  stroke: #00d4ff !important;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 4px #00d4ff);
+}
+
+.manual-flow .react-flow__edge-path {
+  stroke: #ff006e !important;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 6px #ff006e);
+}
+
+/* AI流程连线 */
+.ai-flow .react-flow__edge-path {
+  stroke: #9d4edd !important;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px #9d4edd);
+}
+
+.ai-feedback-loop .react-flow__edge-path {
+  stroke: #c77dff !important;
+  stroke-width: 3;
+  stroke-dasharray: 8 4;
+  filter: drop-shadow(0 0 6px #c77dff);
+}
+
+.ai-apply .react-flow__edge-path {
+  stroke: #9d4edd !important;
+  stroke-width: 2;
+  opacity: 0.7;
+  stroke-dasharray: 5 3;
+  filter: drop-shadow(0 0 4px #9d4edd);
+}
+
+/* 三维建模流程节点 */
+.3d-process-node {
+  border-color: #00d4ff !important;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%) !important;
+  border-width: 3px !important;
+  min-width: 180px;
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.3), 0 6px 20px rgba(0, 212, 255, 0.2);
+}
+
+.3d-process-node:hover {
+  box-shadow: 0 0 35px rgba(0, 212, 255, 0.5), 0 8px 30px rgba(0, 212, 255, 0.3);
+}
+
+/* 三维核心关联节点 */
+.3d-core-node {
+  border-color: #00f5ff !important;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.3) 0%, rgba(0, 245, 255, 0.15) 100%) !important;
+  border-width: 4px !important;
+  box-shadow: 0 0 30px rgba(0, 245, 255, 0.5), 0 6px 25px rgba(0, 245, 255, 0.3);
+  min-width: 200px;
+}
+
+/* 三维流程连线 */
+.3d-flow .react-flow__edge-path {
+  stroke: #00d4ff !important;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px #00d4ff);
+}
+
+.3d-output .react-flow__edge-path {
+  stroke: #06ffa5 !important;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px #06ffa5);
+}
+
+/* 边标签 */
+.react-flow__edge-text {
+  fill: white;
+  font-size: 13px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 212, 255, 0.4);
+}
+
+.react-flow__edge-textbg {
+  fill: rgba(15, 15, 30, 0.95);
+  rx: 6;
+  ry: 6;
+}
+
+/* 控制按钮 */
+.react-flow__controls {
+  background: rgba(15, 15, 30, 0.9);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.react-flow__controls-button {
+  background: rgba(0, 212, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+}
+
+.react-flow__controls-button:hover {
+  background: rgba(0, 212, 255, 0.2);
+}
+
+.react-flow__controls-button svg {
+  fill: #00d4ff;
+}
+
+/* MiniMap */
+.react-flow__minimap {
+  background: rgba(15, 15, 30, 0.9);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+/* 背景 */
+.react-flow__background {
+  background: #0f0f1e;
+}
+
+/* Attribution */
+.react-flow__attribution {
+  background: rgba(15, 15, 30, 0.8);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .architecture-flow-container {
+    height: 500px;
+  }
+  
+  .react-flow__node {
+    font-size: 10px;
+    padding: 8px;
+    min-width: 120px;
+  }
+  
+  .process-node {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .architecture-flow-container {
+    height: 400px;
+    border-radius: 12px;
+  }
+  
+  .react-flow__node {
+    font-size: 9px;
+    padding: 6px;
+    min-width: 100px;
+  }
+  
+  .process-node,
+  .ingestion-node {
+    min-width: 120px;
+  }
+  
+  .react-flow__controls {
+    transform: scale(0.8);
+  }
+  
+  .react-flow__minimap {
+    width: 120px;
+    height: 80px;
+  }
+}
+

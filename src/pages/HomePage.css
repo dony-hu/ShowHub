@@ -1,0 +1,17 @@
+/* Home Page Global Styles */
+
+.home-page {
+  width: 100%;
+  background: #0f0f1e;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global defaults */
+* {
+  box-sizing: border-box;
+}

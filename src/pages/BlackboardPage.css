@@ -1,0 +1,253 @@
+.blackboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: #e5edff;
+}
+
+.blackboard-hero {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 18px;
+  background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(118, 75, 162, 0.2), transparent 45%),
+    rgba(12, 18, 32, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.blackboard-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), transparent 30%);
+  pointer-events: none;
+}
+
+.chalk-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.blackboard-hero h1 {
+  margin: 1rem 0 0.5rem;
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  max-width: 760px;
+  color: rgba(229, 237, 255, 0.86);
+  margin-bottom: 1.25rem;
+}
+
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-highlights span {
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+}
+
+.blackboard-section {
+  background: rgba(10, 14, 25, 0.85);
+  border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.blackboard-section.compact {
+  padding: 1.5rem;
+}
+
+.section-header {
+  margin-bottom: 1.25rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: rgba(229, 237, 255, 0.78);
+}
+
+.section-header h2 {
+  margin: 0.5rem 0;
+  font-size: 1.6rem;
+}
+
+.section-header p {
+  color: rgba(229, 237, 255, 0.75);
+}
+
+.cards-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.chalk-card {
+  background: linear-gradient(145deg, rgba(18, 24, 38, 0.92), rgba(14, 18, 30, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1.15rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chalk-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px dashed rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card-top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.pill {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(102, 126, 234, 0.18);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  font-size: 0.85rem;
+  color: #cbd5ff;
+}
+
+.pill.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(229, 237, 255, 0.8);
+}
+
+.card-summary {
+  margin: 0.6rem 0 0.75rem;
+  color: rgba(229, 237, 255, 0.82);
+  line-height: 1.5;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.85rem;
+  color: rgba(229, 237, 255, 0.85);
+}
+
+.story-card .learning {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.learning-label {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: rgba(203, 213, 255, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.outlook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+
+.outlook-card h3 {
+  margin: 0 0 0.35rem;
+}
+
+.outlook-card p {
+  margin: 0;
+  color: rgba(229, 237, 255, 0.8);
+}
+
+.bulletin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bulletin-item {
+  padding: 0.9rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bulletin-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.bulletin-meta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.bulletin-item p {
+  margin: 0;
+  color: rgba(229, 237, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .blackboard-hero {
+    padding: 1.75rem;
+  }
+
+  .blackboard-hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-highlights {
+    gap: 0.5rem;
+  }
+
+  .blackboard-section {
+    padding: 1.25rem;
+  }
+
+  .card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

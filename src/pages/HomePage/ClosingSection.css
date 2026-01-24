@@ -1,0 +1,191 @@
+/* Closing Section Styles */
+
+.closing-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 50%, #0f2847 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+}
+
+.closing-section::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -100px;
+  right: 10%;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+}
+
+.closing-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.closing-section h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 50px 0;
+  background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.closing-content p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 30px 0;
+}
+
+.highlight {
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.closing-highlight {
+  font-size: 1.2rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #00d4ff;
+  margin: 40px 0 50px 0 !important;
+  backdrop-filter: blur(10px);
+}
+
+.closing-tagline {
+  margin: 50px 0;
+  padding: 40px;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.closing-tagline p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #00f5ff;
+  margin: 15px 0;
+}
+
+.closing-tagline p:last-child {
+  color: #00d4ff;
+}
+
+.cta-button {
+  margin-top: 50px;
+  padding: 16px 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
+  color: #0f0f1e;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+}
+
+/* PC端优化 */
+@media (min-width: 1200px) {
+  .closing-container {
+    padding: 0 80px;
+  }
+
+  .closing-section h2 {
+    font-size: 3.5rem;
+  }
+}
+
+/* 平板屏幕 */
+@media (max-width: 1024px) {
+  .closing-section {
+    padding: 80px 0;
+  }
+
+  .closing-container {
+    padding: 0 40px;
+  }
+
+  .closing-section h2 {
+    font-size: 2.3rem;
+  }
+
+  .closing-content p {
+    font-size: 1.05rem;
+  }
+
+  .closing-tagline p {
+    font-size: 1.2rem;
+  }
+}
+
+/* 小屏幕 */
+@media (max-width: 640px) {
+  .closing-container {
+    padding: 0 20px;
+  }
+
+  .closing-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 35px;
+  }
+
+  .closing-content p {
+    font-size: 1rem;
+  }
+
+  .closing-highlight {
+    padding: 20px;
+    margin: 30px 0 40px 0 !important;
+    font-size: 1rem !important;
+  }
+
+  .closing-tagline {
+    padding: 25px;
+    margin: 35px 0;
+  }
+
+  .closing-tagline p {
+    font-size: 1.1rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    margin-top: 35px;
+  }
+}

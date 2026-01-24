@@ -1,0 +1,5 @@
+.data-factory-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+}

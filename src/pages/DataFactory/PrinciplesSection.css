@@ -1,0 +1,87 @@
+/* Principles Section Styles */
+
+.df-principles {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+  color: white;
+}
+
+.df-principles-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.df-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.df-principle-card {
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 245, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.df-principle-card:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+}
+
+.df-principle-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.df-principle-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.df-principle-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .df-principles-container {
+    padding: 0 40px;
+  }
+  
+  .df-principles-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .df-principles {
+    padding: 80px 0;
+  }
+  
+  .df-principles-container {
+    padding: 0 20px;
+  }
+  
+  .df-principles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .df-principle-card {
+    padding: 30px;
+  }
+}

@@ -1,0 +1,226 @@
+.pn-address-llm {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+}
+
+.pn-address-llm-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.pn-address-llm-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.pn-address-llm-subtitle {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 1000px;
+  margin: 20px auto 0;
+}
+
+.pn-address-llm-subtitle strong {
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.pn-llm-capabilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.pn-llm-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.pn-llm-card:hover {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+}
+
+.pn-llm-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pn-llm-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.pn-llm-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.pn-llm-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 16px;
+}
+
+.pn-llm-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pn-llm-example {
+  font-size: 13px;
+  color: rgba(0, 212, 255, 0.85);
+  background: rgba(0, 212, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border-left: 2px solid rgba(0, 212, 255, 0.4);
+  line-height: 1.4;
+  display: block;
+}
+
+.pn-llm-vision {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(157, 78, 221, 0.08) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  margin-top: 40px;
+}
+
+.pn-llm-vision-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.pn-llm-vision-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.pn-llm-vision-content strong {
+  color: #00f5ff;
+  font-weight: 600;
+}
+
+.pn-llm-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.pn-llm-vision-item {
+  text-align: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pn-llm-vision-item:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+  transform: translateY(-4px);
+}
+
+.pn-llm-vision-number {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d4ff 0%, #06ffa5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.pn-llm-vision-label {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .pn-llm-capabilities {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .pn-llm-vision {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pn-address-llm {
+    padding: 60px 0;
+  }
+
+  .pn-address-llm-subtitle {
+    font-size: 16px;
+  }
+
+  .pn-llm-capabilities {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pn-llm-card {
+    padding: 20px;
+  }
+
+  .pn-llm-icon {
+    font-size: 28px;
+  }
+
+  .pn-llm-title {
+    font-size: 18px;
+  }
+
+  .pn-llm-vision {
+    padding: 24px 16px;
+  }
+
+  .pn-llm-vision-title {
+    font-size: 24px;
+  }
+
+  .pn-llm-vision-content p {
+    font-size: 15px;
+  }
+
+  .pn-llm-vision-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .pn-llm-vision-item {
+    padding: 16px;
+  }
+
+  .pn-llm-vision-number {
+    font-size: 24px;
+  }
+
+  .pn-llm-vision-label {
+    font-size: 13px;
+  }
+}

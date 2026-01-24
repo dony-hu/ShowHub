@@ -1,0 +1,121 @@
+/* Serving Section Styles */
+
+.df-serving {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+  color: white;
+}
+
+.df-serving-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.df-serving-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.df-serving-card {
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 245, 255, 0.08) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.df-serving-card:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
+}
+
+.df-serving-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.df-serving-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 12px;
+}
+
+.df-serving-card-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.df-serving-note {
+  display: flex;
+  gap: 24px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border: 2px solid rgba(0, 245, 255, 0.3);
+  border-radius: 16px;
+  align-items: center;
+}
+
+.df-serving-note-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.df-serving-note-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.df-serving-note-text strong {
+  color: #00f5ff;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .df-serving-container {
+    padding: 0 40px;
+  }
+  
+  .df-serving-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .df-serving {
+    padding: 80px 0;
+  }
+  
+  .df-serving-container {
+    padding: 0 20px;
+  }
+  
+  .df-serving-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .df-serving-card {
+    padding: 30px;
+  }
+  
+  .df-serving-note {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .df-serving-note-text {
+    font-size: 1rem;
+  }
+}

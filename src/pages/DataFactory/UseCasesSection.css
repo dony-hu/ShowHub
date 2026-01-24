@@ -1,0 +1,250 @@
+/* Use Cases Section Styles */
+
+.df-use-cases {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+  color: white;
+}
+
+.df-use-cases-container {
+  max-width: 98%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.df-use-cases-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.df-use-cases-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.df-tab-category {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.df-category-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  background: rgba(0, 212, 255, 0.1);
+  border-left: 3px solid #00d4ff;
+  margin-bottom: 4px;
+}
+
+.df-use-case-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(0, 212, 255, 0.03);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.df-use-case-tab:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.df-use-case-tab.active {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 245, 255, 0.15) 100%);
+  border-color: #00d4ff;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+}
+
+.df-tab-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.df-tab-title {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.df-use-case-detail {
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 245, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.df-use-case-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.df-use-case-icon-large {
+  font-size: 3rem;
+}
+
+.df-use-case-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin: 0;
+  flex: 1;
+}
+
+.df-use-case-section {
+  margin-bottom: 30px;
+}
+
+.df-use-case-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #00f5ff;
+  margin-bottom: 16px;
+}
+
+.df-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.df-chip {
+  padding: 8px 16px;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.df-action-list,
+.df-output-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 0;
+}
+
+.df-action-list li,
+.df-output-list li {
+  padding-left: 28px;
+  position: relative;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.df-action-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #00d4ff;
+  font-weight: bold;
+}
+
+.df-output-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00f5ff;
+  font-weight: bold;
+}
+
+.df-use-case-example {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(0, 245, 255, 0.05);
+  border-left: 3px solid #00f5ff;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.df-use-case-example strong {
+  color: #00f5ff;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .df-use-cases-container {
+    padding: 0 40px;
+  }
+  
+  .df-use-cases-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .df-use-cases-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+  }
+  
+  .df-use-case-tab {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    min-width: 140px;
+  }
+  
+  .df-tab-title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .df-use-cases {
+    padding: 80px 0;
+  }
+  
+  .df-use-cases-container {
+    padding: 0 20px;
+  }
+  
+  .df-use-case-detail {
+    padding: 24px;
+  }
+  
+  .df-use-case-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .df-use-case-title {
+    font-size: 1.2rem;
+  }
+}

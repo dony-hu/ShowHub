@@ -1,0 +1,272 @@
+.bug-reports-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.bugs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bug-item {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #667eea;
+}
+
+.bug-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.bug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.bug-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
+
+.bug-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #e8f4f8;
+  color: #0066cc;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.severity-badge,
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.severity-badge.high {
+  background: #fee;
+  color: #d32f2f;
+}
+
+.severity-badge.medium {
+  background: #fff3cd;
+  color: #f57c00;
+}
+
+.severity-badge.low {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-badge.open {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-badge.in-progress {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.status-badge.resolved {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.bug-description {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+}
+
+.bug-detailed-description {
+  background: #f9f9f9;
+  padding: 12px;
+  border-left: 3px solid #667eea;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.detailed-label {
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+}
+
+.detailed-text {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.bug-meta {
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.api-name {
+  font-size: 12px;
+  color: #666;
+  display: inline-block;
+}
+
+.affected-scenarios {
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.scenarios-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.scenarios-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.scenario-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.reference-links {
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.links-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reference-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+.reference-link:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}
+
+.suggestion-box {
+  background: #e8f5e9;
+  padding: 12px;
+  border-left: 3px solid #4caf50;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.suggestion-label {
+  font-weight: 600;
+  color: #1b5e20;
+  margin: 0 0 6px 0;
+  font-size: 13px;
+}
+
+.suggestion-text {
+  font-size: 13px;
+  color: #2e7d32;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bug-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bug-date {
+  font-size: 12px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .bug-reports-section {
+    padding: 20px 15px;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+  }
+
+  .bug-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bug-item {
+    padding: 16px;
+  }
+}
