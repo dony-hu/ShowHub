@@ -731,7 +731,7 @@ const MapToGraphPage: React.FC = () => {
       {/* 顶部标题栏 */}
       <div className="page-header">
         <div className="title-section">
-          <h1>空间智能实验室</h1>
+          <h1>空间智能Lab</h1>
           <p className="subtitle">
             基于大模型微调和训练技术，构筑AI-Native的地址服务，围绕地址服务构建时空知识图谱
           </p>

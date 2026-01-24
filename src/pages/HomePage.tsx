@@ -1,9 +1,8 @@
 import React from 'react';
 import HeroSection from './HomePage/HeroSection';
 import MissionSection from './HomePage/MissionSection';
+import CapabilitiesSection from './HomePage/CapabilitiesSection';
 import PlatformSection from './HomePage/PlatformSection';
-import BaseServicesSection from './HomePage/BaseServicesSection';
-import DataFactorySection from './HomePage/DataFactorySection';
 import ClosingSection from './HomePage/ClosingSection';
 import './HomePage.css';
 
@@ -12,9 +11,8 @@ const HomePage: React.FC = () => {
     <div className="home-page">
       <HeroSection />
       <MissionSection />
+      <CapabilitiesSection />
       <PlatformSection />
-      <BaseServicesSection />
-      <DataFactorySection />
       <ClosingSection />
     </div>
   );

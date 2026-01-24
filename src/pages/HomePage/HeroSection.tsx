@@ -17,13 +17,12 @@ export const HeroSection: React.FC = () => {
         
         <div className="hero-content">
           <div className="hero-taglines">
-            <h2 className="tagline primary-tagline">让数据更可信</h2>
-            <h2 className="tagline secondary-tagline">让决策更智能</h2>
+            <h2 className="tagline primary-tagline">构建面向真实世界的空间智能底座</h2>
+            <p className="tagline-subtitle">支撑跨行业的位置智能决策</p>
           </div>
           
           <p className="hero-description">
-            在城市运行、物流调度、公共治理与产业发展中，空间数据是所有决策的基础。
-            但现实中，数据碎片化、质量不可控、生产链路不透明，导致"有数据，却不敢用；能分析，却难落地"。
+            从空间数据生产，到位置智能决策的全链路平台体系
           </p>
           
           <div className="hero-cta">

@@ -6,45 +6,35 @@ export const MissionSection: React.FC = () => {
   return (
     <section className="mission-section">
       <div className="mission-container">
-        <h2 className="section-title">丰图的使命</h2>
+        <h2 className="section-title">平台级空间智能体系</h2>
         
-        <p className="mission-intro">
-          构建面向未来的空间智能基础设施
-        </p>
-        
-        <div className="mission-grid">
-          <div className="mission-item">
-            <div className="mission-icon">📊</div>
-            <h3>让每一份空间数据</h3>
-            <p>来源可追溯、质量可验证、过程可治理</p>
+        <div className="architecture-diagram">
+          <div className="architecture-layer top-layer">
+            <div className="layer-title">位置智能决策平台</div>
+            <div className="layer-subtitle">Decision Enablement & Orchestration</div>
+            <div className="layer-description">
+              将空间能力编排为可执行、可追溯的行业决策服务
+            </div>
           </div>
           
-          <div className="mission-item">
-            <div className="mission-icon">🧠</div>
-            <h3>让复杂的空间问题</h3>
-            <p>转化为可计算、可推理、可执行的智能决策</p>
+          <div className="architecture-arrow">↑ 依赖</div>
+          
+          <div className="architecture-layer bottom-layer">
+            <div className="layer-title">空间智能数据工厂</div>
+            <div className="layer-subtitle">Spatial Data Production & Asset System</div>
+            <div className="layer-description">
+              持续将多源真实世界数据转化为可治理、可学习、可复用的空间资产
+            </div>
           </div>
         </div>
-        
-        <div className="mission-divider"></div>
-        
-        <h2 className="section-title">两大核心平台</h2>
-        
-        <div className="platforms-grid">
-          <Link to="/open-platform" className="platform-card">
-            <h3>位置智能决策平台</h3>
-            <p>面向业务与行业的智能决策服务平台</p>
-          </Link>
-          
-          <Link to="/data-factory" className="platform-card">
-            <h3>空间智能数据工厂</h3>
-            <p>支撑一切决策能力的数据生产与治理底座</p>
-          </Link>
+
+        <div className="platform-definition">
+          <p>
+            空间智能数据工厂和位置智能决策平台，是丰图的两层平台能力体系：前者负责生产空间资产，后者负责将这些能力转化为可执行的行业决策。
+            <br/>
+            它们不是产品，而是支撑所有产品与解决方案的基础平台。
+          </p>
         </div>
-        
-        <p className="platforms-description">
-          二者协同，形成从数据到决策的完整闭环
-        </p>
       </div>
     </section>
   );

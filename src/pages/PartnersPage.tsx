@@ -13,101 +13,108 @@ const PartnersPage: React.FC = () => {
   const technicalPartners: Partner[] = [
     {
       name: '园测信息科技',
-      logo: 'https://www.dpark.com.cn/favicon.ico',
+      logo: 'https://www.dpark.com.cn/images/logo.png',
       description: '地理信息系统（GIS）、测绘与空间数据服务',
       website: 'http://www.dpark.com.cn/',
       industry: '空间数据服务'
     },
     {
       name: '其域创新（XGRIDS）',
-      logo: 'https://xgrids.cn/favicon.ico',
+      logo: 'https://xgrids.cn/logo.png',
       description: '三维空间智能技术与三维建模服务',
       website: 'https://xgrids.cn/',
       industry: '三维建模'
     },
     {
       name: '白犀牛（RINO.AI）',
-      logo: 'https://cn.rino.ai/favicon.ico',
+      logo: 'https://cdn.rino.ai/static/images/logo.png',
       description: '人工智能视觉技术与三维内容平台',
       website: 'https://cn.rino.ai/',
       industry: 'AI视觉技术'
     },
     {
       name: '海致（Haizhi）',
-      logo: 'https://www.haizhi.com/favicon.ico',
+      logo: 'https://www.haizhi.com/static/logo.png',
       description: '大数据与自然语言处理技术服务',
       website: 'https://www.haizhi.com/about',
       industry: 'NLP与大数据'
     },
     {
       name: '及刻（ISJike）',
-      logo: 'https://www.isjike.com/favicon.ico',
+      logo: 'https://www.isjike.com/static/logo.png',
       description: '数字内容与智能技术服务解决方案',
       website: 'https://www.isjike.com/',
       industry: '数字内容服务'
     },
     {
       name: '大势智慧（Daspatial）',
-      logo: 'https://www.daspatial.com/favicon.ico',
+      logo: 'https://www.daspatial.com/logo.png',
       description: '地理空间智能与空间数据分析平台',
       website: 'https://www.daspatial.com/',
       industry: '空间智能分析'
     },
     {
       name: '宽凳（Kuandeng）',
-      logo: 'http://www.kuandeng.com/favicon.ico',
+      logo: 'https://www.kuandeng.com/images/logo.png',
       description: '智慧数据服务与软件开发解决方案',
       website: 'http://www.kuandeng.com/html/1/index.html',
       industry: '软件开发服务'
     },
     {
       name: '影石科技（Insta360）',
-      logo: 'https://www.insta360.com/favicon.ico',
+      logo: 'https://insta360-files.s3.amazonaws.com/logo.png',
       description: '全景影像硬件与虚拟现实摄像技术',
       website: 'https://www.insta360.com/cn/',
       industry: '全景影像技术'
     },
     {
       name: '知天下AI / Explorer Global 3D',
-      logo: 'https://3d.explorerglobal.cn/favicon.ico',
+      logo: 'https://3d.explorerglobal.cn/images/logo.png',
       description: '人工智能与三维空间分析技术平台',
       website: 'https://3d.explorerglobal.cn/',
       industry: '三维空间分析'
     },
     {
       name: '留行科技（Manifold Tech）',
-      logo: 'https://www.manifoldtech.cn/favicon.ico',
+      logo: 'https://www.manifoldtech.cn/logo.png',
       description: '智能空间感知与三维重建技术',
       website: 'https://www.manifoldtech.cn/',
       industry: '三维重建'
     },
     {
       name: 'Waldek Technologies',
-      logo: 'https://placeholder.com/100/667eea/ffffff?text=Waldek',
+      logo: 'https://www.waldek-tech.com/logo.png',
       description: '4D时空智能平台与AI相关软件',
       website: '#',
       industry: '时空智能'
+    },
+    {
+      name: '推行科技',
+      logo: 'https://infermove.cn/static/logo.png',
+      description: '推理与推行相关的智能技术方案',
+      website: 'https://infermove.cn/',
+      industry: '推理技术'
     }
   ];
 
   const academicPartners: Partner[] = [
     {
       name: '清华大学深圳研究院',
-      logo: 'https://www.tsinghua.edu.cn/favicon.ico',
+      logo: 'https://www.tsinghua.edu.cn/logo.png',
       description: '专业从事高科技研发及其产业化',
       website: 'https://www.tsinghua.edu.cn/',
       industry: '研究机构'
     },
     {
       name: '北京交通大学计算机学院',
-      logo: 'https://www.bjtu.edu.cn/favicon.ico',
+      logo: 'https://www.bjtu.edu.cn/logo.png',
       description: '计算机科学与技术研究与人才培养',
       website: 'https://www.bjtu.edu.cn/',
       industry: '高等教育'
     },
     {
       name: '苏州科技大学',
-      logo: 'https://www.usts.edu.cn/favicon.ico',
+      logo: 'https://www.usts.edu.cn/logo.png',
       description: '工程应用型大学，致力于科技创新',
       website: 'https://www.usts.edu.cn/',
       industry: '高等教育'
@@ -117,14 +124,14 @@ const PartnersPage: React.FC = () => {
   const dataProviders: Partner[] = [
     {
       name: '阿米华晟',
-      logo: 'http://www.amhszg.com/favicon.ico',
+      logo: 'https://www.amhszg.com/static/logo.png',
       description: '数据科技与数字服务解决方案提供商',
       website: 'http://www.amhszg.com/',
       industry: '数据科技'
     },
     {
       name: '滴滴地图（Didi Map）',
-      logo: 'https://map.didichuxing.com/favicon.ico',
+      logo: 'https://cdn.didichuxing.com/static/images/logo.png',
       description: '互联网地图与出行数据服务平台',
       website: 'https://map.didichuxing.com/',
       industry: '地图服务'
@@ -138,7 +145,7 @@ const PartnersPage: React.FC = () => {
     },
     {
       name: '前海数据',
-      logo: 'http://www.qhdata.cn/favicon.ico',
+      logo: 'https://www.qhdata.cn/images/logo.png',
       description: '大数据管理与分析服务平台',
       website: 'http://www.qhdata.cn/',
       industry: '数据分析'

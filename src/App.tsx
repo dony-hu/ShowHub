@@ -9,7 +9,6 @@ import MapToGraphPage from './pages/MapToGraphPage'
 import ImprovementPage from './pages/ImprovementPage'
 import PartnersPage from './pages/PartnersPage'
 import BlackboardPage from './pages/BlackboardPage'
-import PartnersPage from './pages/PartnersPage'
 
 function App() {
   return (
@@ -32,7 +31,7 @@ function App() {
                 <Link to="/data-factory">数据工厂</Link>
               </li>
               <li>
-                <Link to="/map-to-graph">空间智能实验室</Link>
+                <Link to="/map-to-graph">空间智能Lab</Link>
               </li>
               <li>
                 <Link to="/improvement">反馈与建议</Link>

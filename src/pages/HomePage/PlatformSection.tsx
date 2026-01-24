@@ -87,12 +87,12 @@ export const PlatformSection: React.FC = () => {
   return (
     <section className="platform-section">
       <div className="platform-container">
-        <h2 className="section-title">位置智能决策平台</h2>
-        <p className="section-subtitle">面向行业的智能决策服务引擎</p>
+        <h2 className="section-title">面向行业的决策服务</h2>
+        <p className="section-subtitle">基于平台能力构建的行业解决方案</p>
         
         <p className="platform-intro">
-          位置智能决策平台，是丰图对外提供价值的核心载体。<br/>
-          它将复杂的空间数据、算法与模型，封装为可直接使用的行业决策服务，支撑不同业务场景的精细化决策。
+          行业服务是基于平台能力构建的，而不是平台本身。<br/>
+          我们通过两层平台体系的能力，为不同行业领域提供可执行、可追溯的决策支持。
         </p>
 
         <h3 className="subsection-title">覆盖多业务、多行业的决策服务体系</h3>
