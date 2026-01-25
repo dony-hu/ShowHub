@@ -6,27 +6,27 @@ export const DataFactoryAssetization: React.FC = () => {
     {
       number: '1',
       title: '实体提取与唯一标识',
-      description: '从数据中识别空间实体并分配全局唯一ID'
+      description: '识别空间实体并分配唯一ID'
     },
     {
       number: '2',
       title: '语义标签关联与标准化',
-      description: '关联语义标签体系，统一术语与分类'
+      description: '关联语义标签体系'
     },
     {
       number: '3',
       title: '空间位置确认',
-      description: '精确定位实体的空间坐标与范围'
+      description: '精确定位空间坐标与范围'
     },
     {
       number: '4',
       title: '实体与标准地址关联',
-      description: '关联至标准地址体系，确保可检索'
+      description: '关联标准地址体系'
     },
     {
       number: '5',
-      title: '自动生成实体级标准地址',
-      description: '为实体生成规范化标准地址（可选）'
+      title: '自动生成标准地址',
+      description: '为实体生成标准地址'
     }
   ];
 
@@ -54,6 +54,12 @@ export const DataFactoryAssetization: React.FC = () => {
       title: 'Lineage & Audit',
       subtitle: '变更与溯源记录',
       description: '完整的数据血缘与审计日志'
+    },
+    {
+      icon: '🕸️',
+      title: 'Spatio-temporal Graph',
+      subtitle: '时空关系图谱',
+      description: '呈现实体间的时空关系与交互网络'
     }
   ];
 

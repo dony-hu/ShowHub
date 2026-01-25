@@ -1,0 +1,263 @@
+/* 技术总览Hero样式 */
+.tech-overview-hero {
+  padding: 80px 0 60px;
+  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-overview-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 主标题区 */
+.hero-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #00d4ff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+}
+
+.hero-subtitle-enlarged {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.hero-tagline {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hero-tagline-enlarged {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  font-weight: 500;
+}
+
+/* 双板块卡片 */
+.tech-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.tech-card {
+  background: rgba(15, 15, 30, 0.8);
+  border-radius: 24px;
+  padding: 40px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.factory-card {
+  border-color: rgba(156, 39, 176, 0.3);
+}
+
+.factory-card::before {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, transparent 100%);
+}
+
+.factory-card:hover {
+  border-color: rgba(156, 39, 176, 0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(156, 39, 176, 0.3);
+}
+
+.factory-card:hover::before {
+  opacity: 1;
+}
+
+.graph-card {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.graph-card::before {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+}
+
+.graph-card:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+}
+
+.graph-card:hover::before {
+  opacity: 1;
+}
+
+/* 卡片内容 */
+.card-icon {
+  font-size: 56px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  margin: 0 auto 30px;
+}
+
+.card-section {
+  margin-bottom: 24px;
+}
+
+.section-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.capability-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.bullet {
+  color: #00d4ff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.card-button {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  color: #00d4ff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.card-button:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 212, 255, 0.2) 100%);
+  border-color: rgba(0, 212, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+/* 协同价值横幅 */
+.synergy-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 245, 255, 0.05) 100%);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.synergy-icon {
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+.synergy-text {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+}
+
+.synergy-text strong {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .tech-cards {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+
+  .synergy-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

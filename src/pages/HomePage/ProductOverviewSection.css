@@ -1,0 +1,139 @@
+.product-overview-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(102, 126, 234, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(0, 212, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.product-overview-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(118, 75, 162, 0.06) 0%, transparent 55%),
+    linear-gradient(300deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.overview-container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+.overview-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.overview-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #1a1a2e;
+  margin: 0;
+  font-weight: 700;
+}
+
+.overview-content {
+  text-align: center;
+}
+
+.overview-description {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: #4a4a6a;
+  line-height: 2;
+  margin: 0 0 clamp(2.5rem, 4vw, 3.5rem) 0;
+  font-weight: 500;
+}
+
+.overview-description strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.overview-diagram {
+  margin: clamp(2rem, 3vw, 3rem) auto;
+  max-width: 500px;
+}
+
+.diagram-layer {
+  padding: clamp(1.5rem, 2vw, 2rem);
+  background: white;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  margin: clamp(1rem, 2vw, 1.5rem) 0;
+  transition: all 0.3s ease;
+}
+
+.diagram-layer:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.12);
+}
+
+.diagram-layer h4 {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #1a1a2e;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.diagram-layer p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.platform-layer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.platform-layer h4 {
+  color: white;
+}
+
+.platform-layer p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.layer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.industry-badge,
+.data-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.diagram-arrow {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin: clamp(0.75rem, 1.5vw, 1rem) 0;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .overview-description {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .overview-diagram {
+    max-width: 100%;
+  }
+}

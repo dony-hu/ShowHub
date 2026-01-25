@@ -1,0 +1,74 @@
+.arch-diagram {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+.layer {
+  background: white;
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  border-radius: 16px;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+}
+
+.layer + .layer { margin-top: clamp(1.5rem, 3vw, 2rem); }
+
+.layer-head h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+.layer-head p { margin: 0; color: #4a4a6a; font-weight: 500; }
+
+.cards { margin-top: clamp(1rem, 2vw, 1.5rem); }
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+
+.card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  border-radius: 12px;
+  padding: clamp(1rem, 2vw, 1.25rem);
+}
+
+.card h4 { margin: 0 0 0.75rem 0; font-size: 1rem; color: #1a1a2e; }
+
+.card-accent { border-color: rgba(102, 126, 234, 0.35); box-shadow: 0 6px 18px rgba(102, 126, 234, 0.18); }
+
+.note { color: #667eea; font-weight: 600; margin: 0.25rem 0 0 0; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #334155;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.connector { display: flex; justify-content: center; align-items: center; padding: 0.5rem 0; }
+.arrow { color: #667eea; font-size: 1.25rem; font-weight: 700; }
+
+.layer-data { border-left: 4px solid #84ccff; }
+.layer-platform { border-left: 4px solid #a78bfa; }
+.layer-industry { border-left: 4px solid #34d399; }
+.layer-delivery { border-left: 4px solid #f59e0b; }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+}

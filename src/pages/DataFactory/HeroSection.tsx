@@ -32,15 +32,6 @@ export const DataFactoryHero: React.FC = () => {
               一次生产，多场景复用与服务化输出
             </li>
           </ul>
-          
-          <div className="df-hero-cta">
-            <a href="#use-cases" className="df-hero-btn df-hero-btn-primary">
-              查看场景能力
-            </a>
-            <a href="#cta" className="df-hero-btn df-hero-btn-secondary">
-              对接与试用
-            </a>
-          </div>
         </div>
       </div>
     </section>

@@ -1,24 +1,24 @@
 /* Assetization Section Styles */
 
 .df-assetization {
-  padding: 60px 0;
+  padding: 50px 0;
   background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
   color: white;
 }
 
 .df-assetization-container {
-  max-width: 98%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 30px;
 }
 
 .df-assetization-intro {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.85);
   text-align: center;
   max-width: 1000px;
-  margin: 30px auto 40px;
+  margin: 24px auto 40px;
 }
 
 .df-assetization-intro strong {
@@ -30,25 +30,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 50px;
-  padding: 30px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-bottom: 45px;
+  padding: 24px;
   background: rgba(0, 212, 255, 0.03);
   border: 1px solid rgba(0, 212, 255, 0.15);
   border-radius: 16px;
+  overflow-x: auto;
 }
 
 .df-process-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 20px;
+  gap: 8px;
+  padding: 18px 14px;
   background: rgba(0, 212, 255, 0.05);
   border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 12px;
-  max-width: 180px;
+  min-width: 150px;
+  max-width: 150px;
+  flex-shrink: 0;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -60,12 +63,12 @@
 }
 
 .df-step-number {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #0f0f1e;
   background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
@@ -79,17 +82,19 @@
 }
 
 .df-step-title {
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #00d4ff;
-  line-height: 1.4;
+  line-height: 1.3;
   margin: 0;
+  word-break: keep-all;
+  white-space: normal;
 }
 
 .df-step-description {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.65);
   margin: 0;
 }
 
@@ -101,7 +106,7 @@
 }
 
 .df-asset-cards {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .df-asset-cards-title {
@@ -109,22 +114,26 @@
   font-weight: 700;
   text-align: center;
   color: #00d4ff;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .df-asset-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 16px;
+  overflow-x: auto;
 }
 
 .df-asset-card {
-  padding: 32px;
+  padding: 22px 18px;
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 245, 255, 0.08) 100%);
   border: 1px solid rgba(0, 212, 255, 0.25);
   border-radius: 16px;
   text-align: center;
   transition: all 0.3s ease;
+  min-width: 165px;
+  flex-shrink: 0;
 }
 
 .df-asset-card:hover {
@@ -134,27 +143,27 @@
 }
 
 .df-asset-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-}
-
-.df-asset-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #00d4ff;
-  margin-bottom: 4px;
-}
-
-.df-asset-subtitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 2.2rem;
   margin-bottom: 12px;
 }
 
+.df-asset-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 3px;
+}
+
+.df-asset-subtitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
 .df-asset-description {
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.78rem;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -178,7 +187,11 @@
   }
   
   .df-asset-cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  
+  .df-asset-card {
+    min-width: 140px;
   }
 }
 
@@ -205,6 +218,11 @@
   }
   
   .df-asset-cards-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    overflow-x: visible;
+  }
+  
+  .df-asset-card {
+    min-width: 100%;
   }
 }

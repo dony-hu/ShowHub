@@ -6,6 +6,19 @@ export const DataFactoryLabeling: React.FC = () => {
   const threeContainer = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<'map' | '3d' | 'street'>('map');
 
+  // Auto-cycle through tabs every 3 seconds
+  useEffect(() => {
+    const tabs: ('map' | '3d' | 'street')[] = ['map', '3d', 'street'];
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % tabs.length;
+      setActiveTab(tabs[currentIndex]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // Initialize 2D Map with Leaflet
   useEffect(() => {
     if (activeTab === 'map' && mapContainer.current && mapContainer.current.innerHTML === '') {
@@ -262,22 +275,34 @@ export const DataFactoryLabeling: React.FC = () => {
               <div className="df-workbench-body">
                 <div className="df-workbench-map">
                   {activeTab === 'map' && (
-                    <div ref={mapContainer} className="df-map-container" style={{ width: '100%', height: '100%' }} />
+                    <div className="df-demo-image-container">
+                      <img 
+                        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=800&fit=crop&crop=center" 
+                        alt="2D地图示例"
+                        className="df-demo-image"
+                        style={{objectPosition: 'center 30%'}}
+                      />
+                      <div className="df-demo-overlay">2D 地图视图</div>
+                    </div>
                   )}
                   {activeTab === '3d' && (
-                    <div ref={threeContainer} className="df-3d-container" style={{ width: '100%', height: '100%' }} />
+                    <div className="df-demo-image-container">
+                      <img 
+                        src="https://images.unsplash.com/photo-1479306695601-caf46ca94da1?w=1200&h=800&fit=crop" 
+                        alt="3D场景示例"
+                        className="df-demo-image"
+                      />
+                      <div className="df-demo-overlay">3D 场景视图</div>
+                    </div>
                   )}
                   {activeTab === 'street' && (
-                    <div className="df-street-view">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        style={{ border: 'none' }}
-                        src="https://www.google.com/maps/embed?pb=!4v1706096745123!6m8!1m7!1sCAoSLEFGMVFpcE1oMDRqNGJzQThEY2NFU1dGNVdKQVE0VjdIdUtWM3VGSWZFOUdv!2m2!1d39.90745!2d116.39139!3f270!4f10!5f0.7820865974627469"
-                        allowFullScreen={true}
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      ></iframe>
+                    <div className="df-demo-image-container">
+                      <img 
+                        src="https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=1200&h=800&fit=crop" 
+                        alt="街景示例"
+                        className="df-demo-image"
+                      />
+                      <div className="df-demo-overlay">街景视图</div>
                     </div>
                   )}
                 </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './APIDemoSection.css'
-import SFMapViewer from './SFMapViewer'
+const SFMapViewer = React.lazy(() => import('./SFMapViewer'))
 
 // Prefer env for client (dev) and keep fallback for now
-const CLIENT_API_KEY = import.meta.env.VITE_SFMAP_KEY || 'c0cc0e7a7e81403bab17e0f52ffbae40'
+const CLIENT_API_KEY = (import.meta as any).env?.VITE_SFMAP_KEY || 'c0cc0e7a7e81403bab17e0f52ffbae40'
 
 interface GeoResult {
   success: boolean
@@ -41,7 +41,7 @@ export const APIDemoSection: React.FC = () => {
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([])
   const [suggestionLoading, setSuggestionLoading] = useState(false)
 
-  // 地理编码示例（地址转坐标）- 使用 JSONP 直接调用
+  // 地理编码示例（地址转坐标）- 优先通过服务端代理调用（ak 放在 header）
   const handleGeocoding = async () => {
     if (!address.trim()) {
       setGeoResult({ success: false, error: '请输入地址' })
@@ -51,61 +51,46 @@ export const APIDemoSection: React.FC = () => {
     setLoading(true)
     setGeoResult(null)
 
-    return new Promise<void>((resolve) => {
-      const callback = `sfmapGeoCallback_${Date.now()}`
-      const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${CLIENT_API_KEY}&output=jsonp&callback=${callback}`
-      
-      console.log('调用地理编码 API (JSONP):', url)
-      
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      
-      let timeoutId: NodeJS.Timeout
-      
-      const cleanup = () => {
-        clearTimeout(timeoutId)
-        delete (window as any)[callback]
-        if (script.parentNode) {
-          document.head.removeChild(script)
+    try {
+      const qs = new URLSearchParams({ address })
+      const url = `/api/sfmap/geocoding?${qs.toString()}`
+      console.log('调用地理编码 API (proxy):', url)
+      const r = await fetch(url)
+      const data = await r.json()
+      console.log('地理编码 API 返回:', data)
+
+      // 兼容不同返回结构，尽量提取 lat/lng
+      const extract = (obj: any): {lat: number, lng: number} | null => {
+        if (!obj || typeof obj !== 'object') return null
+        if (typeof obj.lat === 'number' && typeof obj.lng === 'number') return { lat: obj.lat, lng: obj.lng }
+        if (typeof obj.latitude === 'number' && typeof obj.longitude === 'number') return { lat: obj.latitude, lng: obj.longitude }
+        if (obj.location) {
+          const l = extract(obj.location)
+          if (l) return l
         }
-      }
-      
-      // 10秒超时
-      timeoutId = setTimeout(() => {
-        cleanup()
-        console.error('地理编码请求超时')
-        setGeoResult({ success: false, error: '请求超时（10秒）' })
-        setLoading(false)
-        resolve()
-      }, 10000)
-      
-      // 成功回调
-      (window as any)[callback] = (data: any) => {
-        cleanup()
-        console.log('地理编码 API 返回:', data)
-        
-        if (data && data.result && data.result.locations && data.result.locations.length > 0) {
-          const loc = data.result.locations[0]
-          setGeoResult({ success: true, address, lat: loc.lat, lng: loc.lng })
-        } else {
-          setGeoResult({ success: false, error: `未找到该地址：${data?.msg || '无返回数据'}` })
+        if (obj.result?.locations?.[0]) {
+          const loc = obj.result.locations[0]
+          if (typeof loc.lat === 'number' && typeof loc.lng === 'number') return { lat: loc.lat, lng: loc.lng }
         }
-        setLoading(false)
-        resolve()
+        if (obj.data) {
+          const l = extract(obj.data)
+          if (l) return l
+        }
+        return null
       }
-      
-      // 加载失败
-      script.onerror = () => {
-        cleanup()
-        console.error('JSONP 脚本加载失败')
-        setGeoResult({ success: false, error: '网络请求失败，请检查网络连接' })
-        setLoading(false)
-        resolve()
+
+      const loc = extract(data)
+      if (loc) {
+        setGeoResult({ success: true, address, lat: loc.lat, lng: loc.lng })
+      } else {
+        setGeoResult({ success: false, error: `未能解析坐标，请查看返回：${JSON.stringify(data).slice(0, 300)}...` })
       }
-      
-      document.head.appendChild(script)
-    })
+    } catch (err) {
+      console.error('地理编码请求失败', err)
+      setGeoResult({ success: false, error: '请求失败，请稍后再试' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   // 逆地理编码示例（坐标转地址）- 使用 JSONP 直接调用
@@ -128,23 +113,21 @@ export const APIDemoSection: React.FC = () => {
       script.src = url
       script.async = true
       
-      let timeoutId: NodeJS.Timeout
-      
-      const cleanup = () => {
-        clearTimeout(timeoutId)
-        delete (window as any)[callback]
-        if (script.parentNode) {
-          document.head.removeChild(script)
-        }
-      }
-      
-      timeoutId = setTimeout(() => {
+      const timeoutId = window.setTimeout(() => {
         cleanup()
         console.error('逆地理编码请求超时')
         setReverseResult({ success: false, error: '请求超时（10秒）' })
         setReverseLoading(false)
         resolve()
       }, 10000)
+      
+      const cleanup = () => {
+        window.clearTimeout(timeoutId)
+        delete (window as any)[callback]
+        if (script.parentNode) {
+          document.head.removeChild(script)
+        }
+      }
       
       (window as any)[callback] = (data: any) => {
         cleanup()
@@ -271,7 +254,9 @@ export const APIDemoSection: React.FC = () => {
                         <span className="value">{geoResult.lng?.toFixed(6)}</span>
                       </div>
                       <div className="map-iframe-wrapper">
-                        <SFMapViewer lat={geoResult.lat!} lng={geoResult.lng!} address={geoResult.address} apiKey={API_KEY} />
+                        <React.Suspense fallback={<div style={{height:'300px',display:'flex',alignItems:'center',justifyContent:'center'}}>地图加载中...</div>}>
+                          <SFMapViewer lat={geoResult.lat!} lng={geoResult.lng!} address={geoResult.address} apiKey={CLIENT_API_KEY} />
+                        </React.Suspense>
                       </div>
                       <div className="map-link">
                         <a href={`https://maps.google.com/?q=${geoResult.lat},${geoResult.lng}`} target="_blank" rel="noopener noreferrer">
@@ -330,7 +315,9 @@ export const APIDemoSection: React.FC = () => {
                         <span className="value">{reverseResult.poi}</span>
                       </div>
                       <div className="map-iframe-wrapper">
-                        <SFMapViewer lat={parseFloat(lat)} lng={parseFloat(lng)} address={reverseResult.address} apiKey={API_KEY} />
+                        <React.Suspense fallback={<div style={{height:'300px',display:'flex',alignItems:'center',justifyContent:'center'}}>地图加载中...</div>}>
+                          <SFMapViewer lat={parseFloat(lat)} lng={parseFloat(lng)} address={reverseResult.address} apiKey={CLIENT_API_KEY} />
+                        </React.Suspense>
                       </div>
                     </>
                   ) : (

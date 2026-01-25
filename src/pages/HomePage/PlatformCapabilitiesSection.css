@@ -1,0 +1,114 @@
+.platform-capabilities-section {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  background: white;
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.capabilities-container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #1a1a2e;
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+}
+
+.platform-tagline {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: #666;
+  margin: 0;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(2rem, 3vw, 2.5rem);
+  margin-bottom: clamp(3rem, 4vw, 4rem);
+}
+
+.capability-module {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.capability-module:hover {
+  background: linear-gradient(135deg, #f0f2ff 0%, #e8ebff 100%);
+  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
+  transform: translateY(-6px);
+}
+
+.capability-module h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: #1a1a2e;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.capability-module ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.capability-module li {
+  padding: 0.75rem 0;
+  color: #4a4a6a;
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.capability-module li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.platform-note {
+  text-align: center;
+  padding: clamp(2rem, 3vw, 2.5rem);
+  background: rgba(102, 126, 234, 0.05);
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  border-radius: 8px;
+  margin-top: clamp(2rem, 3vw, 3rem);
+}
+
+.platform-note p {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: #667eea;
+  margin: 0;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .platform-tagline {
+    font-size: 1rem;
+  }
+}

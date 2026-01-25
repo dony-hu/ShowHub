@@ -1,0 +1,227 @@
+/* 数据流程图样式 */
+.data-flow-diagram {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.flow-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.flow-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 60px;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.flow-content {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+/* 阶段容器 */
+.flow-stage {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.factory-stage {
+  border-color: rgba(156, 39, 176, 0.3);
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.08) 0%, rgba(103, 58, 183, 0.05) 100%);
+}
+
+.factory-stage:hover {
+  border-color: rgba(156, 39, 176, 0.6);
+  box-shadow: 0 8px 30px rgba(156, 39, 176, 0.3);
+}
+
+.graph-stage {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%);
+}
+
+.graph-stage:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+}
+
+.stage-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.flow-stage h4 {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.stage-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stage-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stage-item.highlight {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.stage-item:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stage-arrow {
+  font-size: 24px;
+  color: rgba(0, 212, 255, 0.5);
+  text-align: center;
+}
+
+/* 中间桥接部分 */
+.flow-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 200px;
+}
+
+.bridge-arrow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.arrow-line {
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(156, 39, 176, 0.6) 0%, rgba(16, 185, 129, 0.6) 100%);
+  position: relative;
+  animation: flowPulse 2s ease-in-out infinite;
+}
+
+@keyframes flowPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+  }
+}
+
+.arrow-head {
+  font-size: 36px;
+  color: #10b981;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.bridge-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.label-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.label-detail {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 底部价值说明 */
+.flow-value {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.value-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.4);
+  transform: translateY(-4px);
+}
+
+.value-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.value-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .flow-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .flow-bridge {
+    transform: rotate(90deg);
+  }
+
+  .flow-value {
+    grid-template-columns: 1fr;
+  }
+}

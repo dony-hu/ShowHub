@@ -144,12 +144,36 @@ const addressPoints: AddressPoint[] = [
   },
 ];
 
-// 行业颜色配置
+// 行业颜色配置 - 统一优化配色方案
 const industryColors = {
-  logistics: '#10b981', // 绿色
-  police: '#3b82f6',    // 蓝色
-  sanitation: '#eab308', // 黄色
-  base: '#9ca3af',      // 基础灰色
+  logistics: {
+    primary: '#10b981',
+    light: '#34d399',
+    dark: '#059669',
+    bg: 'rgba(16, 185, 129, 0.1)',
+    border: 'rgba(16, 185, 129, 0.3)',
+  },
+  police: {
+    primary: '#3b82f6',
+    light: '#60a5fa',
+    dark: '#2563eb',
+    bg: 'rgba(59, 130, 246, 0.1)',
+    border: 'rgba(59, 130, 246, 0.3)',
+  },
+  sanitation: {
+    primary: '#eab308',
+    light: '#fbbf24',
+    dark: '#ca8a04',
+    bg: 'rgba(234, 179, 8, 0.1)',
+    border: 'rgba(234, 179, 8, 0.3)',
+  },
+  base: {
+    primary: '#9ca3af',
+    light: '#d1d5db',
+    dark: '#6b7280',
+    bg: 'rgba(156, 163, 175, 0.1)',
+    border: 'rgba(156, 163, 175, 0.3)',
+  },
 };
 
 type IndustryType = 'all' | 'logistics' | 'police' | 'sanitation';
@@ -222,7 +246,7 @@ const MapToGraphPage: React.FC = () => {
             title: point.name,
           }).addTo(map);
 
-          // 创建弹窗内容
+          // 创建弹窗内容 - 优化为卡片式设计
           const typeNames: { [key: string]: string } = {
             address: '地址',
             road: '道路',
@@ -232,24 +256,43 @@ const MapToGraphPage: React.FC = () => {
             company: '企业',
           };
           
+          const industryTags = point.industries.map(ind => {
+            const names: any = { logistics: '物流', police: '公安', sanitation: '环卫' };
+            const colors: any = { 
+              logistics: industryColors.logistics.primary, 
+              police: industryColors.police.primary, 
+              sanitation: industryColors.sanitation.primary 
+            };
+            return `<span style="display: inline-block; padding: 2px 8px; margin: 2px; background: ${colors[ind]}20; color: ${colors[ind]}; border-radius: 4px; font-size: 11px; font-weight: 600;">${names[ind]}</span>`;
+          }).join('');
+          
           const popupContent = `
-            <div style="padding: 12px; background: rgba(0,0,0,0.95); color: white; border-radius: 8px; min-width: 200px;">
-              <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #00d4ff;">
+            <div style="padding: 16px; background: rgba(0,0,0,0.95); color: white; border-radius: 12px; min-width: 220px; box-shadow: 0 4px 20px rgba(0,212,255,0.3);">
+              <div style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #00d4ff; line-height: 1.4;">
                 ${point.name}
               </div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 4px;">
-                类型：${typeNames[point.type]}${point.category ? ` - ${point.category}` : ''}
-              </div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.8);">
-                涉及行业：${point.industries.map(ind => {
-                  const names: any = { logistics: '物流', police: '公安', sanitation: '环卫' };
-                  return names[ind];
-                }).join('、')}
+              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px;">
+                <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px;">
+                  类型：<span style="color: rgba(255,255,255,0.8)">${typeNames[point.type]}${point.category ? ` · ${point.category}` : ''}</span>
+                </div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 4px;">
+                  涉及行业：
+                </div>
+                <div style="margin-top: 4px;">
+                  ${industryTags}
+                </div>
               </div>
             </div>
           `;
 
           marker.bindPopup(popupContent);
+          
+          // 添加悬停工具提示
+          marker.bindTooltip(`<div style="font-size: 13px; font-weight: 600;">${point.name}</div>`, {
+            direction: 'top',
+            offset: [0, -10],
+            className: 'custom-tooltip',
+          });
           
           marker.on('click', () => {
             handleMapMarkerClick(point.id);
@@ -289,6 +332,21 @@ const MapToGraphPage: React.FC = () => {
     // 高亮相关节点
     const relatedNodes = getRelatedNodes(addressId);
     setHighlightedNodes(relatedNodes);
+    
+    // 增强视觉反馈：闪烁地图标记
+    const marker = markersRef.current.find((m: any) => {
+      return addressPoints.find(p => p.id === addressId);
+    });
+    if (marker) {
+      // 添加脉动动画效果
+      const elem = marker.getElement();
+      if (elem) {
+        elem.style.animation = 'pulse 1s ease-in-out 3';
+        setTimeout(() => {
+          elem.style.animation = '';
+        }, 3000);
+      }
+    }
   };
 
   const getRelatedNodes = (addressId: string): string[] => {
@@ -703,7 +761,25 @@ const MapToGraphPage: React.FC = () => {
     if (node.id.startsWith('addr')) {
       const address = addressPoints.find((p) => p.id === node.id);
       if (address && mapRef.current) {
-        mapRef.current.setView([address.coordinates[1], address.coordinates[0]], 15);
+        // 使用flyTo实现平滑动画
+        mapRef.current.flyTo([address.coordinates[1], address.coordinates[0]], 16, {
+          animate: true,
+          duration: 1.2,
+        });
+        
+        // 延迟打开弹窗以配合动画
+        setTimeout(() => {
+          const markerIndex = addressPoints.findIndex((p) => p.id === node.id);
+          if (markerIndex !== -1 && markersRef.current[markerIndex]) {
+            markersRef.current[markerIndex].openPopup();
+            // 添加脉冲动画
+            const elem = markersRef.current[markerIndex].getElement();
+            if (elem) {
+              elem.style.animation = 'pulse 1s ease-in-out 3';
+              setTimeout(() => { elem.style.animation = ''; }, 3000);
+            }
+          }
+        }, 1200);
       }
       setSelectedAddress(node.id);
       setHighlightedNodes(getRelatedNodes(node.id));
@@ -720,8 +796,19 @@ const MapToGraphPage: React.FC = () => {
         
         const address = addressPoints.find((p) => p.id === relatedAddr);
         if (address && mapRef.current) {
-          mapRef.current.setView([address.coordinates[1], address.coordinates[0]], 15);
+          mapRef.current.flyTo([address.coordinates[1], address.coordinates[0]], 16, {
+            animate: true,
+            duration: 1.2,
+          });
         }
+      } else {
+        // 对于非地址关联节点，高亮其直接连接的所有节点
+        const connected = new Set<string>([node.id]);
+        initialEdges.forEach(edge => {
+          if (edge.source === node.id) connected.add(edge.target);
+          if (edge.target === node.id) connected.add(edge.source);
+        });
+        setHighlightedNodes(Array.from(connected));
       }
     }
   }, []);

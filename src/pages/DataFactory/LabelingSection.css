@@ -144,6 +144,43 @@
   justify-content: center;
   overflow: hidden;
   border-right: 1px solid rgba(0, 212, 255, 0.1);
+  position: relative;
+}
+
+/* Demo image container */
+.df-demo-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.df-demo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.df-demo-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00d4ff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
 }
 
 .df-map-container {

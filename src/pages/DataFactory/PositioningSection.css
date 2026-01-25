@@ -36,6 +36,12 @@
   text-align: justify;
 }
 
+.df-positioning-text-enlarged {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .df-positioning-text strong {
   color: #00d4ff;
   font-weight: 600;

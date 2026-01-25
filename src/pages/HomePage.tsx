@@ -1,8 +1,9 @@
 import React from 'react';
 import HeroSection from './HomePage/HeroSection';
-import MissionSection from './HomePage/MissionSection';
-import CapabilitiesSection from './HomePage/CapabilitiesSection';
-import PlatformSection from './HomePage/PlatformSection';
+import CompanyProfileSection from './HomePage/CompanyProfileSection';
+import ProductOverviewSection from './HomePage/ProductOverviewSection';
+import ProductArchitectureSection from './HomePage/ProductArchitectureSection';
+import DataAssetsSection from './HomePage/DataAssetsSection';
 import ClosingSection from './HomePage/ClosingSection';
 import './HomePage.css';
 
@@ -10,9 +11,10 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-page">
       <HeroSection />
-      <MissionSection />
-      <CapabilitiesSection />
-      <PlatformSection />
+      <CompanyProfileSection />
+      <ProductOverviewSection />
+      <ProductArchitectureSection />
+      <DataAssetsSection />
       <ClosingSection />
     </div>
   );

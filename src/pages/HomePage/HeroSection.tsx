@@ -10,20 +10,26 @@ export const HeroSection: React.FC = () => {
       </div>
       
       <div className="hero-container">
-        <div className="hero-logo">
-          <h1 className="logo-text">丰图</h1>
-          <p className="logo-subtitle">空间智能基础设施</p>
-        </div>
-        
         <div className="hero-content">
-          <div className="hero-taglines">
-            <h2 className="tagline primary-tagline">构建面向真实世界的空间智能底座</h2>
-            <p className="tagline-subtitle">支撑跨行业的位置智能决策</p>
+          <h1 className="hero-title">丰图科技</h1>
+          
+          <p className="hero-tagline">
+            以真实物流世界为起点，构建可信的空间数据与位置智能决策基础设施
+          </p>
+          
+          <div className="hero-vision">
+            <h2 className="vision-text">让数据更可信，让决策更智能</h2>
           </div>
           
-          <p className="hero-description">
-            从空间数据生产，到位置智能决策的全链路平台体系
-          </p>
+          <div className="hero-keywords">
+            <span>空间智能</span>
+            <span>·</span>
+            <span>位置服务</span>
+            <span>·</span>
+            <span>决策支持</span>
+            <span>·</span>
+            <span>真实世界数据</span>
+          </div>
           
           <div className="hero-cta">
             <button className="btn btn-primary">了解产品</button>
