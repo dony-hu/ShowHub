@@ -227,7 +227,7 @@
   .solution-tab {
     padding: 10px 20px;
     font-size: 0.9rem;
-  }
+      padding: clamp(40px, 6vw, 60px) var(--page-padding);
 
   .tab-icon {
     font-size: 1.1rem;

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './APIDemoSection.css'
 import SFMapViewer from './SFMapViewer'
 
-const API_KEY = 'c0cc0e7a7e81403bab17e0f52ffbae40'
+// Prefer env for client (dev) and keep fallback for now
+const CLIENT_API_KEY = import.meta.env.VITE_SFMAP_KEY || 'c0cc0e7a7e81403bab17e0f52ffbae40'
 
 interface GeoResult {
   success: boolean
@@ -27,7 +28,7 @@ interface AddressSuggestion {
 
 export const APIDemoSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'geocoding' | 'reverse' | 'suggestion'>('geocoding')
-  const [address, setAddress] = useState('北京市朝阳区建国路1号')
+  const [address, setAddress] = useState('深圳市软件产业基地')
   const [geoResult, setGeoResult] = useState<GeoResult | null>(null)
   const [loading, setLoading] = useState(false)
 
@@ -40,136 +41,138 @@ export const APIDemoSection: React.FC = () => {
   const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([])
   const [suggestionLoading, setSuggestionLoading] = useState(false)
 
-  // 地理编码示例（地址转坐标）
+  // 地理编码示例（地址转坐标）- 使用 JSONP 直接调用
   const handleGeocoding = async () => {
-    setLoading(true)
-    try {
-      // 使用 JSONP 绕过 CORS 限制
-      return new Promise((resolve, reject) => {
-        const callback = `callback_${Date.now()}`
-        const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${API_KEY}&callback=${callback}`
-        console.log('调用 API (JSONP):', url)
-        
-        // 动态创建 script 标签
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        
-        // 定义全局回调函数
-        (window as any)[callback] = (data: any) => {
-          console.log('API 返回数据:', data)
-          
-          // 清理
-          delete (window as any)[callback]
-          document.head.removeChild(script)
-          
-          if (data.result && data.result.locations && data.result.locations.length > 0) {
-            const loc = data.result.locations[0]
-            setGeoResult({
-              success: true,
-              address: address,
-              lat: loc.lat,
-              lng: loc.lng
-            })
-          } else {
-            setGeoResult({ 
-              success: false, 
-              error: `API 返回：${data.msg || '未找到该地址'}` 
-            })
-          }
-          setLoading(false)
-          resolve(null)
-        }
-        
-        // 错误处理
-        script.onerror = () => {
-          console.error('JSONP 加载失败')
-          delete (window as any)[callback]
-          document.head.removeChild(script)
-          setGeoResult({
-            success: false,
-            error: '调用失败：网络错误或 API 服务异常'
-          })
-          setLoading(false)
-          reject(new Error('JSONP 加载失败'))
-        }
-        
-        document.head.appendChild(script)
-      })
-    } catch (err: any) {
-      console.error('API 调用错误:', err)
-      setGeoResult({
-        success: false,
-        error: `调用失败: ${err.message || '未知错误'}`
-      })
-      setLoading(false)
+    if (!address.trim()) {
+      setGeoResult({ success: false, error: '请输入地址' })
+      return
     }
+    
+    setLoading(true)
+    setGeoResult(null)
+
+    return new Promise<void>((resolve) => {
+      const callback = `sfmapGeoCallback_${Date.now()}`
+      const url = `https://apis.sfmap.com/geocoding/query?address=${encodeURIComponent(address)}&key=${CLIENT_API_KEY}&output=jsonp&callback=${callback}`
+      
+      console.log('调用地理编码 API (JSONP):', url)
+      
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      
+      let timeoutId: NodeJS.Timeout
+      
+      const cleanup = () => {
+        clearTimeout(timeoutId)
+        delete (window as any)[callback]
+        if (script.parentNode) {
+          document.head.removeChild(script)
+        }
+      }
+      
+      // 10秒超时
+      timeoutId = setTimeout(() => {
+        cleanup()
+        console.error('地理编码请求超时')
+        setGeoResult({ success: false, error: '请求超时（10秒）' })
+        setLoading(false)
+        resolve()
+      }, 10000)
+      
+      // 成功回调
+      (window as any)[callback] = (data: any) => {
+        cleanup()
+        console.log('地理编码 API 返回:', data)
+        
+        if (data && data.result && data.result.locations && data.result.locations.length > 0) {
+          const loc = data.result.locations[0]
+          setGeoResult({ success: true, address, lat: loc.lat, lng: loc.lng })
+        } else {
+          setGeoResult({ success: false, error: `未找到该地址：${data?.msg || '无返回数据'}` })
+        }
+        setLoading(false)
+        resolve()
+      }
+      
+      // 加载失败
+      script.onerror = () => {
+        cleanup()
+        console.error('JSONP 脚本加载失败')
+        setGeoResult({ success: false, error: '网络请求失败，请检查网络连接' })
+        setLoading(false)
+        resolve()
+      }
+      
+      document.head.appendChild(script)
+    })
   }
 
-  // 逆地理编码示例（坐标转地址）
+  // 逆地理编码示例（坐标转地址）- 使用 JSONP 直接调用
   const handleReverseGeocoding = async () => {
-    setReverseLoading(true)
-    try {
-      // 使用 JSONP 绕过 CORS 限制
-      return new Promise((resolve, reject) => {
-        const callback = `callback_${Date.now()}_reverse`
-        const url = `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${API_KEY}&callback=${callback}`
-        console.log('调用 API (JSONP):', url)
-        
-        // 动态创建 script 标签
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        
-        // 定义全局回调函数
-        (window as any)[callback] = (data: any) => {
-          console.log('API 返回数据:', data)
-          
-          // 清理
-          delete (window as any)[callback]
-          document.head.removeChild(script)
-          
-          if (data.result && data.result.address) {
-            setReverseResult({
-              success: true,
-              address: data.result.address,
-              poi: data.result.poi && data.result.poi[0] 
-                ? data.result.poi[0].name 
-                : '暂无附近POI'
-            })
-          } else {
-            setReverseResult({
-              success: false,
-              error: `API 返回：${data.msg || '解码失败'}`
-            })
-          }
-          setReverseLoading(false)
-          resolve(null)
-        }
-        
-        // 错误处理
-        script.onerror = () => {
-          console.error('JSONP 加载失败')
-          delete (window as any)[callback]
-          document.head.removeChild(script)
-          setReverseResult({
-            success: false,
-            error: '调用失败：网络错误或 API 服务异常'
-          })
-          setReverseLoading(false)
-          reject(new Error('JSONP 加载失败'))
-        }
-        
-        document.head.appendChild(script)
-      })
-    } catch (err: any) {
-      console.error('API 调用错误:', err)
-      setReverseResult({
-        success: false,
-        error: `调用失败: ${err.message || '未知错误'}`
-      })
-      setReverseLoading(false)
+    if (!lat || !lng) {
+      setReverseResult({ success: false, error: '请输入坐标' })
+      return
     }
+    
+    setReverseLoading(true)
+    setReverseResult(null)
+
+    return new Promise<void>((resolve) => {
+      const callback = `sfmapRgeoCallback_${Date.now()}`
+      const url = `https://apis.sfmap.com/reverse?lat=${lat}&lng=${lng}&key=${CLIENT_API_KEY}&output=jsonp&callback=${callback}`
+      
+      console.log('调用逆地理编码 API (JSONP):', url)
+      
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      
+      let timeoutId: NodeJS.Timeout
+      
+      const cleanup = () => {
+        clearTimeout(timeoutId)
+        delete (window as any)[callback]
+        if (script.parentNode) {
+          document.head.removeChild(script)
+        }
+      }
+      
+      timeoutId = setTimeout(() => {
+        cleanup()
+        console.error('逆地理编码请求超时')
+        setReverseResult({ success: false, error: '请求超时（10秒）' })
+        setReverseLoading(false)
+        resolve()
+      }, 10000)
+      
+      (window as any)[callback] = (data: any) => {
+        cleanup()
+        console.log('逆地理编码 API 返回:', data)
+        
+        if (data && data.result && data.result.address) {
+          setReverseResult({
+            success: true,
+            address: data.result.address,
+            poi: data.result.poi && data.result.poi[0] ? data.result.poi[0].name : '暂无附近POI',
+          })
+        } else {
+          setReverseResult({ success: false, error: `解码失败：${data?.msg || '无返回数据'}` })
+        }
+        setReverseLoading(false)
+        resolve()
+      }
+      
+      script.onerror = () => {
+        cleanup()
+        console.error('JSONP 脚本加载失败')
+        setReverseResult({ success: false, error: '网络请求失败，请检查网络连接' })
+        setReverseLoading(false)
+        resolve()
+      }
+      
+      document.head.appendChild(script)
+    })
   }
 
   // 地址智能填写示例

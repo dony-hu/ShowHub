@@ -1,3 +1,20 @@
+:root {
+  --page-max-width: 1200px;
+  --page-padding: clamp(16px, 4vw, 32px);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: clamp(12px, 6vw, 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-padding: clamp(10px, 7vw, 16px);
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +23,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
 }
 
 code {

@@ -9,7 +9,7 @@
   color: white;
   position: relative;
   overflow: hidden;
-  padding: 80px 60px;
+  padding: clamp(48px, 8vw, 80px) var(--page-padding);
 }
 
 .hero-background {
@@ -59,7 +59,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 60px;
+  gap: clamp(20px, 5vw, 60px);
   align-items: center;
   position: relative;
   z-index: 1;
@@ -105,7 +105,7 @@
 }
 
 .tagline {
-  font-size: 2.5rem;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
   font-weight: 700;
   line-height: 1.3;
   margin: 0;
@@ -127,7 +127,7 @@
 }
 
 .hero-description {
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 300;
@@ -204,14 +204,14 @@
   }
 
   .logo-text {
-    font-size: 3.5rem;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-
-  .tagline {
-    font-size: 1.8rem;
-  }
-
-  .hero-description {
     font-size: 1rem;
   }
 }
