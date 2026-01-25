@@ -277,10 +277,9 @@ export const DataFactoryLabeling: React.FC = () => {
                   {activeTab === 'map' && (
                     <div className="df-demo-image-container">
                       <img 
-                        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=800&fit=crop&crop=center" 
+                        src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=1200&h=800&fit=crop" 
                         alt="2D地图示例"
                         className="df-demo-image"
-                        style={{objectPosition: 'center 30%'}}
                       />
                       <div className="df-demo-overlay">2D 地图视图</div>
                     </div>
@@ -288,7 +287,7 @@ export const DataFactoryLabeling: React.FC = () => {
                   {activeTab === '3d' && (
                     <div className="df-demo-image-container">
                       <img 
-                        src="https://images.unsplash.com/photo-1479306695601-caf46ca94da1?w=1200&h=800&fit=crop" 
+                        src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1200&h=800&fit=crop" 
                         alt="3D场景示例"
                         className="df-demo-image"
                       />
@@ -298,7 +297,7 @@ export const DataFactoryLabeling: React.FC = () => {
                   {activeTab === 'street' && (
                     <div className="df-demo-image-container">
                       <img 
-                        src="https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=1200&h=800&fit=crop" 
+                        src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop" 
                         alt="街景示例"
                         className="df-demo-image"
                       />
