@@ -5,7 +5,6 @@ import { PrivateNetworkFeatures } from './PrivateNetwork/FeaturesSection';
 import { PrivateNetworkDetailedFeatures } from './PrivateNetwork/DetailedFeaturesSection';
 import { PrivateNetworkUseCases } from './PrivateNetwork/UseCasesSection.tsx';
 import { PrivateNetworkDeployment } from './PrivateNetwork/DeploymentSection.tsx';
-import { PrivateNetworkAddressLLM } from './PrivateNetwork/AddressLLMSection.tsx';
 import { PrivateNetworkCTA } from './PrivateNetwork/CTASection.tsx';
 
 export const PrivateNetworkPage: React.FC = () => {
@@ -16,7 +15,6 @@ export const PrivateNetworkPage: React.FC = () => {
       <PrivateNetworkDetailedFeatures />
       <PrivateNetworkUseCases />
       <PrivateNetworkDeployment />
-      <PrivateNetworkAddressLLM />
       <PrivateNetworkCTA />
     </div>
   );

@@ -232,7 +232,7 @@
 }
 
 /* 三维建模流程节点 */
-.3d-process-node {
+.three-d-process-node {
   border-color: #00d4ff !important;
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%) !important;
   border-width: 3px !important;
@@ -240,12 +240,12 @@
   box-shadow: 0 0 25px rgba(0, 212, 255, 0.3), 0 6px 20px rgba(0, 212, 255, 0.2);
 }
 
-.3d-process-node:hover {
+.three-d-process-node:hover {
   box-shadow: 0 0 35px rgba(0, 212, 255, 0.5), 0 8px 30px rgba(0, 212, 255, 0.3);
 }
 
 /* 三维核心关联节点 */
-.3d-core-node {
+.three-d-core-node {
   border-color: #00f5ff !important;
   background: linear-gradient(135deg, rgba(0, 245, 255, 0.3) 0%, rgba(0, 245, 255, 0.15) 100%) !important;
   border-width: 4px !important;
@@ -254,13 +254,13 @@
 }
 
 /* 三维流程连线 */
-.3d-flow .react-flow__edge-path {
+.three-d-flow .react-flow__edge-path {
   stroke: #00d4ff !important;
   stroke-width: 4;
   filter: drop-shadow(0 0 8px #00d4ff);
 }
 
-.3d-output .react-flow__edge-path {
+.three-d-output .react-flow__edge-path {
   stroke: #06ffa5 !important;
   stroke-width: 3;
   filter: drop-shadow(0 0 6px #06ffa5);

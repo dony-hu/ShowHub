@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useNavigate } from 'react-router-dom'
 import './BlackboardPage.css'
 import gtcSpatialIntelligenceOpportunity from './articles/gtc-spatial-intelligence-opportunity.md?raw'
 import { useAuth } from '../contexts/AuthContext'
-import { articleService } from '../services/supabase'
 
 interface TrendItem {
   title: string
@@ -36,20 +35,6 @@ interface BulletinItem {
   detail: string
   cover: string
   content?: string
-  articleId?: string
-  authorId?: string
-}
-
-interface Article {
-  id: string
-  title: string
-  summary?: string
-  content?: string
-  status: string
-  published_at?: string
-  author_id?: string
-  author?: { email: string; full_name?: string }
-  tags?: string[]
 }
 
 const techTrends: TrendItem[] = [
@@ -1108,24 +1093,6 @@ const BlackboardPage: React.FC = () => {
   const { isAuthenticated, user, loading, logout } = useAuth()
   const [selectedArticle, setSelectedArticle] = useState<BulletinItem | null>(null)
   const [loggingOut, setLoggingOut] = useState(false)
-  const [publishedArticles, setPublishedArticles] = useState<Article[]>([])
-  const [articlesLoading, setArticlesLoading] = useState(true)
-
-  useEffect(() => {
-    const loadPublishedArticles = async () => {
-      try {
-        setArticlesLoading(true)
-        const result = await articleService.getPublishedArticles(1, 20)
-        setPublishedArticles(result.articles)
-      } catch (error) {
-        console.error('Failed to load published articles:', error)
-      } finally {
-        setArticlesLoading(false)
-      }
-    }
-
-    loadPublishedArticles()
-  }, [])
 
   const handlePostClick = () => {
     if (isAuthenticated) {
@@ -1133,22 +1100,6 @@ const BlackboardPage: React.FC = () => {
       return
     }
     navigate('/login', { state: { from: '/blackboard' } })
-  }
-
-  const convertArticleToBulletin = (article: Article): BulletinItem => {
-    const date = article.published_at 
-      ? new Date(article.published_at).toLocaleDateString('zh-CN')
-      : new Date().toLocaleDateString('zh-CN')
-    
-    return {
-      title: article.title,
-      date,
-      detail: article.summary || '',
-      cover: article.cover_image || 'linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(153, 102, 204, 0.25))',
-      content: article.content,
-      articleId: article.id,
-      authorId: article.author_id
-    }
   }
 
   const handleLogout = async () => {
@@ -1163,11 +1114,7 @@ const BlackboardPage: React.FC = () => {
   }
 
   const handleArticleClick = (item: BulletinItem) => {
-    // If this is a published article from database, navigate to article detail page
-    if (item.articleId) {
-      navigate(`/articles/${item.articleId}`)
-    } else if (item.content) {
-      // For static bulletins with content, open modal
+    if (item.content) {
       setSelectedArticle(item)
     }
   }
@@ -1236,84 +1183,76 @@ const BlackboardPage: React.FC = () => {
           <p>团队分享、圆桌与实战笔记，保持周更。</p>
         </div>
         <div className="bulletin-list">
-          {(() => {
-            const bulletinItems = [
-              ...bulletins,
-              ...publishedArticles.map(convertArticleToBulletin)
-            ]
-            return bulletinItems.map((item) => (
-              <article 
-                key={item.title} 
-                className={`bulletin-item wechat-style ${item.content ? 'clickable' : ''}`}
-                style={{ cursor: item.content ? 'pointer' : 'default' }}
-              >
-                <div className="card-cover" style={{ background: item.cover }}></div>
-                <div className="card-content">
-                  <div className="bulletin-meta">
-                    <span className="pill ghost">{item.date}</span>
-                    <h3>{item.title}</h3>
-                  </div>
-                  <p>{item.detail}</p>
-                  {item.content && <div className="read-more">点击阅读全文 →</div>}
-                  {item.articleId && user?.id === item.authorId && (
-                    <div className="article-actions">
-                      <button 
-                        className="action-btn edit-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/articles/${item.articleId}/edit`);
-                        }}
-                      >
-                        ✏️ 编辑
-                      </button>
-                      <button 
-                        className="action-btn delete-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (confirm('确定要删除这篇文章吗？')) {
-                            articleService.deleteArticle(item.articleId!).then(() => {
-                              setPublishedArticles(prev => prev.filter(a => a.id !== item.articleId));
-                            });
-                          }
-                        }}
-                      >
-                        🗑️ 删除
-                      </button>
-                    </div>
-                  )}
+          {bulletins.map((item) => (
+            <article 
+              key={item.title} 
+              className={`bulletin-item wechat-style ${item.content ? 'clickable' : ''}`}
+              onClick={() => handleArticleClick(item)}
+              style={{ cursor: item.content ? 'pointer' : 'default' }}
+            >
+              <div className="card-cover" style={{ background: item.cover }}></div>
+              <div className="card-content">
+                <div className="bulletin-meta">
+                  <span className="pill ghost">{item.date}</span>
+                  <h3>{item.title}</h3>
                 </div>
-                {item.content && (
-                  <div 
-                    className="card-click-overlay"
-                    onClick={() => handleArticleClick(item)}
-                  />
-                )}
-              </article>
-            ))
-          })()}
+                <p>{item.detail}</p>
+                {item.content && <div className="read-more">点击阅读全文 →</div>}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* 注：以下几个部分的硬编码数据已禁用，改为仅显示从数据库动态加载的已发布文章
       <section className="blackboard-section">
         <div className="section-header">
           <div className="section-eyebrow">TRENDS</div>
           <h2>技术趋势</h2>
           <p>研发一线正在尝试的方向与可落地的实验。</p>
         </div>
-        <div className="empty-state">
-          <p>发布技术趋势文章来填充此部分。</p>
+        <div className="cards-grid">
+          {techTrends.map((item) => (
+            <article key={item.title} className="chalk-card wechat-style">
+              <div className="card-cover" style={{ background: item.cover }}></div>
+              <div className="card-content">
+                <h3>{item.title}</h3>
+                <p className="card-summary">{item.summary}</p>
+                <div className="tag-row">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="blackboard-section">
         <div className="section-header">
           <div className="section-eyebrow">STORIES</div>
-          <h2>产品故事</h2>
-          <p>实战复盘、采坑经验、系统设计讨论。</p>
+          <h2>产品背后故事</h2>
+          <p>版本迭代的抉择、架构思路与复盘心得。</p>
         </div>
-        <div className="empty-state">
-          <p>发布产品故事来填充此部分。</p>
+        <div className="cards-grid stories">
+          {productStories.map((item) => (
+            <article key={item.title} className="chalk-card wechat-style story-card">
+              <div className="card-cover" style={{ background: item.cover }}></div>
+              <div className="card-content">
+                <div className="card-meta">
+                  <span className="pill">{item.owner}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p className="card-summary">{item.summary}</p>
+                <div className="learning">
+                  <span className="learning-label">复盘要点</span>
+                  <p>{item.learning}</p>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -1323,11 +1262,18 @@ const BlackboardPage: React.FC = () => {
           <h2>行业展望</h2>
           <p>我们认为值得下注的赛道与策略。</p>
         </div>
-        <div className="empty-state">
-          <p>发布行业展望来填充此部分。</p>
+        <div className="outlook-grid">
+          {outlooks.map((item) => (
+            <article key={item.title} className="chalk-card wechat-style outlook-card">
+              <div className="card-cover" style={{ background: item.cover }}></div>
+              <div className="card-content">
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
-      */}
 
       {/* 文章详情弹窗 */}
       {selectedArticle && (

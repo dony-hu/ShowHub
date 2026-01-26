@@ -30,12 +30,19 @@
 复制到Supabase项目的SQL Editor中运行
 ```
 
-#### 3. 配置环境变量
+#### 3. 配置环境变量（必须带 VITE_ 前缀）
 ```bash
-# 在 .env.local 中填入你的Supabase凭证
+# 在 .env 或 .env.local 中填入你的 Supabase 凭证
+# Vite 只会把以 VITE_ 开头的变量注入到前端代码中
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
 ```
+
+在 Vercel 上部署时，请到 Project → Settings → Environment Variables 中新增以下变量（全部环境：Production/Preview/Development）：
+- VITE_SUPABASE_URL = https://your-project.supabase.co
+- VITE_SUPABASE_ANON_KEY = your-anon-key-here
+
+添加或修改环境变量后，务必重新部署一次，让构建把变量打包到产物中。
 
 #### 4. 创建Storage Bucket
 在Supabase控制面板：

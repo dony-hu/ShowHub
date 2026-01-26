@@ -313,3 +313,114 @@ select.form-input:focus {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
+/* 封面图样式 */
+.cover-preview {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.cover-preview img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.cover-actions {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.cover-actions .btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.cover-actions .btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 标签输入容器 */
+.tag-input-container {
+  margin-bottom: 12px;
+}
+
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+  min-height: 28px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(102, 126, 234, 0.15);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: #8ae5ff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.tag-remove:hover {
+  opacity: 1;
+}
+
+.tag-input {
+  width: 100%;
+}
+
+.preset-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preset-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset-tag:hover:not(:disabled) {
+  background: rgba(102, 126, 234, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+  color: #8ae5ff;
+}
+
+.preset-tag:disabled {
+  opacity: 0.5;
+  cursor: default;
+  background: rgba(102, 126, 234, 0.1);
+  border-color: rgba(102, 126, 234, 0.2);
+  color: rgba(138, 229, 255, 0.6);
+}

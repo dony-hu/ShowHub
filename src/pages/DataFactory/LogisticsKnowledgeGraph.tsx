@@ -226,6 +226,32 @@ export const LogisticsKnowledgeGraph: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* 页面底部收尾文案 */}
+        <div className="graph-closure">
+          <div className="closure-content">
+            <h3 className="closure-title">从数据到决策的完整链路</h3>
+            <p className="closure-text">
+              丰图的物流时空知识图谱不仅是海量数据的堆积，更是围绕真实业务场景的智能化演进。
+              从地图底座的精准要素识别，到关联网络的动态演变追踪，再到智能标签的业务价值输出，
+              我们搭建了一套完整的从"数据智能"到"业务决策"的链路体系。
+            </p>
+            <div className="closure-features">
+              <div className="closure-feature-item">
+                <span className="closure-feature-icon">🎯</span>
+                <span>实时决策支撑</span>
+              </div>
+              <div className="closure-feature-item">
+                <span className="closure-feature-icon">📈</span>
+                <span>持续演变优化</span>
+              </div>
+              <div className="closure-feature-item">
+                <span className="closure-feature-icon">🚀</span>
+                <span>规模化应用</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

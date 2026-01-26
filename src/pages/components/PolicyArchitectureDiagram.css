@@ -1,0 +1,625 @@
+/* Architecture Diagram - Three Layer Design */
+.arch-diagram {
+  padding: 48px 0;
+  color: var(--police-text);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.arch-layers-wrapper {
+  background: rgba(0, 212, 255, 0.02);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arch-header {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.arch-header h2 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--police-text);
+}
+
+.arch-header p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--police-text-sub);
+}
+
+/* ==================== LAYER COMMON ==================== */
+
+.layer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+}
+
+.layer-icon {
+  font-size: 28px;
+}
+
+.layer-header h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--police-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex: 1;
+}
+
+/* ==================== LAYER 1 ==================== */
+
+.arch-layer-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-1-content {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.decision-services {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.service-item {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-align: center;
+  min-height: 140px;
+}
+
+.service-item:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 212, 255, 0.12);
+}
+
+.service-item.highlight {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.32);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.15);
+}
+
+.service-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.service-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--police-text);
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 14px;
+  color: var(--police-text-sub);
+  line-height: 1.4;
+}
+
+.scenarios-compact {
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
+}
+
+.scenarios-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--police-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.scenario-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.scenario-tag {
+  font-size: 11px;
+  color: var(--police-text);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.scenario-tag:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+/* ==================== LAYER 2 ==================== */
+
+.arch-layer-2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-2-content {
+  display: flex;
+  justify-content: center;
+}
+
+.data-modules {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  max-width: 1000px;
+}
+
+.data-module {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-align: center;
+  min-height: 140px;
+}
+
+.data-module:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 212, 255, 0.12);
+}
+
+.module-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.module-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.module-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--police-text);
+  line-height: 1.3;
+}
+
+.module-desc {
+  font-size: 14px;
+  color: var(--police-text-sub);
+  line-height: 1.4;
+}
+
+/* ==================== LAYER 3 ==================== */
+
+.arch-layer-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-3-subtitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+
+.layer-3-subtitle p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--police-text-sub);
+  font-weight: 500;
+}
+
+.arch-layer-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-3-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.foundation-modules {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  max-width: 1000px;
+}
+
+.foundation-module {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  min-height: 140px;
+}
+
+.foundation-module:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.12);
+}
+
+.foundation-module .module-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.foundation-module .module-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--police-text);
+  line-height: 1.3;
+}
+
+.foundation-module .module-desc {
+  font-size: 14px;
+  color: var(--police-text-sub);
+  line-height: 1.4;
+}
+
+.core-capability-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 12px;
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--police-primary);
+}
+
+.core-capability-desc p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--police-text);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.module-capabilities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.module-capabilities li {
+  font-size: 11px;
+  color: var(--police-text-sub);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.module-capabilities li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--police-primary);
+  font-weight: 700;
+}
+
+.core-quote {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: rgba(0, 212, 255, 0.08);
+  border-left: 3px solid var(--police-primary);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--police-primary);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 1200px) {
+  .decision-services {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .data-modules {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .foundation-modules {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .arch-header h2 {
+    font-size: 24px;
+  }
+
+  .layer-header h3 {
+    font-size: 18px;
+  }
+
+  .arch-layer-1,
+  .arch-layer-2,
+  .arch-layer-3 {
+    padding: 20px;
+  }
+
+  .decision-services {
+    grid-template-columns: 1fr;
+  }
+
+  .data-modules {
+    grid-template-columns: 1fr;
+  }
+
+  .foundation-modules {
+    grid-template-columns: 1fr;
+  }
+
+  .data-tags,
+  .scenario-tags {
+    flex-direction: column;
+  }
+
+  .tag,
+  .scenario-tag {
+    width: 100%;
+    text-align: center;
+  }
+
+  .layer-3-content {
+    margin-top: 20px;
+  }
+
+  .foundation-module {
+    max-width: 100%;
+  }
+}
+
+/* ==================== SERVICE DETAIL TABS ==================== */
+
+.service-detail-tabs {
+  background: rgba(0, 212, 255, 0.02);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  gap: 24px;
+}
+
+.service-tab-bar {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.service-tab-btn {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--police-text);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.service-tab-btn:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.3);
+  transform: translateX(4px);
+}
+
+.service-tab-btn.active {
+  background: rgba(0, 212, 255, 0.12);
+  border: 2px solid var(--police-primary);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+.service-tab-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.service-tab-content {
+  flex: 1;
+  background: rgba(10, 25, 47, 0.6);
+  border-radius: 12px;
+  padding: 32px;
+  min-height: 400px;
+}
+
+.service-detail-panel h4 {
+  margin: 0 0 24px;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--police-primary);
+  letter-spacing: 0.02em;
+}
+
+.service-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.service-panel-header h4 {
+  margin: 0;
+  flex: 1;
+}
+
+.capability-section {
+  margin-bottom: 32px;
+}
+
+.capability-section:last-child {
+  margin-bottom: 0;
+}
+
+.capability-section h5 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--police-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+}
+
+.capability-section ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.capability-section li {
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--police-text-sub);
+}
+
+.capability-section li::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: var(--police-primary);
+  font-weight: bold;
+}
+
+.tab-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--police-primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.detail-btn {
+  background: transparent;
+  border: 1.5px solid var(--police-primary);
+  color: var(--police-primary);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.detail-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .service-detail-tabs {
+    flex-direction: column;
+  }
+
+  .service-tab-bar {
+    flex: 1;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .service-tab-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}

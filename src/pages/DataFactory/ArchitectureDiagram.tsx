@@ -219,43 +219,43 @@ export const ArchitectureDiagram: React.FC = () => {
       id: '3d-input',
       data: { label: '📷\n位姿图片' },
       position: { x: 250, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-sfm-mvs',
       data: { label: '🔧\nSFM/MVS' },
       position: { x: 450, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-gaussian',
       data: { label: '✨\n3DGS' },
       position: { x: 650, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-street-view',
       data: { label: '🗺️\n街景提取' },
       position: { x: 850, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-model-generation',
       data: { label: '🗿\n三维建模' },
       position: { x: 1050, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-object-extraction',
       data: { label: '🎯\n对象提取' },
       position: { x: 1250, y: 750 },
-      className: 'process-node 3d-process-node',
+      className: 'process-node three-d-process-node',
     },
     {
       id: '3d-entity-mapping',
       data: { label: '🔗\n三维关联' },
       position: { x: 1450, y: 750 },
-      className: 'process-node 3d-core-node',
+      className: 'process-node three-d-core-node',
     },
   ];
 
@@ -328,34 +328,34 @@ export const ArchitectureDiagram: React.FC = () => {
 
     // ========== 三维建模与对象提取流程 ==========
     // 空间数据 → 三维建模流程输入
-    { id: 'e3d1', source: 'source-urban', target: '3d-input', className: '3d-flow', type: ConnectionLineType.SmoothStep, animated: true },
-    { id: 'e3d2', source: 'source-camera', target: '3d-input', className: '3d-flow', type: ConnectionLineType.SmoothStep, animated: true },
+    { id: 'e3d1', source: 'source-urban', target: '3d-input', className: 'three-d-flow', type: ConnectionLineType.SmoothStep, animated: true },
+    { id: 'e3d2', source: 'source-camera', target: '3d-input', className: 'three-d-flow', type: ConnectionLineType.SmoothStep, animated: true },
     
     // 三维建模流程内部：输入 → SFM/MVS
-    { id: 'e3d3', source: '3d-input', target: '3d-sfm-mvs', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d3', source: '3d-input', target: '3d-sfm-mvs', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // SFM/MVS → 3DGS
-    { id: 'e3d4', source: '3d-sfm-mvs', target: '3d-gaussian', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d4', source: '3d-sfm-mvs', target: '3d-gaussian', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 并行处理：3DGS 和街景提取
-    { id: 'e3d5', source: '3d-gaussian', target: '3d-street-view', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
-    { id: 'e3d5b', source: '3d-sfm-mvs', target: '3d-street-view', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d5', source: '3d-gaussian', target: '3d-street-view', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d5b', source: '3d-sfm-mvs', target: '3d-street-view', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 街景提取 → 三维建模
-    { id: 'e3d6', source: '3d-street-view', target: '3d-model-generation', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d6', source: '3d-street-view', target: '3d-model-generation', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 三维建模 → 对象提取
-    { id: 'e3d7', source: '3d-model-generation', target: '3d-object-extraction', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d7', source: '3d-model-generation', target: '3d-object-extraction', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 对象提取 → 三维实体关联
-    { id: 'e3d8', source: '3d-object-extraction', target: '3d-entity-mapping', animated: true, className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d8', source: '3d-object-extraction', target: '3d-entity-mapping', animated: true, className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 地址库与实体库 → 三维实体关联
-    { id: 'e3d9', source: 'address-registry', target: '3d-entity-mapping', className: '3d-flow', type: ConnectionLineType.SmoothStep },
-    { id: 'e3d10', source: 'entity-registry', target: '3d-entity-mapping', className: '3d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d9', source: 'address-registry', target: '3d-entity-mapping', className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d10', source: 'entity-registry', target: '3d-entity-mapping', className: 'three-d-flow', type: ConnectionLineType.SmoothStep },
     
     // 三维关联结果反馈
-    { id: 'e3d11', source: '3d-entity-mapping', target: 'api-service', className: '3d-output', type: ConnectionLineType.SmoothStep },
+    { id: 'e3d11', source: '3d-entity-mapping', target: 'api-service', className: 'three-d-output', type: ConnectionLineType.SmoothStep },
   ];
 
   return (

@@ -1,10 +1,17 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
+// Vite will only expose env vars prefixed with VITE_.
+// In production (Vercel/Netlify), make sure to set:
+//   VITE_SUPABASE_URL
+//   VITE_SUPABASE_ANON_KEY
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Supabase URL和ANON_KEY必须在环境变量中配置');
+  // 更清晰的错误提示，避免在生产环境因变量命名不一致而迷惑
+  throw new Error(
+    '缺少环境变量: VITE_SUPABASE_URL 或 VITE_SUPABASE_ANON_KEY。请在 Vercel 的 Project → Settings → Environment Variables 中配置这两个变量，或在本地 .env(.local) 文件中设置后重新构建部署。'
+  );
 }
 
 // 全局单例，避免 HMR 时重复创建
@@ -26,6 +33,15 @@ if (!window.__supabase) {
 }
 
 export const supabase = window.__supabase;
+
+// 管理员邮箱列表
+const ADMIN_EMAILS = ['dong.hu@gmail.com'];
+
+// 检查用户是否为管理员
+export const isAdmin = (user: User | null): boolean => {
+  if (!user?.email) return false;
+  return ADMIN_EMAILS.includes(user.email);
+};
 
 // 类型定义
 export interface User {
@@ -56,6 +72,7 @@ export interface Article {
   published_at?: string;
   created_at: string;
   updated_at: string;
+  deleted_at?: string;
 }
 
 // 认证相关
@@ -197,6 +214,7 @@ export const articleService = {
       .from('articles')
       .select('*, users:author_id(*)')
       .eq('id', id)
+      .is('deleted_at', null)
       .single();
 
     if (data && data.status === 'published') {
@@ -218,6 +236,7 @@ export const articleService = {
       .from('articles')
       .select('*', { count: 'exact' })
       .eq('author_id', userId)
+      .is('deleted_at', null)
       .order('created_at', { ascending: false })
       .range(offset, offset + pageSize - 1);
 
@@ -262,11 +281,11 @@ export const articleService = {
     return data as Article;
   },
 
-  // 删除文章
+  // 删除文章（软删除）
   deleteArticle: async (id: string) => {
     return await supabase
       .from('articles')
-      .delete()
+      .update({ deleted_at: new Date().toISOString() })
       .eq('id', id);
   },
 
@@ -277,9 +296,40 @@ export const articleService = {
       .select('*')
       .eq('category', category)
       .eq('status', 'published')
+      .is('deleted_at', null)
       .order('published_at', { ascending: false });
 
     return data || [];
+  },
+
+  // 管理员：获取已删除的文章
+  getDeletedArticles: async (page = 1, pageSize = 20) => {
+    const offset = (page - 1) * pageSize;
+
+    const { data, count } = await supabase
+      .from('articles')
+      .select('*, users:author_id(*)', { count: 'exact' })
+      .not('deleted_at', 'is', null)
+      .order('deleted_at', { ascending: false })
+      .range(offset, offset + pageSize - 1);
+
+    return { articles: data || [], total: count || 0, page, pageSize };
+  },
+
+  // 管理员：恢复已删除的文章
+  restoreArticle: async (id: string) => {
+    return await supabase
+      .from('articles')
+      .update({ deleted_at: null })
+      .eq('id', id);
+  },
+
+  // 管理员：永久删除文章
+  permanentlyDeleteArticle: async (id: string) => {
+    return await supabase
+      .from('articles')
+      .delete()
+      .eq('id', id);
   }
 };
 

@@ -17,7 +17,9 @@ const ImprovementPage = React.lazy(() => import('./pages/ImprovementPage'))
 const PartnersPage = React.lazy(() => import('./pages/PartnersPage'))
 const BlackboardPage = React.lazy(() => import('./pages/BlackboardPage'))
 const ArticleEditorPage = React.lazy(() => import('./pages/ArticleEditorPage').then(m => ({ default: m.ArticleEditorPage })))
+const AdminDeletedArticlesPage = React.lazy(() => import('./pages/AdminDeletedArticlesPage').then(m => ({ default: m.AdminDeletedArticlesPage })))
 const LoginPage = React.lazy(() => import('./pages/LoginPage'))
+const PolicePage = React.lazy(() => import('./pages/PolicePage'))
 
 const AppContent: React.FC = () => {
   return (
@@ -44,10 +46,13 @@ const AppContent: React.FC = () => {
                 <Link to="/data-factory">核心技术</Link>
               </li>
               <li>
-                <Link to="/innovation-lab">创新实验室</Link>
+                <Link to="/innovation-lab">开放创新实验室</Link>
               </li>
               <li>
                 <Link to="/improvement">反馈与建议</Link>
+              </li>
+              <li>
+                <Link to="/industry/police">公安</Link>
               </li>
               <li>
                 <Link to="/partners">合作伙伴</Link>
@@ -71,11 +76,13 @@ const AppContent: React.FC = () => {
               <Route path="/home" element={<HomePage />} />
               <Route path="/open-platform" element={<OpenPlatformPage />} />
               <Route path="/private-network" element={<PrivateNetworkPage />} />
+              <Route path="/industry/police" element={<PolicePage />} />
               <Route path="/blackboard" element={<BlackboardPage />} />
               <Route path="/partners" element={<PartnersPage />} />
               <Route path="/articles/new" element={<ArticleEditorPage />} />
               <Route path="/articles/:id/edit" element={<ArticleEditorPage />} />
               <Route path="/articles/:id" element={<ArticleDetailPage />} />
+              <Route path="/admin/deleted-articles" element={<AdminDeletedArticlesPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/" element={<HomePage />} />
             </Routes>

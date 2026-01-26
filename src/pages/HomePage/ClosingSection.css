@@ -170,11 +170,6 @@
     font-size: 1rem;
   }
 
-  .closing-hi15px;
-    margin: 20px 0 25px 0 !important;
-    font-size: 1rem !important;
-  }
-
   .closing-tagline {
     padding: 20px;
     margin: 25px 0;
@@ -186,7 +181,6 @@
 
   .cta-button {
     width: 100%;
-    margin-top: 2
     margin-top: 35px;
   }
 }
