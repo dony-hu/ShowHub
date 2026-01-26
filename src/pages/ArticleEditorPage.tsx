@@ -131,9 +131,13 @@ export const ArticleEditorPage: React.FC = () => {
   };
 
   const handleCoverUpload = async (file: File) => {
-    if (!articleId && article.status === 'draft') {
-      setError('请先保存文章作为草稿');
-      return;
+    // 如果是新文章（没有articleId），先自动保存为草稿
+    if (!articleId) {
+      setError('正在保存草稿以便上传封面...');
+      await handleSave('draft');
+      setError(null);
+      // 等待articleId更新后再继续
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
 
     setUploading(true);
@@ -141,6 +145,8 @@ export const ArticleEditorPage: React.FC = () => {
     try {
       const result = await uploadService.uploadArticleImage(file, articleId || 'temp');
       setArticle(prev => ({ ...prev, cover_image: result.url }));
+      setError('封面上传成功');
+      setTimeout(() => setError(null), 2000);
     } catch (err) {
       setError('封面上传失败：' + (err as Error).message);
     } finally {
@@ -149,9 +155,13 @@ export const ArticleEditorPage: React.FC = () => {
   };
 
   const handleImageUpload = async (file: File) => {
-    if (!articleId && article.status === 'draft') {
-      setError('请先保存文章作为草稿');
-      return;
+    // 如果是新文章（没有articleId），先自动保存为草稿
+    if (!articleId) {
+      setError('正在保存草稿以便上传图片...');
+      await handleSave('draft');
+      setError(null);
+      // 等待articleId更新后再继续
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
 
     setUploading(true);
@@ -165,6 +175,8 @@ export const ArticleEditorPage: React.FC = () => {
         ...prev,
         content: (prev.content || '') + '\n' + markdown
       }));
+      setError('图片上传成功');
+      setTimeout(() => setError(null), 2000);
     } catch (err) {
       setError('图片上传失败：' + (err as Error).message);
     } finally {

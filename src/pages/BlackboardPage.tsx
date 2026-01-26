@@ -7,6 +7,28 @@ import { useAuth } from '../contexts/AuthContext'
 const PAGE_SIZE = 9
 const INTERNAL_TAG = '__internal'
 
+// 根据作者ID生成颜色
+const getAuthorColor = (authorId: string): string => {
+  const colors = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
+    '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B88B', '#76D7C4'
+  ]
+  let hash = 0
+  for (let i = 0; i < authorId.length; i++) {
+    hash = ((hash << 5) - hash) + authorId.charCodeAt(i)
+    hash = hash & hash
+  }
+  return colors[Math.abs(hash) % colors.length]
+}
+
+// 获取作者邮箱首字母（如果没有邮箱则使用ID首字母）
+const getAuthorInitial = (email?: string, authorId?: string): string => {
+  if (email) {
+    return email.charAt(0).toUpperCase()
+  }
+  return authorId?.charAt(0).toUpperCase() || 'U'
+}
+
 const BlackboardPage: React.FC = () => {
   const navigate = useNavigate()
   const { isAuthenticated, user, loading, logout } = useAuth()
@@ -29,8 +51,8 @@ const BlackboardPage: React.FC = () => {
     setError(null)
     try {
       if (showDrafts && user) {
-        // 加载用户自己的文章（包括草稿）
-        const { articles: data, total: count } = await articleService.getMyArticles(user.id, currentPage, PAGE_SIZE)
+        // 加载用户的草稿文章
+        const { articles: data, total: count } = await articleService.getDraftArticles(user.id, currentPage, PAGE_SIZE)
         setArticles(data)
         setTotal(count)
       } else {
@@ -168,9 +190,29 @@ const BlackboardPage: React.FC = () => {
               })
               .map((item) => {
               const dateText = new Date(item.published_at || item.created_at).toLocaleDateString('zh-CN')
-              const coverStyle = item.cover_image
-                ? { backgroundImage: `url(${item.cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                : { background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(153, 102, 204, 0.18))' }
+              
+              let coverStyle: React.CSSProperties
+              if (item.cover_image) {
+                coverStyle = { 
+                  backgroundImage: `url(${item.cover_image})`, 
+                  backgroundSize: 'cover', 
+                  backgroundPosition: 'center' 
+                }
+              } else {
+                // 使用作者邮箱首字母和颜色代替
+                const authorColor = getAuthorColor(item.author_id)
+                const authorInitial = getAuthorInitial((item as any).users?.email, item.author_id)
+                coverStyle = {
+                  background: authorColor,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '28px',
+                  fontWeight: 'bold',
+                  color: 'white',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                }
+              }
 
               return (
                 <article
@@ -184,21 +226,10 @@ const BlackboardPage: React.FC = () => {
                     }
                   }}
                 >
-                  <div className="card-cover" style={coverStyle}></div>
+                  <div className="card-cover" style={coverStyle}>
+                    {!item.cover_image && getAuthorInitial((item as any).users?.email, item.author_id)}
+                  </div>
                   <div className="card-content">
-                    <div className="bulletin-meta">
-                      <span className="pill ghost">{dateText}</span>
-                      {item.status === 'draft' && <span className="pill ghost" style={{ background: '#ffc107', color: '#856404' }}>草稿</span>}
-                      <h3>{item.title}</h3>
-                    </div>
-                    {item.summary ? <p>{item.summary}</p> : <p className="muted">暂无摘要</p>}
-                    {(item.tags?.includes(INTERNAL_TAG) || item.visibility === 'internal') && (
-                      <div className="pill ghost" style={{ marginTop: '6px' }}>内部</div>
-                    )}
-                    <div className="article-stats" style={{ marginTop: '8px', fontSize: '12px', color: '#999', display: 'flex', gap: '12px' }}>
-                      <span>👁️ {item.view_count}</span>
-                    </div>
-                    <div className="read-more">{item.status === 'draft' ? '编辑' : '查看全文'} →</div>
                     {item.tags && item.tags.length > 0 && (
                       <div className="tag-row">
                         {item.tags.map((tag) => (
@@ -208,6 +239,20 @@ const BlackboardPage: React.FC = () => {
                         ))}
                       </div>
                     )}
+                    <div className="bulletin-meta">
+                      <h3>{item.title}</h3>
+                    </div>
+                    {item.summary ? <p>{item.summary}</p> : <p className="muted">暂无摘要</p>}
+                    {(item.tags?.includes(INTERNAL_TAG) || item.visibility === 'internal') && (
+                      <div className="pill ghost" style={{ marginTop: '6px' }}>内部</div>
+                    )}
+                    <div className="article-footer">
+                      <div className="article-stats" style={{ fontSize: '12px', color: '#999', display: 'flex', gap: '12px' }}>
+                        <span>👁️ {item.view_count}</span>
+                        {item.status === 'draft' && <span className="pill ghost" style={{ background: '#ffc107', color: '#856404' }}>草稿</span>}
+                      </div>
+                      <span className="pill ghost">{dateText}</span>
+                    </div>
                   </div>
                 </article>
               )

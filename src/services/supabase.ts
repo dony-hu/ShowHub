@@ -201,7 +201,7 @@ export const articleService = {
     
     const { data, count } = await supabase
       .from('articles')
-      .select('*, users:author_id(nickname, avatar_url)', { count: 'exact' })
+      .select('*, users:author_id(id, email, nickname, avatar_url)', { count: 'exact' })
       .eq('status', 'published')
       .is('deleted_at', null)
       .order('published_at', { ascending: false })
@@ -254,6 +254,22 @@ export const articleService = {
     return { articles: data || [], total: count || 0 };
   },
 
+  // 获取我的草稿文章
+  getDraftArticles: async (userId: string, page = 1, pageSize = 10) => {
+    const offset = (page - 1) * pageSize;
+
+    const { data, count } = await supabase
+      .from('articles')
+      .select('*, users:author_id(id, email, nickname, avatar_url)', { count: 'exact' })
+      .eq('author_id', userId)
+      .eq('status', 'draft')
+      .is('deleted_at', null)
+      .order('created_at', { ascending: false })
+      .range(offset, offset + pageSize - 1);
+
+    return { articles: data || [], total: count || 0 };
+  },
+
   // 创建文章
   createArticle: async (article: Partial<Article>) => {
     const { data } = await supabase
@@ -267,12 +283,21 @@ export const articleService = {
 
   // 更新文章
   updateArticle: async (id: string, updates: Partial<Article>) => {
-    const { data } = await supabase
+    // 移除不应该更新的字段（如 JOIN 查询返回的 users 对象）
+    const { users, ...cleanUpdates } = updates as any;
+    
+    console.log('Updating article with data:', JSON.stringify(cleanUpdates, null, 2));
+    const { data, error } = await supabase
       .from('articles')
-      .update(updates)
+      .update(cleanUpdates)
       .eq('id', id)
       .select()
       .single();
+
+    if (error) {
+      console.error('Update article error:', error);
+      throw error;
+    }
 
     return data as Article;
   },
