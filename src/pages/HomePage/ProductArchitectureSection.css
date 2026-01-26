@@ -1,7 +1,7 @@
 .product-architecture-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(3rem, 8vw, 6rem) 0;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
   background:
     radial-gradient(circle at 18% 18%, rgba(102, 126, 234, 0.1), transparent 32%),
     radial-gradient(circle at 82% 12%, rgba(0, 212, 255, 0.1), transparent 30%),
@@ -28,7 +28,7 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .section-header h2 {

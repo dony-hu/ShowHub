@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { articleService, uploadService, type Article } from '../services/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import './ArticleEditorPage.css';
 
 export const ArticleEditorPage: React.FC = () => {
-  const { id } = useParams<{ id?: string }>();
+  const { id: routeId } = useParams<{ id?: string }>();
+  const [articleId, setArticleId] = useState<string | undefined>(routeId);
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
+  const location = useLocation();
+  const { user, isAuthenticated, loading } = useAuth();
+
+  // 同步路由参数变化
+  useEffect(() => {
+    setArticleId(routeId);
+  }, [routeId]);
 
   const [article, setArticle] = useState<Partial<Article>>({
     title: '',
@@ -21,22 +28,27 @@ export const ArticleEditorPage: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
 
   useEffect(() => {
+    // 等待认证状态加载完成
+    if (loading) return;
+    
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
 
     // 如果是编辑模式，加载现有文章
-    if (id) {
+    if (articleId) {
       loadArticle();
     }
-  }, [id, isAuthenticated]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [articleId, isAuthenticated, loading, navigate, location.pathname]);
 
   const loadArticle = async () => {
     try {
-      const data = await articleService.getArticle(id!);
+      const data = await articleService.getArticle(articleId!);
       if (data && data.author_id === user?.id) {
         setArticle(data);
       } else {
@@ -53,13 +65,15 @@ export const ArticleEditorPage: React.FC = () => {
       return;
     }
 
+    let currentId = articleId;
+
     setSaving(true);
     setError(null);
 
     try {
-      if (id) {
+      if (articleId) {
         // 更新
-        await articleService.updateArticle(id, {
+        await articleService.updateArticle(articleId, {
           ...article,
           status
         });
@@ -71,11 +85,16 @@ export const ArticleEditorPage: React.FC = () => {
           status,
           slug: article.title!.toLowerCase().replace(/\s+/g, '-')
         });
-        id = newArticle.id;
+        currentId = newArticle.id;
+        setArticleId(newArticle.id);
       }
 
       if (status === 'published') {
-        navigate(`/articles/${id}`);
+        if (currentId) {
+          navigate(`/articles/${currentId}`);
+        } else {
+          navigate('/blackboard');
+        }
       } else {
         setError('保存为草稿成功');
       }
@@ -87,7 +106,7 @@ export const ArticleEditorPage: React.FC = () => {
   };
 
   const handleImageUpload = async (file: File) => {
-    if (!id && article.status === 'draft') {
+    if (!articleId && article.status === 'draft') {
       setError('请先保存文章作为草稿');
       return;
     }
@@ -95,7 +114,7 @@ export const ArticleEditorPage: React.FC = () => {
     setUploading(true);
 
     try {
-      const result = await uploadService.uploadArticleImage(file, id || 'temp');
+      const result = await uploadService.uploadArticleImage(file, articleId || 'temp');
       
       // 在Markdown中插入图片
       const markdown = `![${file.name}](${result.url})`;
@@ -131,59 +150,82 @@ export const ArticleEditorPage: React.FC = () => {
     }
   };
 
-  if (!isAuthenticated) {
+  const hasContent = () => {
+    return !!(
+      (article.title && article.title.trim()) ||
+      (article.content && article.content.trim()) ||
+      (article.summary && article.summary.trim())
+    );
+  };
+
+  const handleExit = () => {
+    if (hasContent()) {
+      setShowExitConfirm(true);
+    } else {
+      navigate('/blackboard');
+    }
+  };
+
+  const confirmExit = () => {
+    setShowExitConfirm(false);
+    navigate('/blackboard');
+  };
+
+  if (loading) {
     return <div className="editor-loading">加载中...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <div className="editor-loading">跳转到登录...</div>;
   }
 
   return (
     <div className="article-editor-page">
-      <div className="editor-container">
-        <div className="editor-header">
-          <h1>{id ? '编辑文章' : '新建文章'}</h1>
-          <div className="editor-actions">
-            <button
-              className="btn btn-secondary"
-              onClick={() => handleSave('draft')}
-              disabled={saving}
-            >
-              {saving ? '保存中...' : '保存草稿'}
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleSave('published')}
-              disabled={saving}
-            >
-              {saving ? '发布中...' : '发布'}
-            </button>
-          </div>
-        </div>
-
-        {error && <div className="editor-error">{error}</div>}
-
-        <div className="editor-form">
-          <div className="form-group">
-            <label>文章标题</label>
-            <input
-              type="text"
-              value={article.title || ''}
-              onChange={e => setArticle(prev => ({ ...prev, title: e.target.value }))}
-              placeholder="输入文章标题..."
-              className="form-input"
-            />
+      <div className="editor-shell">
+        <div className="editor-card">
+          <div className="editor-header">
+            <div>
+              <p className="eyebrow">创作中心</p>
+              <h1>{articleId ? '编辑文章' : '新建文章'}</h1>
+            </div>
+            <div className="editor-actions">
+              <button
+                className="btn btn-secondary"
+                onClick={handleExit}
+              >
+                退出
+              </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => handleSave('draft')}
+                disabled={saving}
+              >
+                {saving ? '保存中...' : '保存草稿'}
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSave('published')}
+                disabled={saving}
+              >
+                {saving ? '发布中...' : '发布'}
+              </button>
+            </div>
           </div>
 
-          <div className="form-group">
-            <label>摘要</label>
-            <textarea
-              value={article.summary || ''}
-              onChange={e => setArticle(prev => ({ ...prev, summary: e.target.value }))}
-              placeholder="输入文章摘要（可选）"
-              className="form-textarea"
-              rows={3}
-            />
-          </div>
+          {error && <div className="editor-error frosted">{error}</div>}
 
-          <div className="form-row">
+          <div className="editor-form">
+            <div className="form-group span-2">
+              <label>文章标题</label>
+              <input
+                type="text"
+                value={article.title || ''}
+                onChange={e => setArticle(prev => ({ ...prev, title: e.target.value }))}
+                placeholder="输入文章标题..."
+                className="form-input"
+              />
+            </div>
+
             <div className="form-group">
               <label>分类</label>
               <select
@@ -210,54 +252,78 @@ export const ArticleEditorPage: React.FC = () => {
                 className="form-input"
               />
             </div>
-          </div>
 
-          <div className="form-group">
-            <label>文章内容（Markdown格式）</label>
-            <div
-              className="editor-upload-area"
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
+            <div className="form-group span-2">
+              <label>摘要</label>
               <textarea
-                value={article.content || ''}
-                onChange={e => setArticle(prev => ({ ...prev, content: e.target.value }))}
-                placeholder="支持Markdown格式。拖拽图片到此处上传，或点击下方按钮上传。"
-                className="form-textarea editor-textarea"
+                value={article.summary || ''}
+                onChange={e => setArticle(prev => ({ ...prev, summary: e.target.value }))}
+                placeholder="输入文章摘要（可选）"
+                className="form-textarea"
+                rows={3}
               />
-              <div className="upload-hint">💡 拖拽图片到此区域上传</div>
             </div>
 
-            <button
-              className="btn btn-secondary"
-              onClick={() => {
-                const input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/*';
-                input.onchange = (e: any) => {
-                  const file = e.target.files[0];
-                  if (file) handleImageUpload(file);
-                };
-                input.click();
-              }}
-              disabled={uploading}
-            >
-              {uploading ? '上传中...' : '上传图片'}
-            </button>
+            <div className="form-group span-2">
+              <label>文章内容（Markdown格式）</label>
+              <div
+                className="editor-upload-area"
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <textarea
+                  value={article.content || ''}
+                  onChange={e => setArticle(prev => ({ ...prev, content: e.target.value }))}
+                  placeholder="支持 Markdown 格式。拖拽图片到此处上传，或点击下方按钮上传。"
+                  className="form-textarea editor-textarea"
+                />
+                <div className="upload-hint">💡 拖拽图片到此区域上传</div>
+              </div>
+
+              <button
+                className="btn btn-secondary"
+                onClick={() => {
+                  const input = document.createElement('input');
+                  input.type = 'file';
+                  input.accept = 'image/*';
+                  input.onchange = (e: any) => {
+                    const file = e.target.files[0];
+                    if (file) handleImageUpload(file);
+                  };
+                  input.click();
+                }}
+                disabled={uploading}
+              >
+                {uploading ? '上传中...' : '上传图片'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="editor-preview">
-        <h2>预览</h2>
-        <div className="preview-content">
-          {article.title && <h1>{article.title}</h1>}
-          {article.summary && <p className="summary">{article.summary}</p>}
-          {/* 这里可以集成markdown渲染器 */}
-          <p style={{ color: '#999' }}>完整的Markdown预览会在集成react-markdown后显示</p>
+      {showExitConfirm && (
+        <div className="exit-confirm-overlay">
+          <div className="exit-confirm-dialog">
+            <h2>放弃编辑？</h2>
+            <p>您的内容未保存，确定要退出吗？</p>
+            <div className="confirm-actions">
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowExitConfirm(false)}
+              >
+                继续编辑
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={confirmExit}
+              >
+                放弃并退出
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
-};
+}

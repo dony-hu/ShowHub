@@ -1,0 +1,246 @@
+/* Topic Card 样式 */
+
+.topic-card-wrapper {
+  width: 100%;
+}
+
+.topic-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  background: rgba(15, 15, 30, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  padding: 48px;
+  transition: all 0.4s ease;
+}
+
+.topic-card:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  background: rgba(15, 15, 30, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+}
+
+/* 内容区 */
+.topic-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.topic-header {
+  margin-bottom: 12px;
+}
+
+.topic-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00d4ff;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topic-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.topic-title-en {
+  font-size: 14px;
+  color: rgba(0, 212, 255, 0.7);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.topic-description {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.topic-details {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+  margin: 0;
+  padding: 16px;
+  background: rgba(0, 212, 255, 0.05);
+  border-left: 3px solid rgba(0, 212, 255, 0.3);
+  border-radius: 4px;
+}
+
+/* 研究重点 */
+.highlights-section {
+  margin-top: 16px;
+}
+
+.highlights-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00d4ff;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.highlight-item {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.6;
+}
+
+.highlight-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #00d4ff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+/* 合作方式 */
+.cooperation-section {
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.cooperation-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00d4ff;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cooperation-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* CTA 按钮 */
+.topic-cta-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.topic-cta-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-explore {
+  background: linear-gradient(135deg, #00d4ff 0%, #00c7f2 100%);
+  color: #0a0a1e;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.btn-explore:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+}
+
+.btn-contact {
+  background: transparent;
+  color: #00d4ff;
+  border: 1px solid #00d4ff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}
+
+.btn-contact:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+}
+
+/* 图表区 */
+.topic-diagram {
+  width: 100%;
+  height: 400px;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 1024px) {
+  .topic-card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .topic-title {
+    font-size: 26px;
+  }
+
+  .topic-diagram {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topic-card {
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .topic-title {
+    font-size: 22px;
+  }
+
+  .topic-description {
+    font-size: 14px;
+  }
+
+  .topic-details {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .topic-cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .topic-cta-btn {
+    width: 100%;
+  }
+
+  .topic-diagram {
+    height: 300px;
+  }
+}

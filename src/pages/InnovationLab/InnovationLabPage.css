@@ -1,0 +1,194 @@
+/* Innovation Lab Page 主样式 */
+
+.innovation-lab-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+  color: white;
+}
+
+/* ========== 顶部标题区 ========== */
+.lab-header {
+  padding: 80px 48px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.1) 0%,
+    rgba(0, 245, 255, 0.05) 100%
+  );
+  border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+  text-align: center;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lab-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  color: #00d4ff;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  letter-spacing: -0.5px;
+}
+
+.lab-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 24px 0;
+  letter-spacing: 0.5px;
+}
+
+.lab-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  margin: 0 0 32px 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lab-description strong {
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.header-divider {
+  font-size: 24px;
+  color: rgba(0, 212, 255, 0.6);
+  letter-spacing: 4px;
+  margin-top: 24px;
+}
+
+/* ========== 专题展示区 ========== */
+.topics-section {
+  padding: 80px 48px;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+}
+
+.topics-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ========== CTA 区域 ========== */
+.cta-section {
+  padding: 80px 48px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+  text-align: center;
+  border-top: 2px solid rgba(0, 212, 255, 0.2);
+}
+
+.cta-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #00d4ff;
+  margin: 0 0 16px 0;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.cta-section p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 40px 0;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 14px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #00c7f2 100%);
+  color: #0a0a1e;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #00d4ff;
+  border: 2px solid #00d4ff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.btn-tertiary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-tertiary:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: white;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+  .lab-header {
+    padding: 50px 24px;
+  }
+
+  .lab-title {
+    font-size: 32px;
+  }
+
+  .lab-subtitle {
+    font-size: 18px;
+  }
+
+  .lab-description {
+    font-size: 14px;
+  }
+
+  .topics-section {
+    padding: 60px 24px;
+  }
+
+  .cta-section {
+    padding: 60px 24px;
+  }
+
+  .cta-section h2 {
+    font-size: 26px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-btn {
+    width: 100%;
+  }
+}

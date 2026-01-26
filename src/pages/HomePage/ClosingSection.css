@@ -1,7 +1,7 @@
 /* Closing Section Styles */
 
 .closing-section {
-  padding: 120px 0;
+  padding: clamp(3rem, 6vw, 5rem) 0;
   background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 50%, #0f2847 100%);
   color: white;
   text-align: center;
@@ -51,7 +51,7 @@
 .closing-section h2 {
   font-size: 3rem;
   font-weight: 800;
-  margin: 0 0 50px 0;
+  margin: 0 0 30px 0;
   background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -60,9 +60,9 @@
 
 .closing-content p {
   font-size: 1.15rem;
-  line-height: 1.9;
+  line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
 }
 
 .highlight {
@@ -74,16 +74,16 @@
   font-size: 1.2rem !important;
   color: rgba(255, 255, 255, 0.9) !important;
   background: rgba(0, 212, 255, 0.1);
-  padding: 25px;
+  padding: 20px;
   border-radius: 8px;
   border-left: 4px solid #00d4ff;
-  margin: 40px 0 50px 0 !important;
+  margin: 25px 0 30px 0 !important;
   backdrop-filter: blur(10px);
 }
 
 .closing-tagline {
-  margin: 50px 0;
-  padding: 40px;
+  margin: 30px 0;
+  padding: 30px;
   background: rgba(0, 212, 255, 0.05);
   border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 12px;
@@ -91,10 +91,10 @@
 }
 
 .closing-tagline p {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #00f5ff;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .closing-tagline p:last-child {
@@ -102,7 +102,7 @@
 }
 
 .cta-button {
-  margin-top: 50px;
+  margin-top: 30px;
   padding: 16px 50px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -134,7 +134,7 @@
 /* 平板屏幕 */
 @media (max-width: 1024px) {
   .closing-section {
-    padding: 80px 0;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
 
   .closing-container {
@@ -143,6 +143,7 @@
 
   .closing-section h2 {
     font-size: 2.3rem;
+    margin-bottom: 25px;
   }
 
   .closing-content p {
@@ -169,15 +170,14 @@
     font-size: 1rem;
   }
 
-  .closing-highlight {
-    padding: 20px;
-    margin: 30px 0 40px 0 !important;
+  .closing-hi15px;
+    margin: 20px 0 25px 0 !important;
     font-size: 1rem !important;
   }
 
   .closing-tagline {
-    padding: 25px;
-    margin: 35px 0;
+    padding: 20px;
+    margin: 25px 0;
   }
 
   .closing-tagline p {
@@ -186,6 +186,7 @@
 
   .cta-button {
     width: 100%;
+    margin-top: 2
     margin-top: 35px;
   }
 }

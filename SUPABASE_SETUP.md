@@ -20,7 +20,7 @@
 用GitHub账号登录
 创建项目：
   - Project Name: showhub
-  - Database Password: 设置强密码
+  - Database Password: MDSMynuB38uOx50q
   - Region: 选择离用户最近的区域
 ```
 

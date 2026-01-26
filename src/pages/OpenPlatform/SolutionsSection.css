@@ -1,5 +1,5 @@
 .op-solutions {
-  padding: 60px 20px;
+  padding: 30px 20px;
   background: linear-gradient(135deg, rgba(0, 20, 40, 0.3) 0%, rgba(0, 50, 80, 0.3) 100%);
 }
 
@@ -16,29 +16,29 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
 }
 
 .solutions-tabs {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .solution-tab {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
+  gap: 8px;
+  padding: 10px 20px;
   background: rgba(0, 212, 255, 0.05);
   border: 2px solid rgba(0, 212, 255, 0.2);
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
@@ -63,10 +63,10 @@
   background: rgba(0, 212, 255, 0.05);
   border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 12px;
-  padding: 50px;
+  padding: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 40px;
   align-items: center;
   animation: fadeIn 0.4s ease;
 }
@@ -85,13 +85,13 @@
 .solution-content {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 16px;
 }
 
 .solution-header {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .solution-icon {
@@ -118,14 +118,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .solution-features li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1rem;
+  gap: 8px;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -138,8 +138,8 @@
 
 .solution-actions {
   display: flex;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .solution-btn {
@@ -227,7 +227,7 @@
   .solution-tab {
     padding: 10px 20px;
     font-size: 0.9rem;
-      padding: clamp(40px, 6vw, 60px) var(--page-padding);
+  }
 
   .tab-icon {
     font-size: 1.1rem;

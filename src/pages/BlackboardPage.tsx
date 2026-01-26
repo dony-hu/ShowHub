@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
+import { useNavigate } from 'react-router-dom'
 import './BlackboardPage.css'
 import gtcSpatialIntelligenceOpportunity from './articles/gtc-spatial-intelligence-opportunity.md?raw'
+import { useAuth } from '../contexts/AuthContext'
+import { articleService } from '../services/supabase'
 
 interface TrendItem {
   title: string
@@ -33,6 +36,19 @@ interface BulletinItem {
   detail: string
   cover: string
   content?: string
+  articleId?: string
+}
+
+interface Article {
+  id: string
+  title: string
+  summary?: string
+  content?: string
+  status: string
+  published_at?: string
+  author_id?: string
+  author?: { email: string; full_name?: string }
+  tags?: string[]
 }
 
 const techTrends: TrendItem[] = [
@@ -1087,10 +1103,69 @@ AI 不再只是辅助工具，而是在某些场景中，已经成为"主执行�
 ]
 
 const BlackboardPage: React.FC = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated, user, loading, logout } = useAuth()
   const [selectedArticle, setSelectedArticle] = useState<BulletinItem | null>(null)
+  const [loggingOut, setLoggingOut] = useState(false)
+  const [publishedArticles, setPublishedArticles] = useState<Article[]>([])
+  const [articlesLoading, setArticlesLoading] = useState(true)
+
+  useEffect(() => {
+    const loadPublishedArticles = async () => {
+      try {
+        setArticlesLoading(true)
+        const result = await articleService.getPublishedArticles(1, 20)
+        setPublishedArticles(result.articles)
+      } catch (error) {
+        console.error('Failed to load published articles:', error)
+      } finally {
+        setArticlesLoading(false)
+      }
+    }
+
+    loadPublishedArticles()
+  }, [])
+
+  const handlePostClick = () => {
+    if (isAuthenticated) {
+      navigate('/articles/new')
+      return
+    }
+    navigate('/login', { state: { from: '/blackboard' } })
+  }
+
+  const convertArticleToBulletin = (article: Article): BulletinItem => {
+    const date = article.published_at 
+      ? new Date(article.published_at).toLocaleDateString('zh-CN')
+      : new Date().toLocaleDateString('zh-CN')
+    
+    return {
+      title: article.title,
+      date,
+      detail: article.summary || '',
+      cover: 'linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(153, 102, 204, 0.25))',
+      content: article.content,
+      articleId: article.id
+    }
+  }
+
+  const handleLogout = async () => {
+    setLoggingOut(true)
+    try {
+      await logout()
+    } catch (error) {
+      console.error('退出登录失败:', error)
+    } finally {
+      setLoggingOut(false)
+    }
+  }
 
   const handleArticleClick = (item: BulletinItem) => {
-    if (item.content) {
+    // If this is a published article from database, navigate to article detail page
+    if (item.articleId) {
+      navigate(`/articles/${item.articleId}`)
+    } else if (item.content) {
+      // For static bulletins with content, open modal
       setSelectedArticle(item)
     }
   }
@@ -1102,16 +1177,53 @@ const BlackboardPage: React.FC = () => {
   return (
     <div className="blackboard-page">
       <section className="blackboard-hero">
-        <div className="chalk-badge">丰图·黑板报</div>
-        <h1>内部技术趋势与产品故事</h1>
-        <p className="hero-subtitle">
-          聚焦“AI Native 地图”与行业落地，记录团队的灵感、踩坑与展望。
-        </p>
-        <div className="hero-highlights">
-          <span>技术趋势</span>
-          <span>产品背后故事</span>
-          <span>行业展望</span>
-          <span>内部分享</span>
+        <div className="hero-content">
+          <div className="hero-left">
+            <h1>产品故事与技术分享</h1>
+            <p className="hero-subtitle">记录团队的灵感、踩坑与展望。</p>
+            <div className="hero-highlights">
+              <span>产品更新</span>
+              <span>技术动态</span>
+              <span>行业见解</span>
+            </div>
+          </div>
+          <div className="hero-right">
+            <div className="auth-status-card">
+              <span className={`status-dot ${loading ? 'neutral' : isAuthenticated ? 'on' : 'off'}`} />
+              <div className="auth-actions">
+                {isAuthenticated ? (
+                  <button
+                    type="button"
+                    className="auth-button ghost"
+                    onClick={handleLogout}
+                    disabled={loggingOut || loading}
+                  >
+                    {loggingOut ? '退出中…' : '退出登录'}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="auth-button primary"
+                    onClick={() => navigate('/login', { state: { from: '/blackboard' } })}
+                    disabled={loading}
+                  >
+                    登录 / 注册
+                  </button>
+                )}
+              </div>
+              <div className="auth-status-message">
+                {loading
+                  ? '登录状态检测中…'
+                  : isAuthenticated
+                  ? `已登录：${user?.email || user?.nickname || '用户'}`
+                  : '未登录，登录后可发帖与查看内部文章。'}
+              </div>
+            </div>
+            <button type="button" className="post-button" onClick={handlePostClick}>
+              <span className="post-icon">✏️</span>
+              <span className="post-text">我要分享</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -1122,24 +1234,30 @@ const BlackboardPage: React.FC = () => {
           <p>团队分享、圆桌与实战笔记，保持周更。</p>
         </div>
         <div className="bulletin-list">
-          {bulletins.map((item) => (
-            <article 
-              key={item.title} 
-              className={`bulletin-item wechat-style ${item.content ? 'clickable' : ''}`}
-              onClick={() => handleArticleClick(item)}
-              style={{ cursor: item.content ? 'pointer' : 'default' }}
-            >
-              <div className="card-cover" style={{ background: item.cover }}></div>
-              <div className="card-content">
-                <div className="bulletin-meta">
-                  <span className="pill ghost">{item.date}</span>
-                  <h3>{item.title}</h3>
+          {(() => {
+            const bulletinItems = [
+              ...bulletins,
+              ...publishedArticles.map(convertArticleToBulletin)
+            ]
+            return bulletinItems.map((item) => (
+              <article 
+                key={item.title} 
+                className={`bulletin-item wechat-style ${item.content ? 'clickable' : ''}`}
+                onClick={() => handleArticleClick(item)}
+                style={{ cursor: item.content ? 'pointer' : 'default' }}
+              >
+                <div className="card-cover" style={{ background: item.cover }}></div>
+                <div className="card-content">
+                  <div className="bulletin-meta">
+                    <span className="pill ghost">{item.date}</span>
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.detail}</p>
+                  {item.content && <div className="read-more">点击阅读全文 →</div>}
                 </div>
-                <p>{item.detail}</p>
-                {item.content && <div className="read-more">点击阅读全文 →</div>}
-              </div>
-            </article>
-          ))}
+              </article>
+            ))
+          })()}
         </div>
       </section>
 

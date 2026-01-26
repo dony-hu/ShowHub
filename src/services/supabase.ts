@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -7,7 +7,25 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Supabase URL和ANON_KEY必须在环境变量中配置');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// 全局单例，避免 HMR 时重复创建
+declare global {
+  interface Window {
+    __supabase?: SupabaseClient;
+  }
+}
+
+if (!window.__supabase) {
+  console.log('创建新的 Supabase 客户端实例');
+  window.__supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    }
+  });
+}
+
+export const supabase = window.__supabase;
 
 // 类型定义
 export interface User {
@@ -53,18 +71,91 @@ export const authService = {
     return response.json();
   },
 
-  // 获取当前用户
+  // 获取当前用户（改用 getSession，避免 getUser 卡住）
   getCurrentUser: async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return null;
-    
-    const { data } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', user.id)
-      .single();
-    
+    console.log('>>> getCurrentUser: 步骤1 - 开始获取...');
+    try {
+      console.log('>>> getCurrentUser: 步骤2 - 调用 supabase.auth.getSession()');
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      console.log('>>> getCurrentUser: 步骤3 - getSession 完成, user:', session?.user?.email, 'error:', sessionError);
+      
+      if (sessionError) {
+        console.error('>>> getCurrentUser: getSession 出错:', sessionError);
+        throw sessionError;
+      }
+      
+      const user = session?.user;
+      if (!user) {
+        console.log('>>> getCurrentUser: 步骤4 - 无用户，返回null');
+        return null;
+      }
+      
+      // 尝试读取用户档案
+      console.log('>>> getCurrentUser: 步骤5 - 准备查询 users 表, user.id:', user.id);
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      console.log('>>> getCurrentUser: 步骤6 - users 表查询完成, data:', data?.email, 'error:', error?.code, error?.message);
+
+    // 若不存在则自动创建档案（依赖插入策略）
+    if (error && error.code === 'PGRST116') { // No rows returned
+      console.log('>>> getCurrentUser: 步骤7 - 用户档案不存在(PGRST116)，准备自动创建, user.id:', user.id);
+      const profile = {
+        id: user.id,
+        email: user.email,
+        nickname: user.email?.split('@')[0] || '新用户',
+        avatar_url: user.user_metadata?.avatar_url || '',
+        role: 'user' as const,
+        is_verified: false
+      };
+
+      console.log('>>> getCurrentUser: 步骤8 - 开始upsert profile');
+      const { data: created, error: createError } = await supabase
+        .from('users')
+        .upsert(profile, { onConflict: 'id' })
+        .select()
+        .single();
+
+      console.log('>>> getCurrentUser: 步骤9 - upsert完成, created:', created?.email, 'error:', createError);
+      if (createError) {
+        console.error('>>> getCurrentUser: 创建用户档案失败:', createError);
+        throw createError;
+      }
+
+      console.log('>>> getCurrentUser: 步骤10 - 用户档案创建成功，返回');
+      return created as User;
+    }
+
+    if (error) {
+      console.error('>>> getCurrentUser: 步骤11 - 获取用户档案出错:', error);
+      throw error;
+    }
+
+    console.log('>>> getCurrentUser: 步骤12 - 成功返回现有用户档案:', data.email);
     return data as User;
+    } catch (err) {
+      console.error('>>> getCurrentUser: CATCH块捕获异常:', err);
+      // 返回最小用户以不中断流程
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        const u = session?.user;
+        if (u) {
+          return {
+            id: u.id,
+            email: u.email || undefined,
+            nickname: u.email?.split('@')[0] || '用户',
+            role: 'user',
+            is_verified: false,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          } as any as User;
+        }
+      } catch {}
+      throw err;
+    }
   },
 
   // 登出
@@ -221,5 +312,31 @@ export const uploadService = {
     return await supabase.storage
       .from('article-images')
       .remove([filePath]);
+  }
+
+  ,
+  // 上传用户头像
+  uploadAvatar: async (file: File, userId: string) => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${userId}/${Date.now()}.${fileExt || 'png'}`;
+
+    const { error } = await supabase.storage
+      .from('avatars')
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: true
+      });
+
+    if (error) throw error;
+
+    const { data } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(fileName);
+
+    return {
+      url: data.publicUrl,
+      fileName,
+      size: file.size
+    };
   }
 };
