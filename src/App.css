@@ -1,3 +1,21 @@
+:root {
+  /* 主色系 */
+  --primary-cyan: #00d4ff;
+  --primary-purple: #667eea;
+  --secondary-purple: #764ba2;
+  --accent-purple: #9c27b0;
+  
+  /* 背景色系 */
+  --bg-base: #0f0f1e;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #2a2a4e;
+  
+  /* 文字色 */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-tertiary: rgba(255, 255, 255, 0.65);
+}
+
 .app {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -355,4 +373,20 @@
   .nav-menu a {
     padding: 0.35rem 0.6rem;
   }
+}
+
+/* 页面过渡动画 */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-content {
+  animation: pageEnter 0.4s ease-out;
 }

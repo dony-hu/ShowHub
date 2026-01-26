@@ -9,7 +9,7 @@
 .blackboard-hero {
   position: relative;
   padding: 3rem;
-  border-radius: 24px;
+  border-radius: 20px;
   background: linear-gradient(140deg, rgba(18, 24, 38, 0.88), rgba(9, 12, 22, 0.86));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(102, 126, 234, 0.18);
@@ -297,7 +297,7 @@
 /* Old global .post-button removed to prevent collision; hero-scoped styles are used */
 
 .blackboard-section {
-  background: linear-gradient(135deg, rgba(18, 24, 38, 0.92), rgba(14, 18, 30, 0.9));
+  background: linear-gradient(135deg, rgba(18, 24, 38, 0.94), rgba(14, 18, 30, 0.92));
   border-radius: 20px;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);

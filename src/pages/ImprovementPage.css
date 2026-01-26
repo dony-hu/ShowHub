@@ -1,7 +1,7 @@
 .improvement-page {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
 }
 
 .improvement-section {
@@ -14,7 +14,7 @@
   background: none;
   border: none;
   font-size: 18px;
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   margin-bottom: 20px;
   padding: 10px 0;
@@ -23,13 +23,13 @@
 }
 
 .back-button:hover {
-  color: #0066cc;
+  color: #00d4ff;
 }
 
 .improvement-section h2 {
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: white;
   margin-bottom: 30px;
   text-align: center;
 }
@@ -37,6 +37,6 @@
 .coming-soon {
   text-align: center;
   font-size: 18px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.75);
   padding: 40px;
 }

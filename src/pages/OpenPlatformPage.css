@@ -1,6 +1,6 @@
 .open-platform-page {
   width: 100%;
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  background: linear-gradient(135deg, #0f1a1e 0%, #0f1a2e 50%, #1a1a2e 100%);
   overflow: hidden;
 }
 
