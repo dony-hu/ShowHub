@@ -67,8 +67,6 @@ const ArchitectureDiagram: React.FC = () => {
         </div>
       </div>
 
-      <div className="connector"><span className="arrow">↓</span></div>
-
       {/* 位置智能服务基础平台 */}
       <div className="layer layer-platform">
         <div className="layer-head">
@@ -115,8 +113,6 @@ const ArchitectureDiagram: React.FC = () => {
         </div>
       </div>
 
-      <div className="connector"><span className="arrow">↓</span></div>
-
       {/* 工业级时空数据资产体系 */}
       <div className="layer layer-data">
         <div className="layer-head">
@@ -158,8 +154,6 @@ const ArchitectureDiagram: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <div className="connector"><span className="arrow">↓</span></div>
 
       {/* 空间智能数据工厂 */}
       <div className="layer layer-factory">
