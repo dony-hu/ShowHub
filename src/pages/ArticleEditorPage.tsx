@@ -96,16 +96,20 @@ export const ArticleEditorPage: React.FC = () => {
         // 更新
         await articleService.updateArticle(articleId, {
           ...articlePayload,
-          status
+          status,
+          ...(status === 'published' && { published_at: new Date().toISOString() })
         });
       } else {
         // 创建
-        const newArticle = await articleService.createArticle({
+        const createPayload = {
           ...articlePayload,
           author_id: user!.id,
           status,
-          slug: article.title!.toLowerCase().replace(/\s+/g, '-')
-        });
+          slug: article.title!.toLowerCase().replace(/\s+/g, '-'),
+          ...(status === 'published' && { published_at: new Date().toISOString() })
+        };
+
+        const newArticle = await articleService.createArticle(createPayload);
         currentId = newArticle.id;
         setArticleId(newArticle.id);
       }
