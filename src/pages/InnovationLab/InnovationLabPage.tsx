@@ -63,7 +63,7 @@ const InnovationLabPage: React.FC = () => {
       <header className="lab-header">
         <div className="header-content">
           <h1 className="lab-title">开放创新实验室</h1>
-          <p className="lab-subtitle">面向真实场景与真实数据的时空智能联合创新实验室</p>
+          <p className="lab-subtitle">面向<span className="accent-text">真实场景</span>与<span className="accent-text">真实数据</span>的空间智能联合创新实验室</p>
           <p className="lab-description">
             依托顺丰物流的真实业务场景，以及丰图在空间数据、地图资质与平台能力上的长期积累，
             Innovation Lab 面向技术型合作伙伴，围绕前沿方向开展联合研究与创新实践，
