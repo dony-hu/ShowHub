@@ -17,9 +17,11 @@ const ImprovementPage = React.lazy(() => import('./pages/ImprovementPage'))
 const PartnersPage = React.lazy(() => import('./pages/PartnersPage'))
 const BlackboardPage = React.lazy(() => import('./pages/BlackboardPage'))
 const ArticleEditorPage = React.lazy(() => import('./pages/ArticleEditorPage').then(m => ({ default: m.ArticleEditorPage })))
+const MapCorrectionPage = React.lazy(() => import('./pages/MapCorrectionPage').then(m => ({ default: m.MapCorrectionPage })))
 const AdminDeletedArticlesPage = React.lazy(() => import('./pages/AdminDeletedArticlesPage').then(m => ({ default: m.AdminDeletedArticlesPage })))
 const LoginPage = React.lazy(() => import('./pages/LoginPage'))
 const PolicePage = React.lazy(() => import('./pages/PolicePage'))
+const ResetPasswordPage = React.lazy(() => import('./pages/ResetPasswordPage'))
 
 const AppContent: React.FC = () => {
   return (
@@ -82,8 +84,10 @@ const AppContent: React.FC = () => {
               <Route path="/articles/new" element={<ArticleEditorPage />} />
               <Route path="/articles/:id/edit" element={<ArticleEditorPage />} />
               <Route path="/articles/:id" element={<ArticleDetailPage />} />
+              <Route path="/map-correction" element={<MapCorrectionPage />} />
               <Route path="/admin/deleted-articles" element={<AdminDeletedArticlesPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
               <Route path="/" element={<HomePage />} />
             </Routes>
           </React.Suspense>

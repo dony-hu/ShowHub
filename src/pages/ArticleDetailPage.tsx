@@ -6,22 +6,27 @@ import { articleService, type Article } from '../services/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import './ArticleDetailPage.css';
 
+const INTERNAL_TAG = '__internal';
+
 export const ArticleDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [needsAuth, setNeedsAuth] = useState(false);
 
   useEffect(() => {
     loadArticle();
-  }, [id]);
+    // 重新登录后自动重试
+  }, [id, isAuthenticated]);
 
   const loadArticle = async () => {
+    setNeedsAuth(false);
     if (!id) {
       setError('文章ID不存在');
       setLoading(false);
@@ -30,10 +35,18 @@ export const ArticleDetailPage: React.FC = () => {
 
     try {
       setLoading(true);
+      setError(null);
       const data = await articleService.getArticle(id);
       
       if (!data) {
-        setError('文章不存在');
+        setError('文章不存在或已删除');
+        return;
+      }
+
+      const isInternal = data.tags?.includes(INTERNAL_TAG) || (data as any).visibility === 'internal';
+      if (isInternal && !isAuthenticated) {
+        setNeedsAuth(true);
+        setError('此为内部文章，请登录后查看');
         return;
       }
 
@@ -80,6 +93,13 @@ export const ArticleDetailPage: React.FC = () => {
           <button className="btn-back" onClick={() => navigate('/blackboard')}>← 返回黑板报</button>
         </div>
         <div className="article-error">{error}</div>
+        {needsAuth && (
+          <div style={{ marginTop: '12px' }}>
+            <button className="btn btn-primary" onClick={() => navigate('/login', { state: { from: `/articles/${id}` } })}>
+              登录后查看
+            </button>
+          </div>
+        )}
       </div>
     );
   }

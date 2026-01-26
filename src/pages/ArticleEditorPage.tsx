@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { articleService, uploadService, type Article } from '../services/supabase';
+import { articleService, uploadService, type Article, isAdmin } from '../services/supabase';
 import { useAuth } from '../contexts/AuthContext';
+import { extractPdfContent, extractWechatContent, isWechatUrl } from '../services/contentImporter';
 import './ArticleEditorPage.css';
 
 export const ArticleEditorPage: React.FC = () => {
@@ -24,6 +25,9 @@ export const ArticleEditorPage: React.FC = () => {
     tags: [],
     status: 'draft'
   });
+
+  const INTERNAL_TAG = '__internal';
+  const [visibility, setVisibility] = useState<'public' | 'internal'>('public');
 
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -50,8 +54,10 @@ export const ArticleEditorPage: React.FC = () => {
   const loadArticle = async () => {
     try {
       const data = await articleService.getArticle(articleId!);
-      if (data && data.author_id === user?.id) {
+      if (data && (data.author_id === user?.id || isAdmin(user || null))) {
         setArticle(data);
+        const isInternal = data.tags?.includes(INTERNAL_TAG) || data.visibility === 'internal';
+        setVisibility(isInternal ? 'internal' : 'public');
       } else {
         setError('无权限编辑此文章');
       }
@@ -66,6 +72,20 @@ export const ArticleEditorPage: React.FC = () => {
       return;
     }
 
+    // 根据可见性调整内部标签
+    const nextTags = new Set(article.tags || []);
+    if (visibility === 'internal') {
+      nextTags.add(INTERNAL_TAG);
+    } else {
+      nextTags.delete(INTERNAL_TAG);
+    }
+
+    const articlePayload = {
+      ...article,
+      tags: Array.from(nextTags),
+      visibility
+    } as Partial<Article>;
+
     let currentId = articleId;
 
     setSaving(true);
@@ -75,13 +95,13 @@ export const ArticleEditorPage: React.FC = () => {
       if (articleId) {
         // 更新
         await articleService.updateArticle(articleId, {
-          ...article,
+          ...articlePayload,
           status
         });
       } else {
         // 创建
         const newArticle = await articleService.createArticle({
-          ...article,
+          ...articlePayload,
           author_id: user!.id,
           status,
           slug: article.title!.toLowerCase().replace(/\s+/g, '-')
@@ -143,6 +163,94 @@ export const ArticleEditorPage: React.FC = () => {
       }));
     } catch (err) {
       setError('图片上传失败：' + (err as Error).message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handlePdfUpload = async (file: File) => {
+    setUploading(true);
+    try {
+      setError('正在提取 PDF 内容...');
+      const importedContent = await extractPdfContent(file);
+      
+      // 如果没有标题，使用导入的标题
+      if (!article.title) {
+        setArticle(prev => ({
+          ...prev,
+          title: importedContent.title || file.name.replace('.pdf', '')
+        }));
+      }
+      
+      // 如果没有摘要，使用导入的摘要
+      if (!article.summary) {
+        setArticle(prev => ({
+          ...prev,
+          summary: importedContent.summary
+        }));
+      }
+      
+      // 添加内容到编辑器
+      setArticle(prev => ({
+        ...prev,
+        content: (prev.content || '') + '\n\n' + importedContent.content
+      }));
+      
+      setError(null);
+    } catch (err) {
+      setError('PDF 提取失败：' + (err as Error).message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleWechatImport = async () => {
+    const url = window.prompt('粘贴微信公众号文章链接');
+    if (!url) return;
+
+    if (!isWechatUrl(url)) {
+      setError('请输入有效的微信公众号链接');
+      return;
+    }
+
+    setUploading(true);
+    try {
+      setError('正在提取微信文章内容...');
+      const importedContent = await extractWechatContent(url);
+      
+      // 设置标题
+      if (!article.title) {
+        setArticle(prev => ({
+          ...prev,
+          title: importedContent.title
+        }));
+      }
+      
+      // 设置摘要
+      if (!article.summary) {
+        setArticle(prev => ({
+          ...prev,
+          summary: importedContent.summary
+        }));
+      }
+      
+      // 添加内容，如果有图片则添加图片链接
+      let contentToAdd = importedContent.content;
+      if (importedContent.imageUrl) {
+        contentToAdd = `![微信文章封面](${importedContent.imageUrl})\n\n${contentToAdd}`;
+      }
+      if (importedContent.sourceUrl) {
+        contentToAdd += `\n\n[原文链接](${importedContent.sourceUrl})`;
+      }
+      
+      setArticle(prev => ({
+        ...prev,
+        content: (prev.content || '') + '\n\n' + contentToAdd
+      }));
+      
+      setError(null);
+    } catch (err) {
+      setError('微信文章导入失败：' + (err as Error).message);
     } finally {
       setUploading(false);
     }
@@ -255,6 +363,18 @@ export const ArticleEditorPage: React.FC = () => {
                 <option value="articles">文章</option>
                 <option value="stories">故事</option>
                 <option value="insights">洞察</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>可见性</label>
+              <select
+                value={visibility}
+                onChange={e => setVisibility(e.target.value as 'public' | 'internal')}
+                className="form-input"
+              >
+                <option value="public">公开</option>
+                <option value="internal">内部（需登录可见）</option>
               </select>
             </div>
 
@@ -402,22 +522,49 @@ export const ArticleEditorPage: React.FC = () => {
                 <div className="upload-hint">💡 拖拽图片到此区域上传</div>
               </div>
 
-              <button
-                className="btn btn-secondary"
-                onClick={() => {
-                  const input = document.createElement('input');
-                  input.type = 'file';
-                  input.accept = 'image/*';
-                  input.onchange = (e: any) => {
-                    const file = e.target.files[0];
-                    if (file) handleImageUpload(file);
-                  };
-                  input.click();
-                }}
-                disabled={uploading}
-              >
-                {uploading ? '上传中...' : '上传图片'}
-              </button>
+              <div className="editor-action-buttons">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = (e: any) => {
+                      const file = e.target.files[0];
+                      if (file) handleImageUpload(file);
+                    };
+                    input.click();
+                  }}
+                  disabled={uploading}
+                >
+                  {uploading ? '上传中...' : '上传图片'}
+                </button>
+
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'application/pdf';
+                    input.onchange = (e: any) => {
+                      const file = e.target.files[0];
+                      if (file) handlePdfUpload(file);
+                    };
+                    input.click();
+                  }}
+                  disabled={uploading}
+                >
+                  {uploading ? '上传中...' : '导入 PDF'}
+                </button>
+
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={handleWechatImport}
+                >
+                  导入公众号文章链接
+                </button>
+              </div>
             </div>
           </div>
         </div>

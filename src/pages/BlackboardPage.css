@@ -557,6 +557,66 @@
   display: none;
 }
 
+.list-state {
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  text-align: center;
+  color: rgba(232, 236, 245, 0.82);
+}
+
+.list-state.error {
+  color: #fecdd3;
+  border-color: rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.list-state.empty {
+  color: rgba(226, 232, 240, 0.78);
+  border-color: rgba(226, 232, 240, 0.16);
+}
+
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8ecf5;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pagination-btn:not(:disabled):hover {
+  border-color: rgba(165, 180, 252, 0.4);
+  background: rgba(99, 102, 241, 0.12);
+  transform: translateY(-1px);
+}
+
+.pagination-info {
+  color: rgba(226, 232, 240, 0.82);
+  font-weight: 600;
+}
+
+.muted {
+  color: rgba(226, 232, 240, 0.7);
+}
+
 @media (max-width: 768px) {
   .blackboard-hero {
     padding: 1.75rem;

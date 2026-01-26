@@ -14,7 +14,7 @@ export const TechOverviewHero: React.FC = () => {
       <div className="hero-container">
         {/* 主标题区 */}
         <div className="hero-header">
-          <h2 className="hero-subtitle hero-subtitle-enlarged">数据工厂 × 知识图谱双轮驱动</h2>
+          <h2 className="hero-subtitle hero-subtitle-enlarged">数据工厂 × 知识图谱</h2>
           <p className="hero-tagline hero-tagline-enlarged">从原始数据到时空智能决策的完整闭环</p>
         </div>
 

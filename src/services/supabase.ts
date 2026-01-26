@@ -67,6 +67,7 @@ export interface Article {
   cover_image?: string;
   category?: string;
   tags?: string[];
+  visibility?: 'public' | 'internal';
   status: 'draft' | 'published' | 'archived';
   view_count: number;
   published_at?: string;
@@ -210,12 +211,14 @@ export const articleService = {
 
   // 获取文章详情
   getArticle: async (id: string) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('articles')
       .select('*, users:author_id(*)')
       .eq('id', id)
       .is('deleted_at', null)
       .single();
+
+    if (error) throw error;
 
     if (data && data.status === 'published') {
       // 增加浏览量
@@ -346,6 +349,27 @@ export const uploadService = {
     if (error) throw error;
 
     // 获取公开URL
+    const { data } = supabase.storage
+      .from('article-images')
+      .getPublicUrl(fileName);
+
+    return {
+      url: data.publicUrl,
+      fileName,
+      size: file.size
+    };
+  },
+
+  // 上传通用文件（如 PDF）
+  uploadArticleFile: async (file: File, articleId: string) => {
+    const fileName = `${articleId}/${Date.now()}_${file.name}`;
+
+    const { error } = await supabase.storage
+      .from('article-images')
+      .upload(fileName, file);
+
+    if (error) throw error;
+
     const { data } = supabase.storage
       .from('article-images')
       .getPublicUrl(fileName);

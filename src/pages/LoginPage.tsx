@@ -13,6 +13,7 @@ const LoginPage: React.FC = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [code, setCode] = useState('')
   const [codeSending, setCodeSending] = useState(false)
   const [countdown, setCountdown] = useState(0)
@@ -21,12 +22,19 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [mode, setMode] = useState<'login' | 'signup'>('login')
 
+  const isAllowedEmail = (value: string) => /@sf-express\.com$/i.test(value.trim())
+
   const from = (location.state as { from?: string } | null)?.from || '/blackboard'
 
   const handleSendCode = async () => {
     setError(null)
     if (!email) {
       setError('请先填写邮箱再获取验证码')
+      return
+    }
+
+    if (!isAllowedEmail(email)) {
+      setError('仅支持 sf-express.com 企业邮箱注册')
       return
     }
 
@@ -61,6 +69,16 @@ const LoginPage: React.FC = () => {
     setError(null)
     if (!email || !password) {
       setError('邮箱和密码不能为空')
+      return
+    }
+
+    if (mode === 'signup' && !isAllowedEmail(email)) {
+      setError('注册仅限 sf-express.com 邮箱')
+      return
+    }
+
+    if (mode === 'signup' && password !== confirmPassword) {
+      setError('两次输入的密码不一致')
       return
     }
 
@@ -210,6 +228,19 @@ const LoginPage: React.FC = () => {
 
             {mode === 'signup' && (
               <div className="form-group floating">
+                <label>确认密码</label>
+                <input
+                  type="password"
+                  className="form-input"
+                  placeholder="请再次输入密码"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                />
+              </div>
+            )}
+
+            {mode === 'signup' && (
+              <div className="form-group floating">
                 <label>邮箱验证码</label>
                 <div className="code-row">
                   <input
@@ -260,6 +291,14 @@ const LoginPage: React.FC = () => {
               onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
             >
               {mode === 'login' ? '去注册' : '去登录'}
+            </button>
+            <span style={{ margin: '0 8px', color: 'rgba(255,255,255,0.35)' }}>|</span>
+            <button
+              type="button"
+              className="link-button"
+              onClick={() => navigate('/reset-password')}
+            >
+              忘记密码？
             </button>
           </div>
         </div>

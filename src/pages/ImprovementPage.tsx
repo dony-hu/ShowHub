@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ImprovementPage.css';
 import HeroSection from './Improvement/HeroSection.tsx';
 import FeatureImprovementsSection from './Improvement/FeatureImprovementsSection.tsx';
@@ -8,9 +9,14 @@ type ImprovementTab = 'overview' | 'bugs' | 'features' | 'map-corrections';
 
 const ImprovementPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ImprovementTab>('overview');
+  const navigate = useNavigate();
 
   const handleTabClick = (tab: ImprovementTab) => {
-    setActiveTab(tab);
+    if (tab === 'map-corrections') {
+      navigate('/map-correction');
+    } else {
+      setActiveTab(tab);
+    }
   };
 
   return (
