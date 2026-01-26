@@ -18,26 +18,51 @@ const ArchitectureDiagram: React.FC = () => {
           <h3>行业位置智能决策服务</h3>
           <p>围绕各行业的决策场景，提供可落地的智能化能力</p>
         </div>
-        <div className="cards grid-3">
-          <div className="card">
+        <div className="cards grid-5">
+          <div className="card compact">
             <h4>物流 / 货运</h4>
-            {chips(['网络规划','投递决策','路径合规','成本决策'])}
+            <div className="items-list">
+              <div className="item">网络规划</div>
+              <div className="item">投递决策</div>
+              <div className="item">路径合规</div>
+              <div className="item">成本决策</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>公安 / 政数 / 城市治理运营</h4>
-            {chips(['空间态势','警务决策','数据治理','决策支撑','部件治理','事件决策'])}
+          <div className="card compact">
+            <h4>公安 / 政务</h4>
+            <div className="items-list">
+              <div className="item">空间态势</div>
+              <div className="item">警务决策</div>
+              <div className="item">数据治理</div>
+              <div className="item">决策支撑</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>环卫 / 城市管理</h4>
-            {chips(['作业调度','覆盖分析','运维优化'])}
+          <div className="card compact">
+            <h4>城市管理</h4>
+            <div className="items-list">
+              <div className="item">部件治理</div>
+              <div className="item">事件决策</div>
+              <div className="item">作业调度</div>
+              <div className="item">覆盖分析</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>金融 / 电力 / 运营商</h4>
-            {chips(['风控','网点决策','设施运维','调度决策','网络规划','选址决策'])}
+          <div className="card compact">
+            <h4>金融 / 电力</h4>
+            <div className="items-list">
+              <div className="item">风控决策</div>
+              <div className="item">网点选址</div>
+              <div className="item">设施运维</div>
+              <div className="item">调度决策</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>零售 / 电商</h4>
-            {chips(['选址','商圈决策','履约','区域运营决策'])}
+            <div className="items-list">
+              <div className="item">门店选址</div>
+              <div className="item">商圈分析</div>
+              <div className="item">履约决策</div>
+              <div className="item">区域运营</div>
+            </div>
           </div>
         </div>
       </div>
@@ -51,21 +76,41 @@ const ArchitectureDiagram: React.FC = () => {
           <p>统一的位置与空间能力服务底座，为行业决策提供基础能力</p>
         </div>
         <div className="cards grid-4">
-          <div className="card">
-            <h4>空间数据与地图服务</h4>
-            {chips(['丰图地图','地址','AOI','空间实体模型','空间关系与语义'])}
+          <div className="card compact">
+            <h4>空间数据与地图</h4>
+            <div className="items-list">
+              <div className="item">丰图地图</div>
+              <div className="item">地址数据</div>
+              <div className="item">AOI 数据</div>
+              <div className="item">空间实体</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>基础位置能力</h4>
-            {chips(['搜索','定位','匹配','路径规划','可达性分析','覆盖分析'])}
+            <div className="items-list">
+              <div className="item">搜索</div>
+              <div className="item">定位</div>
+              <div className="item">路径规划</div>
+              <div className="item">覆盖分析</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>时空分析与指标能力</h4>
-            {chips(['行为与流动分析','变化与趋势识别','指标空间化'])}
+          <div className="card compact">
+            <h4>时空分析能力</h4>
+            <div className="items-list">
+              <div className="item">流动分析</div>
+              <div className="item">变化识别</div>
+              <div className="item">指标计算</div>
+              <div className="item">趋势识别</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>平台化服务能力</h4>
-            {chips(['API','SDK','服务编排','权限','安全','审计','多部署形态'])}
+          <div className="card compact">
+            <h4>平台化能力</h4>
+            <div className="items-list">
+              <div className="item">API</div>
+              <div className="item">SDK</div>
+              <div className="item">权限安全</div>
+              <div className="item">服务编排</div>
+            </div>
           </div>
         </div>
       </div>
@@ -79,21 +124,37 @@ const ArchitectureDiagram: React.FC = () => {
           <p>真实场景持续沉淀的高质量、可验证、可更新的时空数据</p>
         </div>
         <div className="cards grid-4">
-          <div className="card">
+          <div className="card compact">
             <h4>基础空间数据</h4>
-            {chips(['道路','区域','网格'])}
+            <div className="items-list">
+              <div className="item">道路网络</div>
+              <div className="item">行政区域</div>
+              <div className="item">网格数据</div>
+            </div>
           </div>
-          <div className="card">
-            <h4>地址与 AOI 数据</h4>
-            {chips(['标准地址','空间实体','关系网络'])}
+          <div className="card compact">
+            <h4>地址与 AOI</h4>
+            <div className="items-list">
+              <div className="item">标准地址</div>
+              <div className="item">空间实体</div>
+              <div className="item">关系网络</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>业务行为数据</h4>
-            {chips(['物流轨迹','作业行为','事件反馈'])}
+            <div className="items-list">
+              <div className="item">物流轨迹</div>
+              <div className="item">作业行为</div>
+              <div className="item">事件反馈</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>行业专题数据</h4>
-            {chips(['行业规则','设施','运行状态'])}
+            <div className="items-list">
+              <div className="item">行业规则</div>
+              <div className="item">设施数据</div>
+              <div className="item">运行状态</div>
+            </div>
           </div>
         </div>
       </div>
@@ -107,17 +168,29 @@ const ArchitectureDiagram: React.FC = () => {
           <p>面向全栈数据生命周期的自动化生产与治理体系</p>
         </div>
         <div className="cards grid-3">
-          <div className="card">
+          <div className="card compact">
             <h4>数据获取与接入</h4>
-            {chips(['多源采集','实时接入','质量检测'])}
+            <div className="items-list">
+              <div className="item">多源采集</div>
+              <div className="item">实时接入</div>
+              <div className="item">质量检测</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>加工生产流水线</h4>
-            {chips(['标注与评估','融合与校准','特征与规则沉淀'])}
+            <div className="items-list">
+              <div className="item">标注与评估</div>
+              <div className="item">融合与校准</div>
+              <div className="item">特征与规则</div>
+            </div>
           </div>
-          <div className="card">
+          <div className="card compact">
             <h4>治理与服务化</h4>
-            {chips(['数据编排','版本与可追溯','服务发布'])}
+            <div className="items-list">
+              <div className="item">数据编排</div>
+              <div className="item">版本管理</div>
+              <div className="item">服务发布</div>
+            </div>
           </div>
         </div>
       </div>
