@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs dist/pdf.worker.min.js",
   "outputDirectory": "dist",
   "env": {
     "VITE_SUPABASE_URL": "@VITE_SUPABASE_URL",

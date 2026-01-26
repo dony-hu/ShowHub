@@ -22,6 +22,7 @@ const AdminDeletedArticlesPage = React.lazy(() => import('./pages/AdminDeletedAr
 const LoginPage = React.lazy(() => import('./pages/LoginPage'))
 const PolicePage = React.lazy(() => import('./pages/PolicePage'))
 const ResetPasswordPage = React.lazy(() => import('./pages/ResetPasswordPage'))
+const ChangePasswordPage = React.lazy(() => import('./pages/ChangePasswordPage'))
 
 const AppContent: React.FC = () => {
   return (
@@ -45,16 +46,13 @@ const AppContent: React.FC = () => {
                 <ProductServicesMenu />
               </li>
               <li>
-                <Link to="/data-factory">核心技术</Link>
+                <Link to="/data-factory">核心技术体系</Link>
               </li>
               <li>
                 <Link to="/innovation-lab">开放创新实验室</Link>
               </li>
               <li>
                 <Link to="/improvement">反馈与建议</Link>
-              </li>
-              <li>
-                <Link to="/industry/police">公安</Link>
               </li>
               <li>
                 <Link to="/partners">合作伙伴</Link>
@@ -88,6 +86,7 @@ const AppContent: React.FC = () => {
               <Route path="/admin/deleted-articles" element={<AdminDeletedArticlesPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/change-password" element={<ChangePasswordPage />} />
               <Route path="/" element={<HomePage />} />
             </Routes>
           </React.Suspense>

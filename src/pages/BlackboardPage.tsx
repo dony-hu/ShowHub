@@ -16,20 +16,29 @@ const BlackboardPage: React.FC = () => {
   const [total, setTotal] = useState(0)
   const [listLoading, setListLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [showDrafts, setShowDrafts] = useState(false)
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
 
   useEffect(() => {
     loadArticles(page)
-  }, [page])
+  }, [page, showDrafts])
 
   const loadArticles = async (currentPage: number) => {
     setListLoading(true)
     setError(null)
     try {
-      const { articles: data, total: count } = await articleService.getPublishedArticles(currentPage, PAGE_SIZE)
-      setArticles(data)
-      setTotal(count)
+      if (showDrafts && user) {
+        // 加载用户自己的文章（包括草稿）
+        const { articles: data, total: count } = await articleService.getMyArticles(user.id, currentPage, PAGE_SIZE)
+        setArticles(data)
+        setTotal(count)
+      } else {
+        // 加载已发布的文章
+        const { articles: data, total: count } = await articleService.getPublishedArticles(currentPage, PAGE_SIZE)
+        setArticles(data)
+        setTotal(count)
+      }
     } catch (err) {
       console.error('加载文章列表失败:', err)
       setError('加载文章失败，请稍后重试。')
@@ -75,14 +84,24 @@ const BlackboardPage: React.FC = () => {
               <span className={`status-dot ${loading ? 'neutral' : isAuthenticated ? 'on' : 'off'}`} />
               <div className="auth-actions">
                 {isAuthenticated ? (
-                  <button
-                    type="button"
-                    className="auth-button ghost"
-                    onClick={handleLogout}
-                    disabled={loggingOut || loading}
-                  >
-                    {loggingOut ? '退出中…' : '退出登录'}
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      className="auth-button ghost"
+                      onClick={() => navigate('/change-password')}
+                      style={{ marginRight: '8px' }}
+                    >
+                      修改密码
+                    </button>
+                    <button
+                      type="button"
+                      className="auth-button ghost"
+                      onClick={handleLogout}
+                      disabled={loggingOut || loading}
+                    >
+                      {loggingOut ? '退出中…' : '退出登录'}
+                    </button>
+                  </>
                 ) : (
                   <button
                     type="button"
@@ -115,6 +134,22 @@ const BlackboardPage: React.FC = () => {
           <div className="section-eyebrow">ARTICLES</div>
           <h2>最新发布</h2>
           <p>所有内容均来自数据库，实时保持与后台一致。</p>
+          {isAuthenticated && (
+            <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
+              <button 
+                className={`pill ${!showDrafts ? 'primary' : 'ghost'}`}
+                onClick={() => { setShowDrafts(false); setPage(1); }}
+              >
+                已发布
+              </button>
+              <button 
+                className={`pill ${showDrafts ? 'primary' : 'ghost'}`}
+                onClick={() => { setShowDrafts(true); setPage(1); }}
+              >
+                我的草稿
+              </button>
+            </div>
+          )}
         </div>
 
         {listLoading ? (
@@ -141,19 +176,29 @@ const BlackboardPage: React.FC = () => {
                 <article
                   key={item.id}
                   className="bulletin-item wechat-style clickable"
-                  onClick={() => navigate(`/articles/${item.id}`)}
+                  onClick={() => {
+                    if (item.status === 'draft') {
+                      navigate(`/articles/${item.id}/edit`)
+                    } else {
+                      navigate(`/articles/${item.id}`)
+                    }
+                  }}
                 >
                   <div className="card-cover" style={coverStyle}></div>
                   <div className="card-content">
                     <div className="bulletin-meta">
                       <span className="pill ghost">{dateText}</span>
+                      {item.status === 'draft' && <span className="pill ghost" style={{ background: '#ffc107', color: '#856404' }}>草稿</span>}
                       <h3>{item.title}</h3>
                     </div>
                     {item.summary ? <p>{item.summary}</p> : <p className="muted">暂无摘要</p>}
                     {(item.tags?.includes(INTERNAL_TAG) || item.visibility === 'internal') && (
                       <div className="pill ghost" style={{ marginTop: '6px' }}>内部</div>
                     )}
-                    <div className="read-more">查看全文 →</div>
+                    <div className="article-stats" style={{ marginTop: '8px', fontSize: '12px', color: '#999', display: 'flex', gap: '12px' }}>
+                      <span>👁️ {item.view_count}</span>
+                    </div>
+                    <div className="read-more">{item.status === 'draft' ? '编辑' : '查看全文'} →</div>
                     {item.tags && item.tags.length > 0 && (
                       <div className="tag-row">
                         {item.tags.map((tag) => (

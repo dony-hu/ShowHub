@@ -3,152 +3,172 @@ import './PartnersPage.css';
 
 interface Partner {
   name: string;
-  logo: string;
+  nameEn?: string;
   description: string;
   website: string;
   industry: string;
+  color: string;
 }
 
 const PartnersPage: React.FC = () => {
   const technicalPartners: Partner[] = [
     {
       name: '园测信息科技',
-      logo: 'https://www.dpark.com.cn/images/logo.png',
+      nameEn: 'Dpark',
       description: '地理信息系统（GIS）、测绘与空间数据服务',
       website: 'http://www.dpark.com.cn/',
-      industry: '空间数据服务'
+      industry: '空间数据服务',
+      color: '#667eea'
     },
     {
-      name: '其域创新（XGRIDS）',
-      logo: 'https://xgrids.cn/logo.png',
+      name: '其域创新',
+      nameEn: 'XGRIDS',
       description: '三维空间智能技术与三维建模服务',
       website: 'https://xgrids.cn/',
-      industry: '三维建模'
+      industry: '三维建模',
+      color: '#764ba2'
     },
     {
-      name: '白犀牛（RINO.AI）',
-      logo: 'https://cdn.rino.ai/static/images/logo.png',
+      name: '白犀牛',
+      nameEn: 'RINO.AI',
       description: '人工智能视觉技术与三维内容平台',
       website: 'https://cn.rino.ai/',
-      industry: 'AI视觉技术'
+      industry: 'AI视觉技术',
+      color: '#f093fb'
     },
     {
-      name: '海致（Haizhi）',
-      logo: 'https://www.haizhi.com/static/logo.png',
+      name: '海致',
+      nameEn: 'Haizhi',
       description: '大数据与自然语言处理技术服务',
       website: 'https://www.haizhi.com/about',
-      industry: 'NLP与大数据'
+      industry: 'NLP与大数据',
+      color: '#4facfe'
     },
     {
-      name: '及刻（ISJike）',
-      logo: 'https://www.isjike.com/static/logo.png',
+      name: '及刻',
+      nameEn: 'ISJike',
       description: '数字内容与智能技术服务解决方案',
       website: 'https://www.isjike.com/',
-      industry: '数字内容服务'
+      industry: '数字内容服务',
+      color: '#43e97b'
     },
     {
-      name: '大势智慧（Daspatial）',
-      logo: 'https://www.daspatial.com/logo.png',
+      name: '大势智慧',
+      nameEn: 'Daspatial',
       description: '地理空间智能与空间数据分析平台',
       website: 'https://www.daspatial.com/',
-      industry: '空间智能分析'
+      industry: '空间智能分析',
+      color: '#fa709a'
     },
     {
-      name: '宽凳（Kuandeng）',
-      logo: 'https://www.kuandeng.com/images/logo.png',
+      name: '宽凳',
+      nameEn: 'Kuandeng',
       description: '智慧数据服务与软件开发解决方案',
       website: 'http://www.kuandeng.com/html/1/index.html',
-      industry: '软件开发服务'
+      industry: '软件开发服务',
+      color: '#fee140'
     },
     {
-      name: '影石科技（Insta360）',
-      logo: 'https://insta360-files.s3.amazonaws.com/logo.png',
+      name: '影石科技',
+      nameEn: 'Insta360',
       description: '全景影像硬件与虚拟现实摄像技术',
       website: 'https://www.insta360.com/cn/',
-      industry: '全景影像技术'
+      industry: '全景影像技术',
+      color: '#30cfd0'
     },
     {
-      name: '知天下AI / Explorer Global 3D',
-      logo: 'https://3d.explorerglobal.cn/images/logo.png',
+      name: '知天下AI',
+      nameEn: 'Explorer Global 3D',
       description: '人工智能与三维空间分析技术平台',
       website: 'https://3d.explorerglobal.cn/',
-      industry: '三维空间分析'
+      industry: '三维空间分析',
+      color: '#a8edea'
     },
     {
-      name: '留行科技（Manifold Tech）',
-      logo: 'https://www.manifoldtech.cn/logo.png',
+      name: '留行科技',
+      nameEn: 'Manifold Tech',
       description: '智能空间感知与三维重建技术',
       website: 'https://www.manifoldtech.cn/',
-      industry: '三维重建'
+      industry: '三维重建',
+      color: '#ff6a88'
     },
     {
       name: 'Waldek Technologies',
-      logo: 'https://www.waldek-tech.com/logo.png',
+      nameEn: '',
       description: '4D时空智能平台与AI相关软件',
       website: '#',
-      industry: '时空智能'
+      industry: '时空智能',
+      color: '#c471f5'
     },
     {
       name: '推行科技',
-      logo: 'https://infermove.cn/static/logo.png',
+      nameEn: 'Infermove',
       description: '推理与推行相关的智能技术方案',
       website: 'https://infermove.cn/',
-      industry: '推理技术'
+      industry: '推理技术',
+      color: '#fad961'
     }
   ];
 
   const academicPartners: Partner[] = [
     {
       name: '清华大学深圳研究院',
-      logo: 'https://www.tsinghua.edu.cn/logo.png',
+      nameEn: 'Tsinghua University',
       description: '专业从事高科技研发及其产业化',
       website: 'https://www.tsinghua.edu.cn/',
-      industry: '研究机构'
+      industry: '研究机构',
+      color: '#6a11cb'
     },
     {
       name: '北京交通大学计算机学院',
-      logo: 'https://www.bjtu.edu.cn/logo.png',
+      nameEn: 'BJTU',
       description: '计算机科学与技术研究与人才培养',
       website: 'https://www.bjtu.edu.cn/',
-      industry: '高等教育'
+      industry: '高等教育',
+      color: '#2575fc'
     },
     {
       name: '苏州科技大学',
-      logo: 'https://www.usts.edu.cn/logo.png',
+      nameEn: 'USTS',
       description: '工程应用型大学，致力于科技创新',
       website: 'https://www.usts.edu.cn/',
-      industry: '高等教育'
+      industry: '高等教育',
+      color: '#f46b45'
     }
   ];
 
   const dataProviders: Partner[] = [
     {
       name: '阿米华晟',
-      logo: 'https://www.amhszg.com/static/logo.png',
+      nameEn: 'Amap',
       description: '数据科技与数字服务解决方案提供商',
       website: 'http://www.amhszg.com/',
-      industry: '数据科技'
+      industry: '数据科技',
+      color: '#ee0979'
     },
     {
-      name: '滴滴地图（Didi Map）',
-      logo: 'https://cdn.didichuxing.com/static/images/logo.png',
+      name: '滴滴地图',
+      nameEn: 'Didi Map',
       description: '互联网地图与出行数据服务平台',
       website: 'https://map.didichuxing.com/',
-      industry: '地图服务'
+      industry: '地图服务',
+      color: '#ff6a00'
     },
     {
-      name: '高德地图（Amap）',
-      logo: 'https://a.amap.com/pc/static/img/logo-2x.png',
+      name: '高德地图',
+      nameEn: 'Amap',
       description: '国内领先的数字地图与位置服务提供商',
       website: 'https://www.amap.com/',
-      industry: '地图服务'
+      industry: '地图服务',
+      color: '#00c6ff'
     },
     {
       name: '前海数据',
-      logo: 'https://www.qhdata.cn/images/logo.png',
+      nameEn: 'Qianhai Data',
       description: '大数据管理与分析服务平台',
       website: 'http://www.qhdata.cn/',
-      industry: '数据分析'
+      industry: '数据分析',
+      color: '#0072ff'
     }
   ];
 
@@ -177,30 +197,28 @@ const PartnersPage: React.FC = () => {
             <div className="partners-grid">
               {technicalPartners.map((partner, index) => (
                 <div key={index} className="partner-card">
-                  <div className="partner-logo-container">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="partner-logo"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        (e.target as HTMLImageElement).parentElement!.innerHTML = 
-                          `<div class="partner-logo-placeholder">${partner.name}</div>`;
-                      }}
-                    />
+                  <div 
+                    className="partner-color-block"
+                    style={{ background: `linear-gradient(135deg, ${partner.color}, ${partner.color}dd)` }}
+                  >
+                    <div className="partner-name-block">
+                      <h3>{partner.name}</h3>
+                      {partner.nameEn && <span className="name-en">{partner.nameEn}</span>}
+                    </div>
                   </div>
                   <div className="partner-info">
-                    <h3 className="partner-name">{partner.name}</h3>
-                    <p className="partner-industry">{partner.industry}</p>
+                    <span className="partner-industry">{partner.industry}</span>
                     <p className="partner-description">{partner.description}</p>
-                    <a 
-                      href={partner.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="partner-link"
-                    >
-                      访问官网 →
-                    </a>
+                    {partner.website !== '#' && (
+                      <a 
+                        href={partner.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="partner-link"
+                      >
+                        访问官网 →
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -218,30 +236,28 @@ const PartnersPage: React.FC = () => {
             <div className="partners-grid">
               {dataProviders.map((provider, index) => (
                 <div key={index} className="partner-card">
-                  <div className="partner-logo-container">
-                    <img 
-                      src={provider.logo} 
-                      alt={provider.name}
-                      className="partner-logo"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        (e.target as HTMLImageElement).parentElement!.innerHTML = 
-                          `<div class="partner-logo-placeholder">${provider.name}</div>`;
-                      }}
-                    />
+                  <div 
+                    className="partner-color-block"
+                    style={{ background: `linear-gradient(135deg, ${provider.color}, ${provider.color}dd)` }}
+                  >
+                    <div className="partner-name-block">
+                      <h3>{provider.name}</h3>
+                      {provider.nameEn && <span className="name-en">{provider.nameEn}</span>}
+                    </div>
                   </div>
                   <div className="partner-info">
-                    <h3 className="partner-name">{provider.name}</h3>
-                    <p className="partner-industry">{provider.industry}</p>
+                    <span className="partner-industry">{provider.industry}</span>
                     <p className="partner-description">{provider.description}</p>
-                    <a 
-                      href={provider.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="partner-link"
-                    >
-                      访问官网 →
-                    </a>
+                    {provider.website !== '#' && (
+                      <a 
+                        href={provider.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="partner-link"
+                      >
+                        访问官网 →
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -259,30 +275,28 @@ const PartnersPage: React.FC = () => {
             <div className="partners-grid">
               {academicPartners.map((partner, index) => (
                 <div key={index} className="partner-card">
-                  <div className="partner-logo-container">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="partner-logo"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        (e.target as HTMLImageElement).parentElement!.innerHTML = 
-                          `<div class="partner-logo-placeholder">${partner.name}</div>`;
-                      }}
-                    />
+                  <div 
+                    className="partner-color-block"
+                    style={{ background: `linear-gradient(135deg, ${partner.color}, ${partner.color}dd)` }}
+                  >
+                    <div className="partner-name-block">
+                      <h3>{partner.name}</h3>
+                      {partner.nameEn && <span className="name-en">{partner.nameEn}</span>}
+                    </div>
                   </div>
                   <div className="partner-info">
-                    <h3 className="partner-name">{partner.name}</h3>
-                    <p className="partner-industry">{partner.industry}</p>
+                    <span className="partner-industry">{partner.industry}</span>
                     <p className="partner-description">{partner.description}</p>
-                    <a 
-                      href={partner.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="partner-link"
-                    >
-                      访问官网 →
-                    </a>
+                    {partner.website !== '#' && (
+                      <a 
+                        href={partner.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="partner-link"
+                      >
+                        访问官网 →
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

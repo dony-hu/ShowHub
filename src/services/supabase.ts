@@ -203,24 +203,32 @@ export const articleService = {
       .from('articles')
       .select('*, users:author_id(nickname, avatar_url)', { count: 'exact' })
       .eq('status', 'published')
+      .is('deleted_at', null)
       .order('published_at', { ascending: false })
       .range(offset, offset + pageSize - 1);
 
     return { articles: data || [], total: count || 0, page, pageSize };
   },
 
-  // 获取文章详情
-  getArticle: async (id: string) => {
-    const { data, error } = await supabase
+  // 获取文章详情（管理员可以查看已删除的文章）
+  getArticle: async (id: string, includeDeleted: boolean = false) => {
+    let query = supabase
       .from('articles')
       .select('*, users:author_id(*)')
-      .eq('id', id)
-      .is('deleted_at', null)
-      .single();
+      .eq('id', id);
+
+    // 如果不包含已删除的文章，则过滤掉
+    if (!includeDeleted) {
+      query = query.is('deleted_at', null);
+    }
+
+    const { data, error } = await query.maybeSingle();
 
     if (error) throw error;
+    if (!data) return null;
 
-    if (data && data.status === 'published') {
+    // 只有未删除的已发布文章才增加浏览量
+    if (data && data.status === 'published' && !data.deleted_at) {
       // 增加浏览量
       await supabase
         .from('articles')
@@ -340,11 +348,16 @@ export const articleService = {
 export const uploadService = {
   // 上传文章图片到Storage
   uploadArticleImage: async (file: File, articleId: string) => {
-    const fileName = `${articleId}/${Date.now()}_${file.name}`;
+    // 处理文件名，移除特殊字符和空格，保留扩展名
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const fileName = `${articleId}/${Date.now()}_${sanitizedName}`;
 
     const { error } = await supabase.storage
       .from('article-images')
-      .upload(fileName, file);
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
 
     if (error) throw error;
 
@@ -362,11 +375,16 @@ export const uploadService = {
 
   // 上传通用文件（如 PDF）
   uploadArticleFile: async (file: File, articleId: string) => {
-    const fileName = `${articleId}/${Date.now()}_${file.name}`;
+    // 处理文件名，移除特殊字符和空格
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const fileName = `${articleId}/${Date.now()}_${sanitizedName}`;
 
     const { error } = await supabase.storage
       .from('article-images')
-      .upload(fileName, file);
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
 
     if (error) throw error;
 
@@ -412,5 +430,143 @@ export const uploadService = {
       fileName,
       size: file.size
     };
+  }
+};
+
+// 评论接口定义
+export interface ArticleComment {
+  id: string;
+  article_id: string;
+  author_id: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at?: string;
+  users?: {
+    nickname: string;
+    avatar_url?: string;
+  };
+}
+
+// 评论相关服务
+export const commentService = {
+  // 获取文章的所有评论
+  getArticleComments: async (articleId: string) => {
+    const { data, error } = await supabase
+      .from('article_comments')
+      .select('*, users:author_id(nickname, avatar_url)')
+      .eq('article_id', articleId)
+      .is('deleted_at', null)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  },
+
+  // 添加评论
+  addComment: async (articleId: string, authorId: string, content: string) => {
+    const { data, error } = await supabase
+      .from('article_comments')
+      .insert([{
+        article_id: articleId,
+        author_id: authorId,
+        content
+      }])
+      .select('*, users:author_id(nickname, avatar_url)')
+      .single();
+
+    if (error) throw error;
+    return data as ArticleComment;
+  },
+
+  // 更新评论
+  updateComment: async (commentId: string, content: string) => {
+    const { data, error } = await supabase
+      .from('article_comments')
+      .update({
+        content,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', commentId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  // 删除评论（软删除）
+  deleteComment: async (commentId: string) => {
+    const { error } = await supabase
+      .from('article_comments')
+      .update({
+        deleted_at: new Date().toISOString()
+      })
+      .eq('id', commentId);
+
+    if (error) throw error;
+  },
+
+  // 管理员：永久删除评论
+  permanentlyDeleteComment: async (commentId: string) => {
+    const { error } = await supabase
+      .from('article_comments')
+      .delete()
+      .eq('id', commentId);
+
+    if (error) throw error;
+  }
+};
+
+// 点赞相关服务
+export const starService = {
+  // 获取文章的点赞数和用户是否已点赞
+  getArticleStars: async (articleId: string, userId?: string) => {
+    const { count } = await supabase
+      .from('article_stars')
+      .select('*', { count: 'exact' })
+      .eq('article_id', articleId);
+
+    let isStarred = false;
+    if (userId) {
+      const { data } = await supabase
+        .from('article_stars')
+        .select('id')
+        .eq('article_id', articleId)
+        .eq('user_id', userId)
+        .maybeSingle();
+
+      isStarred = !!data;
+    }
+
+    return {
+      count: count || 0,
+      isStarred
+    };
+  },
+
+  // 添加点赞
+  addStar: async (articleId: string, userId: string) => {
+    const { error } = await supabase
+      .from('article_stars')
+      .insert([{
+        article_id: articleId,
+        user_id: userId
+      }]);
+
+    if (error && error.code !== 'UNIQUE_VIOLATION') {
+      throw error;
+    }
+  },
+
+  // 移除点赞
+  removeStar: async (articleId: string, userId: string) => {
+    const { error } = await supabase
+      .from('article_stars')
+      .delete()
+      .eq('article_id', articleId)
+      .eq('user_id', userId);
+
+    if (error) throw error;
   }
 };
