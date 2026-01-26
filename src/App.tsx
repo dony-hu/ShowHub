@@ -40,9 +40,6 @@ const AppContent: React.FC = () => {
             </a>
             <ul className="nav-menu">
               <li>
-                <Link to="/home">首页</Link>
-              </li>
-              <li>
                 <ProductServicesMenu />
               </li>
               <li>

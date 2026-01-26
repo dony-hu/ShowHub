@@ -71,23 +71,26 @@
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
-  flex: 1;
-  justify-content: space-between;
+  flex: 0;
+  justify-content: flex-start;
+  margin-left: 2rem;
 }
 
 .nav-menu li {
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-menu a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 4px;
   transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .nav-menu a:hover {
@@ -100,6 +103,7 @@
   align-items: center;
   gap: 0.75rem;
   color: white;
+  margin-left: auto;
 }
 
 .account-pill {
