@@ -14,6 +14,8 @@ export const ArticleDetailPage: React.FC = () => {
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   useEffect(() => {
     loadArticle();
@@ -47,6 +49,19 @@ export const ArticleDetailPage: React.FC = () => {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!id) return;
+    
+    setDeleting(true);
+    try {
+      await articleService.deleteArticle(id);
+      navigate('/blackboard');
+    } catch (err) {
+      setError('删除文章失败：' + (err as Error).message);
+      setDeleting(false);
     }
   };
 
@@ -89,6 +104,13 @@ export const ArticleDetailPage: React.FC = () => {
 
       {/* 文章卡片 */}
       <div className="article-card">
+        {/* 封面图 */}
+        {article.cover_image && (
+          <div className="article-cover">
+            <img src={article.cover_image} alt={article.title} />
+          </div>
+        )}
+
         {/* Header 区域 */}
         <div className="article-header">
           <div className="header-content">
@@ -98,8 +120,17 @@ export const ArticleDetailPage: React.FC = () => {
           </div>
           {user?.id === article.author_id && (
             <div className="header-actions">
-              <button className="btn btn-primary" onClick={() => navigate(`/articles/${article.id}/edit`)}>
-                编辑
+              <button 
+                className="btn btn-secondary" 
+                onClick={() => navigate(`/articles/${article.id}/edit`)}
+              >
+                ✏️ 编辑
+              </button>
+              <button 
+                className="btn btn-danger" 
+                onClick={() => setShowDeleteConfirm(true)}
+              >
+                🗑️ 删除
               </button>
             </div>
           )}
@@ -126,6 +157,32 @@ export const ArticleDetailPage: React.FC = () => {
           </ReactMarkdown>
         </div>
       </div>
+
+      {/* 删除确认对话框 */}
+      {showDeleteConfirm && (
+        <div className="delete-confirm-overlay">
+          <div className="delete-confirm-dialog">
+            <h2>删除文章？</h2>
+            <p>此操作无法撤销，确定要删除这篇文章吗？</p>
+            <div className="confirm-actions">
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowDeleteConfirm(false)}
+                disabled={deleting}
+              >
+                取消
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={handleDelete}
+                disabled={deleting}
+              >
+                {deleting ? '删除中...' : '确认删除'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

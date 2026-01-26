@@ -37,6 +37,7 @@ interface BulletinItem {
   cover: string
   content?: string
   articleId?: string
+  authorId?: string
 }
 
 interface Article {
@@ -1143,9 +1144,10 @@ const BlackboardPage: React.FC = () => {
       title: article.title,
       date,
       detail: article.summary || '',
-      cover: 'linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(153, 102, 204, 0.25))',
+      cover: article.cover_image || 'linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(153, 102, 204, 0.25))',
       content: article.content,
-      articleId: article.id
+      articleId: article.id,
+      authorId: article.author_id
     }
   }
 
@@ -1243,7 +1245,6 @@ const BlackboardPage: React.FC = () => {
               <article 
                 key={item.title} 
                 className={`bulletin-item wechat-style ${item.content ? 'clickable' : ''}`}
-                onClick={() => handleArticleClick(item)}
                 style={{ cursor: item.content ? 'pointer' : 'default' }}
               >
                 <div className="card-cover" style={{ background: item.cover }}></div>
@@ -1254,62 +1255,65 @@ const BlackboardPage: React.FC = () => {
                   </div>
                   <p>{item.detail}</p>
                   {item.content && <div className="read-more">点击阅读全文 →</div>}
+                  {item.articleId && user?.id === item.authorId && (
+                    <div className="article-actions">
+                      <button 
+                        className="action-btn edit-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/articles/${item.articleId}/edit`);
+                        }}
+                      >
+                        ✏️ 编辑
+                      </button>
+                      <button 
+                        className="action-btn delete-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (confirm('确定要删除这篇文章吗？')) {
+                            articleService.deleteArticle(item.articleId!).then(() => {
+                              setPublishedArticles(prev => prev.filter(a => a.id !== item.articleId));
+                            });
+                          }
+                        }}
+                      >
+                        🗑️ 删除
+                      </button>
+                    </div>
+                  )}
                 </div>
+                {item.content && (
+                  <div 
+                    className="card-click-overlay"
+                    onClick={() => handleArticleClick(item)}
+                  />
+                )}
               </article>
             ))
           })()}
         </div>
       </section>
 
+      {/* 注：以下几个部分的硬编码数据已禁用，改为仅显示从数据库动态加载的已发布文章
       <section className="blackboard-section">
         <div className="section-header">
           <div className="section-eyebrow">TRENDS</div>
           <h2>技术趋势</h2>
           <p>研发一线正在尝试的方向与可落地的实验。</p>
         </div>
-        <div className="cards-grid">
-          {techTrends.map((item) => (
-            <article key={item.title} className="chalk-card wechat-style">
-              <div className="card-cover" style={{ background: item.cover }}></div>
-              <div className="card-content">
-                <h3>{item.title}</h3>
-                <p className="card-summary">{item.summary}</p>
-                <div className="tag-row">
-                  {item.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="empty-state">
+          <p>发布技术趋势文章来填充此部分。</p>
         </div>
       </section>
 
       <section className="blackboard-section">
         <div className="section-header">
           <div className="section-eyebrow">STORIES</div>
-          <h2>产品背后故事</h2>
-          <p>版本迭代的抉择、架构思路与复盘心得。</p>
+          <h2>产品故事</h2>
+          <p>实战复盘、采坑经验、系统设计讨论。</p>
         </div>
-        <div className="cards-grid stories">
-          {productStories.map((item) => (
-            <article key={item.title} className="chalk-card wechat-style story-card">
-              <div className="card-cover" style={{ background: item.cover }}></div>
-              <div className="card-content">
-                <div className="card-meta">
-                  <span className="pill">{item.owner}</span>
-                </div>
-                <h3>{item.title}</h3>
-                <p className="card-summary">{item.summary}</p>
-                <div className="learning">
-                  <span className="learning-label">复盘要点</span>
-                  <p>{item.learning}</p>
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="empty-state">
+          <p>发布产品故事来填充此部分。</p>
         </div>
       </section>
 
@@ -1319,18 +1323,11 @@ const BlackboardPage: React.FC = () => {
           <h2>行业展望</h2>
           <p>我们认为值得下注的赛道与策略。</p>
         </div>
-        <div className="outlook-grid">
-          {outlooks.map((item) => (
-            <article key={item.title} className="chalk-card wechat-style outlook-card">
-              <div className="card-cover" style={{ background: item.cover }}></div>
-              <div className="card-content">
-                <h3>{item.title}</h3>
-                <p>{item.summary}</p>
-              </div>
-            </article>
-          ))}
+        <div className="empty-state">
+          <p>发布行业展望来填充此部分。</p>
         </div>
       </section>
+      */}
 
       {/* 文章详情弹窗 */}
       {selectedArticle && (

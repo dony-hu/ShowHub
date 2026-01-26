@@ -29,6 +29,7 @@ export const ArticleEditorPage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
     // 等待认证状态加载完成
@@ -102,6 +103,24 @@ export const ArticleEditorPage: React.FC = () => {
       setError('保存失败：' + (err as Error).message);
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleCoverUpload = async (file: File) => {
+    if (!articleId && article.status === 'draft') {
+      setError('请先保存文章作为草稿');
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const result = await uploadService.uploadArticleImage(file, articleId || 'temp');
+      setArticle(prev => ({ ...prev, cover_image: result.url }));
+    } catch (err) {
+      setError('封面上传失败：' + (err as Error).message);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -239,18 +258,120 @@ export const ArticleEditorPage: React.FC = () => {
               </select>
             </div>
 
-            <div className="form-group">
+            <div className="form-group span-2">
+              <label>封面图</label>
+              {article.cover_image ? (
+                <div className="cover-preview">
+                  <img src={article.cover_image} alt="封面预览" />
+                  <div className="cover-actions">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => setArticle(prev => ({ ...prev, cover_image: '' }))}
+                    >
+                      🗑️ 移除
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => {
+                        const input = document.createElement('input');
+                        input.type = 'file';
+                        input.accept = 'image/*';
+                        input.onchange = (e: any) => {
+                          const file = e.target.files[0];
+                          if (file) handleCoverUpload(file);
+                        };
+                        input.click();
+                      }}
+                      disabled={uploading}
+                    >
+                      🔄 更换
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = (e: any) => {
+                      const file = e.target.files[0];
+                      if (file) handleCoverUpload(file);
+                    };
+                    input.click();
+                  }}
+                  disabled={uploading}
+                >
+                  {uploading ? '上传中...' : '📷 上传封面图'}
+                </button>
+              )}
+            </div>
+
+            <div className="form-group span-2">
               <label>标签</label>
-              <input
-                type="text"
-                placeholder="逗号分隔"
-                value={article.tags?.join(', ') || ''}
-                onChange={e => setArticle(prev => ({
-                  ...prev,
-                  tags: e.target.value.split(',').map(t => t.trim()).filter(Boolean)
-                }))}
-                className="form-input"
-              />
+              <div className="tag-input-container">
+                <div className="tag-chips">
+                  {article.tags?.map((tag, idx) => (
+                    <span key={idx} className="tag-chip">
+                      {tag}
+                      <button
+                        type="button"
+                        className="tag-remove"
+                        onClick={() => setArticle(prev => ({
+                          ...prev,
+                          tags: prev.tags?.filter((_, i) => i !== idx) || []
+                        }))}
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  placeholder="输入标签，按回车或Tab添加"
+                  value={tagInput}
+                  onChange={e => setTagInput(e.target.value)}
+                  onKeyDown={e => {
+                    if ((e.key === 'Enter' || e.key === 'Tab') && tagInput.trim()) {
+                      e.preventDefault();
+                      const newTag = tagInput.trim();
+                      if (!article.tags?.includes(newTag)) {
+                        setArticle(prev => ({
+                          ...prev,
+                          tags: [...(prev.tags || []), newTag]
+                        }));
+                      }
+                      setTagInput('');
+                    }
+                  }}
+                  className="form-input tag-input"
+                />
+              </div>
+              <div className="preset-tags">
+                {['技术', '产品', '行业洞察', 'AI', '地图', '数据'].map(tag => (
+                  <button
+                    key={tag}
+                    type="button"
+                    className="preset-tag"
+                    onClick={() => {
+                      if (!article.tags?.includes(tag)) {
+                        setArticle(prev => ({
+                          ...prev,
+                          tags: [...(prev.tags || []), tag]
+                        }));
+                      }
+                    }}
+                    disabled={article.tags?.includes(tag)}
+                  >
+                    + {tag}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="form-group span-2">
