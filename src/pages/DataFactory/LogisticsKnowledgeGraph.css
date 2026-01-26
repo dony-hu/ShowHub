@@ -610,3 +610,30 @@
   font-size: 1.5rem;
   line-height: 1;
 }
+
+.graph-footer-cta {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.graph-footer-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #10b981 0%, #22d3ee 100%);
+  color: #0a0a14;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(34, 211, 238, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.graph-footer-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(34, 211, 238, 0.35);
+}

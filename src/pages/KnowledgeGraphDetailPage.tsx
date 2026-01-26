@@ -24,6 +24,13 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
             <span className="detail-tag">关系图谱</span>
             <span className="detail-tag">智能搜索</span>
           </div>
+
+          <div className="detail-cta">
+            <a className="detail-cta-button" href="/data-factory-detail">
+              查看数据工厂详细方案 →
+            </a>
+            <p className="detail-cta-subtitle">一站式让数据接入、治理、应用全链路可控，快速把数据价值送达一线。</p>
+          </div>
         </div>
 
         <section className="graph-demo-section">
@@ -181,6 +188,12 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <div className="detail-footer-link">
+          <a className="detail-footer-button" href="/knowledge-graph-detail">
+            查看时空知识图谱详情页 →
+          </a>
+        </div>
       </div>
     </div>
   );

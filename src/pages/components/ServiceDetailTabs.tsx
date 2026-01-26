@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import './PolicyArchitectureDiagram.css';
 
+const DETAIL_URL = 'https://service-579851306606.us-west1.run.app'
+
+const DetailButton = () => (
+  <a className="detail-btn" href={DETAIL_URL} target="_blank" rel="noreferrer">
+    了解详情
+  </a>
+)
+
 const TABS = [
   { key: 'sensing', label: '态势感知', icon: '👁️' },
   { key: 'dispatch', label: '时空接处警', icon: '🚨' },
@@ -15,7 +23,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>态势感知能力 <span className="tab-badge">核心能力</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">
@@ -42,7 +50,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>时空接处警能力 <span className="tab-badge">智能调度</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">
@@ -69,7 +77,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>风险治理防控能力 <span className="tab-badge">主动防控</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">
@@ -90,14 +98,14 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
           <li>满足高安全等级与国密标准的长期运行要求</li>
         </ul>
       </div>
-      <button className="detail-btn">了解详情</button>
+      <DetailButton />
     </div>
   ),
   tactics: (
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>战术空间研判能力 <span className="tab-badge">决策支持</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">
@@ -124,7 +132,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>勤务资源精算能力 <span className="tab-badge">效能优化</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">
@@ -151,7 +159,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
     <div className="service-detail-panel">
       <div className="service-panel-header">
         <h4>安保仿真推演能力 <span className="tab-badge">全流程支持</span></h4>
-        <button className="detail-btn">了解详情</button>
+        <DetailButton />
       </div>
       
       <div className="capability-section">

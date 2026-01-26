@@ -24,7 +24,6 @@ export const LogisticsKnowledgeGraph: React.FC = () => {
         clearInterval(timer);
       }
     }, duration / steps);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -251,6 +250,12 @@ export const LogisticsKnowledgeGraph: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="graph-footer-cta">
+          <a className="graph-footer-button" href="/knowledge-graph-detail">
+            查看知识图谱详细方案 →
+          </a>
         </div>
       </div>
     </section>

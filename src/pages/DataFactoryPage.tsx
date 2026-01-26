@@ -20,6 +20,30 @@ export const DataFactoryPage: React.FC = () => {
         <DataFactoryPrinciples />
         <StaticFlowDiagram />
         
+        <div className="df-closure">
+          <div className="df-closure-content">
+            <h3 className="df-closure-title">从接入到应用的完整数据链路</h3>
+            <p className="df-closure-text">
+              丰图数据工厂为企业构建从数据接入、治理到应用的完整链路。通过自动化编排能力，
+              让数据接入成本降低80%，质量管控贯穿全链路，最终把数据能力快速转化为业务价值。
+            </p>
+            <div className="df-closure-features">
+              <div className="df-closure-feature-item">
+                <span className="df-closure-feature-icon">⚡</span>
+                <span>快速接入落地</span>
+              </div>
+              <div className="df-closure-feature-item">
+                <span className="df-closure-feature-icon">📊</span>
+                <span>全链路质量管控</span>
+              </div>
+              <div className="df-closure-feature-item">
+                <span className="df-closure-feature-icon">🚀</span>
+                <span>规模化资产沉淀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div className="cta-button-wrapper">
           <a href="/data-factory-detail" className="detail-link-button">
             查看数据工厂详细方案 →
@@ -29,12 +53,6 @@ export const DataFactoryPage: React.FC = () => {
       
       {/* 物流知识图谱部分 */}
       <div id="knowledge-graph-section">
-        <div className="cta-button-wrapper">
-          <a href="/knowledge-graph-detail" className="detail-link-button">
-            查看知识图谱详细方案 →
-          </a>
-        </div>
-
         <LogisticsKnowledgeGraph />
       </div>
 
