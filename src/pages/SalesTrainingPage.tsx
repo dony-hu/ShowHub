@@ -810,7 +810,7 @@ const SalesTrainingPage: React.FC = () => {
           <section className="section customer-relations">
             <div className="section-header">
               <h1>🤝 客户关系发展</h1>
-              <p>三个阶段的客户关系管理能力</p>
+              <p>从勤奋跑动入局，以信任组局，终至生态控局。</p>
             </div>
 
             <div className="stages-container">
@@ -884,7 +884,7 @@ const SalesTrainingPage: React.FC = () => {
           <section className="section project-operations">
             <div className="section-header">
               <h1>⚙️ 项目运作能力</h1>
-              <p>从感知到成长的完整项目运作体系</p>
+              <p>拒绝运气依赖，从规范执行进阶为运筹帷幄。</p>
             </div>
 
             <div className="stages-container">
@@ -974,7 +974,7 @@ const SalesTrainingPage: React.FC = () => {
           <section className="section product-tools">
             <div className="section-header">
               <h1>🛠️ 产品、工具与数智化</h1>
-              <p>武器库与外挂的演进路径</p>
+              <p>从单兵武器，进化为驱动决策的数智外挂。</p>
             </div>
 
             <div className="stages-container">
@@ -1064,7 +1064,7 @@ const SalesTrainingPage: React.FC = () => {
           <section className="section organization-strategy">
             <div className="section-header">
               <h1>👑 组织运作与战略发展</h1>
-              <p>从听令执行到战略布局的成长之路</p>
+              <p>突破单兵局限，构建协同生态，跃升至战略经营。</p>
             </div>
 
             <div className="stages-container">
