@@ -46,7 +46,6 @@ export const ProductServicesMenu: React.FC = () => {
       url: '/industry/police',
       desc: '警务时空决策服务专家',
       packages: [
-        { name: '态势感知', desc: '警情、人员、资源全域可视化' },
         { name: '接处警支撑', desc: '精准定位到风险研判全链支持' },
         { name: '风险防控', desc: '发现隐患到治理的非现场管控' },
         { name: '战术空间研判', desc: '攻防决策与环境透明化支持' },
@@ -80,7 +79,7 @@ export const ProductServicesMenu: React.FC = () => {
       ]
     },
     {
-      name: '城市治理运营',
+      name: '城市管理',
       icon: '🏙️',
       url: '/industry/urban-management',
       desc: '城市部件与事件治理决策',
