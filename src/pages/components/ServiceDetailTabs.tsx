@@ -10,7 +10,6 @@ const DetailButton = () => (
 )
 
 const TABS = [
-  { key: 'sensing', label: '态势感知', icon: '👁️' },
   { key: 'dispatch', label: '时空接处警', icon: '🚨' },
   { key: 'risk', label: '风险治理防控', icon: '🛡️' },
   { key: 'tactics', label: '战术空间研判', icon: '🎯' },
@@ -19,33 +18,6 @@ const TABS = [
 ];
 
 const TAB_CONTENT: Record<string, React.ReactNode> = {
-  sensing: (
-    <div className="service-detail-panel">
-      <div className="service-panel-header">
-        <h4>态势感知能力 <span className="tab-badge">核心能力</span></h4>
-        <DetailButton />
-      </div>
-      
-      <div className="capability-section">
-        <h5>🎯 全域态势可视化</h5>
-        <ul>
-          <li>支持公安、政务、企业专网环境独立部署，数据物理隔离</li>
-          <li>全域警情、警力、资源实时可视化呈现</li>
-          <li>多源异构数据融合，动态感知现场态势变化</li>
-          <li>支持突发事件快速响应与指挥调度</li>
-        </ul>
-      </div>
-
-      <div className="capability-section">
-        <h5>🔒 数据与系统安全可控</h5>
-        <ul>
-          <li>本地数据环环存储与计算，满足安全合规要求</li>
-          <li>权限分级、账号隔离，操作审计可追溯</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
-        </ul>
-      </div>
-    </div>
-  ),
   dispatch: (
     <div className="service-detail-panel">
       <div className="service-panel-header">
@@ -54,21 +26,21 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
       </div>
       
       <div className="capability-section">
-        <h5>🚨 智能接处警流程</h5>
+        <h5>🚨 核心决策能力</h5>
         <ul>
-          <li>支持公安、政务、企业专网环境的接处警流程定制</li>
-          <li>警情精准定位，自动推荐最优处警路径与警力配置</li>
-          <li>全链路流程跟踪，实时掌握处警进度与效率</li>
-          <li>无外部数据输出，满足数据不出网要求</li>
+          <li><strong>L24级微观标定</strong>：突破传统定位局限，将模糊坐标精准锁定至微观地理实体</li>
+          <li><strong>秒级风险画像</strong>：接警瞬间碰撞全息档案，自动预警重点关注人员等高危人地标签</li>
+          <li><strong>语义智能清洗</strong>：内置行业NLP引擎，支持将口语化、碎片化描述秒级映射为标准地址</li>
+          <li><strong>接警即研判</strong>：改变滞后模式，同步推送周边警力热力与处置预案，支撑即时指挥</li>
         </ul>
       </div>
 
       <div className="capability-section">
         <h5>🔒 数据与系统安全可控</h5>
         <ul>
-          <li>本地数据环环存储与计算，风险自动识别与预警</li>
-          <li>权限分级、账号隔离，满足高等级安全审计要求</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
+          <li><strong>可用不可见</strong>：敏感信息自动脱敏，仅输出风险标签与决策结果，原始档案不落地</li>
+          <li><strong>全链路审计</strong>：建立"接警-研判-查询"的完整日志审计，确保每一次数据调用可追溯</li>
+          <li><strong>国密级防护</strong>：全流程采用 SM4 国密算法加密传输，满足公安专网高等级合规要求</li>
         </ul>
       </div>
     </div>
@@ -81,21 +53,21 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
       </div>
       
       <div className="capability-section">
-        <h5>🛡️ 智能风险管控体系</h5>
+        <h5>🛡️ 核心决策能力</h5>
         <ul>
-          <li>支持公安、政务、企业专网环境的风险治理场景</li>
-          <li>智能识别风险隐患，自动分级预警与推送</li>
-          <li>非现场管控能力，远程干预与智能处置</li>
-          <li>风险治理全流程闭环，从发现到消除可追溯</li>
+          <li><strong>多维风险融合一张图</strong>：汇聚警情、重点人员、高危场所数据，构建全域"动态风险一张图"</li>
+          <li><strong>隐患智能归因</strong>：深度挖掘高发案背后的时空诱因（如管理盲区），实现从"治标"到"治本"</li>
+          <li><strong>源头治理闭环</strong>：自动生成"源头整改单"推送至责任单位，全流程跟踪整改效果，实现隐患清零</li>
+          <li><strong>分级分类管控</strong>：对辖区网格进行红/黄/绿动态分级预警，驱动治理资源向高危区域精准倾斜</li>
         </ul>
       </div>
 
       <div className="capability-section">
         <h5>🔒 数据与系统安全可控</h5>
         <ul>
-          <li>本地数据环环存储与计算，模型推理本地化运行</li>
-          <li>权限分级、操作审计，满足高等级安全合规要求</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
+          <li><strong>数据不出专网</strong>：支持本地化部署，原始数据在专网内闭环存储与计算，确保物理隔离</li>
+          <li><strong>分级授权审计</strong>：建立严格的权限分级与账号隔离体系，关键操作全程留痕，满足合规审计</li>
+          <li><strong>模型安全封装</strong>：核心风险计算模型采用加密封装技术，确保算法运行过程安全可控</li>
         </ul>
       </div>
       <DetailButton />
@@ -109,21 +81,21 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
       </div>
       
       <div className="capability-section">
-        <h5>🎯 复杂环境推演分析</h5>
+        <h5>🎯 核心决策能力</h5>
         <ul>
-          <li>支持公安、政务、企业专网环境的战术推演需求</li>
-          <li>复杂环境下攻防策略推演与多方案对比</li>
-          <li>空间要素透明化，三维场景辅助决策</li>
-          <li>实战数据与模型深度融合，提升决策精准度</li>
+          <li><strong>LCC 室内结构透视</strong>：穿透建筑外立面，清晰呈现"户型、电梯"等微观结构，消除室内盲区</li>
+          <li><strong>视域盲区智能计算</strong>：基于 3D 实景分析监控死角与观察视线，辅助战术点位部署与隐蔽接敌</li>
+          <li><strong>战术突击路径规划</strong>：智能生成最优突击与撤离路线，模拟不同入口（门/窗）的攻防效果</li>
+          <li><strong>攻防态势单向透明</strong>：实时融合警力位置与三维环境，为指挥员构建"敌暗我明"的绝对战术优势</li>
         </ul>
       </div>
 
       <div className="capability-section">
         <h5>🔒 数据与系统安全可控</h5>
         <ul>
-          <li>本地数据环环存储与计算，推演结果不出专网</li>
-          <li>权限分级、场景隔离，满足高等级保密要求</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
+          <li><strong>底图本地私有化</strong>：高精度室内地图与三维实景数据实现本地私有化部署，杜绝地理信息外泄风险</li>
+          <li><strong>细粒度权限管控</strong>：对敏感区域（如重点单位）查看权限实施严格分级，非授权人员不可见</li>
+          <li><strong>测绘合规保障</strong>：系统数据处理全流程符合国家测绘地理信息安全保密标准，满足合规要求</li>
         </ul>
       </div>
     </div>
@@ -131,26 +103,26 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
   resource: (
     <div className="service-detail-panel">
       <div className="service-panel-header">
-        <h4>勤务资源精算能力 <span className="tab-badge">效能优化</span></h4>
+        <h4>勤务资源精算决策能力 <span className="tab-badge">效能优化</span></h4>
         <DetailButton />
       </div>
       
       <div className="capability-section">
-        <h5>📊 智能资源调度</h5>
+        <h5>📊 核心决策能力</h5>
         <ul>
-          <li>支持公安、政务、企业专网环境的资源优化场景</li>
-          <li>警力、装备等资源智能调度与动态配置</li>
-          <li>量化评估投放效能，数据驱动勤务优化</li>
-          <li>提升勤务覆盖率、响应速度与处置效率</li>
+          <li><strong>风险热力驱动布防</strong>：基于历史警情，算法自动生成必巡点位、常态点位、与重点压制区域</li>
+          <li><strong>效能指标量化精算</strong>：建立"覆盖-压降"精算模型，量化评估核心区覆盖率与警力投放性价比</li>
+          <li><strong>动态巡防补盲决策</strong>：实时监测巡逻轨迹，智能识别漏管区域，杜绝防控死角</li>
+          <li><strong>勤务科学排兵布阵</strong>：将有限警力从"散乱撒网"升级为向高危时段、高发案点位精准投送</li>
         </ul>
       </div>
 
       <div className="capability-section">
         <h5>🔒 数据与系统安全可控</h5>
         <ul>
-          <li>本地数据环环存储与计算，资源数据不出专网</li>
-          <li>权限分级、操作审计，满足高等级安全要求</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
+          <li><strong>轨迹数据不出专网</strong>：所有警力定位与轨迹数据在本地闭环存储与计算，严防敏感路线外泄</li>
+          <li><strong>权限分级审计</strong>：对警力分布图实施严格的分级授权可见，操作记录全链路审计，防止非授权查看</li>
+          <li><strong>高等级合规运行</strong>：满足公安高安全等级与国密标准的长期稳定运行要求</li>
         </ul>
       </div>
     </div>
@@ -163,21 +135,21 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
       </div>
       
       <div className="capability-section">
-        <h5>🎬 重大安保全链支持</h5>
+        <h5>🎬 核心决策能力</h5>
         <ul>
-          <li>支持公安、政务、企业专网环境的安保任务</li>
-          <li>重大安保任务预案制作、风险推演与复盘汇报</li>
-          <li>多场景仿真模拟，辅助决策优化与应急响应</li>
-          <li>时空数据与三维场景深度融合，提升推演真实性</li>
+          <li><strong>全要素三维沙盘</strong>：基于城市级实景底座，支持对警力、设施、车辆进行全要素三维标绘</li>
+          <li><strong>多视角动态推演</strong>：支持模拟"车队行进"与"制高点狙击"第一人称视角，动态验证安保方案</li>
+          <li><strong>视域盲区智能识别</strong>：算法自动计算安保视线遮挡与监控盲区，辅助优化哨位部署，排除隐患</li>
+          <li><strong>预案可视化复盘</strong>：全流程记录推演过程，自动生成可回溯、可汇报的数字化安保预案</li>
         </ul>
       </div>
 
       <div className="capability-section">
         <h5>🔒 数据与系统安全可控</h5>
         <ul>
-          <li>本地数据环环存储与计算，推演数据不出专网</li>
-          <li>权限分级、场景隔离，满足高等级保密审计要求</li>
-          <li>满足高安全等级与国密标准的长期运行要求</li>
+          <li><strong>高精数据本地化</strong>：所有三维模型与实景数据在本地私有云部署，确保敏感地理信息不外泄</li>
+          <li><strong>线路方案绝密管控</strong>：对警卫路线与核心安保方案实施绝密级权限控制，严防核心情报泄露</li>
+          <li><strong>全流程合规审计</strong>：推演与查看记录全链路留痕，满足重大安保活动的高等级合规审计要求</li>
         </ul>
       </div>
     </div>
@@ -185,7 +157,7 @@ const TAB_CONTENT: Record<string, React.ReactNode> = {
 };
 
 const ServiceDetailTabs: React.FC = () => {
-  const [active, setActive] = useState('sensing');
+  const [active, setActive] = useState('dispatch');
   return (
     <>
       <div style={{ textAlign: 'center', marginBottom: '40px', marginTop: '20px' }}>

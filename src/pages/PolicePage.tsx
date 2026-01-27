@@ -3,24 +3,24 @@ import './PolicePage.css'
 import PolicyArchitectureDiagram from './components/PolicyArchitectureDiagram'
 
 const chain = [
-  { title: '接警与研判', desc: '警情接入 · 关联分析 · 态势研判' },
-  { title: '决策推演', desc: '方案生成 · 风险评估 · 资源配置' },
-  { title: '勤务部署', desc: '警力编组 · 区域布控 · 行动下发' },
-  { title: '复盘与评估', desc: '过程可回溯 · 效果可评估' }
+  { title: '时空感知与定位', desc: '警情接入 · 关联分析 · 态势研判' },
+  { title: '智能归因与策略', desc: '方案生成 · 风险评估 · 资源配置' },
+  { title: '精准触达与处置', desc: '警力编组 · 区域布控 · 行动下发' },
+  { title: '效能量化与闭环', desc: '过程可回溯 · 效果可评估' }
 ]
 
 const summary = [
   {
-    title: '结果可解释可复盘',
-    desc: '每一次决策，都能追溯依据与效果'
+    title: '全要素实体归一',
+    desc: '不再是孤立的经纬度，而是基于 L24 微观地址，将警情、人员、设施、警力统一锚定为互相关联的"时空图谱"，奠定决策基础'
   },
   {
-    title: '面向决策计算',
-    desc: '不是展示数据，而是计算方案与路径'
+    title: '面向实战的决策计算',
+    desc: '告别"看图说话"，通过时空算子深度挖掘数据价值，直接输出风险画像、处置策略与行动路线，让系统代替人脑完成复杂计算'
   },
   {
-    title: '统一时空建模',
-    desc: '将警情、人员、区域、设施、资源统一为时空实体'
+    title: '全链路行动闭环',
+    desc: '每一条决策指令都能精准下达，每一次执行动作都能被量化评估。从"指令下发"到"效果复盘"，实现业务流的完整闭环与效能跃升'
   }
 ]
 
@@ -69,7 +69,7 @@ const PolicePage: React.FC = () => {
         {/* SECTION 4: 能力总结 */}
         <section className="section-block">
           <h2 className="section-title">从“看得见”到“用得动”的警务时空决策能力</h2>
-          <p className="section-subtitle">所有数据，最终都必须服务行动</p>
+          <p className="section-subtitle">所有数据，最终都必须服务于每一次实战行动</p>
           <div className="summary">
             {summary.map((item) => (
               <div key={item.title} className="summary-card">

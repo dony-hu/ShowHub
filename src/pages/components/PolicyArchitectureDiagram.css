@@ -76,8 +76,8 @@
 .decision-services {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
 }
 
 .service-item {

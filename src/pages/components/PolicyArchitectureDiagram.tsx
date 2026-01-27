@@ -21,15 +21,7 @@ const PolicyArchitectureDiagram: React.FC = () => {
         <div className="layer-1-content">
           <div className="decision-services">
             <div className="service-item">
-              <span className="service-icon">👁️</span>
-              <div className="service-info">
-                <div className="service-name">态势感知</div>
-                <div className="service-desc">警情、人员、资源全域可视</div>
-              </div>
-            </div>
-
-            <div className="service-item">
-              <span className="service-icon">🚨</span>
+              <span className="service-icon"></span>
               <div className="service-info">
                 <div className="service-name">时空接处警</div>
                 <div className="service-desc">精准定位到风险研判全链支持</div>
