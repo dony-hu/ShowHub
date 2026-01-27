@@ -114,7 +114,7 @@ const SalesTrainingPage: React.FC = () => {
       id: 'director-sales',
       title: '导演型销售',
       subtitle: '"多面手与组局者"',
-      description: '"我是导演，这场戏我说了算。" 知道胜负手在哪里，知道资源在哪里。我能搞定人，也能搞定事，是部门扛指标的腰部力量',
+      description: '"我是导演，这场戏我说了算。" 知道胜负手在哪里，知道资源在哪里；既能搞定人，也能搞定事。',
       stage: '骨干/主力期',
       core: '资源整合力。这个阶段主要靠脑子和情商。你不再单打独斗，而是像导演一样，拿着剧本（项目策略），指挥灯光（产品）、舞美（交付）、群演（伙伴）在客户面前演好一场大戏。',
       aiAbility: '会用AI做竞争分析、方案美化、模拟谈判，把工具变成自己的"副官"。'
@@ -123,7 +123,7 @@ const SalesTrainingPage: React.FC = () => {
       id: 'business-expert',
       title: '经营型专家',
       subtitle: '"运筹帷幄的操盘手"',
-      description: '"道爷我成啦，运筹帷幄决胜千里。" 客户视我为战略伙伴，公司视我为经营人才。我不只看现在的签单，看到的是未来的格局和生态。',
+      description: '"运筹帷幄决胜千里。" 不只看现在的签单，看到的是未来的格局和生态。',
       stage: '专家/管理期',
       core: '战略经营力。这个阶段主要靠格局和数智化思维。你关注的不是单一项目的输赢，而是整个区域/行业的生态布局和利润经营。',
       aiAbility: '善用数据和智能分析来辅助战略决策，用AI洞察宏观趋势，实现降维打击。'
@@ -218,8 +218,8 @@ const SalesTrainingPage: React.FC = () => {
       title: '导演型销售',
       subtitle: '"多面手与组局者"',
       mindset: [
-        '"我的客户关系是一张网，那边有我的名号。"',
-        '"投资建设是个计划，我也有我的参与计划。"'
+        '"我是导演，我是最懂客户的人，组织内外部资源围绕客户作业。"',
+        '"我的客户关系是一张网，投资建设是个计划，我也有我的参与计划。"'
       ],
       dimensions: [
         {
@@ -235,7 +235,7 @@ const SalesTrainingPage: React.FC = () => {
           dimension: '全景洞察(策划者)',
           requirement: '能力要求 - 预算与计划掌控',
           details: [
-            '清楚客户全年的预算盘子（CIS、DCE、ESS等）。',
+            '清楚客户全年的预算盘子。',
             '哪怕客户还没动，你对于每一笔建设资金，都已经有了清晰的参与计划。'
           ]
         },
@@ -389,7 +389,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'expert',
       title: '经营型专家 - "运筹帷幄的操盘手"',
       mindset: {
-        positive: '"运筹帷幄，相信我，包赢的。" "60万对80万，优势在我。"'
+        positive: '"运筹帷幄，相信我，包赢的。"'
       },
       dimensions: [
         {
@@ -432,7 +432,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'running',
       title: '跑动型销售 - "铁脚板与勤务兵"',
       mindset: {
-        negative: ['"周一例会我最忙，反正我不听。"', '"客户夹菜我转桌。"', '"PPT？那是产品经理的事，跟我有啥关系。"'],
+        negative: ['"周一例会我最忙，反正我不听。"', '"PPT？那是产品经理的事，跟我有啥关系。"'],
         positive: '"产品、工具是士兵的枪。上战场要握紧自己的枪。"'
       },
       dimensions: [
@@ -474,7 +474,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'director',
       title: '导演型销售 - "多面手与组局者"',
       mindset: {
-        positive: ['"今天要谈的事儿我是导演，我做如下安排，大家配合好我。"', '"本次宴请我是导演，事情谈完，宾主相欢。"']
+        positive: ['"今天要谈的事儿我是导演，我做如下安排，大家配合好我。"', '"我有责任把前线听到的炮火声，反向转化为后方造炮弹的图纸。"', '"拒绝经验主义的豪赌，我要用算力推演未来。"']
       },
       dimensions: [
         {
@@ -631,7 +631,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'expert',
       title: '经营型专家 - "运筹帷幄的操盘手"',
       mindset: {
-        positive: ['"道爷我成啦。(指修成正果，具备管理视角)"', '"不仅要看现在的局，还要看未来的势。"']
+        positive: '"我是导演，我是最懂客户的人，组织内外部资源围绕客户作业。"'
       },
       dimensions: [
         {
@@ -754,7 +754,7 @@ const SalesTrainingPage: React.FC = () => {
                             <p>{stage.core}</p>
                           </div>
                           <div className="info-item">
-                            <label>AI基础使用：</label>
+                            <label>AI能力要求：</label>
                             <p>{stage.aiAbility}</p>
                           </div>
                         </div>
