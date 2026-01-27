@@ -26,6 +26,7 @@ const ChangePasswordPage = React.lazy(() => import('./pages/ChangePasswordPage')
 const MachineryAgePage = React.lazy(() => import('./pages/MachineryAgePage'))
 const MilestonePage = React.lazy(() => import('./pages/MilestonePage'))
 const GovDataPage = React.lazy(() => import('./pages/GovDataPage'))
+const SalesTrainingPage = React.lazy(() => import('./pages/SalesTrainingPage'))
 
 const AppContent: React.FC = () => {
   return (
@@ -61,6 +62,9 @@ const AppContent: React.FC = () => {
                 <Link to="/blackboard">黑板报</Link>
               </li>
               <li>
+                <Link to="/sales-training">销售培训</Link>
+              </li>
+              <li>
                 <Link to="/machinery-age">丰图2026</Link>
               </li>
             </ul>
@@ -83,6 +87,7 @@ const AppContent: React.FC = () => {
               <Route path="/industry/gov-data" element={<GovDataPage />} />
               <Route path="/blackboard" element={<BlackboardPage />} />
               <Route path="/partners" element={<PartnersPage />} />
+              <Route path="/sales-training" element={<SalesTrainingPage />} />
               <Route path="/articles/new" element={<ArticleEditorPage />} />
               <Route path="/articles/:id/edit" element={<ArticleEditorPage />} />
               <Route path="/articles/:id" element={<ArticleDetailPage />} />
