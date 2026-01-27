@@ -4,7 +4,7 @@ import './BlackboardPage.css'
 import { articleService, type Article } from '../services/supabase'
 import { useAuth } from '../contexts/AuthContext'
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 20
 const INTERNAL_TAG = '__internal'
 
 // 根据作者ID生成颜色
@@ -247,11 +247,11 @@ const BlackboardPage: React.FC = () => {
                       <div className="pill ghost" style={{ marginTop: '6px' }}>内部</div>
                     )}
                     <div className="article-footer">
+                      <span className="pill ghost">{dateText}</span>
                       <div className="article-stats" style={{ fontSize: '12px', color: '#999', display: 'flex', gap: '12px' }}>
                         <span>👁️ {item.view_count}</span>
                         {item.status === 'draft' && <span className="pill ghost" style={{ background: '#ffc107', color: '#856404' }}>草稿</span>}
                       </div>
-                      <span className="pill ghost">{dateText}</span>
                     </div>
                   </div>
                 </article>

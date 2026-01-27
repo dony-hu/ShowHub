@@ -44,11 +44,14 @@ export const ProductServicesMenu: React.FC = () => {
       name: '公安',
       icon: '🚔',
       url: '/industry/police',
-      desc: '公共安全态势与事件分析决策',
+      desc: '警务时空决策服务专家',
       packages: [
-        '要素与警情关联分析包',
-        '区域态势感知包',
-        '警务资源调度决策包'
+        { name: '态势感知', desc: '警情、人员、资源全域可视化' },
+        { name: '接处警支撑', desc: '精准定位到风险研判全链支持' },
+        { name: '风险防控', desc: '发现隐患到治理的非现场管控' },
+        { name: '战术空间研判', desc: '攻防决策与环境透明化支持' },
+        { name: '警务资源精算', desc: '警力投放效能量化精算' },
+        { name: '安保防推演', desc: '预案制作、风险推演、复盘汇报' }
       ]
     },
     {
@@ -57,9 +60,12 @@ export const ProductServicesMenu: React.FC = () => {
       url: '/industry/gov-data',
       desc: '政务数据空间化与治理决策',
       packages: [
-        '多源政务数据融合包',
-        '空间指标分析评估包',
-        '政务管理决策支撑包'
+        { name: '全景招商宣推', desc: '沉浸式3D展示与VR全景，驱动招商融资引资' },
+        { name: '重大项目会商', desc: '多端协同指挥，数据驱动科学决策' },
+        { name: '实景指挥调度', desc: '视空融合精准指挥，快速应急响应' },
+        { name: '时空底盘治理', desc: '智能清洗标准化，夯实数字政府底座' },
+        { name: '城市更新核查', desc: '三维模型精准量算，成本评估透明化' },
+        { name: '网格精细治理', desc: '人房企事图谱关联，精准落格管理' }
       ]
     },
     {
@@ -196,22 +202,32 @@ export const ProductServicesMenu: React.FC = () => {
                 </a>
               ))}
             </div>
-            <div className="second-level">
+            <div 
+              className="second-level"
+              style={{
+                transform: `translateY(${activeIndex * 48}px)`
+              }}
+            >
               {categories[activeIndex] && (
                 <div className="second-level-card">
                   <div className="second-header">
                     <div className="second-title">
-                      <span className="second-icon">{categories[activeIndex].icon}</span>
-                      <a href={categories[activeIndex].url} className="second-name" onClick={(e) => e.stopPropagation()}>
-                        {categories[activeIndex].name}
-                      </a>
+                      <div className="second-text">
+                        <span className="second-desc">{categories[activeIndex].desc}</span>
+                      </div>
                     </div>
-                    <p className="second-desc">{categories[activeIndex].desc}</p>
                   </div>
                   <div className="package-chips">
-                    {categories[activeIndex].packages.map((pkg, i) => (
-                      <span key={i} className="package-chip">{pkg}</span>
-                    ))}
+                    {categories[activeIndex].packages.map((pkg, i) => {
+                      const pkgName = typeof pkg === 'string' ? pkg : pkg.name
+                      const pkgDesc = typeof pkg === 'string' ? '' : pkg.desc
+                      return (
+                        <div key={i} className="package-item">
+                          <span className="package-chip">{pkgName}</span>
+                          {pkgDesc && <span className="package-desc">{pkgDesc}</span>}
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               )}

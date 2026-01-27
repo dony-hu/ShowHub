@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero-section">
       <div className="hero-background">
@@ -32,8 +35,7 @@ export const HeroSection: React.FC = () => {
           </div>
           
           <div className="hero-cta">
-            <button className="btn btn-primary">了解产品</button>
-            <button className="btn btn-secondary">联系我们</button>
+            <button className="btn btn-primary" onClick={() => navigate('/milestone-2025')}>2025大事记</button>
           </div>
         </div>
       </div>
