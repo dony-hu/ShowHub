@@ -218,7 +218,6 @@ const SalesTrainingPage: React.FC = () => {
       title: '导演型销售',
       subtitle: '"多面手与组局者"',
       mindset: [
-        '"我是导演，我是最懂客户的人，组织内外部资源围绕客户作业。"',
         '"我的客户关系是一张网，投资建设是个计划，我也有我的参与计划。"'
       ],
       dimensions: [
@@ -261,8 +260,7 @@ const SalesTrainingPage: React.FC = () => {
       title: '经营型专家',
       subtitle: '"运筹帷幄的操盘手"',
       mindset: [
-        '"我是最懂客户的人！无敌是多么寂寞，我要打十个。"',
-        '"我是导演，组织内外部资源围绕客户作业。"'
+        '"我是最懂客户的人，组织内外部资源围绕客户作业。"'
       ],
       dimensions: [
         {
@@ -440,7 +438,7 @@ const SalesTrainingPage: React.FC = () => {
           dimension: '产品能力(传声筒)',
           requirement: '独立宣讲与传递',
           details: [
-            '能讲：能够独立讲解公司的整体通讲材料（Corporate Deck）及对应产品的标准PPT。',
+            '能讲：能够独立讲解公司的整体通讲材料及对应产品的标准PPT。',
             '能听：听得懂客户对于产品的基本诉求，并能清晰地向后端（产品经理/研发）传递回公司。'
           ]
         },
@@ -474,7 +472,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'director',
       title: '导演型销售 - "多面手与组局者"',
       mindset: {
-        positive: ['"今天要谈的事儿我是导演，我做如下安排，大家配合好我。"', '"我有责任把前线听到的炮火声，反向转化为后方造炮弹的图纸。"', '"拒绝经验主义的豪赌，我要用算力推演未来。"']
+        positive: ['"今天要谈的事儿我是导演，我做如下安排，大家配合好我。"']
       },
       dimensions: [
         {
@@ -515,7 +513,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'expert',
       title: '经营型专家 - "运筹帷幄的操盘手"',
       mindset: {
-        positive: ['"有很强的组织意识。"', '"对资源的搭配和使用，有自己的想法和设计。"']
+        positive: ['"我有责任把前线听到的炮火声，反向转化为后方造炮弹的图纸。"', '"拒绝经验主义的豪赌，我要用算力推演未来。"']
       },
       dimensions: [
         {
@@ -631,7 +629,7 @@ const SalesTrainingPage: React.FC = () => {
       stage: 'expert',
       title: '经营型专家 - "运筹帷幄的操盘手"',
       mindset: {
-        positive: '"我是导演，我是最懂客户的人，组织内外部资源围绕客户作业。"'
+        positive: '"不仅要看现在的局，还要看未来的势。"'
       },
       dimensions: [
         {
