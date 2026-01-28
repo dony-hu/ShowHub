@@ -1,0 +1,142 @@
+.stkg-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 20%, #1d1a2e 100%);
+}
+
+/* Section共通样式 */
+.stkg-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.stkg-section-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.stkg-section-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.stkg-section-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 16px;
+}
+
+/* 英文副标题样式 */
+.stkg-en-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(156, 39, 176, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* 卡片样式 */
+.stkg-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  border-radius: 12px;
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.stkg-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(156, 39, 176, 0.4);
+  transform: translateY(-4px);
+}
+
+.stkg-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.stkg-card-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Tag样式 */
+.stkg-tag {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(156, 39, 176, 0.15);
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 4px;
+}
+
+/* Button样式 */
+.stkg-button {
+  display: inline-block;
+  padding: 16px 48px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stkg-button:hover {
+  background: linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(156, 39, 176, 0.3);
+}
+
+/* Grid布局 */
+.stkg-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.stkg-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .stkg-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stkg-section {
+    padding: 60px 24px;
+  }
+  
+  .stkg-section-title {
+    font-size: 28px;
+  }
+  
+  .stkg-grid-2,
+  .stkg-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,105 @@
+.map-evolution-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(156, 39, 176, 0.1);
+}
+
+.evolution-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.evolution-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.evolution-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.evolution-point {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.point-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.point-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.point-content p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.evolution-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(156, 39, 176, 0.05);
+  border: 1px solid rgba(156, 39, 176, 0.15);
+  border-radius: 16px;
+}
+
+.diagram-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.diagram-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+}
+
+.diagram-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.diagram-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.diagram-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.diagram-arrow {
+  font-size: 24px;
+  color: rgba(156, 39, 176, 0.6);
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .diagram-container {
+    flex-direction: column;
+  }
+  
+  .diagram-arrow {
+    transform: rotate(90deg);
+  }
+}

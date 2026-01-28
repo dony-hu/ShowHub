@@ -1,0 +1,167 @@
+.map-graph-interaction-section {
+  background: linear-gradient(180deg, rgba(156, 39, 176, 0.08) 0%, rgba(156, 39, 176, 0.02) 100%);
+  border-top: 2px solid rgba(156, 39, 176, 0.3);
+}
+
+.interaction-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 状态条 */
+.status-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.status-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+/* 控制面板 */
+.control-panel {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  margin-bottom: 32px;
+}
+
+.control-panel.single-row {
+  gap: 12px;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.control-buttons button {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-buttons button:hover {
+  background: rgba(156, 39, 176, 0.2);
+  color: white;
+}
+
+.control-buttons button.active {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  color: white;
+  border-color: #9c27b0;
+}
+
+/* 主交互区 */
+.interaction-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.view-container {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(156, 39, 176, 0.15);
+  border-bottom: 1px solid rgba(156, 39, 176, 0.2);
+}
+
+.view-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.view-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+/* 说明文字 */
+.interaction-instructions {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 32px;
+  background: rgba(156, 39, 176, 0.08);
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  border-radius: 12px;
+  flex-wrap: wrap;
+}
+
+.instruction-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.instruction-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.instruction-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 1024px) {
+  .interaction-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .control-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .status-bar,
+  .interaction-instructions {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

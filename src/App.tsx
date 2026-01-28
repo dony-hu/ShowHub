@@ -10,6 +10,7 @@ const PrivateNetworkPage = React.lazy(() => import('./pages/PrivateNetworkPage')
 const DataFactoryPage = React.lazy(() => import('./pages/DataFactoryPage').then(m => ({ default: m.DataFactoryPage })))
 const DataFactoryDetailPage = React.lazy(() => import('./pages/DataFactoryDetailPage').then(m => ({ default: m.DataFactoryDetailPage })))
 const KnowledgeGraphDetailPage = React.lazy(() => import('./pages/KnowledgeGraphDetailPage').then(m => ({ default: m.KnowledgeGraphDetailPage })))
+const SpatioTemporalKGPage = React.lazy(() => import('./pages/SpatioTemporalKGPage').then(m => ({ default: m.SpatioTemporalKGPage })))
 const ArticleDetailPage = React.lazy(() => import('./pages/ArticleDetailPage').then(m => ({ default: m.ArticleDetailPage })))
 const InnovationLabPage = React.lazy(() => import('./pages/InnovationLab/InnovationLabPage'))
 const MapToGraphPage = React.lazy(() => import('./pages/MapToGraphPage'))
@@ -27,8 +28,14 @@ const MachineryAgePage = React.lazy(() => import('./pages/MachineryAgePage'))
 const MilestonePage = React.lazy(() => import('./pages/MilestonePage'))
 const GovDataPage = React.lazy(() => import('./pages/GovDataPage'))
 const SalesTrainingPage = React.lazy(() => import('./pages/SalesTrainingPage'))
+const AITransformationPresentation = React.lazy(() => import('./pages/AITransformationPresentation.tsx'))
+const AITransformationPresenterPage = React.lazy(() =>
+  import('./pages/AITransformationPresentation.tsx').then(m => ({ default: m.AITransformationPresenter })),
+)
 
 const AppContent: React.FC = () => {
+  const [aboutOpen, setAboutOpen] = React.useState(false)
+
   return (
     <BrowserRouter>
       <div className="app">
@@ -61,11 +68,25 @@ const AppContent: React.FC = () => {
               <li>
                 <Link to="/blackboard">黑板报</Link>
               </li>
-              <li>
-                <Link to="/sales-training">销售培训</Link>
-              </li>
-              <li>
-                <Link to="/machinery-age">丰图2026</Link>
+              <li
+                className="nav-dropdown"
+                onMouseLeave={() => setAboutOpen(false)}
+              >
+                <button
+                  className="nav-dropdown-toggle"
+                  type="button"
+                  onClick={() => setAboutOpen(open => !open)}
+                >
+                  关于丰图
+                </button>
+                <ul className={`nav-submenu ${aboutOpen ? 'open' : ''}`}>
+                  <li>
+                    <Link to="/sales-training">丰图市场</Link>
+                  </li>
+                  <li>
+                    <Link to="/machinery-age">丰图AI Talk</Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -76,6 +97,7 @@ const AppContent: React.FC = () => {
             <Routes>
               <Route path="/data-factory" element={<DataFactoryPage />} />
               <Route path="/data-factory-detail" element={<DataFactoryDetailPage />} />
+              <Route path="/data-factory/stkg" element={<SpatioTemporalKGPage />} />
               <Route path="/knowledge-graph-detail" element={<KnowledgeGraphDetailPage />} />
               <Route path="/improvement" element={<ImprovementPage />} />
               <Route path="/innovation-lab" element={<InnovationLabPage />} />
@@ -98,6 +120,8 @@ const AppContent: React.FC = () => {
               <Route path="/change-password" element={<ChangePasswordPage />} />
               <Route path="/machinery-age" element={<MachineryAgePage />} />
               <Route path="/milestone-2025" element={<MilestonePage />} />
+              <Route path="/ai-transformation" element={<AITransformationPresentation />} />
+              <Route path="/ai-transformation/presenter" element={<AITransformationPresenterPage />} />
               <Route path="/" element={<HomePage />} />
             </Routes>
           </React.Suspense>

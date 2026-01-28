@@ -1,0 +1,80 @@
+.graph-view {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1e 100%);
+  overflow: hidden;
+}
+
+svg {
+  display: block;
+}
+
+.edges line {
+  transition: all 0.3s ease;
+}
+
+.edges line.transport {
+  stroke-dasharray: 5, 5;
+  animation: dash 20s linear infinite;
+}
+
+.edges line.hub {
+  stroke-width: 3;
+  opacity: 0.8;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.edges line:hover {
+  stroke-width: 4 !important;
+  opacity: 1 !important;
+}
+
+.nodes .graph-node {
+  transition: all 0.3s ease;
+}
+
+.nodes .graph-node:hover circle {
+  filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor);
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+.nodes .graph-node text {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 图例 */
+.graph-legend {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 8px;
+}
+
+.graph-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}

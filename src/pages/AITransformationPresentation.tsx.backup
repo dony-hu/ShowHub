@@ -1,0 +1,616 @@
+import React, { useEffect } from 'react';
+import './AITransformationPresentation.css';
+
+const AITransformationPresentation: React.FC = () => {
+  useEffect(() => {
+    // 滚动动画观察器
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    document.querySelectorAll('.section').forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="presentation-container">
+      {/* 目录页 */}
+      <section className="section section-toc">
+        <div className="content">
+          <h1 className="toc-title">目录</h1>
+          <div className="toc-grid">
+            <a href="#chapter-1" className="toc-item">
+              <div className="toc-number">01</div>
+              <h3 className="toc-chapter-title">过去一年，AI 到底发生了什么变化</h3>
+              <p className="toc-description">从"能对话"到"能进生产"</p>
+            </a>
+            <a href="#chapter-2" className="toc-item">
+              <div className="toc-number">02</div>
+              <h3 className="toc-chapter-title">Agent 出现，紧迫感来自哪里</h3>
+              <p className="toc-description">替代脑力劳动者的机器人</p>
+            </a>
+            <a href="#chapter-3" className="toc-item">
+              <div className="toc-number">03</div>
+              <h3 className="toc-chapter-title">AI 时代，我们该怎么干</h3>
+              <p className="toc-description">官网真实案例</p>
+            </a>
+            <a href="#chapter-4" className="toc-item">
+              <div className="toc-number">04</div>
+              <h3 className="toc-chapter-title">AI 时代，丰图其实大有可为</h3>
+              <p className="toc-description">战略空间被显著放大</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 1: 章节标题页 */}
+      <section id="chapter-1" className="section section-title">
+        <div className="content">
+          <h1 className="main-title">
+            第一，过去一年，AI 到底发生了什么变化<br />
+            哪些变化是真正重要的
+          </h1>
+          <p className="subtitle">AI 从"能对话"，走向"能进生产"</p>
+        </div>
+        <div className="abstract-bg"></div>
+      </section>
+
+      {/* 屏 2: 一句话总结 */}
+      <section className="section">
+        <div className="content">
+          <p className="lead-text">
+            如果只看过去一年，AI 的变化可以用一句话概括：
+          </p>
+          <h2 className="highlight-text">
+            不是更聪明了，而是第一次真正变得<br />
+            <strong>「可用、可托付、能进生产」</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 3: 一年前的行业共识 */}
+      <section className="section">
+        <div className="content content-flow">
+          <div className="text-block">
+            <p>一年前，行业已经有一个高度共识：<br />AI 很重要，所有人都绕不开。</p>
+          </div>
+          <div className="text-block delay-1">
+            <p>
+              不论是 ChatGPT、Claude，<br />
+              还是当时的一些开源模型，<br />
+              都证明了一件事：<br />
+              对话式智能会成为基础能力。
+            </p>
+          </div>
+          <div className="text-block delay-2">
+            <p>
+              但真正困扰我们的，并不是"要不要用 AI"，<br />
+              而是：<br />
+              它到底会在哪些地方，真正改变我们干活的方式？
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 4: 一年前 AI 的三个特征 */}
+      <section className="section">
+        <div className="content three-columns">
+          <div className="column">
+            <div className="icon">1️⃣</div>
+            <h3>演示级智能</h3>
+            <p>能对话、能生成<br />但在复杂推理、工程任务、长期协作上明显力不从心</p>
+          </div>
+          <div className="column">
+            <div className="icon">2️⃣</div>
+            <h3>停留在建议层</h3>
+            <p>能给方案、给代码片段<br />但很难持续推进一个完整任务</p>
+          </div>
+          <div className="column">
+            <div className="icon">3️⃣</div>
+            <h3>不足以进入真实生产</h3>
+            <p>可以试一试、玩一玩<br />但很难放进严肃的工程或业务流程</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 5: 那个无法回答的问题 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">所以一年前，我们只能说：<br />要高度关注 AI</p>
+          <p className="lead-text">却很难回答一个关键问题：</p>
+          <h2 className="highlight-question">它什么时候，才能真正替人干活？</h2>
+        </div>
+      </section>
+
+      {/* 屏 6: DeepSeek 引爆 */}
+      <section className="section">
+        <div className="content content-flow">
+          <div className="text-block">
+            <p>去年过年前后，随着 DeepSeek 发布，<br />市场被迅速点燃。</p>
+          </div>
+          <div className="text-block delay-1">
+            <p>各种「DeepSeek + X」<br />在极短时间内出现。</p>
+          </div>
+          <div className="text-block delay-2 muted">
+            <p>但冷静之后会发现：<br />热度很高，生产力变化并不成比例。</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 7: 为什么变化不大 */}
+      <section className="section">
+        <div className="content two-columns">
+          <div className="column">
+            <p className="large-text">在原有流程外<br />包一层对话</p>
+          </div>
+          <div className="column">
+            <p className="large-text">把 AI<br />当成更聪明的搜索框</p>
+          </div>
+        </div>
+        <div className="bottom-text">
+          <p>看起来很新，<br />但并没有真正改变<br />事情是怎么被做出来的</p>
+        </div>
+      </section>
+
+      {/* 屏 8: 真正的变化 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            真正重要的变化，<br />
+            发生在 <strong>去年下半年</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 9: 跨过临界点 */}
+      <section className="section">
+        <div className="content">
+          <ul className="bullet-list">
+            <li>新一代大模型成熟</li>
+            <li>Agent 能力开始稳定出现</li>
+            <li>AI 第一次跨过关键临界点</li>
+          </ul>
+          <h2 className="emphasis-text">
+            这不是量变，<br />
+            而是<strong>质变</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 10: 能力发生了什么变化 */}
+      <section className="section">
+        <div className="content">
+          <ul className="feature-list">
+            <li>能力足够稳定，可以进入工程流程</li>
+            <li>不再只回答问题，而是持续完成任务</li>
+            <li>不只是写代码，而是理解工程、执行修改、验证结果</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 11: 角色变化 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="highlight-text">
+            在某些场景中，<br />
+            AI 已经不再只是辅助工具，<br />
+            而是开始成为 <strong>主执行者</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 12: 不是 Demo */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">这不是 Demo</h2>
+          <p className="lead-text">
+            而是可以被复用、被扩展、<br />
+            被嵌入真实生产体系的实践
+          </p>
+        </div>
+      </section>
+
+      {/* Section 2: Agent 出现 */}
+      <section className="section section-title">
+        <div className="content">
+          <h1 className="main-title">
+            第二，Agent 出现<br />
+            紧迫感来自哪里
+          </h1>
+        </div>
+      </section>
+
+      {/* 屏 13: Agent 的定义 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            Agent，本质上就是<br />
+            <strong>替代脑力劳动者的机器人</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 14: Agent 能做什么 */}
+      <section className="section">
+        <div className="content">
+          <p className="lead-text">它没有手和脚</p>
+          <div className="process-flow">
+            <div className="process-item">理解任务</div>
+            <div className="arrow">→</div>
+            <div className="process-item">拆解任务</div>
+            <div className="arrow">→</div>
+            <div className="process-item">执行任务</div>
+            <div className="arrow">→</div>
+            <div className="process-item">持续推进任务</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 15: 和白领工作的重合度 */}
+      <section className="section">
+        <div className="content">
+          <p className="lead-text">如果你的工作主要是：</p>
+          <div className="process-flow">
+            <div className="process-item">接收需求</div>
+            <div className="arrow">→</div>
+            <div className="process-item">在电脑上操作</div>
+            <div className="arrow">→</div>
+            <div className="process-item">输出结果</div>
+          </div>
+          <h2 className="highlight-text">
+            那么从工作形态上看，<br />
+            Agent 和你做的是同一类事情
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 16: 真正被触碰的是什么 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            这一次，AI 不只是提升效率<br />
+            <br />
+            而是开始触碰<br />
+            <strong>大量白领岗位的核心工作内容</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 17: 被替代的不是体力 */}
+      <section className="section">
+        <div className="content two-columns">
+          <div className="column">
+            <h3>过去</h3>
+            <p className="large-text">体力劳动</p>
+          </div>
+          <div className="column">
+            <h3>现在</h3>
+            <ul className="compact-list">
+              <li>写文档</li>
+              <li>做分析</li>
+              <li>写代码</li>
+              <li>做方案</li>
+              <li>整理资料</li>
+              <li>反复修改</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 18: Agent 的工作特性 */}
+      <section className="section">
+        <div className="content">
+          <ul className="feature-list">
+            <li>可以长时间连续工作</li>
+            <li>可以并行处理多个任务</li>
+            <li>不会因为"这不是我职责范围"而停下来</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 19: 紧迫感的来源 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">紧迫感不是来自未来某一天</p>
+          <p className="lead-text">而是来自一个现实判断：</p>
+          <h2 className="highlight-text">
+            未来不是"有没有 AI 的人"<br />
+            而是<strong>"会不会把 AI 当成自己工作一部分的人"</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 20: 过渡 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">所以接下来，<br />我想讲的不是"AI 能做什么"</p>
+          <h2 className="highlight-text">
+            而是：<br />
+            在 Agent 时代，我们到底该怎么干
+          </h2>
+        </div>
+      </section>
+
+      {/* Section 3: 我们该怎么干 */}
+      <section className="section section-title">
+        <div className="content">
+          <h1 className="main-title">
+            第三，AI 时代<br />
+            我们该怎么干
+          </h1>
+          <p className="subtitle">官网真实案例</p>
+        </div>
+      </section>
+
+      {/* 屏 21: 不太舒服的判断 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            AI 时代，<br />
+            很多过去默认成立的工作方式，<br />
+            会开始失效
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 22: 旧工作模式 */}
+      <section className="section">
+        <div className="content">
+          <h3 className="section-label">旧工作模式</h3>
+          <div className="process-flow vertical">
+            <div className="process-item">一个问题</div>
+            <div className="arrow">↓</div>
+            <div className="process-item">拆成多个角色</div>
+            <div className="arrow">↓</div>
+            <div className="process-item">产品 / 数据 / 研发 / 交付</div>
+            <div className="arrow">↓</div>
+            <div className="process-item">周级、月级推进</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 23: 正在被压缩的是什么 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">AI 不是替代某一个岗位</p>
+          <h2 className="highlight-text">
+            而是在压缩：<br />
+            <strong>解决一个完整问题<br />所需要的人数和时间</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 24: 对个人意味着什么 */}
+      <section className="section">
+        <div className="content">
+          <p className="lead-text">
+            如果你的工作模式主要是：<br />
+            接收信息 → 加工 → 输出结果
+          </p>
+          <h2 className="highlight-text">
+            那么 AI 一定会深度介入你的工作
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 25: 三个现实变化 */}
+      <section className="section">
+        <div className="content">
+          <ul className="numbered-list">
+            <li>AI 成为工作方式的一部分</li>
+            <li>岗位边界模糊，问题边界更清晰</li>
+            <li>个体能力重要性上升</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 26: 真实案例引出 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">
+            如果这些判断只停留在概念层，<br />
+            说服力其实不强
+          </p>
+          <h2 className="highlight-text">
+            所以我想用一个<br />
+            最近非常真实的例子
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 27: 官网案例标题 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            AI 已经改变<br />
+            <strong>一个人能完成什么</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 28: 案例背景说明 */}
+      <section className="section">
+        <div className="content">
+          <h2 className="highlight-text">
+            上周，我用了一整个晚上<br />
+            用 Vibe Coding 的方式<br />
+            从零开始做了一个新的丰图官网
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 29: 关键事实 */}
+      <section className="section">
+        <div className="content">
+          <ul className="feature-list large">
+            <li>第一次完整前端开发</li>
+            <li>没有前端经验</li>
+            <li>完整产品官网，已上线</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 30: AI 在其中的角色 */}
+      <section className="section">
+        <div className="content">
+          <h2 className="highlight-text">
+            约 <strong>80%</strong> 的文案、样式、结构<br />
+            由 AI 直接生成
+          </h2>
+          <p className="lead-text">
+            人的角色是：<br />
+            判断方向是否正确
+          </p>
+        </div>
+      </section>
+
+      {/* 屏 31: 数据来源 */}
+      <section className="section">
+        <div className="content">
+          <h3 className="section-label">数据来源</h3>
+          <ul className="bullet-list">
+            <li>ChatGPT 中沉淀的丰图认知</li>
+            <li>丰图开放平台接口文档</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 32: 技术细节说明 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="highlight-text">
+            接口调用不是 mock<br />
+            <br />
+            AI 自动分析接口文档<br />
+            并完成真实对接
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 33: 成本与时间 */}
+      <section className="section">
+        <div className="content">
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-value">≈ $13</div>
+              <div className="stat-label">Token 成本</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-value">{'< 2天'}</div>
+              <div className="stat-label">人的投入时间</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 屏 34: 这一切说明了什么 */}
+      <section className="section section-centered">
+        <div className="content">
+          <h2 className="mega-text">
+            AI 已经把<br />
+            一个人进入陌生技术领域<br />
+            并完成可运行系统的门槛<br />
+            <strong>压到了极低</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* Section 4: 丰图大有可为 */}
+      <section className="section section-title">
+        <div className="content">
+          <h1 className="main-title">
+            第四，AI 时代<br />
+            丰图其实大有可为
+          </h1>
+        </div>
+      </section>
+
+      {/* 屏 35: 结论先行 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">AI 时代，对丰图来说<br />不是被迫转型</p>
+          <h2 className="highlight-text">
+            而是：<br />
+            <strong>战略空间被显著放大</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 36: 丰图的核心 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">丰图的核心不是人多<br />也不是堆项目</p>
+          <h2 className="highlight-text">
+            而是：<br />
+            <strong>数据，以及围绕数据形成的决策能力</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 37: 以前做不起的事情 */}
+      <section className="section">
+        <div className="content">
+          <h3 className="section-label">以前做不起的事情</h3>
+          <ul className="feature-list">
+            <li>高质量数据治理</li>
+            <li>细粒度时空建模</li>
+            <li>多源数据持续融合</li>
+            <li>场景化深度分析</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 屏 38: AI 改变了成本结构 */}
+      <section className="section">
+        <div className="content">
+          <p className="lead-text">
+            AI 参与清洗、标注、校验、建模、评估
+          </p>
+          <h2 className="highlight-text">
+            把"只有大项目才值得做"的事情<br />
+            变成：<br />
+            <strong>可以持续、可以规模化的能力</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 39: 决策产品的变化 */}
+      <section className="section section-centered">
+        <div className="content">
+          <p className="lead-text">决策不再只是咨询式经验</p>
+          <h2 className="highlight-text">
+            而是第一次具备<br />
+            <strong>规模化、产品化的基础</strong>
+          </h2>
+        </div>
+      </section>
+
+      {/* 屏 40: 总结性表达 */}
+      <section className="section section-centered section-finale">
+        <div className="content">
+          <h1 className="finale-text">
+            AI 不是丰图的方向盘<br />
+            <br />
+            但它是一个巨大的<strong>放大器</strong><br />
+            <br />
+            它放大了数据的价值<br />
+            放大了决策的可能性<br />
+            也放大了丰图的长期空间
+          </h1>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default AITransformationPresentation;

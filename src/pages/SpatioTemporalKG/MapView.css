@@ -1,0 +1,407 @@
+.map-view {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: #1a1a2e;
+}
+
+.map-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.osm-tile {
+  pointer-events: none;
+}
+
+.osm-tiles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.osm-tiles .osm-tile {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: grayscale(70%) brightness(0.7) contrast(1.1);
+}
+  object-fit: cover;
+  opacity: 0.35;
+  filter: grayscale(70%) brightness(0.7) contrast(1.1);
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(26, 26, 46, 0.3) 100%);
+  pointer-events: none;
+}
+
+/* 点位标记 */
+.map-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.map-point:hover {
+  z-index: 20;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.map-point.selected {
+  z-index: 30;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* 点位核心圆点 */
+.point-core {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 12px var(--scenario-color, #64748b);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.point-icon {
+  font-size: 8px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.map-point:hover .point-core {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 20px var(--scenario-color, #64748b);
+}
+
+.map-point:hover .point-icon {
+  font-size: 11px;
+}
+
+.map-point.selected .point-core {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 30px var(--scenario-color, #64748b);
+  border-width: 3px;
+}
+
+.map-point.selected .point-icon {
+  font-size: 13px;
+}
+
+/* 点位状态样式 */
+.map-point.busy .point-core {
+  animation: pulse-busy 1.5s infinite;
+}
+
+.map-point.warning .point-core {
+  animation: pulse-warning 1s infinite;
+}
+
+@keyframes pulse-busy {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes pulse-warning {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 12px var(--scenario-color, #64748b); }
+  50% { transform: scale(1.15); box-shadow: 0 0 20px #ef4444, 0 0 30px #ef4444; }
+}
+
+/* 点位简短标签 */
+.point-label {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.map-point:hover .point-label {
+  opacity: 1;
+}
+
+/* 状态环 */
+.point-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.2;
+  }
+}
+
+.map-point:hover .point-ring {
+  animation: none;
+  opacity: 0.8;
+}
+
+/* 点位提示框 */
+.point-tooltip {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  max-width: 300px;
+  padding: 14px;
+  background: rgba(15, 23, 42, 0.98);
+  border: 2px solid var(--scenario-color, rgba(255, 255, 255, 0.2));
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px var(--scenario-color, transparent);
+  pointer-events: none;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tooltip-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.tooltip-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+}
+
+.tooltip-scenario {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  color: white;
+  border-radius: 12px;
+}
+
+.tooltip-category {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.tooltip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tooltip-tag {
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.tooltip-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tooltip-metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.tooltip-metric .metric-icon {
+  font-size: 14px;
+}
+
+.tooltip-metric .metric-key {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.tooltip-metric .metric-value {
+  font-weight: 700;
+  color: white;
+  font-size: 13px;
+}
+
+.marker-icon {
+  font-size: 28px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(156, 39, 176, 0.6));
+}
+
+.map-marker.selected .marker-icon {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.marker-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* 道路 */
+.map-road {
+  position: absolute;
+  top: 70%;
+  left: 30%;
+  width: 60%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.map-road:hover,
+.map-road.selected {
+  transform: translateY(-2px);
+}
+
+.road-line {
+  height: 4px;
+  background: rgba(156, 39, 176, 0.4);
+  border-radius: 2px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.map-road.selected .road-line {
+  height: 6px;
+  background: rgba(156, 39, 176, 0.8);
+  box-shadow: 0 0 20px rgba(156, 39, 176, 0.6);
+}
+
+.road-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.road-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.road-name {
+  font-weight: 600;
+  color: white;
+}
+
+.road-constraint {
+  font-size: 10px;
+  color: #f59e0b;
+  margin-left: 8px;
+}
+
+/* 图例 */
+.map-legend {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 24px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(156, 39, 176, 0.3);
+  border-radius: 8px;
+}
+
+.legend-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}

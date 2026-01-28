@@ -253,8 +253,8 @@ export const LogisticsKnowledgeGraph: React.FC = () => {
         </div>
 
         <div className="graph-footer-cta">
-          <a className="graph-footer-button" href="/knowledge-graph-detail">
-            查看知识图谱详细方案 →
+          <a className="graph-footer-button" href="/data-factory/stkg">
+            深入了解｜时空知识图谱 →
           </a>
         </div>
       </div>
