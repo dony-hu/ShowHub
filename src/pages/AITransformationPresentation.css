@@ -27,6 +27,7 @@
   justify-content: space-between;
   font-size: 0.8rem;
   color: #9ca3af;
+  position: relative;
 }
 
 .ai-deck-logo {
@@ -38,6 +39,34 @@
 
 .ai-deck-shortcuts {
   opacity: 0.9;
+}
+
+.ai-deck-fullscreen-btn {
+  position: relative;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  font-size: 1.3rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.ai-deck-fullscreen-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: scale(1.05);
+}
+
+.ai-deck-fullscreen-btn:active {
+  transform: scale(0.95);
 }
 
 .ai-deck-main {

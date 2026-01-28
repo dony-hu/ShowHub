@@ -32,199 +32,130 @@ const MilestonePage: React.FC = () => {
   const quarters = [
     {
       id: 'q1',
-      quarter: '',
-      timelineTitle: 'Timeline · 2025 · Q1',
-      mainTitle: '战略升级：AI 成为决策能力的内在引擎',
+      quarter: '2025 · Q1',
+      mainTitle: '战略焕新，锚定"智理时空"',
       sections: [
         {
-          type: 'core-judgment',
-          title: 'Q1 · 核心判断',
-          content: '2025 年，丰图重新审视空间数据在行业中的真实价值：\n行业真正需要的，不是更多数据，而是更可靠的决策依据。\n\nAI 在这一阶段被明确为"能力引擎"，\n不是替代业务判断，而是帮助行业在复杂现实中，\n把可信的数据转化为可执行的决策。'
-        },
-        {
           type: 'actions',
-          title: 'Q1 · 战略动作',
+          title: '',
           items: [
-            '升级愿景、使命与价值观，明确"可信时空数据 × AI 决策赋能"的长期方向',
-            '确立"数据治理管家 × 增长探路者"的双重角色',
-            '从"数据交付"转向"决策参与"，推动 AI 能力嵌入业务流程',
-            '明确以行业场景效果，而非功能堆叠，作为能力演进标准'
-          ]
-        },
-        {
-          type: 'business-value',
-          title: 'Q1 · 行业决策价值',
-          items: [
-            '行业客户开始围绕统一、可信的空间事实讨论"如何行动"',
-            '决策焦点从"数据是否正确"转向"方案是否最优"',
-            '空间数据第一次以"决策输入"的身份进入业务核心环节'
+            '发布全新愿景：成为客户信赖的时空大数据服务商',
+            '明确使命：让数据更可信，让决策更智能',
+            '确立"数据治理管家 × 增长探路者"双重定位',
+            '全面启动 AI × 时空数据的战略升级'
           ]
         }
       ]
     },
     {
       id: 'q2',
-      quarter: '',
-      timelineTitle: 'Timeline · 2025 · Q2',
-      mainTitle: '时空底座成型：为 AI 决策构建统一认知基础',
+      quarter: '2025 · Q2',
+      mainTitle: '时空底座成型，合规能力突破',
       sections: [
         {
-          type: 'core-judgment',
-          title: 'Q2 · 核心判断',
-          content: 'AI 能否支撑行业决策，前提不在算法，而在数据是否\n统一、可信、可持续演进。'
+          type: 'actions',
+          title: '核心资产规模化',
+          items: [
+            '构建全要素时空底座，夯实空间数据资产能力',
+            'AOI 数据突破 528 万',
+            '建筑物数据突破 6456 万',
+            '语义地址规模达 206 亿',
+            '标准地址总量达 4.8 亿'
+          ]
         },
         {
           type: 'actions',
-          title: 'Q2 · 底座建设',
+          title: '合规能力突破',
           items: [
-            '构建全要素、全覆盖的时空底座体系',
-            '统一治理 AOI、建筑物、地址与语义体系',
-            '将分散空间信息升级为可被 AI 理解和推理的结构化资产',
-            '为跨部门、跨系统、跨行业的智能决策提供统一认知基础'
-          ]
-        },
-        {
-          type: 'data-scale',
-          title: 'Q2 · 核心数据规模',
-          items: [
-            'AOI：528 万',
-            '建筑物：6456 万',
-            '语义地址：206 亿',
-            '标准地址：4.8 亿'
-          ]
-        },
-        {
-          type: 'business-value',
-          title: 'Q2 · 行业决策价值',
-          items: [
-            '政务与行业会商基于同一空间事实开展，减少认知偏差',
-            'AI 可以在统一底座上进行空间推理与关联分析',
-            '决策从经验驱动，逐步转向数据与智能协同驱动'
+            '成功获得互联网地图审图号',
+            '发布全国互联网地图服务',
+            'AI 自动构建 850 万公里全国道路数据',
+            '完成专网地图体系建设，支撑多模态与复杂场景'
           ]
         }
       ]
     },
     {
       id: 'q3',
-      quarter: '',
-      timelineTitle: 'Timeline · 2025 · Q3',
-      mainTitle: '能力与场景进化：AI 走进真实业务决策现场',
+      quarter: '2025 · Q3',
+      mainTitle: 'AI 能力跃迁与产品全面落地',
       sections: [
         {
-          type: 'core-judgment',
-          title: 'Q3 · 核心判断',
-          content: '如果 AI 只能被专家使用，就无法真正改变行业决策方式。'
+          type: 'actions',
+          title: 'AI 能力跃迁',
+          items: [
+            '发布 AI 问图：自然语言驱动地图交互与制图',
+            '实现"知识库驱动工具构建智能体"的架构升级',
+            '上线时空立方体、数据上图、图表分析等能力',
+            '地址治理体系升级至 24 级标准，推出地址治理 AI 智能体'
+          ]
         },
         {
           type: 'actions',
-          title: 'Q3 · 能力进化',
+          title: '政务与城市产品落地',
           items: [
-            '通过自然语言交互，让业务人员直接调用空间与 AI 能力',
-            '地址治理从人工规则，升级为 AI 自动发现、校验与演化',
-            '24 级地址标准为 AI 提供精细化空间语义基础',
-            '网格与空间分析能力下沉到一线业务角色'
-          ]
-        },
-        {
-          type: 'scenarios',
-          title: 'Q3 · 场景落地',
-          scenarios: [
-            {
-              name: '实景三维与 VR',
-              desc: '让决策者"所见即所判"'
-            },
-            {
-              name: '警务场景',
-              desc: 'AI 辅助警情研判与路径规划'
-            },
-            {
-              name: '城市治理',
-              desc: '多部门在同一空间视角下协同决策'
-            },
-            {
-              name: '城管与环卫',
-              desc: '实现从感知到调度的智能闭环'
-            }
-          ]
-        },
-        {
-          type: 'business-value',
-          title: 'Q3 · 行业决策价值',
-          items: [
-            '决策不再依赖少数 GIS 或系统专家',
-            'AI 成为业务人员的"空间判断助手"',
-            '决策效率提升，同时降低试错与沟通成本'
+            'VR 全景平台实现实景三维 × 沉浸式浏览',
+            '警务智能体投入实战，支撑警情研判与路径规划',
+            'CIM + AI 城市空间会商平台上线',
+            '信创数字孪生一体机发布，适配政企本地化部署',
+            '建筑垃圾监管平台升级至 V2.0',
+            '人工智能环卫机器人平台实现多品牌统一管理'
           ]
         }
       ]
     },
     {
       id: 'q4',
-      quarter: '',
-      timelineTitle: 'Timeline · 2025 · Q4',
-      mainTitle: '价值验证与生态共建：让 AI 决策能力持续生长',
+      quarter: '2025 · Q4',
+      mainTitle: '生态共建与场景验证',
       sections: [
         {
-          type: 'core-judgment',
-          title: 'Q4 · 核心判断',
-          content: '真正有效的 AI 决策能力，必须在真实业务中反复验证，\n并在生态协同中持续进化。'
+          type: 'actions',
+          title: '生态共建',
+          items: [
+            '合作生态伙伴规模突破 500+',
+            '与多地政数、公安、高校共建联合实验室',
+            '共建运营型空间数据标注中心',
+            '推动"数据 → 资产 → 生产力"的体系化落地'
+          ]
         },
         {
-          type: 'verification',
-          title: 'Q4 · 价值验证',
-          verification: [
+          type: 'scenarios',
+          title: '场景验证',
+          scenarios: [
             {
-              name: '政数场景',
-              desc: 'AI 参与城市级时空治理与运行决策'
+              name: '政数领域',
+              desc: '服务 140+ 客户，覆盖 30+ 地区｜昆山项目获"数据要素×"全国总决赛三等奖'
             },
             {
-              name: '公安场景',
-              desc: '空间智能支撑寄递安全与协同处置'
+              name: '公安领域',
+              desc: '服务 190+ 客户，覆盖 20+ 地区｜推进寄递安全与警务空间智能协同'
             },
             {
               name: '城管环卫',
-              desc: '从系统上线走向 AI 辅助的持续运营'
+              desc: '覆盖 200+ 城市｜深圳、太原等项目形成示范'
             },
             {
-              name: '企业与物流',
-              desc: 'AI 地址与 AOI 推理直接创造业务收益'
+              name: '企业服务',
+              desc: '自动驾驶合规地图项目营收超千万元｜运营商年度合作规模预计超 2000 万元'
             }
-          ]
-        },
-        {
-          type: 'actions',
-          title: 'Q4 · 生态共建',
-          items: [
-            '与政务、公安、高校共建联合实验室',
-            '建设长期运行的数据治理与标注体系',
-            '通过真实业务反馈持续训练与优化能力'
-          ]
-        },
-        {
-          type: 'business-value',
-          title: 'Q4 · 行业决策价值',
-          items: [
-            'AI 不再停留在"功能层"，而是成为决策体系的一部分',
-            '空间能力从项目成果，升级为可复用的行业决策底座'
           ]
         }
       ]
     },
     {
-      id: 'year-summary',
-      quarter: '',
-      timelineTitle: 'Timeline · 2025 · 全年总结',
-      mainTitle: '专业沉淀与长期主义',
+      id: 'year-full',
+      quarter: '2025 · 全年',
+      mainTitle: '专业沉淀，载誉前行',
       sections: [
         {
           type: 'summary',
-          title: '年度成就',
+          title: '',
           items: [
-            '累计申请专利：410+',
-            '软件著作权登记：390+',
-            '多项国家级与行业级重要奖项'
-          ],
-          note: '这些沉淀，确保 AI 与空间智能能力能够长期、稳定、可持续地服务行业。'
+            '累计申请专利 410+',
+            '软件著作权登记 390+',
+            '荣获：中国地理信息科技进步奖 一等奖、地理信息产业优秀工程金奖、"数据要素×"国家级与省级多项荣誉'
+          ]
         }
       ]
     }
@@ -236,11 +167,10 @@ const MilestonePage: React.FC = () => {
       <header className="milestone-hero">
         <div className="hero-content">
           <h1 className="hero-title">2025 · 丰图科技年度里程碑</h1>
-          <p className="hero-subtitle">让可信时空数据，在 AI 赋能下真正服务行业决策</p>
+          <p className="hero-subtitle">行至春天处 · 山河皆成图</p>
           <div className="hero-divider"></div>
           <p className="hero-intro">
-            当空间数据被 AI 理解、被业务调用、被决策验证，<br />
-            它才真正成为推动行业运转的生产力。
+            可信时空数据 × AI 驱动决策
           </p>
         </div>
       </header>
@@ -264,7 +194,7 @@ const MilestonePage: React.FC = () => {
             {/* Timeline 标题 */}
             <div className="timeline-section-title">
               <div className="divider-line"></div>
-              <h2 className="timeline-title">{quarter.timelineTitle}</h2>
+              <h2 className="timeline-title">{quarter.quarter}</h2>
               <div className="divider-line"></div>
             </div>
 
@@ -277,14 +207,7 @@ const MilestonePage: React.FC = () => {
             {/* 内容部分 */}
             <div className="quarter-content">
               {quarter.sections.map((section: any, sectionIndex: number) => {
-                if (section.type === 'core-judgment') {
-                  return (
-                    <div key={sectionIndex} className="content-block core-judgment-block">
-                      <h3 className="block-title">{section.title}</h3>
-                      <p className="block-text">{section.content as string}</p>
-                    </div>
-                  )
-                } else if (section.type === 'actions') {
+                if (section.type === 'actions') {
                   return (
                     <div key={sectionIndex} className="content-block actions-block">
                       <h3 className="block-title">{section.title}</h3>
@@ -293,20 +216,6 @@ const MilestonePage: React.FC = () => {
                           <li key={idx}>{item}</li>
                         ))}
                       </ul>
-                    </div>
-                  )
-                } else if (section.type === 'data-scale') {
-                  return (
-                    <div key={sectionIndex} className="content-block data-scale-block">
-                      <h3 className="block-title">{section.title}</h3>
-                      <div className="data-grid">
-                        {(section.items as string[])?.map((item: string, idx: number) => (
-                          <div key={idx} className="data-item">
-                            <span className="data-label">{item.split('：')[0]}</span>
-                            <span className="data-value">{item.split('：')[1]}</span>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   )
                 } else if (section.type === 'scenarios') {
@@ -321,31 +230,6 @@ const MilestonePage: React.FC = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
-                  )
-                } else if (section.type === 'verification') {
-                  return (
-                    <div key={sectionIndex} className="content-block verification-block">
-                      <h3 className="block-title">{section.title}</h3>
-                      <div className="verification-grid">
-                        {(section.verification as any[])?.map((item: any, idx: number) => (
-                          <div key={idx} className="verification-item">
-                            <h4 className="verification-name">{item.name}</h4>
-                            <p className="verification-desc">{item.desc}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                } else if (section.type === 'business-value') {
-                  return (
-                    <div key={sectionIndex} className="content-block business-value-block">
-                      <h3 className="block-title">{section.title}</h3>
-                      <ul className="block-list value-list">
-                        {(section.items as string[])?.map((item: string, idx: number) => (
-                          <li key={idx}>{item}</li>
-                        ))}
-                      </ul>
                     </div>
                   )
                 } else if (section.type === 'summary') {
@@ -382,13 +266,11 @@ const MilestonePage: React.FC = () => {
         <div className="footer-content">
           <div className="footer-divider"></div>
           <p className="footer-epilogue">
-            当 AI 不再只是分析数据，<br />
-            而是参与判断与行动，<br />
-            空间数据才真正进入决策时代。
+            行至春天处，山河皆成图。
           </p>
           <p className="footer-tagline">
             2025 · 丰图科技<br />
-            可信时空数据 · AI 赋能的行业决策底座
+            可信时空数据 · AI 驱动决策
           </p>
           <button className="back-home-btn" onClick={() => navigate('/')}>
             返回首页

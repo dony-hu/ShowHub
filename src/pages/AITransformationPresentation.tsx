@@ -20,7 +20,14 @@ const useKeyboardNavigation = (
         goPrev();
       } else if (event.key === 'Escape') {
         event.preventDefault();
-        toggleOverview();
+        // 如果在全屏模式，先退出全屏
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        } else {
+          toggleOverview();
+        }
       } else if (event.key === 'n' || event.key === 'N') {
         event.preventDefault();
         toggleNotes();
@@ -181,6 +188,7 @@ const AITransformationPresentation: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showOverview, setShowOverview] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const total = slides.length;
 
@@ -214,6 +222,16 @@ const AITransformationPresentation: React.FC = () => {
     }
   };
 
+  // 监听全屏状态变化
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   useKeyboardNavigation(total, goPrev, goNext, toggleOverview, toggleNotes, toggleFullscreen);
 
   const currentSlide = slides[currentIndex];
@@ -221,12 +239,21 @@ const AITransformationPresentation: React.FC = () => {
   return (
     <div className="ai-transformation-root">
       <div className="ai-deck-shell">
-        <div className="ai-deck-topbar">
-          <div className="ai-deck-logo">丰图 AI</div>
-          <div className="ai-deck-shortcuts">
-            <span>← / → 翻页 · Space 下一页 · Esc 总览 · N 备注</span>
+        {!isFullscreen && (
+          <div className="ai-deck-topbar">
+            <div className="ai-deck-logo">丰图 AI</div>
+            <div className="ai-deck-shortcuts">
+              <span>← / → 翻页 · Space 下一页 · Esc 总览 · N 备注 · F 全屏</span>
+            </div>
+            <button 
+              className="ai-deck-fullscreen-btn" 
+              onClick={toggleFullscreen}
+              title={isFullscreen ? '退出全屏 (F / Esc)' : '全屏 (F)'}
+            >
+              {isFullscreen ? '⤓' : '⤢'}
+            </button>
           </div>
-        </div>
+        )}
 
         <div className="ai-deck-main">
           {showOverview ? (
