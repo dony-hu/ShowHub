@@ -53,8 +53,12 @@ const ProductArchitectureSection: React.FC = () => {
     <section className="product-architecture-section">
       <div className="architecture-container">
         <div className="section-header">
-          <h2>产品与解决方案全景图</h2>
-          <p>空间智能数据工厂 → 数据资产体系 → 位置智能服务平台 → 行业位置智能决策服务</p>
+          <h2>产品与解决方案全景</h2>
+          <p>
+            基于<strong>空间智能数据工厂</strong>，构建可信、可持续的数据体系；通过丰图的决策服务产品体系，
+            将这些数据转化为可执行的行业决策能力。
+          </p>
+          <p className="flow-description">空间智能数据工厂 → 数据资产体系 → 位置智能服务平台 → 行业位置智能决策服务</p>
         </div>
         <div className="diagram-wrapper">
           <ArchitectureDiagram />

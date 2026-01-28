@@ -1,7 +1,6 @@
 import React from 'react';
 import HeroSection from './HomePage/HeroSection';
 import CompanyProfileSection from './HomePage/CompanyProfileSection';
-import ProductOverviewSection from './HomePage/ProductOverviewSection';
 import ProductArchitectureSection from './HomePage/ProductArchitectureSection';
 import DataAssetsSection from './HomePage/DataAssetsSection';
 import ClosingSection from './HomePage/ClosingSection';
@@ -12,7 +11,6 @@ const HomePage: React.FC = () => {
     <div className="home-page">
       <HeroSection />
       <CompanyProfileSection />
-      <ProductOverviewSection />
       <ProductArchitectureSection />
       <DataAssetsSection />
       <ClosingSection />
