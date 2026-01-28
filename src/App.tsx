@@ -79,12 +79,12 @@ const AppContent: React.FC = () => {
                 <ul className={`nav-submenu ${aboutOpen ? 'open' : ''}`}>
                   <li>
                     <Link to="/sales-training" onClick={() => setAboutOpen(false)}>
-                      丰图市场
+                      市场分享
                     </Link>
                   </li>
                   <li>
                     <Link to="/ai-transformation" onClick={() => setAboutOpen(false)}>
-                      丰图AI Talk
+                      AI Talk
                     </Link>
                   </li>
                 </ul>

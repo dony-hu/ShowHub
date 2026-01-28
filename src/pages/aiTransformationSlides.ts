@@ -93,7 +93,7 @@ export const slides: SlideData[] = [
     id: 7,
     part: 'Part 1',
     tag: 'Part 1 · Phase 4',
-    title: 'Vibe Coding 时代：工程师的能力被改写',
+    title: 'AI时代：工程师的能力被改写',
     subtitle: '每个人都可以成为一名超级个体，甚至一个团队',
     bullets: [
       'AI 直接生成前后端与页面结构',
