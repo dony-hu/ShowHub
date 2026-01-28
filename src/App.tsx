@@ -68,10 +68,7 @@ const AppContent: React.FC = () => {
               <li>
                 <Link to="/blackboard">黑板报</Link>
               </li>
-              <li
-                className="nav-dropdown"
-                onMouseLeave={() => setAboutOpen(false)}
-              >
+              <li className="nav-dropdown">
                 <button
                   className="nav-dropdown-toggle"
                   type="button"
@@ -81,10 +78,14 @@ const AppContent: React.FC = () => {
                 </button>
                 <ul className={`nav-submenu ${aboutOpen ? 'open' : ''}`}>
                   <li>
-                    <Link to="/sales-training">丰图市场</Link>
+                    <Link to="/sales-training" onClick={() => setAboutOpen(false)}>
+                      丰图市场
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/machinery-age">丰图AI Talk</Link>
+                    <Link to="/ai-transformation" onClick={() => setAboutOpen(false)}>
+                      丰图AI Talk
+                    </Link>
                   </li>
                 </ul>
               </li>

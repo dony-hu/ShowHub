@@ -7,7 +7,8 @@ const useKeyboardNavigation = (
   goPrev: () => void,
   goNext: () => void,
   toggleOverview: () => void,
-  toggleNotes: () => void
+  toggleNotes: () => void,
+  toggleFullscreen?: () => void
 ) => {
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -23,6 +24,9 @@ const useKeyboardNavigation = (
       } else if (event.key === 'n' || event.key === 'N') {
         event.preventDefault();
         toggleNotes();
+      } else if (event.key === 'f' || event.key === 'F') {
+        event.preventDefault();
+        if (toggleFullscreen) toggleFullscreen();
       }
     };
 
@@ -37,6 +41,12 @@ const SlideView: React.FC<{
   total: number;
   showNotes: boolean;
 }> = ({ slide, index, total, showNotes }) => {
+  // 纯标题页（无 bullets / 按钮 / 强调），但保留致谢页为左对齐风格
+  const isTitleOnly = !slide.bullets && !slide.buttons && !slide.emphasis && slide.id !== 20;
+  const isKeyTitle = slide.id === 0 || slide.id === 2 || slide.id === 6 || slide.id === 9 || slide.id === 13 || slide.id === 14 || slide.id === 18 || slide.id === 20;
+  const isAgentSubtitle = slide.id === 13 || slide.id === 18;
+  const isCompactTitle = slide.id === 13;
+
   const renderHTMLBlock = (Tag: 'h1' | 'h2' | 'p' | 'li', text?: string, className?: string) => {
     if (!text) return null;
     const Component: any = Tag;
@@ -46,9 +56,13 @@ const SlideView: React.FC<{
   const isMachineryClosing = slide.id === 19;
 
   return (
-    <div className={
-      'ai-slide-frame' + (isMachineryClosing ? ' ai-slide-frame-machinery' : '')
-    }>
+    <div
+      className={
+        'ai-slide-frame' +
+        (isMachineryClosing ? ' ai-slide-frame-machinery' : '') +
+        (isTitleOnly ? ' ai-slide-frame-title-only' : '')
+      }
+    >
       <div className="ai-slide-inner">
         <header className="ai-slide-header">
           <div className="ai-slide-tag">
@@ -81,9 +95,17 @@ const SlideView: React.FC<{
           </div>
         </header>
 
-        <main className="ai-slide-main">
-          {renderHTMLBlock('h1', slide.title, 'ai-slide-title')}
-          {renderHTMLBlock('h2', slide.subtitle, 'ai-slide-subtitle')}
+        <main className={"ai-slide-main" + (isTitleOnly ? " ai-slide-main-title-only" : "")}>
+          {renderHTMLBlock(
+            'h1',
+            slide.title,
+            'ai-slide-title' + (isKeyTitle ? ' ai-slide-title-key' : '') + (isCompactTitle ? ' ai-slide-title-compact' : '')
+          )}
+          {renderHTMLBlock(
+            'h2',
+            slide.subtitle,
+            'ai-slide-subtitle' + (isAgentSubtitle ? ' ai-slide-subtitle-emphasis' : '')
+          )}
 
           {slide.bullets && (
             <ul className="ai-slide-bullets">
@@ -178,7 +200,21 @@ const AITransformationPresentation: React.FC = () => {
     setShowNotes((v) => !v);
   };
 
-  useKeyboardNavigation(total, goPrev, goNext, toggleOverview, toggleNotes);
+  const toggleFullscreen = () => {
+    if (typeof document === 'undefined') return;
+    const elem = document.documentElement as any;
+    if (!document.fullscreenElement) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
+
+  useKeyboardNavigation(total, goPrev, goNext, toggleOverview, toggleNotes, toggleFullscreen);
 
   const currentSlide = slides[currentIndex];
 
