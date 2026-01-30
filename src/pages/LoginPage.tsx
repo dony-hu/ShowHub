@@ -43,7 +43,7 @@ const LoginPage: React.FC = () => {
       await supabase.auth.signInWithOtp({
         email,
         options: {
-          shouldCreateUser: true
+          shouldCreateUser: false  // 只发送OTP，不立即创建用户，等验证成功后再创建
         }
       })
       setCountdown(60)
@@ -96,20 +96,33 @@ const LoginPage: React.FC = () => {
           return
         }
 
-        console.log('@@@ LoginPage: 验证邮箱验证码...');
-        const { data: verifyData, error: verifyError } = await supabase.auth.verifyOtp({
+        console.log('@@@ LoginPage: 验证邮箱验证码并注册...');
+        // 用 signUp 替代 verifyOtp，这样只有验证成功时才创建 auth.users
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
           email,
-          token: code,
-          type: 'email'
+          password,
+          options: {
+            emailRedirectTo: window.location.origin
+          }
         })
-        console.log('@@@ LoginPage: verifyOtp 返回, error:', verifyError);
-        if (verifyError || !verifyData.session) throw verifyError || new Error('验证失败')
-
-        // 设置密码
-        const { error: setPwdError } = await supabase.auth.updateUser({ password })
-        if (setPwdError) throw setPwdError
-
-        const userId = verifyData.session.user.id
+        
+        // 如果用户已存在，直接尝试登录
+        if (signUpError && signUpError.message?.includes('already registered')) {
+          console.log('@@@ LoginPage: 用户已注册，尝试验证OTP...');
+          const { data: verifyData, error: verifyError } = await supabase.auth.verifyOtp({
+            email,
+            token: code,
+            type: 'email'
+          })
+          if (verifyError) throw verifyError
+          if (!verifyData.session) throw new Error('验证失败，请稍后再试')
+        } else if (signUpError) {
+          throw signUpError
+        }
+        
+        if (!signUpData?.user?.id) throw new Error('注册失败，请稍后再试')
+        
+        const userId = signUpData.user.id
         // 如果有头像，上传并更新用户档案
         if (userId) {
           try {
