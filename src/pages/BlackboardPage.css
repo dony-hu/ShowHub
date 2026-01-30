@@ -131,47 +131,28 @@
   z-index: 1;
 }
 
-.auth-status-card {
-  min-width: 280px;
-  padding: 1rem 1.2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(75, 192, 192, 0.06));
-  backdrop-filter: blur(8px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  position: relative;
-}
-
-.auth-status-row {
+/* 简化的用户信息区域 */
+.user-info-compact {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
+  gap: 12px;
 }
-.auth-status-card > .status-dot {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 12px;
-  height: 12px;
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05), 0 0 14px rgba(255, 255, 255, 0.12);
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.login-prompt p {
+  color: rgba(232, 236, 245, 0.76);
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .auth-actions {
   margin-top: 4px;
-}
-
-.auth-status-message {
-  margin-top: 4px;
-}
-
-.auth-status-message {
-  color: rgba(232, 236, 245, 0.76);
-  font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 
