@@ -1,0 +1,97 @@
+.fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 28px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fab:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+}
+
+.fab:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.fab-icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.fab:hover .fab-icon {
+  transform: rotate(15deg);
+}
+
+.fab-text {
+  font-size: 16px;
+  animation: fadeInSlide 0.3s ease;
+  padding-right: 4px;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fab-expanded {
+  padding-right: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .fab {
+    bottom: 24px;
+    right: 24px;
+    padding: 14px;
+  }
+
+  .fab-icon {
+    font-size: 22px;
+  }
+
+  .fab-text {
+    font-size: 14px;
+  }
+}
+
+/* 添加脉冲动画吸引注意 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(102, 126, 234, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  }
+}
+
+.fab:not(:hover) {
+  animation: pulse 2s ease-in-out infinite;
+}

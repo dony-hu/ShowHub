@@ -13,7 +13,7 @@
   background: linear-gradient(140deg, rgba(18, 24, 38, 0.88), rgba(9, 12, 22, 0.86));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(102, 126, 234, 0.18);
-  overflow: hidden;
+  overflow: visible;
   backdrop-filter: blur(12px) saturate(110%);
 }
 
@@ -72,6 +72,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  justify-self: end;
+  align-items: flex-end;
+  padding-top: 0.4rem;
 }
 
 .blackboard-hero h1 {
@@ -131,11 +134,44 @@
   z-index: 1;
 }
 
-/* 简化的用户信息区域 */
-.user-info-compact {
+/* 用户信息卡片 */
+.user-info-card {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(30, 30, 40, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  max-width: 240px;
+}
+
+.user-info-card:hover {
+  background: rgba(30, 30, 40, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.user-text .user-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.user-text .user-email {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .login-prompt {

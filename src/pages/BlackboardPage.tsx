@@ -105,8 +105,12 @@ const BlackboardPage: React.FC = () => {
           </div>
           <div className="hero-right">
             {isAuthenticated ? (
-              <div className="user-info-compact">
+              <div className="user-info-card">
                 <UserAvatar />
+                <div className="user-text">
+                  <div className="user-name">{user?.nickname || user?.email?.split('@')[0] || '用户'}</div>
+                  <div className="user-email">{user?.email}</div>
+                </div>
               </div>
             ) : (
               <div className="login-prompt">
@@ -206,27 +210,24 @@ const BlackboardPage: React.FC = () => {
                   <div className="card-content">
                     {item.tags && item.tags.length > 0 && (
                       <div className="tag-row">
-                        {item.tags.map((tag) => (
-                          <span key={tag} className="tag">
-                            {tag}
-                          </span>
-                        ))}
+                        {item.tags
+                          .filter((tag) => tag !== INTERNAL_TAG)
+                          .map((tag) => (
+                            <span key={tag} className="tag">
+                              {tag}
+                            </span>
+                          ))}
                       </div>
                     )}
                     <div className="bulletin-meta">
                       <h3>{item.title}</h3>
                     </div>
                     {item.summary ? <p>{item.summary}</p> : <p className="muted">暂无摘要</p>}
-                    {(item.tags?.includes(INTERNAL_TAG) || item.visibility === 'internal') && (
-                      <div className="pill ghost" style={{ marginTop: '6px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                        <span>🔒</span>
-                        <span>内部</span>
-                      </div>
-                    )}
                     <div className="article-footer">
                       <span className="pill ghost">{dateText}</span>
                       <div className="article-stats" style={{ fontSize: '12px', color: '#999', display: 'flex', gap: '12px' }}>
                         <span>👁️ {item.view_count}</span>
+                        {item.visibility === 'internal' && <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>🔒 内部</span>}
                         {item.status === 'draft' && <span className="pill ghost" style={{ background: '#ffc107', color: '#856404' }}>草稿</span>}
                       </div>
                     </div>
