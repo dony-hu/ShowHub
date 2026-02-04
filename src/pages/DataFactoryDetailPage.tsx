@@ -22,6 +22,15 @@ export const DataFactoryDetailPage: React.FC = () => {
           <p className="detail-subtitle">
             标注即生产·数据即成果·全流程覆盖场景到服务的数据加工链路
           </p>
+          <a 
+            href="https://ft-show.sf-express.com/data-factory/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="demo-system-btn"
+          >
+            <span>🚀</span>
+            <span>进入演示系统</span>
+          </a>
           <div className="detail-tags">
             <span className="detail-tag">场景数据接入</span>
             <span className="detail-tag">多模态标注</span>

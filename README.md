@@ -73,7 +73,54 @@ npm run dev
 npm run build
 ```
 
-### 预览生产版本
+## 本地开发
+
+### 1️⃣ 初始化环境变量
+
+```bash
+# 自动生成 .env.local（需要手动填入密钥）
+npm run setup:env
+```
+
+或手动复制模板：
+```bash
+cp .env.example .env.local
+```
+
+### 2️⃣ 配置密钥
+
+编辑 `.env.local` 并填入以下信息：
+
+| 密钥 | 来源 | 访问范围 | 说明 |
+|------|------|---------|------|
+| `VITE_SFMAP_KEY` | 顺丰地图平台 | 浏览器 | 地图 API 密钥 |
+| `VITE_SUPABASE_URL` | Supabase Settings → API | 浏览器 | Supabase 项目地址 |
+| `VITE_SUPABASE_ANON_KEY` | Supabase Settings → API → anon public | 浏览器 | 公钥（安全，受 RLS 保护） |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Settings → API → service_role | **仅本地脚本** | 🔐 敏感密钥，绝不上传 Git |
+
+**获取 Supabase 密钥步骤：**
+1. 登录 [Supabase Dashboard](https://supabase.com)
+2. 选择项目 → 左下角 Settings (⚙️)
+3. 选择 API 选项卡
+4. 复制所需的密钥值
+
+### 3️⃣ 启动开发服务
+
+```bash
+npm run dev
+```
+
+访问 `http://localhost:5173`
+
+### 4️⃣ 生成测试数据（可选）
+
+```bash
+npm run test:data:generate
+```
+
+**前提：** 需要在 `.env.local` 中设置 `SUPABASE_SERVICE_ROLE_KEY`
+
+## 预览生产版本
 ```bash
 npm run preview
 ```
@@ -91,6 +138,15 @@ npm run preview
 - Firefox (最新版)
 - Safari (最新版)
 - Edge (最新版)
+
+## 安全说明
+
+⚠️ **重要**：`.env` 和 `.env.local` 不会被 Git 提交（已配置 `.gitignore`）
+
+- 本地开发所需的所有密钥仅保存在 `.env.local`
+- `.env.example` 仅作为配置模板参考
+- Service Role Key 仅用于脚本和服务端，绝对不要暴露给浏览器
+- 每个开发者独立维护自己的本地密钥
 
 ## 许可证
 

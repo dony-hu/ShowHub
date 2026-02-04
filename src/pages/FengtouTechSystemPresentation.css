@@ -1,0 +1,247 @@
+.fengtou-report-root {
+  background: radial-gradient(circle at top left, #0f172a 0%, #0b1120 40%, #020617 100%);
+}
+
+.fengtou-slide-frame {
+  background: linear-gradient(140deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.9));
+}
+
+/* ========== Enterprise / Report Style ========== */
+
+.fengtou-enterprise-frame {
+  background: linear-gradient(140deg, rgba(10, 15, 35, 0.98), rgba(5, 8, 20, 0.96));
+}
+
+.fengtou-enterprise-inner {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 16px;
+}
+
+.fengtou-enterprise-header {
+  order: 1;
+}
+
+.fengtou-enterprise-main {
+  order: 2;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-right: 8px;
+}
+
+.fengtou-enterprise-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fengtou-enterprise-main::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.fengtou-enterprise-main::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+}
+
+.fengtou-enterprise-main::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+.fengtou-enterprise-footer {
+  order: 3;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding-top: 12px;
+}
+
+/* ========== Title Section ========== */
+
+.fengtou-title-section {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.fengtou-enterprise-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  margin: 0 0 8px 0;
+}
+
+.fengtou-enterprise-subtitle {
+  font-size: 1.08rem;
+  color: #cbd5f5;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+/* ========== Strategic Theme Block ========== */
+
+.fengtou-strategic-theme {
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.12), rgba(59, 130, 246, 0.06));
+  border-left: 4px solid #3b82f6;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.fengtou-strategic-theme p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #cbd5f5;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Platforms Section ========== */
+
+.fengtou-platforms-section {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.fengtou-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.fengtou-platform-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 6px;
+  padding: 12px 14px;
+  text-align: center;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.fengtou-platform-card:hover {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.fengtou-platform-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 5px;
+}
+
+.fengtou-platform-desc {
+  font-size: 0.78rem;
+  color: #cbd5f5;
+}
+
+.fengtou-platforms-connections {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(148, 163, 184, 0.2) 10%,
+    rgba(148, 163, 184, 0.2) 90%,
+    transparent
+  );
+}
+
+/* ========== Panels Section (Diagnostic & Governance) ========== */
+
+.fengtou-panels-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.fengtou-panel {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+  padding: 14px 16px;
+}
+
+.fengtou-panel-title {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.fengtou-panel-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.fengtou-panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fengtou-panel-section-heading {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #60a5fa;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+}
+
+.fengtou-panel-section-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.8rem;
+  color: #cbd5f5;
+  line-height: 1.55;
+}
+
+.fengtou-panel-section-list li {
+  margin-bottom: 3px;
+}
+
+.fengtou-panel-section-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Scrolling Optimization ========== */
+
+@media (max-width: 1400px) {
+  .fengtou-enterprise-inner {
+    padding: 24px 28px;
+  }
+
+  .fengtou-enterprise-title {
+    font-size: 2.2rem;
+  }
+
+  .fengtou-enterprise-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .fengtou-panel-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .fengtou-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fengtou-panel-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

@@ -32,6 +32,7 @@ const AITransformationPresentation = React.lazy(() => import('./pages/AITransfor
 const AITransformationPresenterPage = React.lazy(() =>
   import('./pages/AITransformationPresentation.tsx').then(m => ({ default: m.AITransformationPresenter })),
 )
+const FengtouTechSystemReport = React.lazy(() => import('./pages/FengtouTechSystemReport'))
 
 const AppContent: React.FC = () => {
   const [aboutOpen, setAboutOpen] = React.useState(false)
@@ -87,6 +88,11 @@ const AppContent: React.FC = () => {
                       AI Talk
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/fengtou-tech-system-report" onClick={() => setAboutOpen(false)}>
+                      丰图技术体系重点工作汇报2026
+                    </Link>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -123,6 +129,7 @@ const AppContent: React.FC = () => {
               <Route path="/milestone-2025" element={<MilestonePage />} />
               <Route path="/ai-transformation" element={<AITransformationPresentation />} />
               <Route path="/ai-transformation/presenter" element={<AITransformationPresenterPage />} />
+              <Route path="/fengtou-tech-system-report" element={<FengtouTechSystemReport />} />
               <Route path="/" element={<HomePage />} />
             </Routes>
           </React.Suspense>

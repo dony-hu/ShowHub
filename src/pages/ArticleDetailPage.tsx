@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import PDFViewer from '../components/PDFViewer';
 import remarkGfm from 'remark-gfm';
 import { articleService, isAdmin, type Article, commentService, starService, type ArticleComment } from '../services/supabase';
 import { useAuth } from '../contexts/AuthContext';
@@ -339,9 +340,69 @@ export const ArticleDetailPage: React.FC = () => {
           <ReactMarkdown 
             remarkPlugins={[remarkGfm]}
             components={{
-              a: ({node, ...props}) => (
-                <a {...props} target="_blank" rel="noopener noreferrer" />
-              )
+              a: ({node, href, children, ...props}: any) => {
+                // 检查是否是文件链接
+                const isPdf = href?.match(/\.pdf$/i);
+                const isImage = href?.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i);
+                const isPlaceholderImage = href?.includes('placeholder.com');
+                
+                if (isPdf) {
+                  return (
+                    <div style={{ margin: '16px 0' }}>
+                      <div style={{ marginBottom: 8 }}>
+                        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                          📄 {children}
+                        </a>
+                        <a 
+                          href={href} 
+                          download 
+                          style={{ marginLeft: '8px', color: '#67e8f9' }}
+                          title="下载PDF"
+                        >
+                          📥
+                        </a>
+                      </div>
+                      <PDFViewer url={href} />
+                    </div>
+                  );
+                }
+                
+                // 图片链接：直接显示图片而不是链接
+                if (isImage || isPlaceholderImage) {
+                  return (
+                    <div style={{ margin: '16px 0' }}>
+                      <a href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div style={{ marginBottom: '8px', color: '#67e8f9', fontSize: '14px' }}>
+                          🖼️ {children}
+                        </div>
+                        <img 
+                          src={href} 
+                          alt={typeof children === 'string' ? children : '图片'} 
+                          style={{ 
+                            maxWidth: '100%', 
+                            height: 'auto',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            transition: 'transform 0.2s',
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        />
+                      </a>
+                    </div>
+                  );
+                }
+                
+                return (
+                  <a {...props} href={href} target="_blank" rel="noopener noreferrer">
+                    {children}
+                  </a>
+                )
+              },
+              img: ({node, src, alt, ...props}: any) => {
+                // 图片直接显示
+                return <img src={src} alt={alt} {...props} style={{ maxWidth: '100%', height: 'auto' }} />
+              }
             }}
           >
             {article.content}

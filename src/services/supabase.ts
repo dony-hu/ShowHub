@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import * as tus from 'tus-js-client';
 
 // Vite will only expose env vars prefixed with VITE_.
 // In production (Vercel/Netlify), make sure to set:
@@ -6,6 +7,11 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 //   VITE_SUPABASE_ANON_KEY
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabaseConfig = {
+  url: supabaseUrl,
+  anonKey: supabaseAnonKey
+};
 
 if (!supabaseUrl || !supabaseAnonKey) {
   // 更清晰的错误提示，避免在生产环境因变量命名不一致而迷惑
@@ -370,58 +376,97 @@ export const articleService = {
 };
 
 // 文件上传相关
+type UploadProgress = {
+  percent: number;
+  loaded: number;
+  total: number;
+  speed: number;
+};
+
+type UploadOptions = {
+  onProgress?: (progress: UploadProgress) => void;
+};
+
+const uploadResumable = async (file: File, fileName: string, options?: UploadOptions) => {
+  const { data } = await supabase.auth.getSession();
+  const accessToken = data.session?.access_token || supabaseAnonKey;
+
+  return await new Promise<{ url: string; fileName: string; size: number }>((resolve, reject) => {
+    let lastTime = performance.now();
+    let lastBytes = 0;
+
+    const upload = new tus.Upload(file, {
+      endpoint: `${supabaseUrl}/storage/v1/upload/resumable`,
+      chunkSize: 5 * 1024 * 1024,
+      retryDelays: [0, 1000, 3000, 5000],
+      removeFingerprintOnSuccess: true,
+      metadata: {
+        bucketName: 'article-images',
+        objectName: fileName,
+        contentType: file.type || 'application/octet-stream',
+        cacheControl: '3600'
+      },
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+        apikey: supabaseAnonKey
+      },
+      onError: (error: Error) => {
+        reject(error);
+      },
+      onProgress: (bytesUploaded: number, bytesTotal: number) => {
+        const now = performance.now();
+        const deltaMs = now - lastTime;
+        const deltaBytes = bytesUploaded - lastBytes;
+        const speed = deltaMs > 0 ? (deltaBytes / deltaMs) * 1000 : 0;
+        lastTime = now;
+        lastBytes = bytesUploaded;
+
+        options?.onProgress?.({
+          percent: Math.round((bytesUploaded / bytesTotal) * 100),
+          loaded: bytesUploaded,
+          total: bytesTotal,
+          speed
+        });
+      },
+      onSuccess: () => {
+        const { data } = supabase.storage
+          .from('article-images')
+          .getPublicUrl(fileName);
+
+        resolve({
+          url: data.publicUrl,
+          fileName,
+          size: file.size
+        });
+      }
+    });
+
+    upload.findPreviousUploads().then((previousUploads: tus.PreviousUpload[]) => {
+      if (previousUploads.length) {
+        upload.resumeFromPreviousUpload(previousUploads[0]);
+      }
+      upload.start();
+    });
+  });
+};
+
 export const uploadService = {
   // 上传文章图片到Storage
-  uploadArticleImage: async (file: File, articleId: string) => {
+  uploadArticleImage: async (file: File, articleId: string, options?: UploadOptions) => {
     // 处理文件名，移除特殊字符和空格，保留扩展名
     const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const fileName = `${articleId}/${Date.now()}_${sanitizedName}`;
 
-    const { error } = await supabase.storage
-      .from('article-images')
-      .upload(fileName, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
-
-    if (error) throw error;
-
-    // 获取公开URL
-    const { data } = supabase.storage
-      .from('article-images')
-      .getPublicUrl(fileName);
-
-    return {
-      url: data.publicUrl,
-      fileName,
-      size: file.size
-    };
+    return await uploadResumable(file, fileName, options);
   },
 
   // 上传通用文件（如 PDF）
-  uploadArticleFile: async (file: File, articleId: string) => {
+  uploadArticleFile: async (file: File, articleId: string, options?: UploadOptions) => {
     // 处理文件名，移除特殊字符和空格
     const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const fileName = `${articleId}/${Date.now()}_${sanitizedName}`;
 
-    const { error } = await supabase.storage
-      .from('article-images')
-      .upload(fileName, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
-
-    if (error) throw error;
-
-    const { data } = supabase.storage
-      .from('article-images')
-      .getPublicUrl(fileName);
-
-    return {
-      url: data.publicUrl,
-      fileName,
-      size: file.size
-    };
+    return await uploadResumable(file, fileName, options);
   },
 
   // 删除文章图片

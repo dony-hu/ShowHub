@@ -30,10 +30,55 @@ export const ArticleEditorPage: React.FC = () => {
   const [visibility, setVisibility] = useState<'public' | 'internal'>('public');
 
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<number | null>(null);
+  const [uploadSpeed, setUploadSpeed] = useState<number | null>(null);
+  const [uploadBytes, setUploadBytes] = useState<{ loaded: number; total: number } | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [tagInput, setTagInput] = useState('');
+
+  const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB
+  const MAX_PDF_SIZE = 50 * 1024 * 1024; // 50MB
+  const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+  const formatBytes = (bytes: number) => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
+  };
+
+  const formatSpeed = (bytesPerSecond: number) => {
+    if (!bytesPerSecond || Number.isNaN(bytesPerSecond)) return '0 B/s';
+    return `${formatBytes(bytesPerSecond)}/s`;
+  };
+
+  const validateImageFile = (file: File) => {
+    const isTypeAllowed = file.type
+      ? ALLOWED_IMAGE_TYPES.includes(file.type)
+      : /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name);
+    if (!isTypeAllowed) {
+      return '仅支持 JPG / JPEG / PNG / GIF / WEBP 图片格式';
+    }
+    if (file.size > MAX_IMAGE_SIZE) {
+      return `图片大小不能超过 ${formatBytes(MAX_IMAGE_SIZE)}`;
+    }
+    return null;
+  };
+
+  const validatePdfFile = (file: File) => {
+    const isPdf = file.type ? file.type === 'application/pdf' : /\.pdf$/i.test(file.name);
+    if (!isPdf) {
+      return '仅支持 PDF 文件';
+    }
+    if (file.size > MAX_PDF_SIZE) {
+      return `PDF 大小不能超过 ${formatBytes(MAX_PDF_SIZE)}`;
+    }
+    return null;
+  };
 
   useEffect(() => {
     // 等待认证状态加载完成
@@ -131,6 +176,11 @@ export const ArticleEditorPage: React.FC = () => {
   };
 
   const handleCoverUpload = async (file: File) => {
+    const validationError = validateImageFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     // 如果是新文章（没有articleId），先自动保存为草稿
     if (!articleId) {
       setError('正在保存草稿以便上传封面...');
@@ -141,9 +191,17 @@ export const ArticleEditorPage: React.FC = () => {
     }
 
     setUploading(true);
+    setUploadProgress(0);
+    setUploadStatus('上传封面图中...');
 
     try {
-      const result = await uploadService.uploadArticleImage(file, articleId || 'temp');
+      const result = await uploadService.uploadArticleImage(file, articleId || 'temp', {
+        onProgress: (progress) => {
+          setUploadProgress(progress.percent);
+          setUploadSpeed(progress.speed);
+          setUploadBytes({ loaded: progress.loaded, total: progress.total });
+        }
+      });
       setArticle(prev => ({ ...prev, cover_image: result.url }));
       setError('封面上传成功');
       setTimeout(() => setError(null), 2000);
@@ -151,10 +209,19 @@ export const ArticleEditorPage: React.FC = () => {
       setError('封面上传失败：' + (err as Error).message);
     } finally {
       setUploading(false);
+      setUploadProgress(null);
+      setUploadSpeed(null);
+      setUploadBytes(null);
+      setUploadStatus(null);
     }
   };
 
   const handleImageUpload = async (file: File) => {
+    const validationError = validateImageFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     // 如果是新文章（没有articleId），先自动保存为草稿
     if (!articleId) {
       setError('正在保存草稿以便上传图片...');
@@ -165,9 +232,17 @@ export const ArticleEditorPage: React.FC = () => {
     }
 
     setUploading(true);
+    setUploadProgress(0);
+    setUploadStatus('上传图片中...');
 
     try {
-      const result = await uploadService.uploadArticleImage(file, articleId || 'temp');
+      const result = await uploadService.uploadArticleImage(file, articleId || 'temp', {
+        onProgress: (progress) => {
+          setUploadProgress(progress.percent);
+          setUploadSpeed(progress.speed);
+          setUploadBytes({ loaded: progress.loaded, total: progress.total });
+        }
+      });
       
       // 在Markdown中插入图片
       const markdown = `![${file.name}](${result.url})`;
@@ -181,13 +256,45 @@ export const ArticleEditorPage: React.FC = () => {
       setError('图片上传失败：' + (err as Error).message);
     } finally {
       setUploading(false);
+      setUploadProgress(null);
+      setUploadSpeed(null);
+      setUploadBytes(null);
+      setUploadStatus(null);
     }
   };
 
   const handlePdfUpload = async (file: File) => {
+    const validationError = validatePdfFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    // 如果是新文章（没有articleId），先自动保存为草稿
+    if (!articleId) {
+      setError('正在保存草稿以便上传 PDF...');
+      await handleSave('draft');
+      setError(null);
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
     setUploading(true);
     try {
-      setError('正在提取 PDF 内容...');
+      setUploadProgress(0);
+      setUploadStatus('上传 PDF 中...');
+      const uploadResult = await uploadService.uploadArticleFile(file, articleId || 'temp', {
+        onProgress: (progress) => {
+          setUploadProgress(progress.percent);
+          setUploadSpeed(progress.speed);
+          setUploadBytes({ loaded: progress.loaded, total: progress.total });
+        }
+      });
+
+      const pdfLink = `[${file.name}](${uploadResult.url})`;
+      setArticle(prev => ({
+        ...prev,
+        content: (prev.content || '') + '\n' + pdfLink
+      }));
+
+      setError('PDF 上传成功，正在提取内容...');
       const importedContent = await extractPdfContent(file);
       
       // 如果没有标题，使用导入的标题
@@ -217,6 +324,10 @@ export const ArticleEditorPage: React.FC = () => {
       setError('PDF 提取失败：' + (err as Error).message);
     } finally {
       setUploading(false);
+      setUploadProgress(null);
+      setUploadSpeed(null);
+      setUploadBytes(null);
+      setUploadStatus(null);
     }
   };
 
@@ -539,6 +650,31 @@ export const ArticleEditorPage: React.FC = () => {
               </div>
 
               <div className="editor-action-buttons">
+                {uploading && (
+                  <div className="upload-status" style={{ width: '100%' }}>
+                    <div>
+                      {uploadStatus || '上传中...'}
+                      {uploadBytes && (
+                        <span style={{ marginLeft: 8, color: 'rgba(232,236,245,0.7)' }}>
+                          {formatBytes(uploadBytes.loaded)} / {formatBytes(uploadBytes.total)}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ whiteSpace: 'nowrap' }}>
+                      {uploadProgress !== null ? `${uploadProgress}%` : ''}
+                      {uploadSpeed !== null && (
+                        <span style={{ marginLeft: 8, color: 'rgba(232,236,245,0.7)' }}>
+                          {formatSpeed(uploadSpeed)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+                {uploading && uploadProgress !== null && (
+                  <div className="upload-progress-bar">
+                    <div className="upload-progress-fill" style={{ width: `${uploadProgress}%` }} />
+                  </div>
+                )}
                 <button
                   className="btn btn-secondary"
                   onClick={() => {

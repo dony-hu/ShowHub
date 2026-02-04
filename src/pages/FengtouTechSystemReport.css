@@ -1,0 +1,385 @@
+/* ========== Text Highlights ========== */
+
+.highlight-strategic {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.highlight-platform {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.highlight-ai {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.highlight-measure {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* ========== Page Layout ========== */
+
+.fengtou-report-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+}
+
+.fengtou-report-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 12px 60px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.fengtou-report-export-btn {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fengtou-report-export-btn:hover {
+  background: #1d4ed8;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.fengtou-report-export-btn:active {
+  transform: scale(0.98);
+}
+
+.fengtou-report-content {
+  padding: 24px 40px;
+  max-width: 960px;
+  margin: 0 auto;
+  line-height: 1.4;
+  color: #1a1a1a;
+}
+
+/* ========== Header Section ========== */
+
+.fengtou-report-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.fengtou-report-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #000000;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.fengtou-report-subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+  color: #333333;
+  letter-spacing: 0em;
+}
+
+/* ========== Strategic Theme Block ========== */
+
+.fengtou-report-strategic-theme {
+  padding: 12px 16px;
+  background: #f5f5f5;
+  border-left: 5px solid #2563eb;
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+
+.fengtou-report-strategic-theme p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333333;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+/* ========== Section Titles ========== */
+
+.fengtou-report-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 18px 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #d0d0d0;
+  color: #000000;
+}
+
+/* ========== Platforms Section ========== */
+
+.fengtou-report-platforms {
+  margin-bottom: 20px;
+}
+
+.fengtou-report-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.fengtou-report-platform-card {
+  background: #f9f9f9;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  padding: 10px 8px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.fengtou-report-platform-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+
+.fengtou-report-platform-desc {
+  font-size: 0.85rem;
+  color: #555555;
+  line-height: 1.3;
+}
+
+/* ========== Panels Section ========== */
+
+.fengtou-report-panels {
+  margin-bottom: 0;
+}
+
+.fengtou-report-panels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fengtou-report-panel {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  padding: 12px 14px;
+  page-break-inside: avoid;
+}
+
+.fengtou-report-panel-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #000000;
+}
+
+.fengtou-report-panel-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.fengtou-report-panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fengtou-report-panel-section-heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 6px 0;
+  color: #2563eb;
+  letter-spacing: 0.08em;
+}
+
+.fengtou-report-panel-section-list {
+  margin: 0;
+  padding-left: 1.4rem;
+  font-size: 0.95rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.fengtou-report-panel-section-list li {
+  margin-bottom: 4px;
+}
+
+.fengtou-report-panel-section-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Slide Sections ========== */
+
+.fengtou-report-slide {
+  margin-bottom: 28px;
+}
+
+.fengtou-report-slide:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Page Break ========== */
+
+.fengtou-report-page-break {
+  page-break-after: always;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 24px;
+}
+
+/* ========== Print Styles ========== */
+
+@media print {
+  .fengtou-report-toolbar {
+    display: none;
+  }
+
+  .fengtou-report-container {
+    padding: 0;
+    background: white;
+  }
+
+  .fengtou-report-content {
+    padding: 12mm 20mm;
+    max-width: none;
+    line-height: 1.3;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 12mm 20mm;
+  }
+
+  .fengtou-report-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .fengtou-report-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .fengtou-report-subtitle {
+    font-size: 1rem;
+  }
+
+  .fengtou-report-strategic-theme {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .fengtou-report-platforms-grid {
+    gap: 8px;
+  }
+
+  .fengtou-report-panel {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+
+  .fengtou-report-panel-sections {
+    gap: 10px;
+  }
+
+  .fengtou-report-panel-section-list {
+    line-height: 1.3;
+  }
+
+  .fengtou-report-panel-section-list li {
+    margin-bottom: 3px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+  }
+
+  .fengtou-report-panels-grid {
+    gap: 12px;
+  }
+
+  .fengtou-report-panel {
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+
+  .fengtou-report-panel-sections {
+    gap: 14px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+/* ========== Responsive ========== */
+
+@media (max-width: 1200px) {
+  .fengtou-report-container {
+    padding: 30px 40px;
+  }
+
+  .fengtou-report-content {
+    max-width: 100%;
+  }
+
+  .fengtou-report-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fengtou-report-panel-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .fengtou-report-container {
+    padding: 20px 24px;
+  }
+
+  .fengtou-report-title {
+    font-size: 1.8rem;
+  }
+
+  .fengtou-report-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .fengtou-report-platforms-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .fengtou-report-panel-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .fengtou-report-section-title {
+    font-size: 1.1rem;
+  }
+}
