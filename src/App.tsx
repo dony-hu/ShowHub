@@ -90,7 +90,7 @@ const AppContent: React.FC = () => {
                   </li>
                   <li>
                     <Link to="/fengtou-tech-system-report" onClick={() => setAboutOpen(false)}>
-                      丰图技术体系重点工作汇报2026
+                      技术规划汇报
                     </Link>
                   </li>
                 </ul>
