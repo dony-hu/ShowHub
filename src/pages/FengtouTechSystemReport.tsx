@@ -9,11 +9,12 @@ const FengtouTechSystemReport: React.FC = () => {
     if (!element) return
 
     const opt = {
-      margin: [15, 12, 15, 12], // top, left, bottom, right in mm
+      margin: [12, 10, 12, 10], // top, left, bottom, right in mm - 减小边距
       filename: '丰图技术体系2026重点工作规划汇报.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      html2canvas: { scale: 2, useCORS: true, logging: false },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     }
 
     html2pdf().set(opt).from(element).save()
@@ -82,7 +83,9 @@ const FengtouTechSystemReport: React.FC = () => {
             {/* 战略主题块 */}
             {slide.strategicTheme && (
               <div className="fengtou-report-strategic-theme">
-                <p>{parseHighlights(slide.strategicTheme)}</p>
+                {slide.strategicTheme.split('\n').map((line, idx) => (
+                  line.trim() ? <p key={idx}>{parseHighlights(line)}</p> : null
+                ))}
               </div>
             )}
 
@@ -107,11 +110,14 @@ const FengtouTechSystemReport: React.FC = () => {
                 {slide.part === '诊断' && (
                   <h3 className="fengtou-report-section-title">核心问题诊断</h3>
                 )}
-                {slide.part === '治理' && (
+                {slide.part === '治理' && slide.id !== 3 && (
                   <h3 className="fengtou-report-section-title">核心治理抓手</h3>
                 )}
+                {slide.part === '治理' && slide.id === 3 && (
+                  <h3 className="fengtou-report-section-title">四维衡量标准</h3>
+                )}
                 
-                <div className="fengtou-report-panels-list">
+                <div className={`fengtou-report-panels-list ${slide.id === 3 ? 'fengtou-report-panels-two-column' : ''}`}>
                   {slide.panels.map((panel: any, panelIdx: number) => (
                     <article key={panelIdx} className="fengtou-report-panel">
                       <h4 className="fengtou-report-panel-title">{panel.title}</h4>
