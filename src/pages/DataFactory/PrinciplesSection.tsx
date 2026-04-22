@@ -6,7 +6,7 @@ export const DataFactoryPrinciples: React.FC = () => {
     {
       icon: '🛡️',
       title: '可信优先',
-      description: '所有数据先过质量与权限门，保证 Agent 看到的是可用、可追溯的真实世界。'
+      description: '所有数据先过质量与权限门，保证 AI 应用看到的是可用、可追溯的真实世界。'
     },
     {
       icon: '🏷️',
@@ -28,7 +28,7 @@ export const DataFactoryPrinciples: React.FC = () => {
   return (
     <section id="principles" className="df-principles">
       <div className="df-principles-container">
-        <h2 className="df-section-title">Agent 时代的数据生产原则</h2>
+        <h2 className="df-section-title">AI 时代的数据生产原则</h2>
         <div className="df-principles-grid">
           {principles.map((principle, index) => (
             <div key={index} className="df-principle-card">

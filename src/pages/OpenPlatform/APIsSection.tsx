@@ -67,10 +67,10 @@ export const OpenPlatformAPIs: React.FC = () => {
       <div className="op-section-inner">
         <div className="op-section-heading">
           <span className="op-section-kicker">工具矩阵</span>
-          <h2>把开放能力拆成智能体能直接理解的工具单元</h2>
+          <h2>把开放能力拆成 AI 应用能直接理解的工具单元</h2>
           <p>
             每个工具都带着清晰的输入、输出和约束，既可以被前端和后端直接调用，
-            也可以被 Agent 以 MCP-like 的方式发现和编排。
+            也可以被智能应用以工具发现的方式编排和复用。
           </p>
         </div>
 

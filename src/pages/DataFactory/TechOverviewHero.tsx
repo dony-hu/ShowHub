@@ -13,10 +13,10 @@ export const TechOverviewHero: React.FC = () => {
     <section className="tech-overview-hero">
       <div className="hero-container">
         <div className="hero-header">
-          <p className="hero-kicker">Agent Era / Trusted Data Base</p>
+          <p className="hero-kicker">AI Era / Trusted Data Base</p>
           <h1 className="hero-title">数据工厂 × 时空知识图谱</h1>
           <p className="hero-tagline">
-            把地图、地址、轨迹、事件和关系做成可信数据资产，让 Agent 拥有可查询、可推理、可仿真的世界模型底座。
+            把地图、地址、轨迹、事件和关系做成可信数据资产，让 AI 应用拥有可查询、可推理、可仿真的世界模型底座。
           </p>
 
           <div className="hero-metrics">
@@ -72,7 +72,7 @@ export const TechOverviewHero: React.FC = () => {
             <ul className="capability-list">
               <li>语义地址对齐与实体融合</li>
               <li>动态事件建模与关系推理</li>
-              <li>面向 Agent 的仿真与决策调用</li>
+              <li>面向 AI 应用的仿真与决策调用</li>
             </ul>
             <button className="card-button" onClick={() => scrollToSection('knowledge-graph-section')}>
               深入图谱底座

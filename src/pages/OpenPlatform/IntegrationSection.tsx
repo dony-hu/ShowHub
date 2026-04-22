@@ -15,12 +15,12 @@ const steps = [
   {
     number: '03',
     title: '接入 SDK 或 API',
-    description: '前端、后端和智能体都可以选择最合适的接入方式。',
+    description: '前端、后端和智能应用都可以选择最合适的接入方式。',
   },
   {
     number: '04',
     title: '编排工作流',
-    description: '把工具挂到业务流程、Agent 任务链或事件回调中。',
+    description: '把工具挂到业务流程、自动化任务链或事件回调中。',
   },
   {
     number: '05',
@@ -32,7 +32,7 @@ const steps = [
 const integrationModes = [
   'REST API',
   'SDK 集成',
-  'MCP-like 工具发现',
+  '工具发现与编排',
   'Webhook 事件回传',
   '权限与审计面板',
 ];

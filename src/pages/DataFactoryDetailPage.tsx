@@ -25,7 +25,7 @@ export const DataFactoryDetailPage: React.FC = () => {
           <p className="detail-kicker">Trusted Data Factory</p>
           <h1 className="detail-title">空间智能数据工厂</h1>
           <p className="detail-subtitle">
-            从原始接入到语义地址、实体资产、图谱输入，再到回流校验与持续演化，把数据生产线做成 Agent 世界模型的可信底座。
+            从原始接入到语义地址、实体资产、图谱输入，再到回流校验与持续演化，把数据生产线做成 AI 空间智能的可信底座。
           </p>
           <a
             href="https://ft-show.sf-express.com/data-factory/"

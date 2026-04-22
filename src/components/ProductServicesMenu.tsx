@@ -148,27 +148,27 @@ export const ProductServicesMenu: React.FC = () => {
       name: '开放平台',
       icon: '🛠️',
       url: '/open-platform',
-      desc: 'Agent 可调用的空间工具与 API 平台',
+      desc: '面向 AI 应用的空间工具与 API 平台',
       packages: [
         '地图与地址工具',
         '路径与覆盖分析',
         '空间检索 API',
         'Web / 小程序组件',
         '工具编排控制台',
-        'Agent 集成方案'
+        'AI 应用集成方案'
       ]
     },
     {
       name: '专网与私有化',
       icon: '🔒',
       url: '/private-network',
-      desc: '私域 Agent 的安全空间智能底座',
+      desc: '安全可控的私域空间智能底座',
       packages: [
         '专网地图引擎',
         '私有化 API 服务',
         '私域图谱资源包',
         '专有数据融合',
-        '内网 Agent 集成',
+        '内网智能应用集成',
         '安全与合规保证'
       ]
     }

@@ -167,7 +167,7 @@ const StaticFlowDiagram: React.FC = () => {
             {/* 区域2：决策服务 */}
             <div className="section-area section-output">
               <div className="section-box">
-                <h3>面向 Agent 的决策服务</h3>
+                <h3>面向行业应用的决策服务</h3>
                 <div className="hierarchy-content">
                   <div className="hierarchy-item">
                     <h4>🚚 物流 / 货运</h4>

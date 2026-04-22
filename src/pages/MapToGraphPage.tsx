@@ -1007,8 +1007,8 @@ const MapToGraphPage: React.FC = () => {
             </div>
             <div className="lab-card">
               <div className="lab-icon">🤝</div>
-              <h3>智能体协同</h3>
-              <p>Address Agent 与物流/公安/环卫行业Agent协作，实现告警、核查、调度的自动联动闭环。</p>
+              <h3>智能应用协同</h3>
+              <p>地址智能能力与物流、公安、环卫等行业系统协作，实现告警、核查、调度的自动联动闭环。</p>
             </div>
             <div className="lab-card">
               <div className="lab-icon">🔁</div>

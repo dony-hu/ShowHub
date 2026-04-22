@@ -13,11 +13,11 @@ export const STKGHero: React.FC = () => {
           <span>时空知识图谱</span>
         </div>
 
-        <p className="stkg-kicker">Agent World Model</p>
+        <p className="stkg-kicker">AI Spatial World Model</p>
         <h1 className="stkg-hero-title">时空知识图谱</h1>
         <p className="stkg-hero-subtitle-en">Spatio-Temporal Knowledge Graph</p>
         <p className="stkg-hero-description">
-          用语义地址锚定空间实体，用动态事件描述世界变化，用关系网络支撑推理与仿真，让 Agent 真正理解现实世界。
+          用语义地址锚定空间实体，用动态事件描述世界变化，用关系网络支撑推理与仿真，让 AI 应用真正理解现实世界。
         </p>
 
         <div className="stkg-hero-highlights">

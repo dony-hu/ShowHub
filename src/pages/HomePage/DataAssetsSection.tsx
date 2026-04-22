@@ -73,8 +73,8 @@ const DataAssetsSection: React.FC = () => {
     <section className="data-assets-section">
       <div className="data-assets-container">
         <div className="section-header">
-          <h2>Agent 可验证的数据资产体系</h2>
-          <p>丰图持续沉淀的高质量地址、企业、货车与 AOI 数据，为智能体的事实校验、空间推理和行业决策提供坚实底座</p>
+          <h2>AI 可验证的数据资产体系</h2>
+          <p>丰图持续沉淀的高质量地址、企业、货车与 AOI 数据，为事实校验、空间推理和行业决策提供坚实底座</p>
         </div>
 
         <div className="panel">

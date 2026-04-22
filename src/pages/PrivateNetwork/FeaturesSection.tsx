@@ -35,7 +35,7 @@ export const PrivateNetworkFeatures: React.FC = () => {
       description: '把地址、AOI、建筑、组织、事件与关系沉淀为可检索、可推理的图谱底座'
     },
     {
-      title: '调度与应急 Agent',
+      title: '调度与应急智能',
       icon: '🚨',
       description: '面向指挥、调度、研判和应急联动场景，提供可编排的空间行动能力'
     }
@@ -44,9 +44,9 @@ export const PrivateNetworkFeatures: React.FC = () => {
   return (
     <section className="pn-features">
       <div className="pn-features-container">
-        <h2 className="section-title">Agent 底座能力</h2>
+        <h2 className="section-title">私有空间智能底座能力</h2>
         <p className="section-subtitle">
-          为企业和政务 Agent 构建的私有空间智能底盘，覆盖部署、安全、语义、图谱和行动编排
+          为企业和政务内网构建的私有空间智能底盘，覆盖部署、安全、语义、图谱和行动编排
         </p>
 
         <div className="features-grid">

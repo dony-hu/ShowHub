@@ -17,15 +17,15 @@ export const HeroSection: React.FC = () => {
           <h1 className="hero-title">丰图科技</h1>
           
           <p className="hero-tagline">
-            面向企业 Agent、城市 Agent 与行业决策系统的真实世界空间智能基础设施
+            AI 时代的真实世界空间智能基础设施
           </p>
           
           <div className="hero-vision">
-            <h2 className="vision-text">让 Agent 看懂地图、调用工具、验证事实、完成决策</h2>
+            <h2 className="vision-text">让空间数据可信、可理解、可推理、可行动</h2>
           </div>
           
           <div className="hero-keywords">
-            <span>Agent-ready Spatial Intelligence</span>
+            <span>AI-ready Spatial Intelligence</span>
             <span>·</span>
             <span>真实世界数据</span>
             <span>·</span>
@@ -37,7 +37,7 @@ export const HeroSection: React.FC = () => {
           </div>
           
           <div className="hero-cta">
-            <button className="btn btn-primary" onClick={() => navigate('/agent-space-intelligence')}>查看 Agent 空间智能</button>
+            <button className="btn btn-primary" onClick={() => navigate('/agent-space-intelligence')}>查看 AI 空间智能</button>
             <button className="btn btn-secondary" onClick={() => navigate('/milestone-2025')}>2025大事记</button>
           </div>
         </div>

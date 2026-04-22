@@ -7,7 +7,7 @@ export const STKGDefinition: React.FC = () => {
       <div className="definition-header">
         <span className="stkg-en-label">What Is a Spatio-Temporal Knowledge Graph</span>
         <h2 className="stkg-section-title">把世界拆成实体、事件、关系与状态</h2>
-        <p className="stkg-section-subtitle">面向 Agent 的工程化定义</p>
+        <p className="stkg-section-subtitle">面向 AI 应用的工程化定义</p>
       </div>
 
       <div className="definition-principles">
@@ -43,7 +43,7 @@ export const STKGDefinition: React.FC = () => {
       <div className="definition-summary">
         <p className="summary-text">
           <strong>核心对象：</strong>地址、建筑、AOI、道路、站点、运单、设备、事件、风险、状态变化和轨迹关系。
-          这些对象需要共享统一身份、统一时间线和统一语义坐标，才能支撑 Agent 的理解、推理与执行。
+          这些对象需要共享统一身份、统一时间线和统一语义坐标，才能支撑 AI 应用的理解、推理与执行。
         </p>
       </div>
     </section>

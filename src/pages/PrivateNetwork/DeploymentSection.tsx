@@ -46,7 +46,7 @@ export const PrivateNetworkDeployment: React.FC = () => {
       <div className="pn-deployment-container">
         <h2 className="section-title">部署架构</h2>
         <p className="section-subtitle">
-          为专网地图和空间 Agent 选择合适的运行拓扑，在安全、可靠和扩展之间保持平衡
+          为专网地图和空间智能能力选择合适的运行拓扑，在安全、可靠和扩展之间保持平衡
         </p>
 
         <div className="deployment-grid">

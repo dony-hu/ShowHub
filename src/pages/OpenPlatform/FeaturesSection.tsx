@@ -9,7 +9,7 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    title: '面向智能体的工具发现',
+    title: '面向 AI 应用的工具发现',
     eyebrow: 'Discovery',
     description: '把能力暴露成可检索的工具清单，支持按场景、能力类型和权限快速定位可用接口。',
   },
@@ -36,7 +36,7 @@ const features: Feature[] = [
   {
     title: '结果可回写',
     eyebrow: 'Return',
-    description: '工具结果可以直接进入业务表单、工单流、看板和智能体上下文，形成闭环执行。',
+    description: '工具结果可以直接进入业务表单、工单流、看板和智能应用上下文，形成闭环执行。',
   },
 ];
 
@@ -46,7 +46,7 @@ export const OpenPlatformFeatures: React.FC = () => {
       <div className="op-section-inner">
         <div className="op-section-heading">
           <span className="op-section-kicker">核心特性</span>
-          <h2>围绕智能体调用链设计的空间开放体系</h2>
+          <h2>围绕 AI 应用调用链设计的空间开放体系</h2>
           <p>
             平台既要足够标准，便于集成；也要足够灵活，便于编排。开放平台的重点，
             是让不同业务都能用同一套空间底座做出自己的工具链。

@@ -21,14 +21,14 @@ export const DataFactoryServing: React.FC = () => {
     {
       icon: '⚡',
       title: '服务化接口',
-      description: '为调度、运营、监管、分析和 Agent 提供标准化 API'
+      description: '为调度、运营、监管、分析和智能应用提供标准化 API'
     }
   ];
 
   return (
     <section id="serving" className="df-serving">
       <div className="df-serving-container">
-        <h2 className="df-section-title">统一搜索与 Agent 服务输出</h2>
+        <h2 className="df-section-title">统一搜索与智能服务输出</h2>
         
         <div className="df-serving-grid">
           {servingCards.map((card, index) => (

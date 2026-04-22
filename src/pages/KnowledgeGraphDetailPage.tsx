@@ -19,7 +19,7 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
           <p className="detail-kicker">Spatio-Temporal Knowledge Graph</p>
           <h1 className="detail-title">时空知识图谱</h1>
           <p className="detail-subtitle">
-            让语义地址成为锚点、让动态事件成为状态变化、让实体关系成为可推理网络，最终把地图升级为 Agent 可调用的世界模型。
+            让语义地址成为锚点、让动态事件成为状态变化、让实体关系成为可推理网络，最终把地图升级为 AI 可调用的世界模型。
           </p>
 
           <div className="detail-tags">
@@ -33,7 +33,7 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
             <a className="detail-cta-button" href="/data-factory-detail">
               查看数据工厂详情 →
             </a>
-            <p className="detail-cta-subtitle">先把世界采准，再把世界连起来，最后让 Agent 在世界里执行动作。</p>
+            <p className="detail-cta-subtitle">先把世界采准，再把世界连起来，最后让智能应用在世界里执行动作。</p>
           </div>
         </div>
 

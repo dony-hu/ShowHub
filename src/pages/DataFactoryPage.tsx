@@ -20,7 +20,7 @@ export const DataFactoryPage: React.FC = () => {
         
         <div className="df-closure">
           <div className="df-closure-content">
-            <h3 className="df-closure-title">可信数据工厂，是 Agent 世界模型的生产线</h3>
+            <h3 className="df-closure-title">可信数据工厂，是 AI 空间智能的生产线</h3>
             <p className="df-closure-text">
               我们把地图、地址、轨迹、事件、规则与业务标签统一纳入同一条生产链，
               用持续接入、自动治理、人工兜底和资产沉淀，把原始数据变成可调用、可追溯、可复用的世界模型底座。
@@ -55,10 +55,10 @@ export const DataFactoryPage: React.FC = () => {
 
       <section className="df-dual-closure">
         <div className="df-dual-content">
-          <h3 className="df-dual-title">数据工厂 × 时空知识图谱，组成 Agent 的底座闭环</h3>
+          <h3 className="df-dual-title">数据工厂 × 时空知识图谱，组成 AI 时代的底座闭环</h3>
           <p className="df-dual-text">
             数据工厂负责采集、清洗、标注、资产化和回流，时空知识图谱负责把这些资产组织成可查询、可推理、可仿真的世界状态。
-            这条链路把地图从展示层抬升为认知层，让 Agent 不只是“看见世界”，而是可以理解地址、跟踪事件、推断关系并给出动作建议。
+            这条链路把地图从展示层抬升为认知层，让 AI 应用不只是“看见世界”，而是可以理解地址、跟踪事件、推断关系并给出动作建议。
           </p>
           <div className="df-dual-features">
             <div className="df-dual-item">

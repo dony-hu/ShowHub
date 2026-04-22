@@ -12,7 +12,7 @@ const capabilities: Capability[] = [
   {
     title: '地图调用',
     label: 'Map Tool',
-    description: '支持底图加载、图层切换、点线面绘制、样式控制和结果高亮，适配智能体的交互式空间操作。',
+    description: '支持底图加载、图层切换、点线面绘制、样式控制和结果高亮，适配智能应用的交互式空间操作。',
     tags: ['底图', '图层', '绘制', '高亮'],
   },
   {
@@ -24,7 +24,7 @@ const capabilities: Capability[] = [
   {
     title: '地理编码',
     label: 'Geo Tool',
-    description: '把地址、楼宇、POI 与经纬度互相转换，提供结构化结果，便于前端、后端和智能体统一使用。',
+    description: '把地址、楼宇、POI 与经纬度互相转换，提供结构化结果，便于前端、后端和智能应用统一使用。',
     tags: ['正向', '逆向', '批量', '解析'],
   },
   {
@@ -36,7 +36,7 @@ const capabilities: Capability[] = [
   {
     title: '地理围栏',
     label: 'Fence Tool',
-    description: '支持区域创建、进出判断、事件触发和边界监测，让智能体可以围绕地点与范围进行规则执行。',
+    description: '支持区域创建、进出判断、事件触发和边界监测，让业务系统可以围绕地点与范围进行规则执行。',
     tags: ['围栏', '监测', '事件', '规则'],
   },
   {
@@ -53,7 +53,7 @@ export const OpenPlatformProductShowcase: React.FC = () => {
       <div className="op-section-inner">
         <div className="op-section-heading">
           <span className="op-section-kicker">平台能力</span>
-          <h2>让空间能力以工具化方式进入智能体工作流</h2>
+          <h2>让空间能力以工具化方式进入智能工作流</h2>
           <p>
             不是把地图“挂”在页面上，而是把空间能力拆成可发现、可调用、可组合的工具，
             让各类业务系统按需拼装自己的空间智能链路。

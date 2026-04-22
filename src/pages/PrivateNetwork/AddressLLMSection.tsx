@@ -24,7 +24,7 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
     {
       icon: '🧭',
       title: '空间关系推理',
-      description: '推理拓扑、邻近、包含、方位和路径关系，为 Agent 提供空间判断依据',
+      description: '推理拓扑、邻近、包含、方位和路径关系，为业务系统提供空间判断依据',
       examples: ['A 点到 B 点经过哪些区域', '找出周边 500 米内资源', '判断是否跨越风险边界']
     },
     {
@@ -66,7 +66,7 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
           <h2 className="pn-section-title">地址大模型：专网空间智能的语义引擎</h2>
           <p className="pn-address-llm-subtitle">
             面向企业和政务专网环境构建的地址大模型，把<strong>地址实体、空间关系、时态变化和私域知识</strong>统一进一个本地可控的语义系统，
-            让 Agent 不只会“查地址”，还能<strong>理解、追问、推理、校准</strong>空间信息。
+            让业务系统不只会“查地址”，还能<strong>理解、追问、推理、校准</strong>空间信息。
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
           <h3 className="pn-llm-vision-title">技术目标</h3>
           <div className="pn-llm-vision-content">
             <p>
-              让地址大模型成为<strong>专网空间智能的基础设施</strong>，与地图底座、私域图谱和业务 Agent 协同工作，
+              让地址大模型成为<strong>专网空间智能的基础设施</strong>，与地图底座、私域图谱和业务系统协同工作，
               支撑政务协同、企业运营、应急指挥和行业调度等真实业务场景。
             </p>
             <div className="pn-llm-vision-grid">
@@ -110,7 +110,7 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
                 <div className="pn-llm-vision-label">可演化</div>
               </div>
               <div className="pn-llm-vision-item">
-                <div className="pn-llm-vision-number">Agent 可用</div>
+                <div className="pn-llm-vision-number">AI 可用</div>
                 <div className="pn-llm-vision-label">可编排</div>
               </div>
             </div>

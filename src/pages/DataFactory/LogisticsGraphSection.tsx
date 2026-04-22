@@ -8,7 +8,7 @@ export const LogisticsGraphSection: React.FC = () => {
       <div className="section-container">
         <div className="section-header">
           <p className="section-kicker">Map to Graph</p>
-          <h2 className="section-title">从地图到图谱，把空间语义变成 Agent 能调用的知识</h2>
+          <h2 className="section-title">从地图到图谱，把空间语义变成 AI 能调用的知识</h2>
           <p className="section-subtitle">
             语义地址是锚点，动态事件是变化，关系网络是结构，图谱最终服务于理解、推理与决策执行。
           </p>
@@ -30,14 +30,14 @@ export const LogisticsGraphSection: React.FC = () => {
           <div className="intro-card">
             <div className="card-icon">🧠</div>
             <h3>可推理关系</h3>
-            <p>把覆盖、邻近、依赖、影响和协作建成可计算关系，为 Agent 提供推理路径。</p>
+            <p>把覆盖、邻近、依赖、影响和协作建成可计算关系，为智能应用提供推理路径。</p>
           </div>
         </div>
 
         <MapToGraphDemo />
 
         <div className="use-cases">
-          <h3 className="cases-title">面向 Agent 的四类调用方式</h3>
+          <h3 className="cases-title">面向 AI 应用的四类调用方式</h3>
           <div className="cases-grid">
             <div className="case-card">
               <div className="case-icon">🔎</div>
@@ -105,7 +105,7 @@ export const LogisticsGraphSection: React.FC = () => {
           </div>
           <div className="point-item">
             <span className="point-icon">✓</span>
-            <span className="point-text">推理、仿真、执行、复盘串起来之后，图谱才真正成为 Agent 的操作系统。</span>
+            <span className="point-text">推理、仿真、执行、复盘串起来之后，图谱才真正成为空间智能的操作系统。</span>
           </div>
         </div>
       </div>

@@ -53,7 +53,7 @@ const AppContent: React.FC = () => {
             </a>
             <ul className="nav-menu">
               <li>
-                <Link to="/agent-space-intelligence">Agent 空间智能</Link>
+                <Link to="/agent-space-intelligence">AI 空间智能</Link>
               </li>
               <li>
                 <ProductServicesMenu />

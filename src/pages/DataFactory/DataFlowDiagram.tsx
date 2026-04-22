@@ -5,7 +5,7 @@ export const DataFlowDiagram: React.FC = () => {
   return (
     <section className="data-flow-diagram">
       <div className="flow-container">
-        <h3 className="flow-title">可信数据工厂如何喂养 Agent 的世界模型</h3>
+        <h3 className="flow-title">可信数据工厂如何支撑 AI 的世界模型</h3>
 
         <div className="flow-content">
           <div className="flow-stage factory-stage">
@@ -55,7 +55,7 @@ export const DataFlowDiagram: React.FC = () => {
           </div>
           <div className="value-item">
             <span className="value-icon">🎯</span>
-            <span className="value-text">Agent 能在同一底座上理解、预测并执行动作</span>
+            <span className="value-text">AI 应用能在同一底座上理解、预测并执行动作</span>
           </div>
         </div>
       </div>

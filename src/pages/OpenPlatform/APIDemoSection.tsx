@@ -55,7 +55,7 @@ export const APIDemoSection: React.FC = () => {
       <div className="op-section-inner">
         <div className="op-section-heading">
           <span className="op-section-kicker">调用演示</span>
-          <h2>看智能体如何把空间能力串成一条真正可执行的工具链</h2>
+          <h2>看 AI 应用如何把空间能力串成一条真正可执行的工具链</h2>
           <p>
             这里不是简单的参数表，而是从意图识别、工具选择、参数组织到结果输出的完整调用路径。
           </p>
@@ -79,7 +79,7 @@ export const APIDemoSection: React.FC = () => {
               <h3>{activeScenario.title}</h3>
               <p>{activeScenario.summary}</p>
             </div>
-            <span className="op-demo-badge">Agent Ready</span>
+            <span className="op-demo-badge">AI Ready</span>
           </div>
 
           <div className="op-demo-layout">

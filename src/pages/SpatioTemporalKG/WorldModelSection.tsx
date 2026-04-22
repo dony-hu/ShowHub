@@ -6,14 +6,14 @@ export const WorldModelSection: React.FC = () => {
     <section className="stkg-section world-model-section">
       <div className="world-model-header">
         <span className="stkg-en-label">A World Model for Machines</span>
-        <h2 className="stkg-section-title">面向机器与 Agent 的世界模型底座</h2>
+        <h2 className="stkg-section-title">面向机器理解的世界模型底座</h2>
       </div>
 
       <div className="world-model-content">
         <div className="model-illustration">
           <div className="illustration-layer">
             <div className="layer-icon">🤖</div>
-            <div className="layer-title">Agent / 业务系统</div>
+            <div className="layer-title">AI 应用 / 业务系统</div>
             <div className="layer-desc">需要理解、调用、推演和执行</div>
           </div>
 
@@ -59,7 +59,7 @@ export const WorldModelSection: React.FC = () => {
           <div className="model-emphasis">
             <div className="emphasis-icon">⚙️</div>
             <p className="emphasis-text">
-              图谱不是展示层的装饰，而是 Agent 进入真实世界的理解层、推理层和决策层。
+              图谱不是展示层的装饰，而是 AI 应用进入真实世界的理解层、推理层和决策层。
             </p>
           </div>
         </div>

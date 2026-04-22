@@ -13,7 +13,7 @@ export const PrivateNetworkUseCases: React.FC = () => {
 
   const useCases: UseCase[] = [
     {
-      title: '政务 Agent',
+      title: '政务协同',
       icon: '🏛️',
       description: '在政务内网中承载空间问答、地址治理、事项调度和跨部门协同',
       features: [
@@ -24,7 +24,7 @@ export const PrivateNetworkUseCases: React.FC = () => {
       ]
     },
     {
-      title: '企业 Agent',
+      title: '企业运营',
       icon: '🏢',
       description: '面向园区、制造、物流和能源等企业内网场景，构建私有空间运营中枢',
       features: [
@@ -35,7 +35,7 @@ export const PrivateNetworkUseCases: React.FC = () => {
       ]
     },
     {
-      title: '应急 Agent',
+      title: '应急指挥',
       icon: '🚨',
       description: '面向应急值守、灾害响应和突发事件，提供可编排的空间行动能力',
       features: [
@@ -46,7 +46,7 @@ export const PrivateNetworkUseCases: React.FC = () => {
       ]
     },
     {
-      title: '地址与图谱 Agent',
+      title: '地址与图谱智能',
       icon: '🧠',
       description: '面向地址治理、知识问答和实体融合，构建企业/政务内部的空间语义中枢',
       features: [
@@ -63,9 +63,9 @@ export const PrivateNetworkUseCases: React.FC = () => {
   return (
     <section className="pn-usecases">
       <div className="pn-usecases-container">
-        <h2 className="section-title">Agent 场景</h2>
+        <h2 className="section-title">行业智能场景</h2>
         <p className="section-subtitle">
-          围绕企业和政务内部最常见的空间工作流，构建可直接落地的 Agent 使用场景
+          围绕企业和政务内部最常见的空间工作流，构建可直接落地的智能化使用场景
         </p>
 
         <div className="usecases-content">

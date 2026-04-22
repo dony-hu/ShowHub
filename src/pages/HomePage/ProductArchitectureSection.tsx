@@ -53,12 +53,12 @@ const ProductArchitectureSection: React.FC = () => {
     <section className="product-architecture-section">
       <div className="architecture-container">
         <div className="section-header">
-          <h2>面向 Agent 的产品与解决方案全景</h2>
+          <h2>面向 AI 时代的产品与解决方案全景</h2>
           <p>
             基于<strong>空间智能数据工厂</strong>和<strong>时空知识图谱</strong>，丰图把真实世界数据、空间推理能力与位置智能工具链
-            封装为行业 Agent 可调用的决策基础设施。
+            封装为行业应用可调用、可解释、可持续运营的决策基础设施。
           </p>
-          <p className="flow-description">可信数据工厂 → 时空知识图谱 → 空间工具平台 → 行业 Agent 决策闭环</p>
+          <p className="flow-description">可信数据工厂 → 时空知识图谱 → 空间工具平台 → 行业智能决策闭环</p>
         </div>
         <div className="diagram-wrapper">
           <ArchitectureDiagram />

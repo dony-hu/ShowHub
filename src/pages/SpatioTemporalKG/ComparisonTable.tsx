@@ -21,7 +21,7 @@ export const ComparisonTable: React.FC = () => {
     {
       aspect: '面向对象',
       traditional: '人（可视化）',
-      stkg: '人 + 机器 / Agent'
+      stkg: '人 + 机器 / 智能应用'
     },
     {
       aspect: '决策能力',

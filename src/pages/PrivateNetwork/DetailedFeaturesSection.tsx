@@ -73,7 +73,7 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
           items: [
             '把地址、AOI、建筑、机构、事件和关系编织成统一图谱',
             '支持多源实体对齐、去重、归一和关联发现',
-            '为 Agent 提供可检索、可追问、可解释的空间知识底图'
+            '为智能应用提供可检索、可追问、可解释的空间知识底图'
           ]
         },
         {
@@ -81,14 +81,14 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
           items: [
             '支持语义检索、路径检索、邻域检索和对象联动',
             '为自然语言问图、空间问答和研判分析提供上下文',
-            '把空间知识直接喂给业务 Agent'
+            '把空间知识直接提供给业务系统和智能应用'
           ]
         }
       ]
     },
     {
       id: 3,
-      title: '调度与应急 Agent',
+      title: '调度与应急智能',
       subtitle: '行动编排',
       icon: '🔲',
       features: [
@@ -119,7 +119,7 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
         {
           title: '统一能力接口',
           items: [
-            '地图、地址、检索、图谱和 Agent 工具统一封装',
+            '地图、地址、检索、图谱和智能工具统一封装',
             '支持现有业务系统快速接入',
             '便于二次开发和能力复用'
           ]
@@ -129,7 +129,7 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
           items: [
             '支持数据、模型和规则持续升级',
             '支持场景配置化和任务编排化',
-            '适合作为长期运行的 Agent 底座'
+            '适合作为长期运行的空间智能底座'
           ]
         }
       ]
@@ -152,7 +152,7 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
           title: '服务化支持',
           items: [
             '支持实施、培训和联合运营',
-            '可按行业场景定制空间 Agent 能力',
+            '可按行业场景定制空间智能能力',
             '面向政务与企业客户的长期服务模式'
           ]
         }
@@ -167,7 +167,7 @@ export const PrivateNetworkDetailedFeatures: React.FC = () => {
       <div className="pn-detailed-features-container">
         <h2 className="section-title">完整能力栈</h2>
         <p className="section-subtitle">
-          从部署隔离、地址大模型、私域知识图谱到调度与应急 Agent，形成一套可在专网环境独立运行的空间智能底座
+          从部署隔离、地址大模型、私域知识图谱到调度与应急智能，形成一套可在专网环境独立运行的空间智能底座
         </p>
 
         <div className="features-layout">
