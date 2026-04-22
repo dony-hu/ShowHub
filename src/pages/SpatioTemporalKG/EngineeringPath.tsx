@@ -5,42 +5,42 @@ export const EngineeringPath: React.FC = () => {
   const steps = [
     {
       number: '01',
-      title: '多源时空数据接入',
-      subtitle: 'Multi-Source Data Integration',
-      description: '物流/行业/设备/影像/街景/三维数据接入',
-      challenge: '关键挑战：不同来源如何对齐到同一真实世界'
+      title: '语义地址归一',
+      subtitle: 'Semantic Address Resolution',
+      description: '把地址、POI、区域、别名和坐标绑成同一个空间锚点。',
+      challenge: '关键挑战：同一地点在不同系统里往往有不同写法和坐标。'
     },
     {
       number: '02',
-      title: '空间实体建模',
-      subtitle: 'Entity-First Modeling',
-      description: '构建跨系统、跨时间一致的实体标识体系',
-      challenge: '确保同一实体在不同系统中具有统一标识'
+      title: '动态事件建模',
+      subtitle: 'Event Modeling',
+      description: '把拥堵、异常、变更、签收和调度抽象为时间线上的状态变化。',
+      challenge: '关键挑战：让事件既能回放历史，也能驱动当前状态更新。'
     },
     {
       number: '03',
-      title: '时序关系构建',
-      subtitle: 'Temporal Relationship Building',
-      description: '行为/事件/变化成为可查询可推理关系链',
-      challenge: '时空一致性约束与多维度关系建模'
+      title: '关系推理与传播',
+      subtitle: 'Reasoning Graph',
+      description: '围绕实体、事件和约束构建多跳关系网络，输出影响链路和解释。',
+      challenge: '关键挑战：在规模、时效和可解释性之间保持平衡。'
     },
     {
       number: '04',
-      title: '持续更新与演化',
-      subtitle: 'Continuous Evolution',
-      description: '新数据触发实体状态变化，而非简单覆盖',
-      challenge: 'AI 推理 + 规则约束实现自动化演化'
+      title: '仿真与决策闭环',
+      subtitle: 'Simulate, Act, Learn',
+      description: '把候选动作放进世界模型试跑，再把结果回流到数据工厂和策略层。',
+      challenge: '关键挑战：让推理结果真正变成可执行动作与持续学习信号。'
     }
   ];
-  
+
   return (
     <section className="stkg-section engineering-path-section">
       <div className="path-header">
         <span className="stkg-en-label">Engineering the Graph</span>
-        <h2 className="stkg-section-title">从多源数据到统一世界模型</h2>
-        <p className="stkg-section-subtitle">丰图的技术路线</p>
+        <h2 className="stkg-section-title">从多源数据到可推理世界模型</h2>
+        <p className="stkg-section-subtitle">语义地址、动态事件、关系推理与决策闭环一起工作</p>
       </div>
-      
+
       <div className="path-timeline">
         {steps.map((step, index) => (
           <div key={index} className="path-step">
@@ -54,9 +54,7 @@ export const EngineeringPath: React.FC = () => {
                 <span className="challenge-text">{step.challenge}</span>
               </div>
             </div>
-            {index < steps.length - 1 && (
-              <div className="step-connector"></div>
-            )}
+            {index < steps.length - 1 && <div className="step-connector"></div>}
           </div>
         ))}
       </div>

@@ -13,12 +13,74 @@ export const supabaseConfig = {
   anonKey: supabaseAnonKey
 };
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  // 更清晰的错误提示，避免在生产环境因变量命名不一致而迷惑
-  throw new Error(
-    '缺少环境变量: VITE_SUPABASE_URL 或 VITE_SUPABASE_ANON_KEY。请在 Vercel 的 Project → Settings → Environment Variables 中配置这两个变量，或在本地 .env(.local) 文件中设置后重新构建部署。'
-  );
-}
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+const missingSupabaseConfigMessage =
+  '缺少环境变量: VITE_SUPABASE_URL 或 VITE_SUPABASE_ANON_KEY。请在 Vercel 的 Project → Settings → Environment Variables 中配置这两个变量，或在本地 .env(.local) 文件中设置后重新构建部署。';
+
+const ensureSupabaseConfigured = () => {
+  if (!isSupabaseConfigured) {
+    throw new Error(missingSupabaseConfigMessage);
+  }
+};
+
+const createUnavailableQuery = () => {
+  const query: Record<string, unknown> = {};
+  const chain = () => query;
+  const unavailable = () => {
+    throw new Error(missingSupabaseConfigMessage);
+  };
+
+  [
+    'eq',
+    'is',
+    'not',
+    'order',
+    'range',
+    'single',
+    'maybeSingle',
+  ].forEach(method => {
+    query[method] = chain;
+  });
+
+  [
+    'select',
+    'insert',
+    'update',
+    'delete',
+    'upsert',
+  ].forEach(method => {
+    query[method] = unavailable;
+  });
+
+  return query;
+};
+
+const createMissingConfigClient = () => ({
+  auth: {
+    getSession: async () => ({ data: { session: null }, error: null }),
+    onAuthStateChange: () => ({
+      data: {
+        subscription: {
+          unsubscribe: () => {},
+        },
+      },
+    }),
+    signOut: async () => ({ error: null }),
+  },
+  from: () => createUnavailableQuery(),
+  storage: {
+    from: () => ({
+      upload: async () => {
+        throw new Error(missingSupabaseConfigMessage);
+      },
+      remove: async () => {
+        throw new Error(missingSupabaseConfigMessage);
+      },
+      getPublicUrl: () => ({ data: { publicUrl: '' } }),
+    }),
+  },
+}) as unknown as SupabaseClient;
 
 // 全局单例，避免 HMR 时重复创建
 declare global {
@@ -28,14 +90,17 @@ declare global {
 }
 
 if (!window.__supabase) {
-  console.log('创建新的 Supabase 客户端实例');
-  window.__supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  if (!isSupabaseConfigured) {
+    console.warn(missingSupabaseConfigMessage);
+  }
+
+  window.__supabase = isSupabaseConfigured ? createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
       detectSessionInUrl: true,
     }
-  });
+  }) : createMissingConfigClient();
 }
 
 export const supabase = window.__supabase;
@@ -388,6 +453,7 @@ type UploadOptions = {
 };
 
 const uploadResumable = async (file: File, fileName: string, options?: UploadOptions) => {
+  ensureSupabaseConfigured();
   const { data } = await supabase.auth.getSession();
   const accessToken = data.session?.access_token || supabaseAnonKey;
 

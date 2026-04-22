@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TopicCard.css';
 
 interface Topic {
@@ -18,8 +18,6 @@ interface TopicCardProps {
 }
 
 export const TopicCard: React.FC<TopicCardProps> = ({ topic }) => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
-
   return (
     <div className="topic-card-wrapper">
       <div className="topic-card">

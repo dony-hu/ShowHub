@@ -2,124 +2,98 @@ import React, { useState } from 'react';
 import './SolutionsSection.css';
 
 interface Solution {
-  id: number;
+  key: string;
   title: string;
-  icon: string;
-  description: string;
-  features: string[];
-  detailLink: string;
-  customLink: string;
+  intro: string;
+  focus: string[];
+  outcome: string;
 }
 
+const solutions: Solution[] = [
+  {
+    key: 'dispatch',
+    title: '调度与履约',
+    intro: '让智能体根据订单、位置和时效自动选择路线与执行动作。',
+    focus: ['派单编排', '路径规划', '时效监控', '异常回传'],
+    outcome: '减少人工决策环节，提升调度速度和空间执行稳定性。',
+  },
+  {
+    key: 'retail',
+    title: '零售与门店运营',
+    intro: '帮助门店、仓配和用户地址场景统一到一套位置语义之下。',
+    focus: ['门店匹配', '地址纠错', '商圈分析', '客流渲染'],
+    outcome: '把用户定位、门店分配与运营分析打通成统一链路。',
+  },
+  {
+    key: 'gov',
+    title: '政务与网格治理',
+    intro: '围绕网格、区域、事件和对象构建可追踪的空间治理流程。',
+    focus: ['网格下发', '围栏告警', '对象检索', '态势上图'],
+    outcome: '增强事件响应效率，让管理动作更清晰、更可审计。',
+  },
+  {
+    key: 'inspection',
+    title: '巡检与现场作业',
+    intro: '适合移动巡检、设备维护和现场核查等任务型场景。',
+    focus: ['轨迹记录', '地理围栏', '拍照定位', '任务回填'],
+    outcome: '帮助现场动作与空间位置一一对应，便于闭环管理。',
+  },
+];
+
 export const OpenPlatformSolutions: React.FC = () => {
-  const [selectedSolution, setSelectedSolution] = useState(0);
-
-  const solutions: Solution[] = [
-    {
-      id: 0,
-      title: 'O2O上门服务',
-      icon: '🚗',
-      description: '为O2O应用打造全方位LBS解决方案，覆盖到家、到店等多种服务类型',
-      features: [
-        '设置收货地址',
-        '商品配送进度展示',
-        '分单系统选择配送员',
-        '规划配送路线',
-        '大数据分析可视化展示'
-      ],
-      detailLink: 'https://lbs.sfmap.com.cn/solution/o2o',
-      customLink: 'https://lbs.sfmap.com.cn/contact/custom'
-    },
-    {
-      id: 1,
-      title: '电商零售',
-      icon: '🛒',
-      description: '覆盖"用户下单 - 系统派单 - 运输配送 - 运力动态调度 - 商业运营分析"的全流程解决方案',
-      features: [
-        '设置收货地址',
-        '包裹配送进度展示',
-        '分单系统选择配送员',
-        '规划配送路线',
-        '大数据分析可视化展示'
-      ],
-      detailLink: 'https://lbs.sfmap.com.cn/solution/ecommerce',
-      customLink: 'https://lbs.sfmap.com.cn/contact/custom'
-    },
-    {
-      id: 2,
-      title: '家电售后',
-      icon: '🔧',
-      description: '针对家电售后场景，助力企业提升上门服务响应与执行效率',
-      features: [
-        '网格精细化管理',
-        '智能派单，提升效率',
-        '一张图经营决策',
-        '服务路径优化',
-        '客户满意度提升'
-      ],
-      detailLink: 'https://lbs.sfmap.com.cn/solution/afterservice',
-      customLink: 'https://lbs.sfmap.com.cn/contact/custom'
-    },
-    {
-      id: 3,
-      title: '智慧物流',
-      icon: '📦',
-      description: '针对业务特性打造智慧物流解决方案，助力物流行业数字化转型升级',
-      features: [
-        '地址录入高质量',
-        '要求准确自动化',
-        '调度和分单',
-        '末端收派效率提升',
-        '降本提效增收'
-      ],
-      detailLink: 'https://lbs.sfmap.com.cn/solution/logistics',
-      customLink: 'https://lbs.sfmap.com.cn/contact/custom'
-    }
-  ];
-
-  const current = solutions[selectedSolution];
+  const [activeKey, setActiveKey] = useState(solutions[0].key);
+  const current = solutions.find((item) => item.key === activeKey) ?? solutions[0];
 
   return (
     <section className="op-solutions">
-      <div className="op-solutions-container">
-        <h2 className="section-title">依托工业级地图，提供专业场景解决方案</h2>
+      <div className="op-section-inner">
+        <div className="op-section-heading">
+          <span className="op-section-kicker">场景方案</span>
+          <h2>把工具能力落到真实业务场景，而不是停留在接口目录</h2>
+          <p>
+            平台的价值最终要体现在任务执行、流程协同和业务结果上。这里展示几类最典型的空间智能场景。
+          </p>
+        </div>
 
-        <div className="solutions-tabs">
+        <div className="op-solution-tabs">
           {solutions.map((solution) => (
             <button
-              key={solution.id}
-              className={`solution-tab ${solution.id === selectedSolution ? 'active' : ''}`}
-              onClick={() => setSelectedSolution(solution.id)}
+              key={solution.key}
+              className={`op-solution-tab ${solution.key === activeKey ? 'active' : ''}`}
+              onClick={() => setActiveKey(solution.key)}
             >
-              <span className="tab-icon">{solution.icon}</span>
-              <span>{solution.title}</span>
+              {solution.title}
             </button>
           ))}
         </div>
 
-        <div className="solution-detail">
-          <div className="solution-content">
-            <div className="solution-header">
-              <span className="solution-icon">{current.icon}</span>
-              <h3 className="solution-title">{current.title}</h3>
-            </div>
-            <p className="solution-description">{current.description}</p>
-            <ul className="solution-features">
-              {current.features.map((feature, idx) => (
-                <li key={idx}>
-                  <span className="feature-bullet">✓</span>
-                  <span>{feature}</span>
-                </li>
+        <div className="op-solution-detail">
+          <div className="op-solution-copy">
+            <span className="op-solution-kicker">Current Scenario</span>
+            <h3>{current.title}</h3>
+            <p>{current.intro}</p>
+            <div className="op-solution-tags">
+              {current.focus.map((item) => (
+                <span key={item} className="op-solution-tag">{item}</span>
               ))}
-            </ul>
-            <div className="solution-actions">
-              <a href={current.detailLink} className="solution-btn primary" target="_blank" rel="noopener noreferrer">查看详情</a>
-              <a href={current.customLink} className="solution-btn secondary" target="_blank" rel="noopener noreferrer">定制化解决方案</a>
+            </div>
+            <div className="op-solution-outcome">
+              <span>业务结果</span>
+              <p>{current.outcome}</p>
             </div>
           </div>
-          <div className="solution-visual">
-            <div className="visual-placeholder">
-              <span className="visual-icon">{current.icon}</span>
+
+          <div className="op-solution-side">
+            <div className="op-solution-card">
+              <div className="op-solution-card-title">推荐工具链</div>
+              <ul>
+                {current.focus.map((item, index) => (
+                  <li key={item}>
+                    <span>{index + 1}</span>
+                    <p>{item}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

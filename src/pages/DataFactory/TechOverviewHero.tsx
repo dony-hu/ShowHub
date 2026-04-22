@@ -12,129 +12,78 @@ export const TechOverviewHero: React.FC = () => {
   return (
     <section className="tech-overview-hero">
       <div className="hero-container">
-        {/* 主标题区 */}
         <div className="hero-header">
-          <h2 className="hero-subtitle hero-subtitle-enlarged">数据工厂 × 知识图谱</h2>
-          <p className="hero-tagline hero-tagline-enlarged">从原始数据到时空智能决策的完整闭环</p>
+          <p className="hero-kicker">Agent Era / Trusted Data Base</p>
+          <h1 className="hero-title">数据工厂 × 时空知识图谱</h1>
+          <p className="hero-tagline">
+            把地图、地址、轨迹、事件和关系做成可信数据资产，让 Agent 拥有可查询、可推理、可仿真的世界模型底座。
+          </p>
+
+          <div className="hero-metrics">
+            <div className="hero-metric">
+              <span className="metric-value">可信</span>
+              <span className="metric-label">接入与治理</span>
+            </div>
+            <div className="hero-metric">
+              <span className="metric-value">语义</span>
+              <span className="metric-label">地址与实体</span>
+            </div>
+            <div className="hero-metric">
+              <span className="metric-value">推理</span>
+              <span className="metric-label">关系与事件</span>
+            </div>
+            <div className="hero-metric">
+              <span className="metric-value">闭环</span>
+              <span className="metric-label">仿真与决策</span>
+            </div>
+          </div>
+
+          <div className="hero-actions">
+            <button className="hero-button primary" onClick={() => scrollToSection('data-factory-section')}>
+              <span>🏭</span>
+              <span>看数据工厂</span>
+            </button>
+            <button className="hero-button secondary" onClick={() => scrollToSection('knowledge-graph-section')}>
+              <span>🧠</span>
+              <span>看图谱底座</span>
+            </button>
+          </div>
         </div>
 
-        {/* 双板块对比卡片 */}
         <div className="tech-cards">
-          {/* 数据工厂卡片 */}
           <div className="tech-card factory-card">
             <div className="card-icon">🏭</div>
-            <h3 className="card-title">时空智能数据工厂</h3>
-            <div className="card-divider"></div>
-            
-            <div className="card-section">
-              <h4 className="section-label">核心能力</h4>
-              <ul className="capability-list">
-                <li>
-                  <span className="bullet">•</span>
-                  <span>AI标注与智能治理</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>空间实体精准识别</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>多源异构数据融合</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>全流程质量保障</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="card-section">
-              <h4 className="section-label">技术优势</h4>
-              <ul className="capability-list">
-                <li>
-                  <span className="bullet">•</span>
-                  <span>TB级数据处理能力</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>2D/3D/街景一体化标注</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>支持6+行业场景</span>
-                </li>
-              </ul>
-            </div>
-
-            <button 
-              className="card-button"
-              onClick={() => scrollToSection('data-factory-section')}
-            >
-              深入了解 ↓
+            <h3 className="card-title">可信数据工厂</h3>
+            <p className="card-lead">持续接入、自动治理、人工兜底，把原始数据变成可复用资产。</p>
+            <ul className="capability-list">
+              <li>多源接入与质量守门</li>
+              <li>语义地址、空间实体、业务标签生产</li>
+              <li>全链路血缘、版本与审计</li>
+            </ul>
+            <button className="card-button" onClick={() => scrollToSection('data-factory-section')}>
+              深入数据工厂
             </button>
           </div>
 
-          {/* 时空图谱卡片 */}
           <div className="tech-card graph-card">
-            <div className="card-icon">🗺️</div>
-            <h3 className="card-title">物流时空知识图谱</h3>
-            <div className="card-divider"></div>
-            
-            <div className="card-section">
-              <h4 className="section-label">核心能力</h4>
-              <ul className="capability-list">
-                <li>
-                  <span className="bullet">•</span>
-                  <span>地址实体跨场景对齐</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>时空关系智能推理</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>图网络深度分析</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>实时知识图谱更新</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="card-section">
-              <h4 className="section-label">数据规模</h4>
-              <ul className="capability-list">
-                <li>
-                  <span className="bullet">•</span>
-                  <span>基于顺丰真实物流数据</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>10亿+时空实体节点</span>
-                </li>
-                <li>
-                  <span className="bullet">•</span>
-                  <span>50亿+关系边</span>
-                </li>
-              </ul>
-            </div>
-
-            <button 
-              className="card-button"
-              onClick={() => scrollToSection('knowledge-graph-section')}
-            >
-              深入了解 ↓
+            <div className="card-icon">🧠</div>
+            <h3 className="card-title">时空知识图谱</h3>
+            <p className="card-lead">把地址、事件、关系和状态组织成可计算的世界模型。</p>
+            <ul className="capability-list">
+              <li>语义地址对齐与实体融合</li>
+              <li>动态事件建模与关系推理</li>
+              <li>面向 Agent 的仿真与决策调用</li>
+            </ul>
+            <button className="card-button" onClick={() => scrollToSection('knowledge-graph-section')}>
+              深入图谱底座
             </button>
           </div>
         </div>
 
-        {/* 协同价值说明 */}
         <div className="synergy-banner">
           <div className="synergy-icon">⚡</div>
           <div className="synergy-text">
-            <strong>协同优势：</strong>数据工厂输出的高质量空间实体数据，为知识图谱提供坚实基础；
-            图谱的关联推理能力，反哺数据工厂的标注策略优化
+            <strong>双轮协同：</strong>数据工厂负责把世界采准、采全、采新；知识图谱负责把世界连起来、推起来、跑起来。
           </div>
         </div>
       </div>

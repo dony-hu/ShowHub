@@ -1,117 +1,119 @@
 .cta-section {
-  background: linear-gradient(180deg, rgba(156, 39, 176, 0.08) 0%, rgba(156, 39, 176, 0.15) 100%);
+  background: linear-gradient(180deg, rgba(125, 211, 252, 0.08) 0%, rgba(125, 211, 252, 0.16) 100%);
   text-align: center;
-  padding: 100px 40px;
+  padding: 92px 40px;
 }
 
 .cta-content {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
 .cta-title {
+  margin: 8px 0 24px;
   font-size: 48px;
+  line-height: 1.1;
   font-weight: 900;
-  background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 40px;
+  color: #ffffff;
 }
 
 .cta-text-content {
-  margin-bottom: 48px;
+  margin-bottom: 30px;
 }
 
 .cta-paragraph {
+  margin: 0 0 16px;
   font-size: 17px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 20px;
 }
 
 .cta-benefits {
   display: flex;
   justify-content: center;
-  gap: 48px;
-  margin-bottom: 48px;
+  gap: 18px;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .benefit-item {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .benefit-icon {
-  font-size: 48px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .benefit-text {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
 }
 
 .cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: 14px;
   flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.stkg-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .stkg-button.primary {
-  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+  color: #ffffff;
 }
 
 .stkg-button.secondary {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(156, 39, 176, 0.5);
-}
-
-.stkg-button.secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(156, 39, 176, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e0f2fe;
 }
 
 .cta-closing {
-  padding-top: 40px;
-  border-top: 1px solid rgba(156, 39, 176, 0.3);
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .closing-text {
-  font-size: 18px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
   margin: 0;
-  font-style: italic;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .cta-section {
-    padding: 60px 24px;
+    padding: 64px 20px;
   }
-  
+
   .cta-title {
-    font-size: 32px;
+    font-size: 30px;
   }
-  
-  .cta-benefits {
-    flex-direction: column;
-    gap: 32px;
+
+  .cta-paragraph {
+    font-size: 15px;
   }
-  
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
+
   .stkg-button {
     width: 100%;
-    max-width: 300px;
   }
 }

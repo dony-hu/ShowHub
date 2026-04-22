@@ -73,12 +73,12 @@ const DataAssetsSection: React.FC = () => {
     <section className="data-assets-section">
       <div className="data-assets-container">
         <div className="section-header">
-          <h2>数据资产体系</h2>
-          <p>丰图持续沉淀的高质量地址、企业、货车与 AOI 数据，为位置智能决策提供坚实底座</p>
+          <h2>Agent 可验证的数据资产体系</h2>
+          <p>丰图持续沉淀的高质量地址、企业、货车与 AOI 数据，为智能体的事实校验、空间推理和行业决策提供坚实底座</p>
         </div>
 
         <div className="panel">
-          <div className="panel-title">核心数据资产</div>
+          <div className="panel-title">真实世界核心事实</div>
           <div className="stat-grid stat-grid-3">
             {primaryBlocks.map((block) => (
               <StatBlockCard key={block.title} block={block} />
@@ -87,7 +87,7 @@ const DataAssetsSection: React.FC = () => {
         </div>
 
         <div className="panel">
-          <div className="panel-title">空间覆盖与能力</div>
+          <div className="panel-title">空间覆盖与推理能力</div>
           <div className="stat-grid stat-grid-2">
             {secondaryBlocks.map((block) => (
               <StatBlockCard key={block.title} block={block} />

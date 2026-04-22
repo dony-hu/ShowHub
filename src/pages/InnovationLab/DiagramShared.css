@@ -17,6 +17,7 @@
   max-width: 400px;
   height: 380px;
   border-radius: 8px;
+  background: rgba(7, 16, 24, 0.45);
 }
 
 .diagram-legend {

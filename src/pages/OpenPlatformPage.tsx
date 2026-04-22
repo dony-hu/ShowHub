@@ -5,10 +5,10 @@ import { OpenPlatformProductShowcase } from './OpenPlatform/ProductShowcaseSecti
 import { OpenPlatformDataStats } from './OpenPlatform/DataStatsSection';
 import { OpenPlatformFeatures } from './OpenPlatform/FeaturesSection';
 import { OpenPlatformAPIs } from './OpenPlatform/APIsSection';
+import APIDemoSection from './OpenPlatform/APIDemoSection';
 import { OpenPlatformSolutions } from './OpenPlatform/SolutionsSection';
 import { OpenPlatformIntegration } from './OpenPlatform/IntegrationSection';
 import { OpenPlatformCTA } from './OpenPlatform/CTASection';
-import APIDemoSection from './OpenPlatform/APIDemoSection';
 
 export const OpenPlatformPage: React.FC = () => {
   return (

@@ -3,17 +3,30 @@ import './AgentEraSection.css'
 
 const needs = [
   {
-    title: '可信事实',
+    title: '可信数据层',
     text: '地址、AOI、路网、楼栋、企业与轨迹不能凭空生成，必须来自可验证、可追溯、可更新的数据底座。',
   },
   {
-    title: '空间推理',
-    text: 'Agent 要判断可达性、覆盖范围、时序变化、风险叠加与实体关系，才能从回答问题走向完成任务。',
+    title: '时空世界模型',
+    text: '把地图要素、业务实体、规则约束与动态事件组织成知识图谱，让 Agent 能理解关系、变化和上下文。',
   },
   {
-    title: '工具调用',
-    text: '地图、搜索、路径、地理编码与空间分析能力，需要被封装成稳定、可审计、可编排的空间工具。',
+    title: '空间工具调用',
+    text: '地图、搜索、路径、地理编码、地址理解与空间分析能力，被封装成稳定、可审计、可编排的工具。',
   },
+  {
+    title: '行业决策闭环',
+    text: '把空间推理结果接入调度、应急、治理、选址和运营流程，让 Agent 从生成答案进入执行任务。',
+  },
+]
+
+const toolCalls = [
+  '地址标准化',
+  'AOI 匹配',
+  '路径规划',
+  '覆盖分析',
+  '风险叠加',
+  '态势渲染',
 ]
 
 const AgentEraSection: React.FC = () => {
@@ -43,6 +56,17 @@ const AgentEraSection: React.FC = () => {
           <span>时空知识图谱</span>
           <span>可信数据工厂</span>
           <span>可执行决策</span>
+        </div>
+        <div className="home-agent-toolbox" aria-label="Agent callable spatial tools">
+          <div>
+            <p className="home-agent-kicker">Callable Tools</p>
+            <h3>把位置能力变成 Agent 可调用的工具箱</h3>
+          </div>
+          <div className="home-agent-tool-list">
+            {toolCalls.map(tool => (
+              <span key={tool}>{tool}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

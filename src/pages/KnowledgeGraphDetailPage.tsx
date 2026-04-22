@@ -7,146 +7,146 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
   return (
     <div className="knowledge-graph-detail-page">
       <div className="detail-page-container">
-        <Breadcrumb items={[
-          { label: '首页', path: '/' },
-          { label: '核心技术', path: '/data-factory' },
-          { label: '物流知识图谱详情' }
-        ]} />
+        <Breadcrumb
+          items={[
+            { label: '首页', path: '/' },
+            { label: '核心技术', path: '/data-factory' },
+            { label: '时空知识图谱详情' },
+          ]}
+        />
 
         <div className="detail-hero">
-          <h1 className="detail-title">物流知识图谱</h1>
+          <p className="detail-kicker">Spatio-Temporal Knowledge Graph</p>
+          <h1 className="detail-title">时空知识图谱</h1>
           <p className="detail-subtitle">
-            基于空间智能的地址理解能力，构建物流全链路多模态融合的知识图谱
+            让语义地址成为锚点、让动态事件成为状态变化、让实体关系成为可推理网络，最终把地图升级为 Agent 可调用的世界模型。
           </p>
+
           <div className="detail-tags">
-            <span className="detail-tag">地址LLM理解</span>
-            <span className="detail-tag">实体抽取</span>
-            <span className="detail-tag">关系图谱</span>
-            <span className="detail-tag">智能搜索</span>
+            <span className="detail-tag">语义地址</span>
+            <span className="detail-tag">动态事件</span>
+            <span className="detail-tag">可推理关系</span>
+            <span className="detail-tag">仿真闭环</span>
           </div>
 
           <div className="detail-cta">
             <a className="detail-cta-button" href="/data-factory-detail">
-              查看数据工厂详细方案 →
+              查看数据工厂详情 →
             </a>
-            <p className="detail-cta-subtitle">一站式让数据接入、治理、应用全链路可控，快速把数据价值送达一线。</p>
+            <p className="detail-cta-subtitle">先把世界采准，再把世界连起来，最后让 Agent 在世界里执行动作。</p>
           </div>
         </div>
 
         <section className="graph-demo-section">
-          <h2 className="section-title">地址到图谱：双向联动</h2>
+          <h2 className="section-title">地图到图谱：语义地址与关系联动</h2>
           <p className="section-description">
-            点击地图上的地址点位，自动定位图谱中的相关节点；点击图谱节点，地图自动飞行到对应地址位置
+            点击地图点位可定位图谱实体，点击图谱节点可回到空间位置。地址、站点、事件和运单在同一套语义坐标中互相指向。
           </p>
           <MapToGraphDemo />
         </section>
 
         <section className="search-services-section">
-          <h2 className="section-title">图谱智能搜索服务</h2>
-          <p className="section-description">
-            基于知识图谱的多维度搜索能力，支持地址搜索、站点查询、运单追踪等场景
-          </p>
+          <h2 className="section-title">世界模型的四类能力</h2>
+          <p className="section-description">搜索、推理、仿真、执行，让知识图谱从检索工具升级为行动底座。</p>
 
           <div className="search-features-grid">
             <div className="search-feature-card">
               <div className="feature-icon">🔍</div>
-              <h3 className="feature-title">地址智能搜索</h3>
+              <h3 className="feature-title">语义检索</h3>
               <p className="feature-desc">
-                支持模糊地址输入，自动补全标准地址，返回周边POI、配送站点等关联信息
+                支持模糊地址、站点、事件、运单等实体统一搜索，返回结构化上下文与关联关系。
               </p>
               <ul className="feature-list">
-                <li>地址规范化与纠错</li>
-                <li>周边实体关联推荐</li>
-                <li>历史配送记录查询</li>
-                <li>配送难度评估</li>
+                <li>地址标准化与纠错</li>
+                <li>实体归一与别名对齐</li>
+                <li>事件上下文回溯</li>
+                <li>多跳关联定位</li>
               </ul>
             </div>
 
             <div className="search-feature-card">
-              <div className="feature-icon">📍</div>
-              <h3 className="feature-title">站点覆盖查询</h3>
+              <div className="feature-icon">🧠</div>
+              <h3 className="feature-title">关系推理</h3>
               <p className="feature-desc">
-                根据地址或区域，快速查询最近配送站点、覆盖范围、服务能力等信息
+                通过实体间的拓扑、时序和因果关系，识别异常根因、影响范围和下一步动作建议。
               </p>
               <ul className="feature-list">
-                <li>最优站点匹配</li>
-                <li>服务能力评估</li>
-                <li>配送路径规划</li>
-                <li>负荷预警提示</li>
+                <li>覆盖关系推断</li>
+                <li>事件影响传播</li>
+                <li>异常根因分析</li>
+                <li>路径与网络推演</li>
               </ul>
             </div>
 
             <div className="search-feature-card">
-              <div className="feature-icon">📦</div>
-              <h3 className="feature-title">运单关联追踪</h3>
+              <div className="feature-icon">🧪</div>
+              <h3 className="feature-title">情景仿真</h3>
               <p className="feature-desc">
-                基于图谱关系，追踪运单全流程轨迹，关联上下游运单、车辆、人员等信息
+                把候选动作放进图谱世界状态里试跑，评估时效、成本、容量和风险变化。
               </p>
               <ul className="feature-list">
-                <li>多维度轨迹追踪</li>
-                <li>异常运单预警</li>
-                <li>关联运单推荐</li>
-                <li>配送效率分析</li>
+                <li>时空状态快照</li>
+                <li>动作后果模拟</li>
+                <li>负荷变化估算</li>
+                <li>资源占用评估</li>
               </ul>
             </div>
 
             <div className="search-feature-card">
-              <div className="feature-icon">🗺️</div>
-              <h3 className="feature-title">区域洞察分析</h3>
+              <div className="feature-icon">🚀</div>
+              <h3 className="feature-title">决策执行</h3>
               <p className="feature-desc">
-                聚合区域内的地址、运单、站点等实体，生成区域画像和业务洞察报告
+                将推理和仿真的结果写回业务系统，驱动调度、预警、运营和复盘。
               </p>
               <ul className="feature-list">
-                <li>订单密度热力图</li>
-                <li>配送效率评估</li>
-                <li>成本结构分析</li>
-                <li>优化建议推荐</li>
+                <li>调度建议输出</li>
+                <li>异常联动告警</li>
+                <li>策略效果回流</li>
+                <li>闭环复盘迭代</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section className="api-integration-section">
-          <h2 className="section-title">开放API集成</h2>
-          <p className="section-description">
-            提供RESTful API接口，支持快速集成到业务系统中
-          </p>
+          <h2 className="section-title">开放 API 集成</h2>
+          <p className="section-description">把世界模型能力封装成可直接接入的服务接口。</p>
 
           <div className="api-examples">
             <div className="api-card">
-              <h4 className="api-name">地址搜索 API</h4>
+              <h4 className="api-name">语义地址 API</h4>
               <div className="api-endpoint">
                 <span className="api-method">POST</span>
-                <span className="api-path">/api/graph/address/search</span>
+                <span className="api-path">/api/graph/address/resolve</span>
               </div>
-              <p className="api-desc">支持模糊搜索、智能补全、周边实体查询</p>
+              <p className="api-desc">支持模糊输入、地址纠错、标准化和上下文回填。</p>
             </div>
 
             <div className="api-card">
-              <h4 className="api-name">站点查询 API</h4>
+              <h4 className="api-name">事件追踪 API</h4>
               <div className="api-endpoint">
                 <span className="api-method">GET</span>
-                <span className="api-path">/api/graph/station/nearby</span>
+                <span className="api-path">/api/graph/event/:id/trace</span>
               </div>
-              <p className="api-desc">根据坐标或地址查询最近站点及覆盖信息</p>
+              <p className="api-desc">追踪事件影响路径、关联实体和状态变化时间线。</p>
             </div>
 
             <div className="api-card">
-              <h4 className="api-name">运单追踪 API</h4>
-              <div className="api-endpoint">
-                <span className="api-method">GET</span>
-                <span className="api-path">/api/graph/order/:id/track</span>
-              </div>
-              <p className="api-desc">获取运单全流程轨迹及关联实体信息</p>
-            </div>
-
-            <div className="api-card">
-              <h4 className="api-name">区域洞察 API</h4>
+              <h4 className="api-name">关系推理 API</h4>
               <div className="api-endpoint">
                 <span className="api-method">POST</span>
-                <span className="api-path">/api/graph/region/insight</span>
+                <span className="api-path">/api/graph/reason</span>
               </div>
-              <p className="api-desc">基于图谱数据生成区域业务洞察报告</p>
+              <p className="api-desc">输入实体和约束，输出多跳关系、影响范围和解释链路。</p>
+            </div>
+
+            <div className="api-card">
+              <h4 className="api-name">仿真决策 API</h4>
+              <div className="api-endpoint">
+                <span className="api-method">POST</span>
+                <span className="api-path">/api/graph/simulate</span>
+              </div>
+              <p className="api-desc">对候选动作进行世界状态推演，返回成本、风险和收益评估。</p>
             </div>
           </div>
         </section>
@@ -159,7 +159,7 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
               <div className="use-case-number">01</div>
               <h3 className="use-case-title">智能路径规划</h3>
               <p className="use-case-desc">
-                基于地址关系图谱，优化配送路径，减少配送时间和成本。结合历史轨迹和实时路况，动态调整最优路线。
+                结合语义地址、实时事件和路网关系，动态选择最优路径并持续重算。
               </p>
             </div>
 
@@ -167,31 +167,31 @@ export const KnowledgeGraphDetailPage: React.FC = () => {
               <div className="use-case-number">02</div>
               <h3 className="use-case-title">异常检测预警</h3>
               <p className="use-case-desc">
-                通过图谱关系分析，识别异常地址、拒收高发区域、欺诈地址等风险点，提前预警避免损失。
+                利用事件传播和关系影响链，提前识别异常地址、拥堵风险和履约失效。
               </p>
             </div>
 
             <div className="use-case-card">
               <div className="use-case-number">03</div>
-              <h3 className="use-case-title">网点选址优化</h3>
+              <h3 className="use-case-title">网点与资源优化</h3>
               <p className="use-case-desc">
-                结合地址分布、订单热力、现有站点覆盖情况，为新网点选址提供数据支持，优化配送网络布局。
+                通过区域画像、覆盖关系和负荷变化，优化站点选址、调度和资源配置。
               </p>
             </div>
 
             <div className="use-case-card">
               <div className="use-case-number">04</div>
-              <h3 className="use-case-title">客户画像分析</h3>
+              <h3 className="use-case-title">决策复盘与学习</h3>
               <p className="use-case-desc">
-                基于地址、运单、收件人等实体关系，构建客户画像，支持精准营销和个性化服务推荐。
+                把执行结果回写图谱和数据工厂，持续校正策略与知识，形成闭环学习。
               </p>
             </div>
           </div>
         </section>
 
         <div className="detail-footer-link">
-          <a className="detail-footer-button" href="/knowledge-graph-detail">
-            查看时空知识图谱详情页 →
+          <a className="detail-footer-button" href="/data-factory-detail">
+            返回数据工厂 →
           </a>
         </div>
       </div>

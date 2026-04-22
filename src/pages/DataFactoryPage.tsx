@@ -5,40 +5,38 @@ import { DataFlowDiagram } from './DataFactory/DataFlowDiagram';
 import { DataFactoryPositioning } from './DataFactory/PositioningSection.tsx';
 import { DataFactoryPrinciples } from './DataFactory/PrinciplesSection.tsx';
 import StaticFlowDiagram from './DataFactory/StaticFlowDiagram';
-
-import { LogisticsKnowledgeGraph } from './DataFactory/LogisticsKnowledgeGraph';
+import { LogisticsGraphSection } from './DataFactory/LogisticsGraphSection';
 
 export const DataFactoryPage: React.FC = () => {
   return (
     <div className="data-factory-page">
-      {/* 统一Hero介绍双板块 */}
       <TechOverviewHero />
       
-      {/* 数据工厂部分（主页保留核心内容） */}
       <div id="data-factory-section">
         <DataFactoryPositioning />
         <DataFactoryPrinciples />
+        <DataFlowDiagram />
         <StaticFlowDiagram />
         
         <div className="df-closure">
           <div className="df-closure-content">
-            <h3 className="df-closure-title">从接入到应用的完整数据链路</h3>
+            <h3 className="df-closure-title">可信数据工厂，是 Agent 世界模型的生产线</h3>
             <p className="df-closure-text">
-              丰图数据工厂为企业构建从数据接入、治理到应用的完整链路。通过自动化编排能力，
-              让数据接入成本降低80%，质量管控贯穿全链路，最终把数据能力快速转化为业务价值。
+              我们把地图、地址、轨迹、事件、规则与业务标签统一纳入同一条生产链，
+              用持续接入、自动治理、人工兜底和资产沉淀，把原始数据变成可调用、可追溯、可复用的世界模型底座。
             </p>
             <div className="df-closure-features">
               <div className="df-closure-feature-item">
-                <span className="df-closure-feature-icon">⚡</span>
-                <span>快速接入落地</span>
+                <span className="df-closure-feature-icon">🛡️</span>
+                <span>可信接入与质量守门</span>
               </div>
               <div className="df-closure-feature-item">
-                <span className="df-closure-feature-icon">📊</span>
-                <span>全链路质量管控</span>
+                <span className="df-closure-feature-icon">🏷️</span>
+                <span>语义地址与实体资产化</span>
               </div>
               <div className="df-closure-feature-item">
-                <span className="df-closure-feature-icon">🚀</span>
-                <span>规模化资产沉淀</span>
+                <span className="df-closure-feature-icon">🔁</span>
+                <span>反馈闭环与持续演化</span>
               </div>
             </div>
           </div>
@@ -51,32 +49,29 @@ export const DataFactoryPage: React.FC = () => {
         </div>
       </div>
       
-      {/* 物流知识图谱部分 */}
       <div id="knowledge-graph-section">
-        <LogisticsKnowledgeGraph />
+        <LogisticsGraphSection />
       </div>
 
-      {/* 数据工厂 × 知识图谱双轮驱动收尾文案 */}
       <section className="df-dual-closure">
         <div className="df-dual-content">
-          <h3 className="df-dual-title">数据工厂 × 知识图谱 双轮驱动</h3>
+          <h3 className="df-dual-title">数据工厂 × 时空知识图谱，组成 Agent 的底座闭环</h3>
           <p className="df-dual-text">
-            我们把数据工厂的全链路治理与知识图谱的语义理解结合，形成从“数据生产”到“智能决策”的闭环：
-            数据工厂确保数据新鲜、可信、可复用，知识图谱让数据具备业务语义和推理能力，
-            最终把数据能力沉淀为可落地的决策工具和业务增长引擎。
+            数据工厂负责采集、清洗、标注、资产化和回流，时空知识图谱负责把这些资产组织成可查询、可推理、可仿真的世界状态。
+            这条链路把地图从展示层抬升为认知层，让 Agent 不只是“看见世界”，而是可以理解地址、跟踪事件、推断关系并给出动作建议。
           </p>
           <div className="df-dual-features">
             <div className="df-dual-item">
               <span className="df-dual-icon">🏭</span>
-              <span>数据工厂：从接入到质量的治理闭环</span>
+              <span>数据工厂：可信数据与语义资产的生产线</span>
             </div>
             <div className="df-dual-item">
               <span className="df-dual-icon">🧠</span>
-              <span>知识图谱：多维语义融合与推理</span>
+              <span>知识图谱：语义地址、动态事件、关系推理</span>
             </div>
             <div className="df-dual-item">
               <span className="df-dual-icon">🚀</span>
-              <span>决策闭环：实时、可解释、可复盘</span>
+              <span>决策闭环：仿真、执行、复盘、再学习</span>
             </div>
           </div>
         </div>

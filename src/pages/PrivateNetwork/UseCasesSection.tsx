@@ -13,47 +13,47 @@ export const PrivateNetworkUseCases: React.FC = () => {
 
   const useCases: UseCase[] = [
     {
-      title: '公安应用',
-      icon: '👮',
-      description: '为公安机关提供位置管理、轨迹分析等核心业务支撑',
-      features: [
-        '案件地点智能分析与关联',
-        '多源数据融合与可视化',
-        '涉案人员轨迹还原与研判',
-        '高效的区域搜索与预警'
-      ]
-    },
-    {
-      title: '政务服务',
+      title: '政务 Agent',
       icon: '🏛️',
-      description: '支持政府部门的地理信息管理与空间决策',
+      description: '在政务内网中承载空间问答、地址治理、事项调度和跨部门协同',
       features: [
-        '城市管理的空间智能化',
-        '应急管理的位置感知',
-        '资源配置的优化决策',
-        '规范部署与数据安全'
+        '事项地址、责任区和网格自动关联',
+        '跨部门资源与事件统一调度',
+        '自然语言驱动的空间研判',
+        '面向窗口、热线和指挥链路的空间支撑'
       ]
     },
     {
-      title: '军队应用',
-      icon: '🎖️',
-      description: '满足军队的严苛安全与可靠性要求',
+      title: '企业 Agent',
+      icon: '🏢',
+      description: '面向园区、制造、物流和能源等企业内网场景，构建私有空间运营中枢',
       features: [
-        '完全国产化的技术栈',
-        '最高等级的安全认证',
-        '离线与专网部署支持',
-        '军事级别的可用性保证'
+        '园区资产、工单和空间对象统一锚定',
+        '内网地址搜索与知识问答',
+        '生产、仓储和巡检联动调度',
+        '支撑长期运营的数据主权要求'
       ]
     },
     {
-      title: '专网环境',
-      icon: '🔒',
-      description: '为企业和机构提供专网地图部署方案',
+      title: '应急 Agent',
+      icon: '🚨',
+      description: '面向应急值守、灾害响应和突发事件，提供可编排的空间行动能力',
       features: [
-        '完整的离线数据支持',
-        '灵活的定制化能力',
-        '稳定的长期运维支持',
-        '与现有系统的无缝集成'
+        '事件接入、影响范围和资源分布一屏掌握',
+        '路径、设施和风险点联合研判',
+        '预案编排与行动建议自动生成',
+        '保障时效性与可追溯性'
+      ]
+    },
+    {
+      title: '地址与图谱 Agent',
+      icon: '🧠',
+      description: '面向地址治理、知识问答和实体融合，构建企业/政务内部的空间语义中枢',
+      features: [
+        '非标准地址解析与纠错',
+        '私域知识图谱问答和追问',
+        '地址、建筑、组织与事件联动',
+        '支持业务系统无缝调用'
       ]
     }
   ];
@@ -63,9 +63,9 @@ export const PrivateNetworkUseCases: React.FC = () => {
   return (
     <section className="pn-usecases">
       <div className="pn-usecases-container">
-        <h2 className="section-title">应用场景</h2>
+        <h2 className="section-title">Agent 场景</h2>
         <p className="section-subtitle">
-          为不同行业和场景提供专业的地图与空间服务解决方案
+          围绕企业和政务内部最常见的空间工作流，构建可直接落地的 Agent 使用场景
         </p>
 
         <div className="usecases-content">

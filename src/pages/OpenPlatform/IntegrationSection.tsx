@@ -1,65 +1,78 @@
 import React from 'react';
 import './IntegrationSection.css';
 
-export const OpenPlatformIntegration: React.FC = () => {
-  const steps = [
-    {
-      number: '1',
-      title: '注册开发者账户',
-      description: '访问开放平台，创建开发者账户并完成身份认证'
-    },
-    {
-      number: '2',
-      title: '创建应用',
-      description: '在控制台创建应用，获取 API Key 和 Secret'
-    },
-    {
-      number: '3',
-      title: '集成 SDK',
-      description: '选择对应语言的 SDK，按照文档快速集成'
-    },
-    {
-      number: '4',
-      title: '开发调试',
-      description: '使用沙箱环境进行开发和测试'
-    },
-    {
-      number: '5',
-      title: '上线运维',
-      description: '应用通过审核后上线，享受完整的监控和支持'
-    }
-  ];
+const steps = [
+  {
+    number: '01',
+    title: '定义工具边界',
+    description: '先把地图、编码、路线、围栏和数据服务拆成最小可调用单元。',
+  },
+  {
+    number: '02',
+    title: '配置认证与权限',
+    description: '按应用、密钥、项目与空间范围设置调用权限和配额。',
+  },
+  {
+    number: '03',
+    title: '接入 SDK 或 API',
+    description: '前端、后端和智能体都可以选择最合适的接入方式。',
+  },
+  {
+    number: '04',
+    title: '编排工作流',
+    description: '把工具挂到业务流程、Agent 任务链或事件回调中。',
+  },
+  {
+    number: '05',
+    title: '上线观测治理',
+    description: '跟踪调用、审计结果、优化参数并持续治理空间资产。',
+  },
+];
 
+const integrationModes = [
+  'REST API',
+  'SDK 集成',
+  'MCP-like 工具发现',
+  'Webhook 事件回传',
+  '权限与审计面板',
+];
+
+export const OpenPlatformIntegration: React.FC = () => {
   return (
     <section className="op-integration">
-      <div className="op-integration-container">
-        <h2 className="section-title">快速开始</h2>
-        <p className="section-subtitle">
-          五个简单步骤，快速集成丰图开放平台能力
-        </p>
-
-        <div className="steps-timeline">
-          {steps.map((step, idx) => (
-            <div key={idx} className="timeline-step">
-              <div className="step-number">{step.number}</div>
-              <div className="step-content">
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-description">{step.description}</p>
-              </div>
-              {idx < steps.length - 1 && <div className="step-connector"></div>}
-            </div>
-          ))}
+      <div className="op-section-inner">
+        <div className="op-section-heading">
+          <span className="op-section-kicker">接入路径</span>
+          <h2>从注册到上线，形成可治理的空间工具生产流程</h2>
+          <p>
+            平台接入不只是拿到一个 Key，而是建立一条可维护、可追踪、可扩展的空间工具链路。
+          </p>
         </div>
 
-        <div className="integration-highlight">
-          <h3>完整的技术支持</h3>
-          <ul className="support-list">
-            <li>📖 详细的 API 文档和示例代码</li>
-            <li>🔧 多语言 SDK（JavaScript, Python, Java, Go）</li>
-            <li>💬 开发者社区和技术论坛</li>
-            <li>🎯 专业的技术支持团队</li>
-            <li>📊 完整的监控、分析和调试工具</li>
-          </ul>
+        <div className="op-integration-grid">
+          <div className="op-integration-steps">
+            {steps.map((step) => (
+              <article key={step.number} className="op-integration-step">
+                <span className="op-integration-step-number">{step.number}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <aside className="op-integration-panel">
+            <div className="op-integration-panel-title">支持模式</div>
+            <div className="op-integration-modes">
+              {integrationModes.map((mode) => (
+                <span key={mode} className="op-integration-mode">{mode}</span>
+              ))}
+            </div>
+            <p className="op-integration-note">
+              工具注册后可以进入开发、测试和生产环境，并结合权限、调用额度和审计策略进行持续治理。
+            </p>
+          </aside>
         </div>
       </div>
     </section>

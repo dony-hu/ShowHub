@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SpatioTemporalKGPage.css';
 
-// Section Components
 import { STKGHero } from './SpatioTemporalKG/STKGHero';
 import { MapToGraphEvolution } from './SpatioTemporalKG/MapToGraphEvolution';
 import { STKGDefinition } from './SpatioTemporalKG/STKGDefinition';

@@ -1,6 +1,6 @@
 .pn-cta {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #00d4ff 0%, #00f5ff 100%);
+  background: linear-gradient(135deg, #0b2230 0%, #0f3f58 100%);
   position: relative;
   overflow: hidden;
 }
@@ -113,6 +113,10 @@
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   font-weight: 600;
+}
+
+.highlight-number {
+  letter-spacing: 0;
 }
 
 @media (max-width: 968px) {

@@ -26,7 +26,7 @@ export const LogisticsSTMDiagram: React.FC = () => {
     // 绘制时间轴
     drawTimeline(ctx, width, height);
 
-    // 绘制物流路径流线
+    // 绘制仿真路径流线
     drawLogisticsPath(ctx, centerX, centerY);
 
     // 绘制节点和标签
@@ -95,7 +95,7 @@ export const LogisticsSTMDiagram: React.FC = () => {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
-    // 绘制多条递送路径
+    // 绘制多条任务路径
     const paths = [
       { points: [[80, 100], [150, 140], [200, 120], [280, 160], [350, 140]] },
       { points: [[90, 200], [160, 220], [220, 200], [300, 240], [360, 220]] },
@@ -142,17 +142,17 @@ export const LogisticsSTMDiagram: React.FC = () => {
       { x: 80, y: 100, label: '地址', color: '#3b82f6', size: 8 },
       { x: 200, y: 120, label: 'AOI', color: '#10b981', size: 8 },
       { x: 280, y: 160, label: '站点', color: '#f59e0b', size: 8 },
-      { x: 350, y: 140, label: '末端', color: '#ec4899', size: 8 },
+      { x: 350, y: 140, label: '终点', color: '#ec4899', size: 8 },
 
-      { x: 90, y: 200, label: '地址', color: '#3b82f6', size: 8 },
+      { x: 90, y: 200, label: '风险', color: '#3b82f6', size: 8 },
       { x: 160, y: 220, label: '路径', color: '#06b6d4', size: 8 },
       { x: 240, y: 200, label: '行为', color: '#8b5cf6', size: 8 },
-      { x: 310, y: 240, label: '画像', color: '#ec4899', size: 8 },
+      { x: 310, y: 240, label: '评测', color: '#ec4899', size: 8 },
 
       { x: 100, y: 280, label: '设施', color: '#14b8a6', size: 8 },
       { x: 170, y: 300, label: '语义', color: '#0ea5e9', size: 8 },
-      { x: 240, y: 280, label: '链接', color: '#10b981', size: 8 },
-      { x: 310, y: 310, label: '推理', color: '#f59e0b', size: 8 },
+      { x: 240, y: 280, label: '推理', color: '#10b981', size: 8 },
+      { x: 310, y: 310, label: '仿真', color: '#f59e0b', size: 8 },
     ];
 
     nodes.forEach((node) => {
@@ -204,7 +204,7 @@ export const LogisticsSTMDiagram: React.FC = () => {
         </div>
         <div className="legend-item">
           <span className="legend-color" style={{ backgroundColor: '#f59e0b' }}></span>
-          <span>语义标签</span>
+          <span>仿真评测</span>
         </div>
       </div>
     </div>

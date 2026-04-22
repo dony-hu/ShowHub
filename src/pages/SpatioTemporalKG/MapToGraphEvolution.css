@@ -1,105 +1,100 @@
 .map-evolution-section {
   background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(156, 39, 176, 0.1);
+  border-top: 1px solid rgba(125, 211, 252, 0.1);
 }
 
 .evolution-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .evolution-content {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
 }
 
 .evolution-text {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  display: grid;
+  gap: 16px;
 }
 
 .evolution-point {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(125, 211, 252, 0.12);
 }
 
 .point-icon {
-  font-size: 32px;
-  line-height: 1;
   flex-shrink: 0;
+  font-size: 28px;
+  line-height: 1;
 }
 
 .point-content h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 8px;
+  margin: 0 0 6px;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .point-content p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
   margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .evolution-diagram {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: rgba(156, 39, 176, 0.05);
-  border: 1px solid rgba(156, 39, 176, 0.15);
+  padding: 24px;
   border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(125, 211, 252, 0.12);
 }
 
 .diagram-container {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  display: grid;
+  gap: 12px;
 }
 
 .diagram-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-width: 100px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(125, 211, 252, 0.1);
+  text-align: center;
 }
 
 .diagram-icon {
-  font-size: 40px;
+  margin-bottom: 8px;
+  font-size: 30px;
   line-height: 1;
 }
 
 .diagram-label {
   font-size: 14px;
-  font-weight: 700;
-  color: white;
-  text-align: center;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .diagram-desc {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .diagram-arrow {
-  font-size: 24px;
-  color: rgba(156, 39, 176, 0.6);
-  font-weight: 300;
+  text-align: center;
+  font-size: 20px;
+  color: rgba(125, 211, 252, 0.7);
 }
 
-@media (max-width: 768px) {
-  .diagram-container {
-    flex-direction: column;
-  }
-  
-  .diagram-arrow {
-    transform: rotate(90deg);
+@media (max-width: 900px) {
+  .evolution-content {
+    grid-template-columns: 1fr;
   }
 }

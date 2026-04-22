@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './LogisticsSTMDiagram.css';
+import './DiagramShared.css';
 
 export const LogisticsSTMDiagram: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

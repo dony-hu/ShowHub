@@ -4,76 +4,58 @@ import './AddressLLMSection.css';
 export const PrivateNetworkAddressLLM: React.FC = () => {
   const capabilities = [
     {
-      icon: '🧠',
-      title: '超强泛化能力',
-      description: '理解各类非标准地址描述，包括方言、俗称、历史地名、模糊表达',
-      examples: ['老王家隔壁那个卖煎饼的店', '北京西站往东走200米', '原来的百盛商场']
+      icon: '🔐',
+      title: '专网推理',
+      description: '在本地环境中完成地址解析、检索和推理，不依赖公网服务',
+      examples: ['内网地址查询', '隔离区语义检索', '本地模型推理']
     },
     {
-      icon: '🔗',
-      title: '空间关系推理',
-      description: '理解并推理空间实体间的拓扑、距离、方向、包含等复杂关系',
-      examples: ['从A到B途径哪些区域', '找出所有临街商铺', '计算两地最短路径']
+      icon: '🗺️',
+      title: '地址语义理解',
+      description: '识别非标准地址、简称、方言表达和业务习惯写法，自动映射到可用空间实体',
+      examples: ['老院区南门旁', '二期仓库西侧', '行政楼对面的会议中心']
     },
     {
       icon: '⏳',
-      title: '时空演化认知',
-      description: '理解地址随时间的变迁，追踪实体的更名、拆分、合并历史',
-      examples: ['这个地方以前叫什么', '2010年这里是什么建筑', '追溯POI变更历史']
+      title: '时态变更认知',
+      description: '理解地址、楼宇、机构和设施随时间的拆分、合并、更名与迁移关系',
+      examples: ['去年这里是什么楼', '旧地址现在对应哪一栋', '追踪历史变更链路']
     },
     {
-      icon: '🗣️',
-      title: '自然语言交互',
-      description: '以对话方式理解用户意图，无需学习复杂的查询语法',
-      examples: ['帮我找附近的咖啡店，要安静的那种', '这条街上有哪些老字号', '从我家到公司怎么走最快']
+      icon: '🧭',
+      title: '空间关系推理',
+      description: '推理拓扑、邻近、包含、方位和路径关系，为 Agent 提供空间判断依据',
+      examples: ['A 点到 B 点经过哪些区域', '找出周边 500 米内资源', '判断是否跨越风险边界']
     },
     {
-      icon: '🎯',
-      title: '语义地址解析',
-      description: '理解基于语义的地址描述，而非仅依赖行政区划和门牌号',
-      examples: ['三里屯酒吧街最热闹的那条', '故宫北门对面', '五道口地铁站C口出来右转']
+      icon: '🧠',
+      title: '知识图谱问答',
+      description: '基于私域知识图谱回答地址、对象、组织和事件的空间关联问题',
+      examples: ['这个地址归哪个部门管', '附近有哪些应急资源', '这片区域的对象关系是什么']
     },
     {
       icon: '🔍',
-      title: '多源数据融合',
-      description: '整合地图、点评、社交、物流等多源数据，形成统一的实体理解',
-      examples: ['这家店在美团上叫什么', '大众点评和高德上是同一个地方吗', '合并重复POI']
+      title: '多源实体融合',
+      description: '统一地图、业务、资产和组织数据，消除重复实体并形成可追溯的主数据',
+      examples: ['楼栋与地址对齐', '部门与位置绑定', '重复对象自动去重']
     },
     {
-      icon: '🌐',
-      title: '跨语言地址映射',
-      description: '理解不同语言、不同文字系统中的同一地址表达',
-      examples: ['北京 → Beijing → 베이징', '中英文地址互译', '识别外文地名']
+      icon: '🗣️',
+      title: '自然语言问图',
+      description: '把业务人员的日常提问转成可执行的空间查询、检索和分析任务',
+      examples: ['找最近的应急点', '查这个区域有哪些资产', '统计网格内的事件数量']
     },
     {
-      icon: '📊',
-      title: '空间知识问答',
-      description: '基于空间知识图谱回答复杂的地理相关问题',
-      examples: ['北京有多少个星巴克', '朝阳区最高的建筑是哪个', '这条路的平均车速是多少']
+      icon: '⚙️',
+      title: '持续训练与校准',
+      description: '支持本地数据增量更新、规则校准和离线评测，让地址大模型长期可用',
+      examples: ['数据更新后自动重建索引', '规则变更后回归校验', '本地评测集持续扩充']
     },
     {
-      icon: '🚀',
-      title: '智能地址补全',
-      description: '根据上下文和历史，智能预测和补全不完整的地址信息',
-      examples: ['输入"三里"预测"三里屯"', '根据用户习惯补全常去地址', '纠正拼写错误']
-    },
-    {
-      icon: '🏙️',
-      title: '城市语义理解',
-      description: '理解城市的功能分区、文化特征、人群活动等抽象概念',
-      examples: ['找一个适合带孩子玩的地方', '哪里能体验老北京文化', '科技公司聚集区在哪']
-    },
-    {
-      icon: '📍',
-      title: '个性化地址推荐',
-      description: '基于用户偏好、历史行为和实时场景，提供个性化的地址推荐',
-      examples: ['根据你的口味推荐餐厅', '适合约会的咖啡厅', '你可能喜欢的书店']
-    },
-    {
-      icon: '🔄',
-      title: '地址规范化与标准化',
-      description: '将各类非标准地址自动转换为标准格式，支持地址清洗与校验',
-      examples: ['统一不同系统的地址格式', '批量清洗物流地址', '验证地址真实性']
+      icon: '📦',
+      title: '合规输出控制',
+      description: '对外提供的检索结果和回答可按权限、范围和脱敏规则受控输出',
+      examples: ['按角色返回不同粒度', '限制敏感区域信息', '对结果做审计留痕']
     }
   ];
 
@@ -81,11 +63,10 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
     <section id="address-llm" className="pn-address-llm">
       <div className="pn-address-llm-container">
         <div className="pn-address-llm-header">
-          <h2 className="pn-section-title">地址大模型：空间智能的未来</h2>
+          <h2 className="pn-section-title">地址大模型：专网空间智能的语义引擎</h2>
           <p className="pn-address-llm-subtitle">
-            基于<strong>全国空间实体知识图谱</strong>训练的地址大模型，将包含所有地图实体及其关联关系、别名、时态变化属性，
-            赋予机器真正理解空间语义的能力。相比传统的地址服务接口，大模型不仅具有<strong>更强的泛化能力</strong>和<strong>空间推理能力</strong>，
-            更能开启全新的空间智能应用范式。
+            面向企业和政务专网环境构建的地址大模型，把<strong>地址实体、空间关系、时态变化和私域知识</strong>统一进一个本地可控的语义系统，
+            让 Agent 不只会“查地址”，还能<strong>理解、追问、推理、校准</strong>空间信息。
           </p>
         </div>
 
@@ -109,29 +90,28 @@ export const PrivateNetworkAddressLLM: React.FC = () => {
         </div>
 
         <div className="pn-llm-vision">
-          <h3 className="pn-llm-vision-title">🌟 技术愿景</h3>
+          <h3 className="pn-llm-vision-title">技术目标</h3>
           <div className="pn-llm-vision-content">
             <p>
-              地址大模型将成为<strong>空间智能的基础设施</strong>，赋能智慧城市、物流配送、本地生活、自动驾驶等众多场景。
-              它不再是简单的"地址查询工具"，而是能够<strong>理解、推理、生成</strong>的空间智能体，
-              让机器具备接近人类的空间认知能力。
+              让地址大模型成为<strong>专网空间智能的基础设施</strong>，与地图底座、私域图谱和业务 Agent 协同工作，
+              支撑政务协同、企业运营、应急指挥和行业调度等真实业务场景。
             </p>
             <div className="pn-llm-vision-grid">
               <div className="pn-llm-vision-item">
-                <div className="pn-llm-vision-number">10亿+</div>
-                <div className="pn-llm-vision-label">空间实体</div>
+                <div className="pn-llm-vision-number">本地推理</div>
+                <div className="pn-llm-vision-label">不出网</div>
               </div>
               <div className="pn-llm-vision-item">
-                <div className="pn-llm-vision-number">100亿+</div>
-                <div className="pn-llm-vision-label">关系三元组</div>
+                <div className="pn-llm-vision-number">私域图谱</div>
+                <div className="pn-llm-vision-label">可追溯</div>
               </div>
               <div className="pn-llm-vision-item">
-                <div className="pn-llm-vision-number">时空一体</div>
-                <div className="pn-llm-vision-label">多维建模</div>
+                <div className="pn-llm-vision-number">时态一致</div>
+                <div className="pn-llm-vision-label">可演化</div>
               </div>
               <div className="pn-llm-vision-item">
-                <div className="pn-llm-vision-number">实时更新</div>
-                <div className="pn-llm-vision-label">持续进化</div>
+                <div className="pn-llm-vision-number">Agent 可用</div>
+                <div className="pn-llm-vision-label">可编排</div>
               </div>
             </div>
           </div>

@@ -250,8 +250,8 @@ export const MapToGraphDemo: React.FC = () => {
   return (
     <div className="map-graph-demo">
       <div className="demo-header">
-        <h3>物流时空知识图谱：在线地图 × 多模态图谱联动</h3>
-        <p className="hint">点击地图标记或图谱节点，查看联动高亮效果 | 切换不同物流场景查看专业图谱</p>
+        <h3>语义地址到图谱：在线地图 × 多模态世界模型联动</h3>
+        <p className="hint">点击地图标记或图谱节点，查看地址、事件和关系如何在同一底座中联动</p>
       </div>
 
       {/* 场景切换 */}

@@ -6,109 +6,106 @@ export const LogisticsGraphSection: React.FC = () => {
   return (
     <section className="logistics-graph-section" id="knowledge-graph-section">
       <div className="section-container">
-        {/* 顶部介绍 */}
         <div className="section-header">
-          <h2 className="section-title">基于物流的时空知识图谱</h2>
-          <p className="section-subtitle">顺丰真实业务数据构建的生产级图谱系统</p>
+          <p className="section-kicker">Map to Graph</p>
+          <h2 className="section-title">从地图到图谱，把空间语义变成 Agent 能调用的知识</h2>
+          <p className="section-subtitle">
+            语义地址是锚点，动态事件是变化，关系网络是结构，图谱最终服务于理解、推理与决策执行。
+          </p>
         </div>
 
-        {/* 三个核心能力卡片 */}
         <div className="intro-cards">
           <div className="intro-card">
             <div className="card-icon">📍</div>
-            <h3>地址深度理解</h3>
-            <p>融合地图、街景、卫星影像与POI文本，将地址从单一字符串提升为可推理的空间语义对象</p>
+            <h3>语义地址</h3>
+            <p>把地址从字符串升级为可对齐坐标、POI、区域、画像和事件的统一语义对象。</p>
           </div>
 
           <div className="intro-card">
-            <div className="card-icon">🔍</div>
-            <h3>实体智能抽取</h3>
-            <p>从物流订单、运单、轨迹中自动提取地址、站点、仓库等空间实体，构建物流网络拓扑</p>
+            <div className="card-icon">🕓</div>
+            <h3>动态事件</h3>
+            <p>把拥堵、异常、变更和风险抽象为事件节点，让世界状态随时间持续演化。</p>
           </div>
 
           <div className="intro-card">
-            <div className="card-icon">🤖</div>
-            <h3>多模态融合</h3>
-            <p>结合文本、图像、位置信号，实现地址标准化、POI识别、场景理解的多模态推理</p>
+            <div className="card-icon">🧠</div>
+            <h3>可推理关系</h3>
+            <p>把覆盖、邻近、依赖、影响和协作建成可计算关系，为 Agent 提供推理路径。</p>
           </div>
         </div>
 
-        {/* 地图+图谱联动展示 */}
         <MapToGraphDemo />
 
-        {/* 物流专属应用场景 */}
         <div className="use-cases">
-          <h3 className="cases-title">物流场景深度应用</h3>
+          <h3 className="cases-title">面向 Agent 的四类调用方式</h3>
           <div className="cases-grid">
             <div className="case-card">
-              <div className="case-icon">📦</div>
-              <h4>智能运单追踪</h4>
-              <p>基于图谱关联分析，实时追踪运单状态，预测配送时效，异常提前告警</p>
+              <div className="case-icon">🔎</div>
+              <h4>语义检索</h4>
+              <p>地址、站点、事件、运单统一查询，返回可解释的上下文和关联实体。</p>
             </div>
 
             <div className="case-card">
-              <div className="case-icon">🚚</div>
-              <h4>网络优化决策</h4>
-              <p>分析站点覆盖、路径效率、成本分布，为网点布局和路由规划提供数据支撑</p>
+              <div className="case-icon">🔗</div>
+              <h4>关系推理</h4>
+              <p>围绕实体和事件进行多跳推理，找出影响路径、上下游关系和异常根因。</p>
             </div>
 
             <div className="case-card">
-              <div className="case-icon">⚠️</div>
-              <h4>异常智能告警</h4>
-              <p>通过图谱推理识别异常配送模式、地址欺诈风险、流量拥堵预警</p>
+              <div className="case-icon">🧪</div>
+              <h4>情景仿真</h4>
+              <p>把候选动作投影到世界模型上，估算时效、成本、风险和资源占用变化。</p>
             </div>
 
             <div className="case-card">
-              <div className="case-icon">📊</div>
-              <h4>经营分析洞察</h4>
-              <p>区域订单热力、客户分布、竞争态势的多维度图谱分析</p>
+              <div className="case-icon">🚀</div>
+              <h4>决策执行</h4>
+              <p>把推理结果输出到调度、预警、搜索和运营系统，形成可执行闭环。</p>
             </div>
           </div>
         </div>
 
-        {/* 数据规模统计面板 */}
         <div className="stats-panel">
-          <h3 className="stats-title">生产级图谱规模</h3>
+          <h3 className="stats-title">生产级世界模型规模</h3>
           <div className="stats-grid">
             <div className="stat-item">
               <div className="stat-number">10亿+</div>
-              <div className="stat-label">时空实体节点</div>
-              <div className="stat-detail">地址、站点、运单、轨迹</div>
+              <div className="stat-label">实体节点</div>
+              <div className="stat-detail">地址、站点、运单、设备</div>
             </div>
 
             <div className="stat-item">
               <div className="stat-number">50亿+</div>
               <div className="stat-label">关系边</div>
-              <div className="stat-detail">派送、覆盖、邻近、协作</div>
+              <div className="stat-detail">覆盖、邻近、依赖、影响</div>
             </div>
 
             <div className="stat-item">
               <div className="stat-number">100万+</div>
               <div className="stat-label">日更新量</div>
-              <div className="stat-detail">实时运单、轨迹增量</div>
+              <div className="stat-detail">事件流、轨迹流、状态流</div>
             </div>
 
             <div className="stat-item">
               <div className="stat-number">99.9%</div>
-              <div className="stat-label">地址识别准确率</div>
-              <div className="stat-detail">基于顺丰真实业务验证</div>
+              <div className="stat-label">识别可信度</div>
+              <div className="stat-detail">业务验证后的稳定输出</div>
             </div>
           </div>
         </div>
 
-        {/* 底部要点说明 */}
         <div className="key-points">
           <div className="point-item">
             <span className="point-icon">✓</span>
-            <span className="point-text">地址实体是跨行业对齐的共同锚点，物流场景验证最为充分</span>
+            <span className="point-text">语义地址把地图位置、业务含义和历史状态绑在一起。</span>
           </div>
           <div className="point-item">
             <span className="point-icon">✓</span>
-            <span className="point-text">物流要素叠加在同一空间实体上，形成联动处置能力</span>
+            <span className="point-text">动态事件让图谱不只是静态知识库，而是持续变化的世界状态。</span>
           </div>
           <div className="point-item">
             <span className="point-icon">✓</span>
-            <span className="point-text">图谱支持检索、推理与下一步动作（路径规划、异常告警、智能调度）</span>
+            <span className="point-text">推理、仿真、执行、复盘串起来之后，图谱才真正成为 Agent 的操作系统。</span>
           </div>
         </div>
       </div>

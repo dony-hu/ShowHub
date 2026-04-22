@@ -1,39 +1,37 @@
 import React from 'react';
 import './CTASection.css';
 
+const supportItems = [
+  '空间工具清单',
+  '接入样例',
+  '权限与审计',
+  '方案咨询',
+];
+
 export const OpenPlatformCTA: React.FC = () => {
   return (
     <section className="op-cta">
-      <div className="op-cta-container">
-        <div className="cta-content">
-          <h2 className="cta-title">
-            开始使用丰图开放平台
-          </h2>
-          <p className="cta-description">
-            让空间能力成为您的核心竞争力
+      <div className="op-section-inner op-cta-inner">
+        <div className="op-cta-copy">
+          <span className="op-section-kicker">下一步</span>
+          <h2>把你的空间能力，变成智能体可调用的生产级工具</h2>
+          <p>
+            无论你要做地图展示、地址理解、路径调度还是空间规则执行，都可以从一套统一的平台开始。
           </p>
-          <div className="cta-buttons">
-            <button className="btn btn-primary">立即开始</button>
-            <button className="btn btn-secondary">咨询销售</button>
+          <div className="op-cta-actions">
+            <a className="op-cta-button primary" href="https://lbs.sfmap.com.cn/" target="_blank" rel="noopener noreferrer">
+              立即试用
+            </a>
+            <a className="op-cta-button secondary" href="https://lbs.sfmap.com.cn/" target="_blank" rel="noopener noreferrer">
+              联系方案团队
+            </a>
           </div>
         </div>
-        <div className="cta-features">
-          <div className="feature-item">
-            <div className="feature-number">99.9%</div>
-            <p>可用性保证</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-number">&lt;100ms</div>
-            <p>平均响应时间</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-number">6+</div>
-            <p>能力类别</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-number">10k+</div>
-            <p>开发者已使用</p>
-          </div>
+
+        <div className="op-cta-panel">
+          {supportItems.map((item) => (
+            <div key={item} className="op-cta-chip">{item}</div>
+          ))}
         </div>
       </div>
     </section>

@@ -10,35 +10,32 @@ export const STKGHero: React.FC = () => {
           <span>/</span>
           <a href="/data-factory">核心技术</a>
           <span>/</span>
-          <span>深入了解｜时空知识图谱</span>
+          <span>时空知识图谱</span>
         </div>
-        
-        <h1 className="stkg-hero-title">
-          深入了解｜时空知识图谱
-        </h1>
-        <p className="stkg-hero-subtitle-en">
-          Spatio-Temporal Knowledge Graph
-        </p>
+
+        <p className="stkg-kicker">Agent World Model</p>
+        <h1 className="stkg-hero-title">时空知识图谱</h1>
+        <p className="stkg-hero-subtitle-en">Spatio-Temporal Knowledge Graph</p>
         <p className="stkg-hero-description">
-          以真实空间实体为核心的世界建模方式，让机器理解世界、推理决策
+          用语义地址锚定空间实体，用动态事件描述世界变化，用关系网络支撑推理与仿真，让 Agent 真正理解现实世界。
         </p>
-        
+
         <div className="stkg-hero-highlights">
           <div className="stkg-hero-highlight">
-            <span className="highlight-label">实体优先</span>
-            <span className="highlight-value">Entity-First</span>
+            <span className="highlight-label">语义地址</span>
+            <span className="highlight-value">Address as Anchor</span>
           </div>
           <div className="stkg-hero-highlight">
-            <span className="highlight-label">时间一等公民</span>
-            <span className="highlight-value">Time as First-Class</span>
+            <span className="highlight-label">动态事件</span>
+            <span className="highlight-value">Events as Change</span>
           </div>
           <div className="stkg-hero-highlight">
-            <span className="highlight-label">关系可计算</span>
-            <span className="highlight-value">Queryable & Reasonable</span>
+            <span className="highlight-label">关系推理</span>
+            <span className="highlight-value">Reasonable Graph</span>
           </div>
           <div className="stkg-hero-highlight">
-            <span className="highlight-label">持续演化</span>
-            <span className="highlight-value">Evolving</span>
+            <span className="highlight-label">仿真闭环</span>
+            <span className="highlight-value">Plan, Act, Learn</span>
           </div>
         </div>
       </div>

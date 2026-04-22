@@ -4,120 +4,95 @@
 
 .path-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 56px;
 }
 
 .path-timeline {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .path-step {
   position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 280px;
+  padding: 24px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(125, 211, 252, 0.14);
 }
 
 .step-number {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+  font-size: 24px;
   font-weight: 900;
-  color: white;
-  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
-  border: 3px solid rgba(156, 39, 176, 0.3);
-  border-radius: 50%;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.step-content {
-  text-align: center;
+  color: #ffffff;
 }
 
 .step-title {
+  margin: 0 0 6px;
   font-size: 18px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 8px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .step-subtitle {
+  margin: 0 0 10px;
   font-size: 12px;
-  font-weight: 600;
-  color: rgba(156, 39, 176, 0.8);
+  font-weight: 700;
+  color: rgba(125, 211, 252, 0.82);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
 }
 
 .step-description {
+  margin: 0 0 14px;
   font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.76);
 }
 
 .step-challenge {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  padding: 12px;
-  background: rgba(255, 152, 0, 0.1);
-  border: 1px solid rgba(255, 152, 0, 0.3);
-  border-radius: 8px;
-  text-align: left;
+  padding: 12px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(125, 211, 252, 0.12);
 }
 
 .challenge-icon {
-  font-size: 16px;
-  line-height: 1;
   flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .challenge-text {
   font-size: 12px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.64);
 }
 
 .step-connector {
-  position: absolute;
-  top: 40px;
-  left: calc(50% + 40px);
-  width: calc(100% - 80px);
-  height: 2px;
-  background: linear-gradient(90deg, 
-    rgba(156, 39, 176, 0.5) 0%, 
-    rgba(156, 39, 176, 0.2) 50%, 
-    rgba(156, 39, 176, 0.5) 100%
-  );
-  z-index: 1;
+  display: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
   .path-timeline {
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .path-step {
-    max-width: 500px;
-  }
-  
-  .step-connector {
-    display: none;
+}
+
+@media (max-width: 720px) {
+  .path-timeline {
+    grid-template-columns: 1fr;
   }
 }

@@ -6,16 +6,21 @@ export const DataFactoryPositioning: React.FC = () => {
     <section id="positioning" className="df-positioning">
       <div className="df-positioning-container">
         <div className="df-positioning-content">
+          <div className="df-positioning-badge">Trusted Data Base</div>
           <p className="df-positioning-text df-positioning-text-enlarged">
-            空间智能数据工厂是一套面向多源、多场景的<strong>空间数据接入、治理、融合与生产平台</strong>。
-            它不是简单的数据清洗工具，而是以<strong>空间实体</strong>为核心的数据组织与治理体系，
-            支持从原始数据到标准化资产的全流程生产。
+            数据工厂不是一次性制图工具，而是面向 Agent 的<strong>可信数据生产系统</strong>。
+            它围绕空间实体、语义地址、动态事件和业务标签持续接入多源数据，完成治理、融合、校验与资产化。
           </p>
-          
           <p className="df-positioning-text df-positioning-text-enlarged">
-            目标<strong>不是一次性制图</strong>，而是建立<strong>可持续运行的数据生产体系</strong>，
-            通过多源数据的持续接入与自动化治理，让地图、实体、事件等空间资产始终保持鲜活与可信。
+            目标不是“把数据整理好”这么简单，而是让地图、地址、轨迹、规则和场景状态都变成
+            <strong>可调用、可追溯、可复盘</strong>的底座资产，为时空知识图谱和 Agent 决策提供稳定输入。
           </p>
+          <div className="df-positioning-capsules">
+            <span className="df-positioning-chip">可信接入</span>
+            <span className="df-positioning-chip">语义地址</span>
+            <span className="df-positioning-chip">实体资产化</span>
+            <span className="df-positioning-chip">持续演化</span>
+          </div>
         </div>
       </div>
     </section>

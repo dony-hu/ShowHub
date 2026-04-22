@@ -32,10 +32,6 @@
   opacity: 0.35;
   filter: grayscale(70%) brightness(0.7) contrast(1.1);
 }
-  object-fit: cover;
-  opacity: 0.35;
-  filter: grayscale(70%) brightness(0.7) contrast(1.1);
-}
 
 .map-overlay {
   position: absolute;

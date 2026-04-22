@@ -32,7 +32,7 @@ export const DataCooperationDiagram: React.FC = () => {
     const sources = [
       { x: 40, y: 60, width: 80, height: 100, color: '#3b82f6', label: '空间数据' },
       { x: 140, y: 60, width: 80, height: 100, color: '#10b981', label: '行业数据' },
-      { x: 240, y: 60, width: 80, height: 100, color: '#f59e0b', label: '业务数据' },
+      { x: 240, y: 60, width: 80, height: 100, color: '#f59e0b', label: '标签集' },
     ];
 
     sources.forEach((source) => {
@@ -69,7 +69,7 @@ export const DataCooperationDiagram: React.FC = () => {
   };
 
   const drawMergingProcess = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-    // 合并箭头
+    // 对齐箭头
     const arrowStartY = 180;
     const arrowEndY = 240;
 
@@ -110,12 +110,12 @@ export const DataCooperationDiagram: React.FC = () => {
       ctx.fill();
     });
 
-    // 合并标签
+    // 协作标签
     ctx.font = '12px "Inter", "Helvetica Neue", sans-serif';
     ctx.fillStyle = 'rgba(0, 212, 255, 0.7)';
     ctx.textAlign = 'center';
-    ctx.fillText('多方', 180, 215);
-    ctx.fillText('协同', 180, 230);
+    ctx.fillText('协作', 180, 215);
+    ctx.fillText('对齐', 180, 230);
   };
 
   const drawFinalResult = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
@@ -189,7 +189,7 @@ export const DataCooperationDiagram: React.FC = () => {
     ctx.font = 'bold 14px "Inter", "Helvetica Neue", sans-serif';
     ctx.fillStyle = '#00d4ff';
     ctx.textAlign = 'center';
-    ctx.fillText('联合智能', centerX, resultY + radius + 35);
+    ctx.fillText('协作智能', centerX, resultY + radius + 35);
   };
 
   const drawComplianceSymbol = (ctx: CanvasRenderingContext2D, x: number, y: number) => {
@@ -239,7 +239,7 @@ export const DataCooperationDiagram: React.FC = () => {
         </div>
         <div className="legend-item">
           <span className="legend-color" style={{ backgroundColor: '#f59e0b' }}></span>
-          <span>业务数据</span>
+          <span>标签集</span>
         </div>
       </div>
     </div>

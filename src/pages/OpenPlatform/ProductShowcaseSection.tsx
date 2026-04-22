@@ -1,78 +1,79 @@
 import React from 'react';
 import './ProductShowcaseSection.css';
 
-interface Product {
-  name: string;
+interface Capability {
+  title: string;
+  label: string;
   description: string;
-  image: string;
-  detailLink: string;
-  tryLink: string;
+  tags: string[];
 }
 
-export const OpenPlatformProductShowcase: React.FC = () => {
-  const products: Product[] = [
-    {
-      name: '地图数据智联平台',
-      description: '整合超 600 万条 AOI 数据与 4 亿条标准地址信息，覆盖现实世界 80% 以上末端场景',
-      image: '🗺️',
-      detailLink: 'https://lbs.sfmap.com.cn/product/map-data',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    },
-    {
-      name: '地址信息智能识别',
-      description: '一键粘贴识别，自动填充必需字段，对错误地址进行纠偏修正，提升业务处理效率',
-      image: '🔍',
-      detailLink: 'https://lbs.sfmap.com.cn/product/address-recognition',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    },
-    {
-      name: '四级行政区划查询',
-      description: '自动获取地址所含的省、市、区、街道四级行政区划信息，提升业务流程效率',
-      image: '📍',
-      detailLink: 'https://lbs.sfmap.com.cn/api/address/admin',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    },
-    {
-      name: '地址输入提示',
-      description: '根据填写地址进行地址联想，语义准确度达 99.81%，协助用户快速准确填写地址',
-      image: '💡',
-      detailLink: 'https://lbs.sfmap.com.cn/api/address/suggest',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    },
-    {
-      name: '空间分析服务',
-      description: '提供缓冲区分析、路径规划、热力图生成等高级空间分析能力',
-      image: '📊',
-      detailLink: 'https://lbs.sfmap.com.cn/product/spatial-analysis',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    },
-    {
-      name: '地图位置拾取',
-      description: '在地图移动鼠标可查看位置，点击地图可拾取位置信息，包括：经纬度、地址和AOI信息',
-      image: '📌',
-      detailLink: 'https://lbs.sfmap.com.cn/tools/picker',
-      tryLink: 'https://lbs.sfmap.com.cn/console/trial'
-    }
-  ];
+const capabilities: Capability[] = [
+  {
+    title: '地图调用',
+    label: 'Map Tool',
+    description: '支持底图加载、图层切换、点线面绘制、样式控制和结果高亮，适配智能体的交互式空间操作。',
+    tags: ['底图', '图层', '绘制', '高亮'],
+  },
+  {
+    title: '路线编排',
+    label: 'Route Tool',
+    description: '面向单点、多点和约束条件路径规划，输出可直接被任务流消费的路线建议与路径片段。',
+    tags: ['路径规划', '多点', '约束', '调度'],
+  },
+  {
+    title: '地理编码',
+    label: 'Geo Tool',
+    description: '把地址、楼宇、POI 与经纬度互相转换，提供结构化结果，便于前端、后端和智能体统一使用。',
+    tags: ['正向', '逆向', '批量', '解析'],
+  },
+  {
+    title: '地址理解',
+    label: 'Address Tool',
+    description: '用于地址补全、纠错、拆分、行政区识别和语义归一，帮助模型把自然语言落到可执行对象。',
+    tags: ['补全', '纠错', '拆分', '归一'],
+  },
+  {
+    title: '地理围栏',
+    label: 'Fence Tool',
+    description: '支持区域创建、进出判断、事件触发和边界监测，让智能体可以围绕地点与范围进行规则执行。',
+    tags: ['围栏', '监测', '事件', '规则'],
+  },
+  {
+    title: '态势渲染',
+    label: 'Scene Tool',
+    description: '将点位、轨迹、热区、网络和专题数据转成可视化态势图层，适合调度、巡检和指挥分析。',
+    tags: ['轨迹', '热区', '专题', '叠加'],
+  },
+];
 
+export const OpenPlatformProductShowcase: React.FC = () => {
   return (
-    <section className="op-product-showcase">
-      <div className="op-product-showcase-container">
-        <h2 className="section-title">强大数据底座，高效连接世界万物</h2>
-        
-        <div className="product-cards-grid">
-          {products.map((product, idx) => (
-            <div key={idx} className="product-card">
-              <div className="product-card-image">{product.image}</div>
-              <div className="product-card-content">
-                <h3 className="product-card-title">{product.name}</h3>
-                <p className="product-card-description">{product.description}</p>
-                <div className="product-card-actions">
-                  <a href={product.detailLink} className="product-link" target="_blank" rel="noopener noreferrer">查看详情</a>
-                  <a href={product.tryLink} className="product-try-btn" target="_blank" rel="noopener noreferrer">立即试用</a>
-                </div>
+    <section className="op-showcase">
+      <div className="op-section-inner">
+        <div className="op-section-heading">
+          <span className="op-section-kicker">平台能力</span>
+          <h2>让空间能力以工具化方式进入智能体工作流</h2>
+          <p>
+            不是把地图“挂”在页面上，而是把空间能力拆成可发现、可调用、可组合的工具，
+            让各类业务系统按需拼装自己的空间智能链路。
+          </p>
+        </div>
+
+        <div className="op-showcase-grid">
+          {capabilities.map((item) => (
+            <article key={item.title} className="op-showcase-card">
+              <div className="op-showcase-card-head">
+                <span className="op-showcase-label">{item.label}</span>
+                <h3>{item.title}</h3>
               </div>
-            </div>
+              <p>{item.description}</p>
+              <div className="op-showcase-tags">
+                {item.tags.map((tag) => (
+                  <span key={tag} className="op-showcase-tag">{tag}</span>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </div>

@@ -10,33 +10,33 @@ interface DeploymentMode {
 export const PrivateNetworkDeployment: React.FC = () => {
   const deploymentModes: DeploymentMode[] = [
     {
-      title: '专网部署',
+      title: '内网单域部署',
       icon: '🔐',
       features: [
-        '完全隔离的网络环境',
-        '数据不出场景',
-        '自主可控的操作系统',
-        '独立的存储和计算资源'
+        '单域隔离，数据和推理都留在内网',
+        '适合政务、企业和高安全业务场景',
+        '支持本地存储、向量检索和模型服务',
+        '可接入现有统一身份和权限体系'
       ]
     },
     {
-      title: '内网部署',
-      icon: '🌐',
+      title: '双中心容灾',
+      icon: '🛰️',
       features: [
-        '企业内网环境',
-        '与现有系统集成',
-        '灵活的私有化部署',
-        '企业级的运维保障'
+        '主备中心同步部署，支持故障切换',
+        '满足核心系统高可用和连续运行要求',
+        '适合城市治理和指挥调度平台',
+        '支持分级恢复和按域回放'
       ]
     },
     {
-      title: '混合部署',
+      title: '隔离区混合部署',
       icon: '⚖️',
       features: [
-        '云端 + 本地混合',
-        '灵活的资源配置',
-        '按需的扩展能力',
-        '最优的成本控制'
+        '敏感数据本地运行，非敏感能力可弹性扩展',
+        '适合多系统协作和阶段性迁移',
+        '既保留数据主权，也保留扩展空间',
+        '支持分层运维和策略控制'
       ]
     }
   ];
@@ -44,9 +44,9 @@ export const PrivateNetworkDeployment: React.FC = () => {
   return (
     <section className="pn-deployment">
       <div className="pn-deployment-container">
-        <h2 className="section-title">部署方式</h2>
+        <h2 className="section-title">部署架构</h2>
         <p className="section-subtitle">
-          灵活的部署选择，满足不同的安全和合规需求
+          为专网地图和空间 Agent 选择合适的运行拓扑，在安全、可靠和扩展之间保持平衡
         </p>
 
         <div className="deployment-grid">
@@ -67,21 +67,21 @@ export const PrivateNetworkDeployment: React.FC = () => {
         </div>
 
         <div className="deployment-process">
-          <h3 className="process-title">部署流程</h3>
+          <h3 className="process-title">落地流程</h3>
           <div className="process-steps">
             <div className="process-step">
               <div className="step-num">1</div>
-              <p>需求调研与方案设计</p>
+              <p>场景盘点与安全边界定义</p>
             </div>
             <div className="process-arrow">→</div>
             <div className="process-step">
               <div className="step-num">2</div>
-              <p>环境准备与部署实施</p>
+              <p>环境准备与私有化部署</p>
             </div>
             <div className="process-arrow">→</div>
             <div className="process-step">
               <div className="step-num">3</div>
-              <p>系统验收与上线运维</p>
+              <p>联调验收与持续运营</p>
             </div>
           </div>
         </div>

@@ -5,14 +5,14 @@ const StaticFlowDiagram: React.FC = () => {
     <div className="static-flow-diagram">
       <div className="flow-container">
         <div className="diagram-canvas">
-          <h2 className="flow-title">空间智能数据工厂 · 全流程架构</h2>
+          <h2 className="flow-title">可信数据工厂 · 世界模型全流程架构</h2>
           
           {/* 上行：数据输入(左) | 工具集(中) | 决策服务(右) */}
           <div className="diagram-top-row">
             {/* 区域1：数据输入 */}
             <div className="section-area section-input">
               <div className="section-box">
-                <h3>来自业务场景的数据输入</h3>
+                <h3>来自业务场景的可信数据输入</h3>
                 <div className="hierarchy-content">
                   <div className="hierarchy-item">
                     <h4>🚚 物流 / 货运</h4>
@@ -66,12 +66,12 @@ const StaticFlowDiagram: React.FC = () => {
 
             {/* 区域3：中间 - 数据工厂治理工具集 */}
             <div className="section-area section-factory">
-              <div className="section-title">数据工厂治理工具集</div>
+            <div className="section-title">世界模型治理工具集</div>
               <div className="factory-grid-vertical">
                 {/* 步骤1：接入与预处理 */}
                 <div className="factory-step">
                   <div className="factory-box">
-                    <h3>🔌 接入与预处理</h3>
+                    <h3>🔌 接入与标准化</h3>
                     <div className="two-column-list">
                       <ul className="list-compact dark-text">
                         <li>多协议、多格式接入</li>
@@ -89,7 +89,7 @@ const StaticFlowDiagram: React.FC = () => {
                 {/* 步骤2：标注、治理与训练 */}
                 <div className="factory-step">
                   <div className="factory-box">
-                    <h3>✏️ 标注、治理与训练</h3>
+                    <h3>✏️ 标注、治理与反馈</h3>
                     <div className="two-column-list">
                       <ul className="list-compact dark-text">
                         <li>数据编排与组织</li>
@@ -107,7 +107,7 @@ const StaticFlowDiagram: React.FC = () => {
                 {/* 步骤3：空间实体标注与治理（核心模块，突出显示）*/}
                 <div className="factory-step">
                   <div className="factory-box">
-                    <h3>📍 空间实体标注与治理</h3>
+                    <h3>📍 语义地址与实体标注</h3>
                     <div className="two-column-list">
                       <ul className="list-compact dark-text">
                         <li>实体识别与分类</li>
@@ -128,7 +128,7 @@ const StaticFlowDiagram: React.FC = () => {
                 {/* 步骤4：推理、服务与反馈 */}
                 <div className="factory-step">
                   <div className="factory-box">
-                    <h3>⚡ 推理、服务与反馈</h3>
+                    <h3>⚡ 推理、服务与回流</h3>
                     <div className="two-column-list">
                       <ul className="list-compact dark-text">
                         <li>模型推理引擎</li>
@@ -146,7 +146,7 @@ const StaticFlowDiagram: React.FC = () => {
                 {/* 步骤5：时空数据关联融合 */}
                 <div className="factory-step">
                   <div className="factory-box">
-                    <h3>🔗 时空数据 关联融合</h3>
+                    <h3>🔗 时空数据关联融合</h3>
                     <div className="two-column-list">
                       <ul className="list-compact dark-text">
                         <li>跨源数据融合</li>
@@ -167,7 +167,7 @@ const StaticFlowDiagram: React.FC = () => {
             {/* 区域2：决策服务 */}
             <div className="section-area section-output">
               <div className="section-box">
-                <h3>面向业务场景的决策服务</h3>
+                <h3>面向 Agent 的决策服务</h3>
                 <div className="hierarchy-content">
                   <div className="hierarchy-item">
                     <h4>🚚 物流 / 货运</h4>
@@ -232,7 +232,7 @@ const StaticFlowDiagram: React.FC = () => {
             <div className="assets-grid">
               <div className="asset-item">
                 <div className="asset-box">
-                  <h3>📁 原始资料库</h3>
+                  <h3>📁 原始可信资料库</h3>
                   <div className="paragraph-content dark-text">
                     <p>多源原始数据归档、版本留存、权限管理、审计追踪</p>
                   </div>
@@ -250,7 +250,7 @@ const StaticFlowDiagram: React.FC = () => {
 
               <div className="asset-item">
                 <div className="asset-box">
-                  <h3>📦 数据资产库</h3>
+                  <h3>📦 世界模型资产库</h3>
                   <div className="paragraph-content dark-text">
                     <p>标注数据资产、模型资产存储、业务规则库、质量指标体系</p>
                   </div>
