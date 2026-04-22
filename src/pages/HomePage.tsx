@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSection from './HomePage/HeroSection';
 import CompanyProfileSection from './HomePage/CompanyProfileSection';
+import AgentEraSection from './HomePage/AgentEraSection';
 import ProductArchitectureSection from './HomePage/ProductArchitectureSection';
 import DataAssetsSection from './HomePage/DataAssetsSection';
 import ClosingSection from './HomePage/ClosingSection';
@@ -10,6 +11,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-page">
       <HeroSection />
+      <AgentEraSection />
       <CompanyProfileSection />
       <ProductArchitectureSection />
       <DataAssetsSection />

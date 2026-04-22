@@ -1,0 +1,248 @@
+.agent-page {
+  min-height: 100vh;
+  background: #08111f;
+  color: #eef7ff;
+}
+
+.agent-hero {
+  min-height: calc(100vh - 72px);
+  padding: clamp(4rem, 8vw, 7rem) var(--page-padding) clamp(3rem, 6vw, 5rem);
+  background:
+    linear-gradient(120deg, rgba(2, 132, 199, 0.32), transparent 38%),
+    linear-gradient(180deg, #08111f 0%, #102033 100%);
+}
+
+.agent-hero-inner,
+.agent-section,
+.agent-cta {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.agent-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.agent-eyebrow {
+  margin: 0 0 0.9rem;
+  color: #69e6c2;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.agent-hero h1,
+.agent-section h2,
+.agent-cta h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.agent-hero h1 {
+  max-width: 760px;
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  line-height: 1.04;
+}
+
+.agent-hero-desc {
+  max-width: 760px;
+  margin: 1.4rem 0 0;
+  color: rgba(238, 247, 255, 0.82);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.8;
+}
+
+.agent-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.agent-primary,
+.agent-secondary,
+.agent-cta a {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.agent-primary,
+.agent-cta a {
+  color: #06111e;
+  background: #69e6c2;
+}
+
+.agent-secondary {
+  color: #eef7ff;
+  border: 1px solid rgba(238, 247, 255, 0.26);
+}
+
+.agent-console {
+  border: 1px solid rgba(105, 230, 194, 0.28);
+  border-radius: 8px;
+  background: rgba(5, 14, 26, 0.82);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+  padding: 1rem;
+}
+
+.console-top {
+  display: flex;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.console-top span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #69e6c2;
+  opacity: 0.72;
+}
+
+.console-line {
+  padding: 0.85rem 0.9rem;
+  margin-top: 0.7rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(238, 247, 255, 0.76);
+  line-height: 1.55;
+}
+
+.console-line.strong {
+  color: #fff;
+  background: rgba(105, 230, 194, 0.12);
+}
+
+.console-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+}
+
+.console-grid div {
+  min-height: 84px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(238, 247, 255, 0.12);
+  border-radius: 8px;
+  color: #c8f7e8;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  font-weight: 800;
+}
+
+.agent-section {
+  padding: clamp(3rem, 7vw, 5.5rem) var(--page-padding);
+}
+
+.agent-section-head {
+  max-width: 860px;
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
+}
+
+.agent-section h2,
+.agent-cta h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.agent-section-head p:not(.agent-eyebrow),
+.agent-card p,
+.agent-layers p,
+.agent-cta p {
+  color: rgba(238, 247, 255, 0.72);
+  line-height: 1.75;
+}
+
+.agent-card-grid,
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.agent-card,
+.scenario-card,
+.agent-layers div {
+  border: 1px solid rgba(238, 247, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 1.2rem;
+}
+
+.agent-card h3,
+.scenario-card h3 {
+  margin: 0 0 0.7rem;
+  color: #ffffff;
+}
+
+.agent-layers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.agent-layers span {
+  display: block;
+  color: #69e6c2;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+
+.agent-layers strong {
+  display: block;
+  min-height: 3rem;
+  color: #fff;
+  font-size: 1.08rem;
+}
+
+.scenario-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.scenario-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.scenario-steps span {
+  border-radius: 8px;
+  background: rgba(105, 230, 194, 0.1);
+  color: #c8f7e8;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.92rem;
+}
+
+.agent-cta {
+  padding: clamp(3rem, 7vw, 5rem) var(--page-padding);
+  text-align: center;
+}
+
+.agent-cta p {
+  max-width: 720px;
+  margin: 1rem auto 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .agent-hero-inner,
+  .agent-card-grid,
+  .agent-layers,
+  .scenario-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-layers strong {
+    min-height: auto;
+  }
+}
