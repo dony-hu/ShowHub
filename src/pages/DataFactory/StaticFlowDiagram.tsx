@@ -66,7 +66,6 @@ const StaticFlowDiagram: React.FC = () => {
 
             {/* 区域3：中间 - 数据工厂治理工具集 */}
             <div className="section-area section-factory">
-            <div className="section-title">世界模型治理工具集</div>
               <div className="factory-grid-vertical">
                 {/* 步骤1：接入与预处理 */}
                 <div className="factory-step">
